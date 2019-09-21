@@ -1,0 +1,2658 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/Go-1.10-Release-Party/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>Go-1.10-Release-Party - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#whats-happening" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Go-1.10-Release-Party
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Go-1.10-Release-Party
+      </label>
+    
+    <a href="./" title="Go-1.10-Release-Party" class="md-nav__link md-nav__link--active">
+      Go-1.10-Release-Party
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-happening" class="md-nav__link">
+    What's happening?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#so-what-is-the-release-date" class="md-nav__link">
+    So what is the release date?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sounds-awesome-how-can-you-get-involved" class="md-nav__link">
+    Sounds awesome, how can you get involved?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whos-involved" class="md-nav__link">
+    Who's involved?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stay-in-touch" class="md-nav__link">
+    Stay in touch
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slack-channel" class="md-nav__link">
+    Slack Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mailing-list" class="md-nav__link">
+    Mailing list
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-in-a-release-party" class="md-nav__link">
+    What happens in a release party?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whatll-happen-if-go-110-isnt-out-during-february" class="md-nav__link">
+    What'll happen if Go 1.10 isn't out during February?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whos-organising-this" class="md-nav__link">
+    Who's organising this?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-seriously-whos-organising-this" class="md-nav__link">
+    No, seriously, who's organising this?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-happening" class="md-nav__link">
+    What's happening?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#so-what-is-the-release-date" class="md-nav__link">
+    So what is the release date?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sounds-awesome-how-can-you-get-involved" class="md-nav__link">
+    Sounds awesome, how can you get involved?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whos-involved" class="md-nav__link">
+    Who's involved?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stay-in-touch" class="md-nav__link">
+    Stay in touch
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slack-channel" class="md-nav__link">
+    Slack Channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mailing-list" class="md-nav__link">
+    Mailing list
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-in-a-release-party" class="md-nav__link">
+    What happens in a release party?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whatll-happen-if-go-110-isnt-out-during-february" class="md-nav__link">
+    What'll happen if Go 1.10 isn't out during February?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whos-organising-this" class="md-nav__link">
+    Who's organising this?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-seriously-whos-organising-this" class="md-nav__link">
+    No, seriously, who's organising this?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Go-1.10-Release-Party.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Go-1.10-Release-Party</h1>
+                
+                <h3 id="whats-happening">What's happening?</h3>
+<p>To celebrate the release of Go 1.10 we're to organising a world wide release party during the month of February 2018 🎉 </p>
+<h4 id="so-what-is-the-release-date">So what is the release date?</h4>
+<p>Go 1.10 was released on February 16.</p>
+<h3 id="sounds-awesome-how-can-you-get-involved">Sounds awesome, how can you get involved?</h3>
+<ul>
+<li>If you host a Go user group or meetup, schedule a meetup during February, and celebrate with Gophers around the world.</li>
+<li>If you're a member of a Go user group or meetup, pester your organiser and let them know you'd like to participate.</li>
+</ul>
+<p>After the event post a photo, make a video, write a blog post, scribble on your Facebook wall, or tweet something pithy. Let's see how big we can make the celebration.</p>
+<p>Spread the word using hashtag <a href="https://twitter.com/hashtag/goreleaseparty">#GoReleaseParty</a></p>
+<p>Don't forget to add your meetup's details <img alt="👇" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f447.svg" title=":point_down:" /> right here.</p>
+<h4 id="whos-involved">Who's involved?</h4>
+<p>Here is a list of the groups who are participating.
+- Madrid, Spain: Feb 8 7:30 pm at <a href="https://sourced.tech">source{d}</a>. <a href="https://www.meetup.com/go-mad/events/247296417/">View the event</a>
+- Copenhagen, Denmark: Feb 15 7:00 pm at Maersk. <a href="https://www.meetup.com/Go-Cph/events/242615767/">View the meetup</a>
+- Minsk, Belarus: Feb 15 7:00 pm at SPACE. <a href="https://www.facebook.com/events/202545833823265/">View the event</a>
+- London, UK: Feb 15 6:30 pm at Shazam. <a href="https://www.meetup.com/Go-London-User-Group/events/247343552/">View the meetup</a>
+- Paris, France: Feb 15 7:15 pm at Mobiskill. <a href="https://www.meetup.com/Golang-Paris/events/247526552">View the meetup</a>
+- Orlando, FL, United States: Feb 19 7:00 PM at Familab. <a href="https://www.meetup.com/OrlanGo/">View the meetup</a>
+- Shizuoka, Japan: Feb 20 6:30 pm at Ageya Take. <a href="https://shizuoka-go.connpass.com/event/79570/">View the event</a>
+- Jakarta, Indonesia: Feb 20 7:00pm at Hacktiv8. <a href="https://www.meetup.com/GoJakarta/events/247559760/">View the event</a>
+- Tokyo, Japan: Feb 20 7:00 pm at Google Tokyo. <a href="https://gocon.connpass.com/event/78128/">View the event</a>
+- Okayama, Japan: Feb 20 7:00 pm at Kurashiki Coffee Okayama Aoe. <a href="https://connpass.com/event/79528/">View the event</a>
+- Reston, VA, USA: Feb 21 6:45 pm at Comcast. <a href="https://www.meetup.com/Golang-Reston/events/246828702/">View the meetup</a>
+- San Francisco, CA: Feb 21 6:00 pm at Cloudflare <a href="https://www.meetup.com/golangsf/events/245472050/">View the event</a>
+- Phoenix, AZ, United States: Feb 22 6:30 PM at Galvanize. <a href="https://www.meetup.com/Golang-Phoenix/events/247751393/">View the meetup</a>
+- Warsaw, Poland: Feb 22 7:00 pm at Kawiarnia Crux <a href="https://www.meetup.com/pl-PL/Golang-Warsaw/events/247732050/">View the meetup</a>
+- Santiago, Chile: Feb 22 7:00 pm at Mercado Libre Chile. <a href="https://www.meetup.com/golang-chile/events/247511315/">View the meetup</a>
+- Aachen, Germany: Feb 22 7:00pm at hosting.de. <a href="https://www.meetup.com/Gophers-Aachen/events/247739398/">View the meetup</a>
+- Waterloo, Canada: Feb 22 7:00pm at the Lion Brewery in the Heuther Hotel. <a href="https://www.meetup.com/Golang-KW/events/247770215/">View the meetup</a>
+- Lodz, Poland: Feb 22 6:00 pm at Co/Walk HUB <a href="https://www.meetup.com/Golang-Lodz/events/247802682/">View the meetup</a>
+- İzmir, Turkey: Feb 23 7:30 pm at Drunken Duck <a href="https://www.facebook.com/events/144640862880347/">View the event</a>
+- Milan, Italy: Feb 23 8:00 pm at Venini42 <a href="https://www.meetup.com/it-IT/Golang-Milano/events/247741405/">View the event</a>
+- Bengaluru, India: Feb 24 10:00 am at OpenEBS Office Space. <a href="https://www.meetup.com/Golang-Bangalore/events/247344493/">View the meetup</a>
+- Moscow, Russia: Feb 24 11:30 am at Badoo. <a href="https://golang-moscow.timepad.ru/event/663880/">View the meetup</a>
+- Yoshkar-Ola, Russia: Feb 24 2:00 pm at iSpring. <a href="https://golang-yoshar-ola.timepad.ru/event/667643/">View the meetup</a>
+- Zagreb, Croatia: Feb 26 6:00 pm at MaMa. <a href="https://www.meetup.com/Golang-ZG/events/247644001/">View the meetup</a>
+- Edmonton, Canada: Feb 26 6:30 pm at Startup Edmonton <a href="https://www.meetup.com/startupedmonton/events/247825453/">View the meetup</a>
+- Berlin, Germany: Feb 26 7:00 pm at n26. <a href="https://www.meetup.com/golang-users-berlin/events/247289781/">View the meetup</a>
+- Stockholm, Sweden: Feb 27 17:30 at Betalo. <a href="https://www.meetup.com/Go-Stockholm/events/247955211/">View the meetup</a>
+- Baltimore, MD: Feb 27 06:30pm at ZeroFOX. <a href="https://www.meetup.com/BaltimoreGolang/events/247958575/">View the meetup</a>
+- Joinville, Brazil: Feb 27 7:00 pm at ContaAzul. <a href="https://www.meetup.com/Joinville-Go-Meetup/events/247548485/">View the meetup</a>
+- Brisbane, Australia: Feb 28 6:00 pm at Jumbo Interactive. <a href="https://www.meetup.com/Brisbane-Golang-Meetup/events/247337741/">View the meetup</a>
+- Frankfurt, Germany: Feb 28 6:30 pm at SANID GmbH, <a href="https://www.meetup.com/gophers-frm/events/247776234/">View the meetup</a>
+- Chicago, IL: Feb 28 6:00pm at Enova. <a href="https://www.meetup.com/Women-Who-Go-Chicago/events/247802512/">View the meetup</a> &amp; <a href="https://www.meetup.com/Chicago-Gophers/events/247805023/">View the meetup</a>
+- Fort Lauderdale, FL: Mar 1 6:30 pm at Microsoft, <a href="https://www.meetup.com/Go-Miami/events/247987413/">View the meetup</a>
+- Zurich, Switzerland: Mar 1 7:00 pm at Job Cloud. <a href="https://www.meetup.com/Zurich-Gophers/events/246188927/">View the meetup</a>
+- Florianópolis, Brazil: Mar 17 3:00 pm at Involves. <a href="https://www.meetup.com/pt-BR/Floripa-Gophers/events/kzmchpyxfbwb/">View the meetup</a>
+- Portland, Oregon: April 24<sup>th</sup> 6:00 pm at New Relic. <a href="https://www.meetup.com/PDX-Go/events/248938586/">View the meetup</a> </p>
+<p><em>If your group is not listed here yet, edit the page and add yourself in a chronological order.</em>
+<em>Organisers, once you've added your group, consider tweeting out a link to the page to raise awareness.</em></p>
+<h3 id="stay-in-touch">Stay in touch</h3>
+<p>Trying to co-ordinate dozens of meetup groups around the globe will be challenging. Here are some ways you can plan your event, and keep up to date. </p>
+<p>As always, if you get stuck, or need help, please <a href="https://github.com/golang/go/wiki/Go-1.10-release-party#no-seriously-whos-organising-this">contact the organisers directly</a>, we're here to help.
+.</p>
+<h5 id="slack-channel">Slack Channel</h5>
+<p>We have a channel for the <a href="https://gophers.slack.com/messages/go-release-party/">release party</a> on the <a href="https://gophers.slack.com/messages/go-release-party/">Gophers Slack</a>. If you need an invite to Slack, <a href="https://invite.slack.golangbridge.org/">you can request an automatic invite with this link</a>.</p>
+<h5 id="mailing-list">Mailing list</h5>
+<p>We have set up a <a href="https://groups.google.com/forum/#!forum/go-meetup-organisers">mailing list for meetup organisers</a> to ask questions.</p>
+<h3 id="what-happens-in-a-release-party">What happens in a release party?</h3>
+<p>As with the previous <a href="https://github.com/golang/go/wiki/Go-1.6-release-party">Go 1.6</a> and <a href="https://github.com/golang/go/wiki/Go-1.8-release-party">Go 1.8</a> release parties, this is a great opportunity to spread the word about the improvements landing 1.10, and the plans for what is coming next!</p>
+<h4 id="resources">Resources</h4>
+<p>You can use the slide deck that the Go London User Group in London will use. It's <a href="https://talks.godoc.org/github.com/dlsniper/talks/2018/go-1.10-release-party/presentation.slide#1">available here</a> (<a href="https://github.com/dlsniper/talks/tree/master/2018/go-1.10-release-party">source</a>)</p>
+<p><em>Please send PR's with corrections/additions</em></p>
+<p><a href="https://tip.golang.org/doc/go1.10">Here's a link to the <em>draft</em> Go 1.10 release notes</a>.</p>
+<p><a href="https://speakerdeck.com/campoy/the-state-of-go-1-dot-10">Here's a link</a> to the talk by Francesc Campoy: The State of Go (February 2018).</p>
+<h3 id="whatll-happen-if-go-110-isnt-out-during-february">What'll happen if Go 1.10 isn't out during February?</h3>
+<p>If all else fails... at least we'll have each other. </p>
+<h3 id="whos-organising-this">Who's organising this?</h3>
+<p>Well, if you run a Go meetup, you are. It can't be a worldwide release party without meetups around the globe.</p>
+<h4 id="no-seriously-whos-organising-this">No, seriously, who's organising this?</h4>
+<p>Here are the organisers so far:
+- <a href="mailto://natalie.pistunovich@gmail.com">Natalie Pistunovich</a> - <a href="https://twitter.com/nataliepis">@NataliePis</a>
+- <a href="mailto://dave@cheney.net">Dave Cheney</a> - <a href="https://twitter.com/davecheney">@davecheney</a>
+- <a href="mailto://joaoh82@gmail.com">João Henrique Machado Silva</a> - <a href="https://twitter.com/joaoh82">@joaoh82</a>
+- <a href="mailto://florinpatan@gmail.com">Florin Pățan</a> - <a href="https://twitter.com/dlsniper">@dlsniper</a></p>
+<p><em>Want to help? Edit this page and add yourself</em></p>
+<p>If you have questions, please reach out to one of the organisers.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GitHubCodeLayout
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Go-1.6-release-party
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

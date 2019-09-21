@@ -1,0 +1,2698 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/Go-Release-Cycle/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>Go-Release-Cycle - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#overview" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Go-Release-Cycle
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Go-Release-Cycle
+      </label>
+    
+    <a href="./" title="Go-Release-Cycle" class="md-nav__link md-nav__link--active">
+      Go-Release-Cycle
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    Timeline
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#january-15-july-15-planning-for-release-begins" class="md-nav__link">
+    January 15 / July 15: Planning for release begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#february-1-august-1-release-work-begins" class="md-nav__link">
+    February 1 / August 1: Release work begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#may-1-november-1-release-freeze-begins" class="md-nav__link">
+    May 1 / November 1: Release freeze begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#june-1-december-1-beta-1-issued" class="md-nav__link">
+    June 1 / December 1: Beta 1 issued.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#july-1-january-1-release-candidate-1-issued" class="md-nav__link">
+    July 1 / January 1: Release candidate 1 issued.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#august-1-february-1-release-issued" class="md-nav__link">
+    August 1 / February 1: Release issued.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-maintenance" class="md-nav__link">
+    Release Maintenance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    Timeline
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#january-15-july-15-planning-for-release-begins" class="md-nav__link">
+    January 15 / July 15: Planning for release begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#february-1-august-1-release-work-begins" class="md-nav__link">
+    February 1 / August 1: Release work begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#may-1-november-1-release-freeze-begins" class="md-nav__link">
+    May 1 / November 1: Release freeze begins.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#june-1-december-1-beta-1-issued" class="md-nav__link">
+    June 1 / December 1: Beta 1 issued.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#july-1-january-1-release-candidate-1-issued" class="md-nav__link">
+    July 1 / January 1: Release candidate 1 issued.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#august-1-february-1-release-issued" class="md-nav__link">
+    August 1 / February 1: Release issued.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-maintenance" class="md-nav__link">
+    Release Maintenance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Go-Release-Cycle.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Go-Release-Cycle</h1>
+                
+                <p>This wiki page is maintained by the Go team.
+Please <a href="https://groups.google.com/group/golang-dev">send comments to golang-dev</a>
+or <a href="https://golang.org/issue">file issues</a> instead of making changes directly.</p>
+<p>Short link: <a href="https://golang.org/s/release">https://golang.org/s/release</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>After fourteen months elapsed between Go 1.0 and Go 1.1, the Go team
+adopted a release schedule to streamline the process of working on,
+finishing, and issuing releases.
+The overall goal is to make a major release every six months, which breaks down into 
+three months of general development followed by three months of testing and polishing
+known as the release freeze.
+A release is maintained by issuing minor releases to correct
+critical problems such as crashes or security issues.</p>
+<p>Note that this page documents what we intend to do for upcoming releases.
+If you are familiar with what we have done in the past,
+pay particular attention to the differences described in the
+<a href="#history">history section</a>.</p>
+<h2 id="timeline">Timeline</h2>
+<p>The current release cycle is aligned to start on February 1 and August 1 of each year.
+The target milestones for a release cycle are as described below.
+We try to hit the targets as closely as possible, while still delivering
+a quality release.</p>
+<p>Betas, release candidates, and releases have traditionally been cut and issued
+mid-week, often on Wednesdays.
+We avoid Mondays to give the Go team a work day before to prepare for the cut,
+and we avoid Fridays to give the Go team a work day after in case the cut runs
+into unexpected problems.</p>
+<p><img alt="" src="../images/release-cycle.png" /></p>
+<h4 id="january-15-july-15-planning-for-release-begins">January 15 / July 15: Planning for release begins.</h4>
+<p>Planning of major work for upcoming release cycle is announced
+on <a href="https://groups.google.com/group/golang-dev">golang-dev</a>.</p>
+<p>Examples: 
+<a href="https://groups.google.com/d/msg/golang-dev/eqBihsj7x-k/3h59pc8FDAoJ">Go 1.4</a>,
+<a href="https://groups.google.com/d/msg/golang-dev/2ZUi792oztM/GNsw1i76LhsJ">Go 1.5</a>,
+<a href="https://groups.google.com/d/msg/golang-dev/vNboccLL95c/XOD3vHKOCQAJ">Go 1.6</a>.</p>
+<h4 id="february-1-august-1-release-work-begins">February 1 / August 1: Release work begins.</h4>
+<p>This milestone is delayed if the previous release has not yet been issued,
+but note that later milestones are not delayed.
+That is, failure to get one release out on time takes time away from
+the development cycle of the subsequent release.</p>
+<p>Note that incoming bug reports should be handled and bugs fixed during 
+ordinary release work.
+It is not appropriate to leave all bug fixes for the release freeze.
+See the <a href="#history">history</a> section for more discussion.</p>
+<h4 id="may-1-november-1-release-freeze-begins">May 1 / November 1: Release freeze begins.</h4>
+<p>This milestone begins the second half of the release cycle, the release freeze.
+The release freeze applies to the entire main repository
+as well as to the code in subrepositories that is needed to build the
+binaries included in the release,
+particularly godoc and all its dependencies in the tools subrepository.</p>
+<p>Changes that were mailed before the freeze can be submitted
+if they are reviewed promptly after the freeze begins.
+During the freeze, only bug fixes and doc updates are accepted.
+On occasion new work may be done during the freeze, but only in exceptional circumstances
+and typically only if the work was proposed and approved before the cutoff.
+Such changes must be low risk.</p>
+<p>This part of the release cycle is focused on improving the quality of the release,
+by testing it and fixing bugs that are found.
+However, every fix must be evaluated to balance the benefit of a possible fix
+against the cost of now having not as well tested code (the fix) in the release.
+Early in the release cycle, the balance tends toward accepting a fix.
+Late in the release cycle, the balance tends toward rejecting a fix,
+unless a case can be made that the fix is both low risk and high reward.</p>
+<p>Examples of low risk changes appropriate late in the cycle include changes
+to documentation and fixes to new features being introduced in the current
+release (since there is no chance of introducing a regression compared to
+an earlier release).</p>
+<p>By the end of the first month of the freeze, nearly all known bugs
+should have been fixed or explictly postponed (either to the next
+release or indefinitely). There should be few known bugs left,
+perhaps only the ones that have proven too elusive to chase down.</p>
+<h4 id="june-1-december-1-beta-1-issued">June 1 / December 1: Beta 1 issued.</h4>
+<p>A beta release is meant to encourage testing to discover new bugs.
+Issuing a beta is an indication that the Go team has fixed nearly all the
+known bugs that are planned to be fixed for the release,
+and now it is time to look for as yet unknown bugs.</p>
+<p>The first beta includes a complete draft of the eventual release notes,
+but marked clearly as a draft to avoid confusion when people link
+to them on the internet.</p>
+<p>If a release is ahead of schedule, it is acceptable and even encouraged
+to issue a beta a few weeks ahead of this target.</p>
+<p>As bugs are reported and fixed, additional betas may be released,
+provided there are significant code changes to test anew.
+Typically betas should not be issued more frequently than two weeks.
+It is important not to issue too many betas, nor too many release candidates:
+we are asking our users for their time to help us test the release
+and must not waste their good will by making too many requests.</p>
+<p>A beta is not expected to be bug-free and should not be used in
+production settings where failures or misbehavior cannot be tolerated.
+Organizations can run integration or other tests against a beta
+or even use it in a canary setting, but they should be discouraged from
+deploying the beta for unrestricted production usage.</p>
+<h4 id="july-1-january-1-release-candidate-1-issued">July 1 / January 1: Release candidate 1 issued.</h4>
+<p>A release candidate is meant to be as close as possible to the actual release bits.
+Issuing a release candidate is an indication that the Go team has high confidence
+that the tree is free of critical bugs.</p>
+<p>Once a release candidate is issued, only documentation changes
+and changes to address critical bugs should be made.
+In general the bar for bug fixes at this point is even slightly higher than the
+bar for bug fixes in a minor release.
+We may prefer to issue a release with a known but very rare crash
+than to issue a release with a new but not production-tested fix.</p>
+<p>If a release is ahead of schedule, it is acceptable and even encouraged
+to issue a release candidate a few weeks ahead of this target.
+Extended release testing is a great way to deliver a robust release. </p>
+<p>If critical bugs are reported and fixed, additional release candidates may be issued,
+but typically not more than one every two weeks.</p>
+<p>Again, a release candidate is meant to be bug-free, as much as possible.
+Organizations are encouraged to deploy it in production settings
+after appropriate organization-specific testing.</p>
+<p>One of the criteria for issuing a release candidate is that
+Google be using that version of the code for new production builds
+by default: if we at Google are not willing to run it for production use,
+we shouldn't be asking others to.
+We may issue the release candidate a few days in advance of Google
+changing over, depending on how the calendar falls.
+For example, the change inside Google makes more sense to do on Mondays,
+so we may issue the release candidate the Wednesday before
+or the Wednesday after Google converts to the new release by default.</p>
+<p>The calm period between a release candidate and the final release
+is a good time for additional testing or for discussing the next release
+(see the January 15 milestone above).</p>
+<h4 id="august-1-february-1-release-issued">August 1 / February 1: Release issued.</h4>
+<p>Finally, the release itself!</p>
+<p>A release should not contain significant changes since the last release candidate:
+it is important that all code in the release has been well tested.
+Issuing a release is an indication that release testing has confirmed
+the release candidate's high confidence that the tree is free of critical bugs.</p>
+<p>One of the criteria for issuing a release is that the release candidate
+has been available for four weeks and any problems that need to be
+addressed have been.</p>
+<p>If a release process has run ahead of schedule, with an early beta
+and early release candidate,
+release candidate testing should absorb any extra time,
+leaving the actual release on time, not early.
+This improves the stability of the release, and it also gives developers
+working on the Go release more time to think about and plan the
+next release before code changes start pouring in again.</p>
+<p>If a release is behind schedule, it is acceptable (but certainly not ideal)
+to issue a release sooner than four weeks after the release candidate,
+but no sooner than two weeks after.
+Abbreviated release testing is a great way to deliver a buggy release.</p>
+<p>Because Google runs the release candidate as the default
+version of Go, four weeks of release testing means that
+at the least Google has been using this version of Go for
+four weeks before it becomes an official release.
+While Google's successful use does not guarantee the
+absence of problems, our experience has been that
+it certainly helps improve the quality of the release.
+We strongly encourage other organizations to test release candidates
+as aggressively as they are able and to report problems that they find.</p>
+<p>Once a release is issued, work on the next release, including code reviews
+and submission of new code, can begin, and the cycle repeats.
+Note that if a release is delayed, so is work on the next release.</p>
+<h2 id="release-maintenance">Release Maintenance</h2>
+<p>A minor release is issued to address one or more critical problems
+for which there is no workaround (typically related to stability or security).
+The only code changes included in the release are the fixes for the specific 
+critical problems.
+Important documentation-only changes and safe test updates (such as disabling tests), may also be included as well,
+but nothing more.</p>
+<p>Minor releases to address non-security problems for Go 1.x stop once Go 1.x+1 is released.</p>
+<p>Minor releases to address security problems for Go 1.x stop once Go 1.x+2 is released.
+For more about security updates, see the <a href="https://golang.org/security">security policy</a>.</p>
+<p>See also <a href="https://github.com/golang/go/wiki/MinorReleases">https://github.com/golang/go/wiki/MinorReleases</a>.</p>
+<h2 id="history">History</h2>
+<p>The Go release cycle was discussed and adopted
+after the fourteen month effort to release Go 1.1.
+Go 1.2, Go 1.3, and Go 1.4 followed a six-month cycle
+beginning and ending (alternately) on December 1 and June 1.
+After experience with calendar problems in that cycle,
+we extended Go 1.5's development phase by two months
+to shift the cycle to begin and end on February 1 and August 1,
+as described above.</p>
+<p>The <a href="https://golang.org/s/release-old">original proposal</a>
+did not contain enough detail about the milestones during the freeze,
+and over the course of a few releases development work took over
+much of the freeze.
+Compared to the goal set above of issuing a beta one month
+into the release freeze, the first betas for Go 1.3, Go 1.4, Go 1.5,
+and Go 1.6 were three, four, five, and six weeks late, respectively.
+(Go 1.6 beta 1 was only two weeks late, but it was
+full of known bugs that we still intended to fix,
+primarily to get something out for testing before the winter holidays.
+Go 1.6's first real beta by the above definition was beta 2.)</p>
+<p>When the beta is late, everything that follows the beta—shaking out
+the final bugs, thorough testing of the release candidates,
+and the shipping of the release—gets rushed, leading to more bugs
+in the final release and usually a delay in starting the next cycle.</p>
+<p>The beta was ready later and later in those four cycles primarily
+because we both postponed too many bugs to the freeze
+and then allowed too many non-essential bug fixes during the freeze.</p>
+<p>For Go 1.7 and later we will need to make sure that bugs are fixed
+before the freeze.
+That is, we need to follow the schedule above, not what we've done in the past.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Go-Community-Slides
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Go1point1Gotchas
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

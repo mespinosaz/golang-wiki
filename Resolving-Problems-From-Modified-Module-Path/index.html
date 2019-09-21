@@ -1,0 +1,2558 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/Resolving-Problems-From-Modified-Module-Path/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>Resolving-Problems-From-Modified-Module-Path - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#unexpected-module-path" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Resolving-Problems-From-Modified-Module-Path
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Resolving-Problems-From-Modified-Module-Path
+      </label>
+    
+    <a href="./" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link md-nav__link--active">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unexpected-module-path" class="md-nav__link">
+    Unexpected module path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-references-to-the-name" class="md-nav__link">
+    Removing References To The Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-harder-problem-removing-trailing-history" class="md-nav__link">
+    A Harder Problem: Removing Trailing History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomically-version-bumping-two-libraries" class="md-nav__link">
+    Atomically Version Bumping Two Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#larger-cycles" class="md-nav__link">
+    Larger Cycles
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unexpected-module-path" class="md-nav__link">
+    Unexpected module path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-references-to-the-name" class="md-nav__link">
+    Removing References To The Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-harder-problem-removing-trailing-history" class="md-nav__link">
+    A Harder Problem: Removing Trailing History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomically-version-bumping-two-libraries" class="md-nav__link">
+    Atomically Version Bumping Two Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#larger-cycles" class="md-nav__link">
+    Larger Cycles
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Resolving-Problems-From-Modified-Module-Path.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Resolving-Problems-From-Modified-Module-Path</h1>
+                
+                <h2 id="unexpected-module-path">Unexpected module path</h2>
+<p>A user working on their project, <code>my-go-project</code>, might run into an error during <code>go get -u</code> as such:</p>
+<div class="highlight"><pre><span></span>$ cd my-go-project
+$ go get -u ./...
+[...]
+go: github.com/golang/lint@v0.0.0-20190313153728-d0100b6bd8b3: parsing go.mod: unexpected module path &quot;golang.org/x/lint&quot;
+[...]
+Exit code 1
+</pre></div>
+
+<p><code>golang.org/x/lint</code> is a module whose git repository and module name used to be <code>github.com/golang/lint</code> before migrating to the git repo <code>golang.org/x/lint</code> and renaming its module name to <code>golang.org/x/lint</code>. The Go tool currently stumbles trying to understand the old module name at the new git repository: <a href="https://github.com/golang/go/issues/30831">golang/go#30831</a>.</p>
+<p>This was surfaced to <code>my-go-project</code> because <code>my-go-project</code> or one of its transitive dependencies has a route in the module graph to the old <code>github.com/golang/lint</code> module name.</p>
+<p>For example, if <code>my-go-project</code> itself relies on the old <code>github.com/golang/lint</code> module name:</p>
+<div class="highlight"><pre><span></span>$ GO111MODULE=on go mod graph
+my-go-project github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7
+</pre></div>
+
+<p>Or, perhaps <code>my-go-project</code> depends on an old version of <code>google.golang.org/grpc</code> which depends on the old <code>github.com/golang/lint</code> module name:</p>
+<div class="highlight"><pre><span></span>$ GO111MODULE=on go mod graph
+my-go-project google.golang.org/grpc@v1.16.0
+google.golang.org/grpc@v1.16.0 github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7
+</pre></div>
+
+<p>Finally, perhaps <code>my-go-project</code> depends on another dependency that requires an old version of <code>google.golang.org/grpc</code>, which in turn depends on the old <code>github.com/golang/lint</code> module name:</p>
+<div class="highlight"><pre><span></span>$ GO111MODULE=on go mod graph
+my-go-project some/dep@v1.2.3
+...
+another/dep@v1.4.2 google.golang.org/grpc@v1.16.0
+google.golang.org/grpc@v1.16.0 github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7
+</pre></div>
+
+<h2 id="removing-references-to-the-name">Removing References To The Name</h2>
+<p>Until the Go tool is updated to understand a module which has changed its module path (tracking in <a href="https://github.com/golang/go/issues/30831">golang/go#30831</a>), the solution to this is to update the graph so that there are no more paths to the old module name.</p>
+<p>Using the examples above, we'll explore updating the graph so that there are no more paths to <code>github.com/golang/lint</code>.</p>
+<p>Fixing the first example is simple, the only link is from <code>my-go-project</code> - which the user controls! Replacing the old location with the new in the <code>go.mod</code> - <code>github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7</code> with <code>golang.org/x/lint v0.0.0-20190301231843-5614ed5bae6f</code> - removes the link from the graph:</p>
+<div class="highlight"><pre><span></span>$ GO111MODULE=on go mod graph
+my-go-project golang.org/x/lint@v0.0.0-20190301231843-5614ed5bae6f
+</pre></div>
+
+<p>Fixing the second example involves more steps but is essentially the same process: <code>google.golang.org/grpc@v1.16.0</code> provides the link to <code>github.com/golang/lint</code>, so <code>google.golang.org/grpc</code> should update its <code>go.mod</code> from <code>github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7</code> to <code>golang.org/x/lint v0.0.0-20190301231843-5614ed5bae6f</code> (this thankfully already happened in <code>v1.17.0</code>). Then, <code>my-go-project</code> should update its <code>go.mod</code> to include the new version of <code>google.golang.org/grpc</code>, so that we now have:</p>
+<div class="highlight"><pre><span></span>$ GO111MODULE=on go mod graph
+my-go-project google.golang.org/grpc@v1.17.0
+google.golang.org/grpc@v1.17.0 golang.org/x/lint@v0.0.0-20181026193005-c67002cb31c3
+</pre></div>
+
+<p>Fixing the third example is similar to the second: update to a newer version of <code>another/dep</code> which brings in the newer version of <code>google.golang.org/grpc</code> which does not contain a reference to <code>github.com/golang/lint</code>.</p>
+<p>Hooray! Problems solved - there are no more paths to <code>github.com/golang/lint</code> for the Go tool to consider, so it does not trip up on this problem during <code>go get -u</code>.</p>
+<h2 id="a-harder-problem-removing-trailing-history">A Harder Problem: Removing Trailing History</h2>
+<p>This is all well and good, and should satisfy most user's problems.</p>
+<p>However, there is one situation that ends up being quite a bit more involved: when there are cycles in the module dependency graph. Consider this module dependency graph:</p>
+<p><img alt="Module Dependency Graph With A Cycle" src="https://github.com/jadekler/module-testing/blob/master/imagery/Mod%20Graph%20With%20Cycle.jpg" /></p>
+<p>And, let's imagine that <code>some/lib</code> used to depend on <code>github.com/golang/lint</code>.</p>
+<p>Let's look at this module dependency graph with versions included:</p>
+<div class="highlight"><pre><span></span>$ go mod graph
+my-go-lib some/lib@v1.7.0
+some/lib@v1.7.0 some-other/lib@v2.5.3
+some/lib@v1.7.0 golang.org/x/lint@v0.0.0-20181026193005-c67002cb31c3
+some-other/lib@v2.5.3 some/lib@v1.6.0
+some/lib@v1.6.0 some-other/lib@v2.5.0
+some/lib@v1.6.0 golang.org/x/lint@v0.0.0-20181026193005-c67002cb31c3
+some-other/lib@v2.5.0 some/lib@v1.3.1
+some/lib@v1.3.1 some-other/lib@v2.4.8
+some/lib@v1.3.1 golang.org/x/lint@v0.0.0-20181026193005-c67002cb31c3
+some-other/lib@v2.4.8 some/lib@v1.3.0
+some/lib@v1.3.0 some-other/lib@v2.4.7
+some/lib@v1.3.0 github.com/golang/lint@v0.0.0-20180702182130-06c8688daad7
+</pre></div>
+
+<p>Visualized with <a href="https://godoc.org/golang.org/x/exp/cmd/modgraphviz">golang.org/x/exp/cmd/modgraphviz</a>:</p>
+<p><img alt="A Module Dependency Graph With Trailing History" src="https://github.com/jadekler/module-testing/blob/master/imagery/graph1.png" /></p>
+<p>Here we see that even though the last several versions of <code>some/lib</code> correctly depend on <code>golang.org/x/lint</code>, the fact that <code>some/lib</code> and <code>some-other/lib</code> share a cycle mean that there's very likely to be a path far back in time.</p>
+<p>The reason such paths occur is because the process of bumping versions is usually individually atomic: when <code>some/lib</code> bumps its version of <code>some-other/lib</code> and release a new version of itself, the latest version of <code>some-other/lib</code> still depends on the previous version of <code>some/lib</code>. That is, no individual bump of either of these libraries will be enough to remove the chain into history.</p>
+<p>To remove the chain into history and remove the old <code>github.com/golang/lint</code> reference from the graph for good, both libraries have to bump their versions of each other at the same time.</p>
+<h2 id="atomically-version-bumping-two-libraries">Atomically Version Bumping Two Libraries</h2>
+<p>The solution to removing <code>github.com/golang/lint</code> is to first make sure <code>some/lib</code> doesn't depend on <code>github.com/golang/lint</code>, and then to bump both <code>some/lib</code> and <code>some-other/lib</code> to non-existent future versions of each other. We want this kind of a graph:</p>
+<div class="highlight"><pre><span></span>my-go-lib some/lib@v1.7.1
+some/lib@v1.7.1 some-other/lib@v2.5.4
+some/lib@v1.7.1 golang.org/x/lint@v0.0.0-20181026193005-c67002cb31c3
+some-other/lib@v2.5.4 some/lib@v1.7.1
+</pre></div>
+
+<p><img alt="A Module Dependency Graph Without Trailing History" src="https://github.com/jadekler/module-testing/blob/master/imagery/graph2.png" /></p>
+<p>Since <code>some/lib</code> and <code>some-other/lib</code> depend on each other at the same version, there's no path backwards in time to a point where <code>github.com/golang/lint</code> is provided.</p>
+<p>Here are the steps to achieve this atomic version bump, assuming <code>some/lib</code> is at <code>v1.7.0</code> and <code>some-other/lib</code> is at <code>v2.5.3</code>:</p>
+<ol>
+<li>Verify that the error does in fact exist:<ol>
+<li>Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>. </li>
+<li>In both repos you should observe the error go: <code>github.com/golang/lint@v0.0.0-20190313153728-d0100b6bd8b3: parsing go.mod: unexpected module path "golang.org/x/lint"</code>.</li>
+</ol>
+</li>
+<li>Verify that the latest version of <code>some/lib</code> depends on <code>golang.org/x/lint</code> instead of <code>github.com/golang/lint</code>. It would be a shame to remove the historical trails but keep the broken dependency to <code>github.com/golang/lint</code>!</li>
+<li>Bump both libs to non-existent future versions of each other using alpha tags (which are safer since go modules won't consider alpha versions as newer when evaluating the latest released version of a module):<ol>
+<li><code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.3</code> to <code>v2.5.4-alpha</code>.</li>
+<li><code>some/lib</code> tags the commit <code>v1.7.1-alpha</code> and pushes the commit and tag.</li>
+<li><code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.6.0</code> to <code>v1.7.1-alpha</code>.</li>
+<li><code>some-other/lib</code> tags the commit <code>v2.5.4-alpha</code> and pushes the commit and tag.</li>
+</ol>
+</li>
+<li>Verify results whilst things are still in an alpha state:<ol>
+<li><code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some/lib</code>.</li>
+<li><code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some-other/lib</code>.</li>
+<li><code>GO111MODULE=on go mod graph</code> in both repos and assert that there's no path to <code>github.com/golang/lint</code>.</li>
+<li>Note: <code>go get -u</code> still will not work because - as mentioned above - alpha versions aren't considered when evaluating latest versions.</li>
+</ol>
+</li>
+<li>If everything looks good, continue by once again bumping to non-existent future versions of each other:<ol>
+<li><code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.4-alpha</code> to <code>v2.5.4</code></li>
+<li><code>some/lib</code> tags the commit <code>v1.7.1</code> and pushes the commit and tag.</li>
+<li><code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.7.1-alpha</code> to <code>v1.7.1</code>.</li>
+<li><code>some-other/lib</code> tags the commit <code>v2.5.4</code> and pushes the commit and tag. </li>
+</ol>
+</li>
+<li>Verify that the error no longer exists:<ol>
+<li>Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>.</li>
+<li>No parsing <code>go.mod: unexpected module path "golang.org/x/lint"</code> error should occur.</li>
+</ol>
+</li>
+<li>Currently, the <code>go.sum</code>s of <code>some/lib</code> and <code>some-other/lib</code> are incomplete. This is due to the fact that we depended upon future, non-existent versions of modules, so we were not able to generate go.sum entries until the process was finished. So let's fix this:<ol>
+<li><code>GO111MODULE=on go mod tidy</code> in <code>some/lib</code>.</li>
+<li>Commit, tag the commit <code>v1.7.2</code>, and push both commit and tag.</li>
+<li><code>GO111MODULE=on go mod tidy</code> in <code>some-other/lib</code>.</li>
+<li>Commit, tag the commit <code>v2.5.5</code>, and push both commit and tag.</li>
+</ol>
+</li>
+<li>Finally, let's make sure that <code>my-go-project</code> depends on these new versions of <code>some/lib</code> and <code>some-other/lib</code> which do not have long historical tails:<ol>
+<li>Change the <code>my-go-project</code> <code>go.mod</code> entry from <code>some/lib v1.7.0</code> to <code>some/lib 1.7.2</code>.</li>
+<li>Test by running <code>GO111MODULE=on go get -u ./...</code> in <code>my-go-project</code>. </li>
+</ol>
+</li>
+</ol>
+<p>Note that between steps 5.b and 5.d, users are broken: a version of <code>some/lib</code> has been released that depends on a non-existent version of <code>some-other/lib</code>. Therefore, this process should ideally been done real-time so that step 5.d is finished very soon after step 5.b, creating as small a window of breakage as possible.</p>
+<h2 id="larger-cycles">Larger Cycles</h2>
+<p>This example explained the process for removing historical trails when there exists a cycle involving two packages in a graph, but what about if there are cycles involving more packages? For example, consider the following graphs:</p>
+<p><img alt="Module Dependency Graph With Four Related Cycles" src="https://github.com/jadekler/module-testing/blob/master/imagery/Mod%20Graph%20With%204%20Cycle_%20A.jpg" /></p>
+<p><img alt="Module Dependency Graph With One Four Vertex Cycle" src="https://github.com/jadekler/module-testing/blob/master/imagery/Mod%20Graph%20With%204%20Cycle_%20B.jpg" /></p>
+<p>Each of these graphs involve cycles (the latter example) or interconnected modules (the former example) involving four modules, instead of the simple two module example we saw earlier. The process is largely the same, though, but this time in step 3 and 5 we're going to bump all four modules to non-existent future versions of each other, and similarly in steps 4 and 6 we're going to test all four modules, and in step 7 fix the go.sum of all four modules.</p>
+<p>More generally, the process above holds for any group of interconnected modules involving any n modules: each major step just involves n modules acting in coordination. </p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ResearchPapers/" title="ResearchPapers" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                ResearchPapers
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Screencasts/" title="Screencasts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Screencasts
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

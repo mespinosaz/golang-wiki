@@ -1,0 +1,3576 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/Books/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>Books - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#english" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Books
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Books
+      </label>
+    
+    <a href="./" title="Books" class="md-nav__link md-nav__link--active">
+      Books
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#early-access" class="md-nav__link">
+    Early Access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-order" class="md-nav__link">
+    Pre-order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-without-publication-date" class="md-nav__link">
+    Available without Publication Date
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelled-or-status-indeterminable" class="md-nav__link">
+    Cancelled or Status Indeterminable
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#early-access" class="md-nav__link">
+    Early Access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-order" class="md-nav__link">
+    Pre-order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-without-publication-date" class="md-nav__link">
+    Available without Publication Date
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelled-or-status-indeterminable" class="md-nav__link">
+    Cancelled or Status Indeterminable
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Books.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <p>Other book lists:</p>
+<ul>
+<li><a href="https://github.com/dariubs/GoBooks">Go Books</a></li>
+<li><a href="http://go-lang.cat-v.org/books">Go Language Resources</a></li>
+</ul>
+<p>Sorted by publication date. </p>
+<h1 id="english">English</h1>
+<ul>
+<li>
+<p><strong>Go Programming</strong></p>
+<ul>
+<li>Author: John P. Baugh</li>
+<li>Publication Date: June 16, 2010</li>
+<li>ISBN: 978-1453636671</li>
+</ul>
+</li>
+<li>
+<p><strong>The Way to Go: A Thorough Introduction to the Go Programming Language</strong></p>
+<ul>
+<li>Author: Ivo Balbaert</li>
+<li>Publication Date: March 7, 2012</li>
+<li>ISBN: 978-1469769165</li>
+</ul>
+</li>
+<li>
+<p><strong>The Go Programming Language Phrasebook</strong></p>
+<ul>
+<li>Author: David Chisnall</li>
+<li>Publication Date: April 30, 2012</li>
+<li>ISBN: 978-0321817143</li>
+<li>Reference: <a href="http://www.informit.com/store/go-programming-language-phrasebook-9780321817143">http://www.informit.com/store/go-programming-language-phrasebook-9780321817143</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Programming in Go: Creating Applications for the 21<sup>st</sup> Century</strong></p>
+<ul>
+<li>Author: Mark Summerfield</li>
+<li>Publication Date: May 4, 2012</li>
+<li>ISBN: 978-0321774637</li>
+<li>Reference: <a href="http://www.informit.com/store/programming-in-go-creating-applications-for-the-21st-9780321774637">http://www.informit.com/store/programming-in-go-creating-applications-for-the-21st-9780321774637</a></li>
+</ul>
+</li>
+<li>
+<p><strong>An Introduction to Programming in Go</strong></p>
+<ul>
+<li>Author: Caleb Doxsey</li>
+<li>Publication Date: September 3, 2012</li>
+<li>ISBN: 978-1478355823</li>
+<li>Reference: <a href="http://www.golang-book.com/">http://www.golang-book.com/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Bootcamp: Everything you need to get started with Go (FREE)</strong></p>
+<ul>
+<li>Author: Matt Aimonetti</li>
+<li>Publication Date: March 2014</li>
+<li>ISBN: none: free ebook/PDF/online version</li>
+<li>Reference: <a href="http://www.golangbootcamp.com/">http://www.golangbootcamp.com/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Mastering Concurrency in Go</strong></p>
+<ul>
+<li>Author: Nathan Kozyra</li>
+<li>Publication Date: July 23, 2014</li>
+<li>ISBN: 978-1783983483</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/mastering-concurrency-go">https://www.packtpub.com/application-development/mastering-concurrency-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>The Little Go Book</strong></p>
+<ul>
+<li>Author: Karl Seguin</li>
+<li>Publication Date: October 2014</li>
+<li>ISBN: none: free ebook/PDF/online version</li>
+<li>Reference: <a href="http://openmymind.net/The-Little-Go-Book/">http://openmymind.net/The-Little-Go-Book/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Programming Blueprints</strong></p>
+<ul>
+<li>Author: Mat Ryer</li>
+<li>Publication Date: January 23, 2015</li>
+<li>ISBN: 978-1783988020</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/go-programming-blueprints">https://www.packtpub.com/application-development/go-programming-blueprints</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Level Up Your Web Apps With Go</strong></p>
+<ul>
+<li>Author: Mal Curtis</li>
+<li>Publication Date: April, 2015</li>
+<li>ISBN: 978-0992461294</li>
+<li>Reference: <a href="https://learnable.com/books/level-up-your-web-apps-with-go">https://learnable.com/books/level-up-your-web-apps-with-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Mastering Go Web Services</strong></p>
+<ul>
+<li>Author: Nathan Kozyra</li>
+<li>Publication Date: April, 2015</li>
+<li>ISBN: 9781783981304</li>
+<li>Reference: <a href="https://www.packtpub.com/web-development/mastering-go-web-services">https://www.packtpub.com/web-development/mastering-go-web-services</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go In Action</strong></p>
+<ul>
+<li>Authors: William Kennedy with Brian Ketelsen and Erik St. Martin</li>
+<li>Publication Date: November, 2015</li>
+<li>ISBN: 9781617291784</li>
+<li>Reference: <a href="https://www.manning.com/books/go-in-action">https://www.manning.com/books/go-in-action</a></li>
+<li>Discount Code (44% off): goiaucf</li>
+</ul>
+</li>
+<li>
+<p><strong>The Go Programming Language (Addison-Wesley Professional Computing Series)</strong></p>
+<ul>
+<li>Author: Alan A.A. Donovan and Brian Kernighan</li>
+<li>Publication Date: November, 2015</li>
+<li>ISBN: 978-0134190440</li>
+<li>Reference: <a href="http://www.gopl.io/">http://www.gopl.io/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Web Development with Go: Building Scalable Web Apps and RESTful Services</strong></p>
+<ul>
+<li>Author: Shiju Varghese</li>
+<li>Publication Date: December, 2015</li>
+<li>ISBN: 978-1484210536</li>
+<li>Reference: <a href="http://www.apress.com/9781484210536">http://www.apress.com/9781484210536</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Introducing Go</strong></p>
+<ul>
+<li>Author: Caleb Doxsey</li>
+<li>Publication Date: January 2016</li>
+<li>ISBN: 978-1491941959</li>
+<li>Reference: <a href="http://shop.oreilly.com/product/0636920046516.do">http://shop.oreilly.com/product/0636920046516.do</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Write webapps in Go without using a framework</strong> (Free e-book)</p>
+<ul>
+<li>Author: Suraj Patil</li>
+<li>Publication Date: October 2016</li>
+<li>ISBN: NA since book is self published on <a href="http://leanpub.com">http://leanpub.com</a></li>
+<li>References: <a href="https://github.com/thewhitetulip/web-dev-golang-anti-textbook">https://github.com/thewhitetulip/web-dev-golang-anti-textbook</a>, <a href="https://leanpub.com/antitextbookGo/">https://leanpub.com/antitextbookGo/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learning Go Web Development</strong></p>
+<ul>
+<li>Author: Nathan Kozyra</li>
+<li>Publication Date: April, 2016</li>
+<li>ISBN: 978-1785282317</li>
+<li>Reference: <a href="https://www.packtpub.com/web-development/learning-go-web-development">https://www.packtpub.com/web-development/learning-go-web-development</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Web Programming</strong></p>
+<ul>
+<li>Author: Sau Sheong Chang</li>
+<li>Publication Date: July 22, 2016</li>
+<li>ISBN: 9781617292569</li>
+<li>Reference: <a href="http://manning.com/chang/">http://manning.com/chang/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go in Practice</strong></p>
+<ul>
+<li>Authors: Matt Butcher and Matt Farina</li>
+<li>Publication Date: October 1, 2016</li>
+<li>ISBN: 9781633430075</li>
+<li>Reference: <a href="http://manning.com/butcher/">http://manning.com/butcher/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Programming Blueprints - Second Edition</strong></p>
+<ul>
+<li>Author: Mat Ryer</li>
+<li>Publication Date: October 2016</li>
+<li>ISBN: 978-1786468949</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/go-programming-blueprints-second-edition">https://www.packtpub.com/application-development/go-programming-blueprints-second-edition</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learning Go programming</strong></p>
+<ul>
+<li>Author: Vladimir Vivien</li>
+<li>Publication Date: October 2016</li>
+<li>ISBN: 978-1784395438</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/learning-go-programming">https://www.packtpub.com/application-development/learning-go-programming</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Recipes</strong></p>
+<ul>
+<li>Author: Shiju Varghese</li>
+<li>Publication Date: November 2016</li>
+<li>ISBN: 978-1-4842-1188-5</li>
+<li>Reference: <a href="http://www.apress.com/us/book/9781484211892">http://www.apress.com/us/book/9781484211892</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Design Patterns</strong></p>
+<ul>
+<li>Author: Mario Castro Contreras</li>
+<li>Publication Date: February 2017</li>
+<li>ISBN: 978-1786466204</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/go-design-patterns">https://www.packtpub.com/application-development/go-design-patterns</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Cookbook</strong></p>
+<ul>
+<li>Author: Aaron Torres</li>
+<li>Publication Date: June 2017</li>
+<li>ISBN: 978-1783286836</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/go-cookbook">https://www.packtpub.com/application-development/go-cookbook</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go: Design Patterns for Real-World Projects</strong></p>
+<ul>
+<li>Authors: Vladimir Vivien, Mario Castro Contreras, Mat Ryer</li>
+<li>Publication Date: June 2017</li>
+<li>ISBN: 978-1788390552</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/go-design-patterns-real-world-projects">https://www.packtpub.com/application-development/go-design-patterns-real-world-projects</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Web Development with Go: Learn to Create Real World Web Applications using Go</strong></p>
+</li>
+<li>Author: Jonathan Calhoun</li>
+<li>Publication Date: June 2017</li>
+<li>ISBN: N/A (self published)</li>
+<li>
+<p>Reference: <a href="http://usegolang.com">http://usegolang.com</a></p>
+</li>
+<li>
+<p><strong>Building Microservices with Go</strong></p>
+<ul>
+<li>Author: Nic Jackson</li>
+<li>Publication Date: July 2017</li>
+<li>ISBN: 978-1786468666</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/building-microservices-go">https://www.packtpub.com/application-development/building-microservices-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Concurrency in Go</strong></p>
+<ul>
+<li>Author: Katherine Cox-Buday</li>
+<li>Publication Date: August 2017</li>
+<li>ISBN: 978-1491941195</li>
+<li>Reference: <a href="http://shop.oreilly.com/product/0636920046189.do">http://shop.oreilly.com/product/0636920046189.do</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Machine Learning With Go</strong></p>
+<ul>
+<li>Author: Daniel Whitenack</li>
+<li>Publication Date: September 2017</li>
+<li>ISBN: 978-1785882104</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go">https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Systems Programming</strong></p>
+<ul>
+<li>Author: Mihalis Tsoukalos</li>
+<li>Publication Date: September 2017</li>
+<li>ISBN: 978-1787125643</li>
+<li>Reference: <a href="https://www.packtpub.com/networking-and-servers/go-systems-programming">https://www.packtpub.com/networking-and-servers/go-systems-programming</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Let's Go! Learn to Build Professional Web Applications With Go</strong></p>
+<ul>
+<li>Author: Alex Edwards</li>
+<li>Publication Date: September 2017</li>
+<li>ISBN: N/A (self-published)</li>
+<li>Reference: <a href="https://lets-go.alexedwards.net">https://lets-go.alexedwards.net</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learning Functional Programming in Go</strong></p>
+</li>
+<li>Author: Lex Sheehan</li>
+<li>Publication Date: November 2017</li>
+<li>ISBN: 978-1787281394</li>
+<li>
+<p>Reference: <a href="https://www.packtpub.com/application-development/learning-functional-programming-go">https://www.packtpub.com/application-development/learning-functional-programming-go</a></p>
+</li>
+<li>
+<p><strong>Cloud Native programming with Golang</strong></p>
+</li>
+<li>Author: Mina Andrawos, Martin Helmich</li>
+<li>Publication Date: December 2017</li>
+<li>ISBN: 978-1787125988</li>
+<li>
+<p>Reference: <a href="https://www.packtpub.com/application-development/cloud-native-programming-golang">https://www.packtpub.com/application-development/cloud-native-programming-golang</a></p>
+</li>
+<li>
+<p><strong>Isomorphic Go</strong></p>
+</li>
+<li>Author: Kamesh Balasubramanian</li>
+<li>Publication Date: December 2017</li>
+<li>ISBN: 978-1788394185</li>
+<li>
+<p>Reference: </p>
+<ul>
+<li><a href="https://www.packtpub.com/web-development/isomorphic-go">https://www.packtpub.com/web-development/isomorphic-go</a></li>
+<li><a href="https://www.amazon.com/dp/1788394186">https://www.amazon.com/dp/1788394186</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Security with Go</strong></p>
+</li>
+<li>Author: John Daniel Leon</li>
+<li>Publication Date: January 2018</li>
+<li>ISBN: 978-1788627917</li>
+<li>
+<p>Reference: <a href="https://www.amazon.com/dp/1788627911">https://www.amazon.com/dp/1788627911</a></p>
+</li>
+<li>
+<p><strong>Go Standard Library Cookbook</strong></p>
+</li>
+<li>Author: Radomir Sohlich</li>
+<li>Publication Date: February 2018</li>
+<li>ISBN: 9781788475273</li>
+<li>
+<p>Reference: <a href="https://www.amazon.com/dp/1788475275">https://www.amazon.com/dp/1788475275</a></p>
+</li>
+<li>
+<p><strong>Distributed Computing with Go</strong></p>
+</li>
+<li>Author: V.N. Nikhil Anurag</li>
+<li>Publication Date: February 2018</li>
+<li>ISBN: 9781787125384</li>
+<li>
+<p>Reference: <a href="https://www.amazon.com/dp/1787125386">https://www.amazon.com/dp/1787125386</a></p>
+</li>
+<li>
+<p><strong>Go Web Development Cookbook</strong></p>
+<ul>
+<li>Author: Arpit Aggarwal</li>
+<li>Publication Date: April 2018</li>
+<li>ISBN: 9781787286740</li>
+<li>Reference: <a href="https://www.amazon.com/Web-Development-Cookbook-full-stack-applications/dp/1787286746">https://www.amazon.com/Web-Development-Cookbook-full-stack-applications/dp/1787286746</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Mastering Go</strong></p>
+<ul>
+<li>Author: Mihalis Tsoukalos</li>
+<li>Publication Date: April 2018</li>
+<li>ISBN: 9781788626545</li>
+<li>Reference: <a href="https://www.amazon.com/Mastering-production-applications-concurrency-cloud-native/dp/1788626540">https://www.amazon.com/Mastering-production-applications-concurrency-cloud-native/dp/1788626540</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Echo Quick Start Guide</strong></p>
+<ul>
+<li>Author: J. Ben Huson </li>
+<li>Publication Date: May 2018</li>
+<li>ISBN: 9781789139433</li>
+<li>Reference: <a href="https://www.amazon.com/dp/1789139430">https://www.amazon.com/dp/1789139430</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Serverless Applications with Go</strong></p>
+<ul>
+<li>Author: Mohamed Labouardy</li>
+<li>Publication Date: August 2018</li>
+<li>ISBN: 9781789134612</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/hands-serverless-applications-go">https://www.packtpub.com/application-development/hands-serverless-applications-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Go Programming</strong></p>
+<ul>
+<li>Author: Tarik Guney</li>
+<li>Publication Date: August 2018</li>
+<li>ISBN: 9781789531756</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/hands-go-programming">https://www.packtpub.com/application-development/hands-go-programming</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Machine Learning Projects</strong></p>
+<ul>
+<li>Author: Xuanyi Chew</li>
+<li>Publication Date: November 2018</li>
+<li>ISBN: 9781788993401</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/go-machine-learning-projects">https://www.packtpub.com/big-data-and-business-intelligence/go-machine-learning-projects</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Dependency Injection in Go</strong></p>
+<ul>
+<li>Author: Corey Scott</li>
+<li>Publication Date: November 2018</li>
+<li>ISBN: 9781789132762</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/hands-dependency-injection-go">https://www.packtpub.com/application-development/hands-dependency-injection-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Software Architecture with Golang</strong></p>
+<ul>
+<li>Author: Jyotiswarup Raiturkar</li>
+<li>Publication Date: December 2018</li>
+<li>ISBN: 9781788622592</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/hands-software-architecture-golang">https://www.packtpub.com/application-development/hands-software-architecture-golang</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Fundamentals of Data Science with Go (Video)</strong></p>
+<ul>
+<li>Author: Sanket Gupta</li>
+<li>Publication Date: December 2018</li>
+<li>ISBN: 9781789539103</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/hands-fundamentals-data-science-go-video">https://www.packtpub.com/big-data-and-business-intelligence/hands-fundamentals-data-science-go-video</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Building RESTful APIs with Go (Video)</strong></p>
+<ul>
+<li>Author: Bartlomiej Walczak</li>
+<li>Publication Date: December 2018</li>
+<li>ISBN: 978178961499</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/building-restful-apis-go-video">https://www.packtpub.com/application-development/building-restful-apis-go-video</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Web Scraping Quick Start Guide</strong></p>
+<ul>
+<li>Author: Vincent Smith</li>
+<li>Publication Date: January 2019</li>
+<li>ISBN: 9781789615708</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/go-web-scraping-quick-start-guide">https://www.packtpub.com/big-data-and-business-intelligence/go-web-scraping-quick-start-guide</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Advanced Go Programming in 7 Days (Video)</strong></p>
+<ul>
+<li>Author: Theofanis Despoudis</li>
+<li>Publication Date: January 2019</li>
+<li>ISBN: 9781788994880</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/advanced-go-programming-7-days-video">https://www.packtpub.com/application-development/advanced-go-programming-7-days-video</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On GUI Application Development in Go</strong></p>
+<ul>
+<li>Author: Andrew Williams</li>
+<li>Publication Date: February 2019</li>
+<li>ISBN: 9781789138412</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/hands-gui-application-development-go">https://www.packtpub.com/application-development/hands-gui-application-development-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Hands-On Full Stack Development with Go</strong></p>
+<ul>
+<li>Author: Mina Andrawos</li>
+<li>Publication Date: March 2019</li>
+<li>ISBN: 9781789130751</li>
+<li>Reference: <a href="https://www.packtpub.com/web-development/hands-full-stack-development-go">https://www.packtpub.com/web-development/hands-full-stack-development-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learn Data Structures and Algorithms with Golang</strong></p>
+<ul>
+<li>Author: Bhagvan Kommadi</li>
+<li>Publication Date: March 2019</li>
+<li>ISBN: 9781789618501</li>
+<li>Reference: <a href="https://www.packtpub.com/application-development/learn-data-structures-and-algorithms-golang">https://www.packtpub.com/application-development/learn-data-structures-and-algorithms-golang</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Machine Learning With Go - Second Edition</strong></p>
+<ul>
+<li>Author: Daniel Whitenack</li>
+<li>Publication Date: April 2019</li>
+<li>ISBN: 9781789619898</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go-second-edition?utm_source=Golang&amp;utm_medium=referral&amp;utm_campaign=Outreach">https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go-second-edition?utm_source=Golang&amp;utm_medium=referral&amp;utm_campaign=Outreach</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Machine Learning with Go Quick Start Guide</strong></p>
+<ul>
+<li>Author: Michael Bironneau and Toby Coleman</li>
+<li>Publication Date: May 2019</li>
+<li>ISBN: 9781838550356</li>
+<li>Reference: <a href="https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go-quick-start-guide?utm_source=Golang&amp;utm_medium=referral&amp;utm_campaign=Outreach">https://www.packtpub.com/big-data-and-business-intelligence/machine-learning-go-quick-start-guide?utm_source=Golang&amp;utm_medium=referral&amp;utm_campaign=Outreach</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Mastering Go - Second Edition</strong></p>
+<ul>
+<li>Author: Mihalis Tsoukalos</li>
+<li>Publication Date: 10 Sept 2019</li>
+<li>ISBN: 9781838559335</li>
+<li>Reference: <a href="https://www.packtpub.com/programming/mastering-go-second-edition">https://www.packtpub.com/programming/mastering-go-second-edition</a></li>
+<li>Reference: <a href="https://www.amazon.com/Mastering-production-applications-concurrency-structures/dp/1838559337/">https://www.amazon.com/Mastering-production-applications-concurrency-structures/dp/1838559337/</a></li>
+</ul>
+<hr />
+<h2 id="early-access">Early Access</h2>
+<ul>
+<li>
+<p><strong>A Comprehensive Guide to Go Programming</strong></p>
+<ul>
+<li>Authors: Baiju Muthukadan</li>
+<li>Publication Date: June 10, 2015</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="http://golang.muthukadan.net/">http://golang.muthukadan.net/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Get Programming with Go</strong></p>
+<ul>
+<li>Author: Nathan Youngman, Roger Peppe</li>
+<li>Publication Date: July 2018 (estimated)</li>
+<li>ISBN: 9781617293092</li>
+<li>Reference: <a href="https://www.manning.com/books/get-programming-with-go?a_aid=nathany&amp;a_bid=53f68821">https://www.manning.com/books/get-programming-with-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>WebAssembly in Action</strong></p>
+<ul>
+<li>Author:  Gerard Gallant </li>
+<li>Publication Date: Spring 2019 (estimated) </li>
+<li>ISBN: 9781617295744</li>
+<li>Reference: <a href="https://www.manning.com/books/webassembly-in-action">https://www.manning.com/books/webassembly-in-action</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="pre-order">Pre-order</h2>
+<ul>
+<li><strong>Black Hat Go</strong><ul>
+<li>Author: Tom Steele, Chris Patten, and Dan Kottmann</li>
+<li>Publication Date: March 2018</li>
+<li>ISBN: 978-1-59327-865-6</li>
+<li>Reference: <a href="https://www.nostarch.com/blackhatgo">https://www.nostarch.com/blackhatgo</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="available-without-publication-date">Available without Publication Date</h2>
+<ul>
+<li>
+<p><strong>Learning Go</strong> (e-book)</p>
+<ul>
+<li>Author: Miek Gieben</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="http://archive.miek.nl/projects/learninggo/">http://archive.miek.nl/projects/learninggo/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Network Programming with Go</strong> (e-book)</p>
+<ul>
+<li>Author: Jan Newmarch</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="http://jan.newmarch.name/go/">http://jan.newmarch.name/go/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Bootcamp</strong> (e-book)</p>
+<ul>
+<li>Author: Matt Aimonetti</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="http://www.golangbootcamp.com/">http://www.golangbootcamp.com/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>A Go Developer's Notebook</strong> (e-book)</p>
+<ul>
+<li>Author: Eleanor McHugh</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://leanpub.com/GoNotebook">https://leanpub.com/GoNotebook</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go, The Standard Library</strong> (e-book)</p>
+<ul>
+<li>Author: Daniel Huckstep</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="http://thestandardlibrary.com/go.html">http://thestandardlibrary.com/go.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Practical Cryptography with Go</strong> (e-book)</p>
+<ul>
+<li>Author: Kyle Isom</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://leanpub.com/gocrypto">https://leanpub.com/gocrypto</a></li>
+</ul>
+</li>
+<li>
+<p><strong>The Ultimate Guide to Building Database-Driven Apps with Go</strong> (e-book)</p>
+<ul>
+<li>Author: Baron Schwartz</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://vividcortex.com/resources/building-database-driven-apps-with-go/">https://vividcortex.com/resources/building-database-driven-apps-with-go/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Building Web Apps with Go</strong> (e-book)</p>
+<ul>
+<li>Author: Jeremy Saenz</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://www.gitbook.com/book/codegangsta/building-web-apps-with-go/details">https://www.gitbook.com/book/codegangsta/building-web-apps-with-go/details</a></li>
+</ul>
+</li>
+<li>
+<p><strong>How do I Write and Deploy Simple Web Apps with Go?</strong> (e-book)</p>
+<ul>
+<li>Author: Satish Talim</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://leanpub.com/howdoibuildawebappwithgo">https://leanpub.com/howdoibuildawebappwithgo</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Test-driven development with Go</strong> (e-book)</p>
+<ul>
+<li>Author: Yigal Duppen</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://leanpub.com/golang-tdd">https://leanpub.com/golang-tdd</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learn Go</strong> (e-book)</p>
+<ul>
+<li>Author: Gyu-ho Lee</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://github.com/gyuho/learn#contents">https://github.com/gyuho/learn#contents</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Learn Golang the Hard Way</strong> (e-book)</p>
+<ul>
+<li>Author: Laszlo Csontos</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="http://www.learngolangthehardway.org/">http://www.learngolangthehardway.org/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 101</strong> (e-book)</p>
+<ul>
+<li>Author: Tapir Liu</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://go101.org">https://go101.org</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="cancelled-or-status-indeterminable">Cancelled or Status Indeterminable</h2>
+<ul>
+<li><strong>Microservices in Go</strong><ul>
+<li>Authors: Matthew Campbell</li>
+<li>Publication Date: Fall 2015 (est.)</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="http://microservicesingo.com/">http://microservicesingo.com/</a></li>
+<li>Status: <a href="http://support.oreilly.com/oreilly/topics/availability-of-microservices-in-go-use-go-to-build-scalable-backends-by-matthew-campbell">Cancelled per O'Reilly Employee</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="chinese">Chinese</h1>
+<ul>
+<li>
+<p><strong>Go语言·云动力</strong></p>
+<ul>
+<li>Author: 樊虹剑（fango）</li>
+<li>Publication Date: 2012-06</li>
+<li>ISBN: 978-7-115-28307-8</li>
+<li>Reference: <a href="http://www.ituring.com.cn/book/1040">http://www.ituring.com.cn/book/1040</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go语言编程</strong></p>
+<ul>
+<li>Author: 许式伟</li>
+<li>Publication Date: 2012-08</li>
+<li>ISBN: 978-7-115-29036-6</li>
+<li>Reference: <a href="http://www.ituring.com.cn/book/967">http://www.ituring.com.cn/book/967</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Web编程</strong></p>
+<ul>
+<li>Author: 谢孟军</li>
+<li>Publication Date: 2013-05</li>
+<li>ISBN: 9787121200915</li>
+<li>Reference: <a href="https://github.com/astaxie/build-web-application-with-golang/">https://github.com/astaxie/build-web-application-with-golang/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go语言程序设计 (Programming in Go: Creating Applications for the 21<sup>st</sup> Century)</strong></p>
+<ul>
+<li>Author: Mark Summerfield</li>
+<li>Translator: 许式伟, 吕桂华, 徐立, 何李石</li>
+<li>Publication Date: 2013-08</li>
+<li>ISBN: 978-7-115-31790-2</li>
+<li>Reference: <a href="http://www.ptpress.com.cn/Book.aspx?id=35714">http://www.ptpress.com.cn/Book.aspx?id=35714</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go并发编程实战</strong></p>
+<ul>
+<li>Author: 郝林</li>
+<li>Publication Date: 2015-01-01</li>
+<li>ISBN: 9787115373984</li>
+<li>Reference: <a href="http://www.ptpress.com.cn/Book.aspx?id=39783">http://www.ptpress.com.cn/Book.aspx?id=39783</a></li>
+</ul>
+</li>
+<li>
+<p><strong>学习 Go 语言</strong> (e-book / Translation)</p>
+<ul>
+<li>Author: Xing Xing (mikespook)</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="http://www.mikespook.com/learning-go/">http://www.mikespook.com/learning-go/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 学习笔记 - 第四版</strong> (e-book)</p>
+<ul>
+<li>Author: 雨痕（qyuhen）</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://github.com/qyuhen/book">https://github.com/qyuhen/book</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go语言高级编程</strong> (实体书 &amp; e-book)</p>
+<ul>
+<li>Author: 柴树杉（chai2010）</li>
+<li>Publication Date: 2019-07</li>
+<li>ISBN: 978-7-115-51036-5</li>
+<li>Reference: <a href="https://www.epubit.com/book/detail/40090">https://www.epubit.com/book/detail/40090</a></li>
+<li>Reference: <a href="https://github.com/chai2010/advanced-go-programming-book">https://github.com/chai2010/advanced-go-programming-book</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go语言101</strong> (e-book)</p>
+<ul>
+<li>Author: 老貘</li>
+<li>Publication Date: ---</li>
+<li>ISBN: ---</li>
+<li>References: <a href="https://gfw.go101.org/">https://gfw.go101.org/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="japanese">Japanese</h1>
+<ul>
+<li>
+<p><strong>はじめての「Go言語」</strong></p>
+<ul>
+<li>Author: 茨木 隆彰</li>
+<li>Publication Date: 2010-11</li>
+<li>ISBN: 978-4777515592</li>
+<li>Reference:</li>
+</ul>
+</li>
+<li>
+<p><strong>Go言語プログラミング入門on Google App Engine</strong></p>
+<ul>
+<li>Author: 横山 隆司</li>
+<li>Publication Date: 2011-12</li>
+<li>ISBN: 978-4798031804</li>
+<li>Reference:</li>
+</ul>
+</li>
+<li>
+<p><strong>はじめてのGoogle App Engine Go言語編</strong></p>
+<ul>
+<li>Author: 茨木 隆彰</li>
+<li>Publication Date: 2012-2</li>
+<li>ISBN: 978-4777516605</li>
+<li>Reference:</li>
+</ul>
+</li>
+<li>
+<p><strong>プログラミング言語Goフレーズブック</strong></p>
+<ul>
+<li>Author: David Chisnall (著), デイビッド・チズナール (著), 柴田 芳樹 (翻訳)</li>
+<li>Publication Date: 2012-10</li>
+<li>ISBN: 978-4864010962</li>
+<li>Reference:</li>
+</ul>
+</li>
+<li>
+<p><strong>基礎からわかる Go言語</strong></p>
+<ul>
+<li>Author: 古川 昇</li>
+<li>Publication Date: 2012-11</li>
+<li>ISBN: 978-4863541177</li>
+<li>Reference:</li>
+</ul>
+</li>
+<li>
+<p><strong>Go言語によるWebアプリケーション開発</strong></p>
+<ul>
+<li>Author: Mat Ryer (著)、鵜飼 文敏 (監訳)、牧野 聡 (訳)</li>
+<li>Publication Date: 2016-01</li>
+<li>ISBN: 978-4-87311-752-2</li>
+<li>Reference: <a href="http://www.oreilly.co.jp/books/9784873117522/">http://www.oreilly.co.jp/books/9784873117522/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>プログラミング言語Go</strong></p>
+<ul>
+<li>Authors: Alan A. A. Donovan, Brian W. Kernighan; translated by Yoshiki Shibata</li>
+<li>Publication Date: 20 June 2016</li>
+<li>ISBN: 978-4-62130-025-1</li>
+<li>Reference: <a href="http://www.gopl.io/translations.html">http://www.gopl.io/translations.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>みんなのGo言語</strong></p>
+<ul>
+<li>Authors: 松木雅幸, mattn, 藤原俊一郎, 中島大一, 牧 大輔, 鈴木健太</li>
+<li>Publication Date: 9 Sep 2016</li>
+<li>ISBN: 978-4774183923</li>
+<li>Reference: <a href="http://www.amazon.co.jp/exec/obidos/ASIN/477418392X/">http://www.amazon.co.jp/exec/obidos/ASIN/477418392X/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go言語による並行処理</strong></p>
+<ul>
+<li>Authors: Katherine Cox-Buday（著）、山口 能迪（訳）</li>
+<li>Publication Date: 26 Oct 2018</li>
+<li>ISBN: 978-4-87311-846-8</li>
+<li>Reference: <a href="https://www.oreilly.co.jp/books/9784873118468/">https://www.oreilly.co.jp/books/9784873118468/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="french">French</h1>
+<ul>
+<li><strong>Programmer en Go - Pourquoi ? Comment ?</strong><ul>
+<li>Author: Rudy Rigot</li>
+<li>Publication Date: 24 Jan 2018</li>
+<li>ISBN: 978-2-8227-0660-5</li>
+<li>Reference: <a href="https://www.d-booker.fr/go-bases/499-programmer-en-go-pourquoi-comment.html">https://www.d-booker.fr/go-bases/499-programmer-en-go-pourquoi-comment.html</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="german">German</h1>
+<ul>
+<li>
+<p><strong>Programmierung in Google Go</strong> (not available for buying any more)</p>
+<ul>
+<li>Authors: Rainer Feike and Steffen Blass</li>
+<li>Publication Date: 2010-11</li>
+<li>ISBN: 978-3-8632-4722-5</li>
+<li>Reference (Amazon): <a href="http://www.amazon.de/Programmierung-Google-Beispiele-professionelle-Anwendung/dp/3827330092">http://www.amazon.de/Programmierung-Google-Beispiele-professionelle-Anwendung/dp/3827330092</a></li>
+<li>Reference (Google Books): <a href="https://books.google.de/books?id=E4IL5dT1yLsC&amp;printsec=frontcover&amp;hl=de#v=onepage&amp;q&amp;f=false">https://books.google.de/books?id=E4IL5dT1yLsC&amp;printsec=frontcover&amp;hl=de#v=onepage&amp;q&amp;f=false</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Systemprogrammierung in Google Go</strong></p>
+<ul>
+<li>Author: Frank Müller</li>
+<li>Publication Date: 2011-01</li>
+<li>ISBN: 978-3-89864-712-0</li>
+<li>Reference: <a href="http://dpunkt.de/buecher/3762/-systemprogrammierung-in-google-go.html">http://dpunkt.de/buecher/3762/-systemprogrammierung-in-google-go.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Nichtsequentielle und Verteilte Programmierung mit Go</strong> (3<sup>rd</sup> edition) (available as print and e-book)</p>
+<ul>
+<li>Author: Christian Maurer</li>
+<li>Publication Date: 2018-06</li>
+<li>ISBN: 978-3-658-21152-3</li>
+<li>Reference: <a href="https://www.springer.com/de/book/9783658211523">https://www.springer.com/de/book/9783658211523</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Einstieg in Google Go</strong> (e-book)</p>
+<ul>
+<li>Author: Christian Himpel and Mario Deilmann</li>
+<li>Publication Date: 2012-04</li>
+<li>ISBN: 978-3-86802-415-9</li>
+<li>Reference: <a href="http://entwickler.de/press/Einstieg-in-Google-Go">http://entwickler.de/press/Einstieg-in-Google-Go</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="brazilian-portuguese">Brazilian Portuguese</h1>
+<ul>
+<li>
+<p><strong>A Linguagem de Programação Go</strong></p>
+<ul>
+<li>Author:  Alan A. A. Donovan, Brian W. Kernighan </li>
+<li>Publication Date: 2017</li>
+<li>ISBN: 978-85-7522-546-2</li>
+<li>Reference: <a href="https://novatec.com.br/livros/linguagem-de-programacao-go/">https://novatec.com.br/livros/linguagem-de-programacao-go/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Programando em Go: crie aplicações com a linguagem do Google</strong></p>
+<ul>
+<li>Author: Caio Filipini</li>
+<li>Publication Date: 2014-07-01</li>
+<li>ISBN: 978-85-66250-49-7</li>
+<li>Reference: <a href="http://www.casadocodigo.com.br/products/livro-google-go">http://www.casadocodigo.com.br/products/livro-google-go</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="russian">Russian</h1>
+<ul>
+<li>
+<p><strong>Программирование на языке Go</strong></p>
+<ul>
+<li>Author: Марк Саммерфильд</li>
+<li>Publication Date: 2013-02-14</li>
+<li>ISBN: 978-5-94074-854-0</li>
+<li>Reference: <a href="http://dmkpress.com/catalog/computer/programming/978-5-94074-854-0/">http://dmkpress.com/catalog/computer/programming/978-5-94074-854-0/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Язык программирования Go</strong></p>
+<ul>
+<li>Author: Алан А. А. Донован, Брайан У. Керниган</li>
+<li>Publication Date: 2016-04-21</li>
+<li>ISBN: 978-5-8459-2051-5</li>
+<li>Reference: <a href="http://www.williamspublishing.com/Books/978-5-8459-2051-5.html">http://www.williamspublishing.com/Books/978-5-8459-2051-5.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go на практике</strong></p>
+<ul>
+<li>Author: Батчер М., Фарина М.</li>
+<li>Publication Date: 2017-01</li>
+<li>ISBN: 978-5-97060-477-9</li>
+<li>Reference: <a href="http://dmkpress.com/catalog/computer/programming/978-5-97060-477-9/">http://dmkpress.com/catalog/computer/programming/978-5-97060-477-9/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="espanol">Español</h1>
+<ul>
+<li>
+<p><strong>Aprende Go en Y minutos</strong><a href="https://go101.org">https://go101.org</a></p>
+<ul>
+<li>Author: Nacho Pacheco</li>
+<li>Publication Date: 2015-02-24</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://www.gitbook.com/book/nachopacheco/aprende-go-en-y-minutos/">https://www.gitbook.com/book/nachopacheco/aprende-go-en-y-minutos/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Constr­uyendo­ aplic­acione­s Web ­con Go</strong></p>
+<ul>
+<li>Author: Nacho Pacheco</li>
+<li>Publication Date: 2015-02-18</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://www.gitbook.com/book/nachopacheco/cawg/">https://www.gitbook.com/book/nachopacheco/cawg/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>¡Go en Español!</strong></p>
+<ul>
+<li>Author: Nacho Pacheco</li>
+<li>Publication Date: 2015-03-22</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://www.gitbook.com/book/nachopacheco/go-es/">https://www.gitbook.com/book/nachopacheco/go-es/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="korean">Korean</h1>
+<ul>
+<li>
+<p><strong>가장 빨리 만나는 Go 언어</strong></p>
+<ul>
+<li>Author: 이재홍</li>
+<li>Publication Date: June 2015</li>
+<li>ISBN: 978-8-96618-990-8</li>
+<li>Reference: <a href="http://www.pyrasis.com/private/2015/06/01/publish-go-for-the-really-impatient-book">http://www.pyrasis.com/private/2015/06/01/publish-go-for-the-really-impatient-book</a></li>
+</ul>
+</li>
+<li>
+<p><strong>개발자를 위한 하룻밤에 읽는 Go 언어 이야기</strong></p>
+<ul>
+<li>Author: 신제용</li>
+<li>Publication Date: December 2015</li>
+<li>ISBN: 978-8-96848-806-1</li>
+<li>Reference: <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=E8544486990">http://www.hanbit.co.kr/store/books/look.php?p_code=E8544486990</a></li>
+</ul>
+</li>
+<li>
+<p><strong>디스커버리 Go 언어</strong></p>
+<ul>
+<li>Author: 염재현</li>
+<li>Publication Date: March 2016</li>
+<li>ISBN: 9788-96848-268-7</li>
+<li>Reference: <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B5279497767">http://www.hanbit.co.kr/store/books/look.php?p_code=B5279497767</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 언어 웹 프로그래밍 철저 입문</strong></p>
+<ul>
+<li>Author: 장재휴</li>
+<li>Publication Date: March 2016</li>
+<li>ISBN: 979-1-18697-881-8</li>
+<li>Reference: <a href="http://www.gilbut.co.kr/book/bookView.aspx?bookcode=BN001434">http://www.gilbut.co.kr/book/bookView.aspx?bookcode=BN001434</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 인 액션</strong></p>
+<ul>
+<li>Authors: William Kennedy with Brian Ketelsen and Erik St. Martin; translated by Hyunhee Jang</li>
+<li>Publication Date: June 2016</li>
+<li>ISBN: 979-1-18589-053-1</li>
+<li>Reference: <a href="http://jpub.tistory.com/585">http://jpub.tistory.com/585</a></li>
+</ul>
+</li>
+<li>
+<p><strong>The Go Programming Language</strong></p>
+<ul>
+<li>Authors: Alan A. A. Donovan, Brian W. Kernighan; translated by Seung Lee</li>
+<li>Publication Date: June 2016</li>
+<li>ISBN: 978-0-13419-044-0</li>
+<li>Reference: <a href="http://www.acornpub.co.kr/book/go-programming">http://www.acornpub.co.kr/book/go-programming</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 웹 프로그래밍</strong></p>
+<ul>
+<li>Author: Sau Sheong Chang; translated by Jinwook Jeong</li>
+<li>Publication Date: March 2017</li>
+<li>ISBN: 979-1-18669-731-3</li>
+<li>Reference: <a href="http://www.bjpublic.co.kr/skin12/productSearchView.php?board_data=aWR4PTIxMyZzdGFydFBhZ2U9MCZsaXN0Tm89MzM">http://www.bjpublic.co.kr/skin12/productSearchView.php?board_data=aWR4PTIxMyZzdGFydFBhZ2U9MCZsaXN0Tm89MzM</a></li>
+</ul>
+</li>
+<li>
+<p><strong>프로젝트로 완성하는 Go 프로그래밍</strong></p>
+<ul>
+<li>Author: Mat Ryer; translated by Soonbeom Kwon</li>
+<li>Publication Date: August 2017</li>
+<li>ISBN: 979-1-16175-032-3</li>
+<li>Reference: <a href="http://www.acornpub.co.kr/book/go-blueprints-2">http://www.acornpub.co.kr/book/go-blueprints-2</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 언어 실전 테크닉</strong></p>
+<ul>
+<li>Authors: 松木雅幸, mattn, 藤原俊一郎, 中島大一, 牧 大輔, 鈴木健太; translated by Hyuntae Park</li>
+<li>Publication Date: August 2017</li>
+<li>ISBN: 979-1-16175-026-2</li>
+<li>Reference: <a href="http://www.acornpub.co.kr/book/go-language-minna">http://www.acornpub.co.kr/book/go-language-minna</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go Cookbook</strong></p>
+<ul>
+<li>Author: Aaron Torres; transalted by Sangsik Lee</li>
+<li>Publication Date: December 2017</li>
+<li>ISBN: 979-1-16175-088-0</li>
+<li>Reference: <a href="http://www.acornpub.co.kr/book/go-cookbook">http://www.acornpub.co.kr/book/go-cookbook</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 언어를 활용한 마이크로서비스 개발</strong></p>
+<ul>
+<li>Author: Nic Jackson; translated by Sangsik Lee</li>
+<li>Publication Date: July 2018</li>
+<li>ISBN: 979-1-16175-190-0</li>
+<li>Reference: <a href="http://www.acornpub.co.kr/book/microservices-go">http://www.acornpub.co.kr/book/microservices-go</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 언어 시작하기</strong></p>
+<ul>
+<li>Author: 박혜영, 서정인</li>
+<li>Publication Date: September 2018</li>
+<li>ISBN: 979-1-15600-606-0</li>
+<li>Reference: <a href="http://www.hongpub.co.kr/sub.php?goPage=view_product&amp;flashpage=&amp;Code=20180911072243">http://www.hongpub.co.kr/sub.php?goPage=view_product&amp;flashpage=&amp;Code=20180911072243</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Go 마스터하기</strong></p>
+<ul>
+<li>Author: Mihalis Tsoukalos; translated by Kihyuk Nam</li>
+<li>Publication Date: October 2018</li>
+<li>ISBN: 979-1-16175-208-2</li>
+<li>Reference: <a href="http://acornpub.co.kr/book/mastering-go">http://acornpub.co.kr/book/mastering-go</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="indonesian">Indonesian</h1>
+<ul>
+<li>
+<p><strong>Bahasa Pemrograman Go</strong></p>
+<ul>
+<li>Author: Sajarwo Anggai</li>
+<li>Publication Date: October 21, 2013</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://sajarwo87.wordpress.com/2013/10/21/buku-bahasa-pemrograman-go/">https://sajarwo87.wordpress.com/2013/10/21/buku-bahasa-pemrograman-go/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Dasar Pemrograman Golang</strong></p>
+<ul>
+<li>Author: Noval Agung Prayogo</li>
+<li>Publication Date: Oktober 30, 2015</li>
+<li>ISBN: ---</li>
+<li>Reference: <a href="https://dasarpemrogramangolang.novalagung.com">https://dasarpemrogramangolang.novalagung.com</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="italian">Italian</h1>
+<ul>
+<li><strong>Programmare in Linguaggio Go</strong><ul>
+<li>Author: Renato Mite</li>
+<li>Publication Date: 9 Oct 2016</li>
+<li>ISBN: ---</li>
+<li>Reference (Amazon): <a href="https://www.amazon.it/dp/B01M2URIVX">https://www.amazon.it/dp/B01M2URIVX</a></li>
+<li>Reference (Google Books): <a href="https://play.google.com/store/books/details/Renato_Mite_Programmare_in_Linguaggio_Go?id=4Ag6DQAAQBAJ">https://play.google.com/store/books/details/Renato_Mite_Programmare_in_Linguaggio_Go?id=4Ag6DQAAQBAJ</a></li>
+<li>Reference (Kobo Books): <a href="https://store.kobobooks.com/it-it/ebook/programmare-in-linguaggio-go">https://store.kobobooks.com/it-it/ebook/programmare-in-linguaggio-go</a></li>
+<li>Repository: <a href="https://github.com/rmite/gobook">https://github.com/rmite/gobook</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="polish">Polish</h1>
+<ul>
+<li><strong>Język Go. Poznaj i programuj</strong><ul>
+<li>Authors: Alan A. A. Donovan, Brian W. Kernighan; translated by Lech Lachowski</li>
+<li>Publication Date: July 2016</li>
+<li>ISBN: 978-83-283-2467-1</li>
+<li>Reference: <a href="https://helion.pl/ksiazki/jezyk-go-poznaj-i-programuj-alan-a-a-donovan-brian-w-kernighan,jgopop.htm">https://helion.pl/ksiazki/jezyk-go-poznaj-i-programuj-alan-a-a-donovan-brian-w-kernighan,jgopop.htm</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="persian">Persian</h1>
+<ul>
+<li><strong>Go Succinctly</strong><ul>
+<li>Author: Amir Irani</li>
+<li>Publication Date: 10 Jun 2018</li>
+<li>ISBN: ---</li>
+<li>Repository: <a href="https://github.com/thedevsir/gosuccinctly">https://github.com/thedevsir/gosuccinctly</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="looking-for-contributors">Looking for contributors</h1>
+<p>[Add Go books here that are looking for writers, editors, Gopher illustrators, and translators.]</p>
+<ul>
+<li><strong>Go Web Development Cookbook</strong><ul>
+<li>Author: Arpit Aggarwal</li>
+<li>Publication Date: April 2018</li>
+<li>ISBN: 9781787286740</li>
+<li>Reference: <a href="https://www.amazon.in/Web-Development-Cookbook-full-stack-applications/dp/1787286746">https://www.amazon.in/Web-Development-Cookbook-full-stack-applications/dp/1787286746</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Blogs/" title="Blogs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Blogs
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                BoundingResourceUse
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

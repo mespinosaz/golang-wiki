@@ -1,0 +1,3052 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/GoForCPPProgrammers/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>GoForCPPProgrammers - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                GoForCPPProgrammers
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="GoForCPPProgrammers" class="md-nav__link md-nav__link--active">
+      GoForCPPProgrammers
+    </a>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/GoForCPPProgrammers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>GoForCPPProgrammers</h1>
+                
+                <p>Go is a systems programming language intended to be a general-purpose systems
+language, like C++.  These are some notes on Go for experienced C++
+programmers. This document discusses the differences between Go and C++, and
+says little to nothing about the similarities.</p>
+<p>An important point to keep in mind is that there are some fundamental differences in the thought processes required to be proficient in the two respective languages.  Most formidably, C++'s object model is based on classes and class hierarchies while Go's object model is based on interfaces (and is essentially flat).  Consequently, C++ design patterns rarely translate verbatim to Go.  To program effectively in Go, one has to consider the <em>problem</em> being solved, not the mechanisms one might use in C++ to solve the problem.</p>
+<p>For a more general introduction to Go, see the
+<a href='http://tour.golang.org/'>Go Tour</a>,
+<a href='http://golang.org/doc/code.html'>How to Write Go Code</a>
+and <a href='http://golang.org/doc/effective_go.html'>Effective Go</a>.</p>
+<p>For a detailed description of the Go language, see the
+<a href='http://golang.org/doc/go_spec.html'>Go spec</a>.</p>
+<h2>Conceptual Differences</h2>
+
+<ul>
+<li>Go does not have classes with constructors or destructors.  Instead of<br>
+class methods, a class inheritance hierarchy, and virtual functions, Go<br>
+provides <em>interfaces</em>, which are discussed in more detail below.<br>
+Interfaces are also used where C++ uses templates.</li>
+
+<li>Go provides automatic garbage collection of allocated memory. It is not necessary (or possible) to release memory explicitly.  There is no need to worry about heap-allocated vs. stack-allocated storage, <code>new</code> vs. <code>malloc</code>, or <code>delete</code> vs. <code>delete[]</code> vs. <code>free</code>.  There is no need to separately manage <code>std::unique_ptr</code>, <code>std::shared_ptr</code>, <code>std::weak_ptr</code>, <code>std::auto_ptr</code>, and ordinary, "dumb" pointers.  Go's run-time system handles all of that error-prone code on the programmer's behalf.</li>
+
+<li>Go has pointers but not pointer arithmetic. Go pointers therefore more closely resemble C++ references.  One cannot use a Go pointer<br>
+variable to walk through the bytes of a string, for example.  Slices, discussed further below, satisfy most of the need for pointer arithmetic.</li>
+
+<li>Go is "safe" by default.  Pointers cannot point to arbitrary memory, and buffer overruns result in crashes, not security exploits.  The <code>unsafe</code> package lets programmers bypass some of Go's protection mechanisms where explicitly requested.</li>
+
+<li>Arrays in Go are first class values. When an array is used as a function<br>
+parameter, the function receives a copy of the array, not a pointer to it.<br>
+However, in practice functions often use slices for parameters; slices hold<br>
+pointers to underlying arrays.  Slices are discussed further below.</li>
+
+<li>Strings are provided by the language. They may not be changed once they<br>
+have been created.</li>
+
+<li>Hash tables are provided by the language. They are called maps.</li>
+
+<li>Separate threads of execution, and communication channels between them, are<br>
+provided by the language. This is discussed further below.</li>
+
+<li>Certain types (maps and channels, described further below) are passed by<br>
+reference, not by value. That is, passing a map to a function does not copy the<br>
+map, and if the function changes the map the change will be seen by the caller.<br>
+In C++ terms, one can think of these as being reference types.</li>
+
+<li>Go does not use header files. Instead, each source file is part of a<br>
+defined <em>package</em>. When a package defines an object (type, constant,<br>
+variable, function) with a name starting with an upper case letter, that object<br>
+is visible to any other file which imports that package.</li>
+
+<li>Go does not support implicit type conversion. Operations that mix different types require casts (called conversions in Go).  This is true even of different user-defined aliases of the same underlying type.</li>
+
+<li>Go does not support function overloading and does not support user defined<br>
+operators.</li>
+
+<li>Go does not support <code>const</code> or <code>volatile</code> qualifiers.</li>
+
+<li>Go uses <code>nil</code> for invalid pointers, where C++ uses <code>NULL</code> or simply <code>0</code> (or in C++11, <code>nullptr</code>).</li>
+
+<li>Idiomatic Go uses multiple return values to convey errors—one or more data results plus an error code—instead of sentinel values (e.g., <code>-1</code>) or structured exception handling (C++'s <code>try</code>…<code>catch</code> and <code>throw</code> or Go's <code>panic</code>…<code>recover</code>).</li>
+
+</ul>
+
+<h2>Syntax</h2>
+
+<p>The declaration syntax is reversed compared to C++. You write the name
+followed by the type. Unlike in C++, the syntax for a type does not match
+the way in which the variable is used. Type declarations may be read
+easily from left to right.  (<code>var v1 int</code> → "Variable <code>v1</code> is an <code>int</code>.")</p>
+<div class="highlight"><pre><span></span><span class="c1">//Go                      C++</span>
+<span class="kd">var</span> <span class="nx">v1</span> <span class="kt">int</span>                <span class="c1">// int v1;</span>
+<span class="kd">var</span> <span class="nx">v2</span> <span class="kt">string</span>             <span class="c1">// const std::string v2;  (approximately)</span>
+<span class="kd">var</span> <span class="nx">v3</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="kt">int</span>            <span class="c1">// int v3[10];</span>
+<span class="kd">var</span> <span class="nx">v4</span> <span class="p">[]</span><span class="kt">int</span>              <span class="c1">// int* v4;  (approximately)</span>
+<span class="kd">var</span> <span class="nx">v5</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">f</span> <span class="kt">int</span> <span class="p">}</span>   <span class="c1">// struct { int f; } v5;</span>
+<span class="kd">var</span> <span class="nx">v6</span> <span class="o">*</span><span class="kt">int</span>               <span class="c1">// int* v6;  (but no pointer arithmetic)</span>
+<span class="kd">var</span> <span class="nx">v7</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>     <span class="c1">// unordered_map&lt;string, int&gt;* v7;  (approximately)</span>
+<span class="kd">var</span> <span class="nx">v8</span> <span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span>    <span class="c1">// int (*v8)(int a);</span>
+</pre></div>
+
+<p>Declarations generally take the form of a keyword followed by the name
+of the object being declared.  The keyword is one of <code>var</code>,
+<code>func</code>,
+<code>const</code>, or <code>type</code>.  Method declarations are a minor
+exception in that
+the receiver appears before the name of the object being declared; see
+the <a href='#interfaces'>discussion of interfaces</a>.</p>
+<p>You can also use a keyword followed by a series of declarations in
+parentheses.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="p">(</span>
+    <span class="nx">i</span> <span class="kt">int</span>
+    <span class="nx">m</span> <span class="kt">float64</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>When declaring a function, you must either provide a name for each parameter
+or not provide a name for any parameter.  (That is, C++ permits <code>void f(int i, int);</code>, but Go does not permit the analogous <code>func f(i int, int)</code>.)  However, for convenience, in Go you may group several names with the same type:</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">t</span> <span class="kt">string</span><span class="p">)</span>
+</pre></div>
+
+<p>A variable may be initialized when it is declared.  When this is done,
+specifying the type is permitted but not required.  When the type is
+not specified, the type of the variable is the type of the
+initialization expression.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">v</span> <span class="p">=</span> <span class="o">*</span><span class="nx">p</span>
+</pre></div>
+
+<p>See also the <a href='#Constants'>discussion of constants, below</a>.
+If a variable is not initialized explicitly, the type must be specified.
+In that case it will be
+implicitly initialized to the type's zero value
+(<code>0</code>, <code>nil</code>, etc.).  There are no
+uninitialized variables in Go.</p>
+<p>Within a function, a short declaration syntax is available with
+<code>:=</code> .</p>
+<div class="highlight"><pre><span></span><span class="nx">v1</span> <span class="o">:=</span> <span class="nx">v2</span> <span class="c1">// C++11: auto v1 = v2;</span>
+</pre></div>
+
+<p>This is equivalent to</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">v1</span> <span class="p">=</span> <span class="nx">v2</span> <span class="c1">// C++11: auto v1 = v2;</span>
+</pre></div>
+
+<p>Go permits multiple assignments, which are done in parallel.  That is, first all of the values on the right-hand side are computed, and then these values are assigned to the variables on the left-hand side.</p>
+<div class="highlight"><pre><span></span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="p">=</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">i</span> <span class="c1">// Swap i and j.</span>
+</pre></div>
+
+<p>Functions may have multiple return values, indicated by a list in
+parentheses.  The returned values can be stored by assignment
+to a list of variables.</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">f</span><span class="p">()</span> <span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span> <span class="p">=</span> <span class="nx">f</span><span class="p">()</span>
+</pre></div>
+
+<p>Multiple return values are Go's primary mechanism for error handling:</p>
+<div class="highlight"><pre><span></span><span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">()</span>
+<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+  <span class="c1">// Something bad happened.</span>
+  <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+<span class="c1">// Continue as normal.</span>
+<span class="err">…</span>
+</pre></div>
+
+<p>or, more tersely,</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">g</span><span class="p">();</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+  <span class="c1">// Something bad happened.</span>
+  <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+<span class="c1">// Continue as normal.</span>
+<span class="err">…</span>
+</pre></div>
+
+<p>Go code uses very few semicolons in practice.  Technically, all Go
+statements are terminated by a semicolon.  However, Go treats the end
+of a non-blank line as a semicolon unless the line is clearly
+incomplete (the exact rules are
+in <a href='https://golang.org/ref/spec#Semicolons'>the language specification</a>).
+A consequence of this is that in some cases Go does not permit you to
+use a line break.  For example, you may not write
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">g</span><span class="p">()</span>
+<span class="p">{</span>                  <span class="c1">// INVALID</span>
+<span class="p">}</span>
+</pre></div>
+A semicolon will be inserted after <code>g()</code>, causing it to be
+a function declaration rather than a function definition.  Similarly,
+you may not write
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">x</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>             <span class="c1">// INVALID</span>
+<span class="p">}</span>
+</pre></div>
+A semicolon will be inserted after the <code>}</code> preceding
+the <code>else</code>, causing a syntax error.</p>
+<p>Since semicolons do end statements, you may continue using them as in
+C++.  However, that is not the recommended style.  Idiomatic Go code
+omits unnecessary semicolons, which in practice is all of them other
+than the initial <code>for</code> loop clause and cases where you want several
+short statements on a single line.</p>
+<p>While we're on the topic, we recommend that rather than worry about
+semicolons and brace placement, you format your code with
+the <code>gofmt</code> program.  That will produce a single standard
+Go style, and let you worry about your code rather than your
+formatting.  While the style may initially seem odd, it is as good as
+any other style, and familiarity will lead to comfort.</p>
+<p>When using a pointer to a struct, you use <code>.</code> instead
+of <code>-&gt;</code>.
+Thus, syntactically speaking, a structure and a pointer to a structure
+are used in the same way.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myStruct</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">}</span>
+<span class="kd">var</span> <span class="nx">v9</span> <span class="nx">myStruct</span>  <span class="c1">// v9 has structure type</span>
+<span class="kd">var</span> <span class="nx">p9</span> <span class="o">*</span><span class="nx">myStruct</span> <span class="c1">// p9 is a pointer to a structure</span>
+<span class="nx">f</span><span class="p">(</span><span class="nx">v9</span><span class="p">.</span><span class="nx">i</span><span class="p">,</span> <span class="nx">p9</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+</pre></div>
+
+<p>Go does not require parentheses around the condition of an <code>if</code>
+statement, or the expressions of a <code>for</code> statement, or the value of a
+<code>switch</code> statement.  On the other hand, it does require curly braces
+around the body of an <code>if</code> or <code>for</code> statement.</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">a</span> <span class="p">&lt;</span> <span class="nx">b</span> <span class="p">{</span> <span class="nx">f</span><span class="p">()</span> <span class="p">}</span>             <span class="c1">// Valid</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="nx">f</span><span class="p">()</span> <span class="p">}</span>           <span class="c1">// Valid (condition is a parenthesized expression)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">)</span> <span class="nx">f</span><span class="p">()</span>               <span class="c1">// INVALID</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{}</span>    <span class="c1">// Valid</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{}</span>  <span class="c1">// INVALID</span>
+</pre></div>
+
+<p>Go does not have a <code>while</code> statement nor does it have a
+<code>do/while</code>
+statement.  The <code>for</code> statement may be used with a single condition,
+which makes it equivalent to a <code>while</code> statement.  Omitting the
+condition entirely is an endless loop.</p>
+<p>Go permits <code>break</code> and <code>continue</code> to specify a label.
+The label must
+refer to a <code>for</code>, <code>switch</code>, or <code>select</code>
+statement.</p>
+<p>In a <code>switch</code> statement, <code>case</code> labels do not fall
+through.  You can
+make them fall through using the <code>fallthrough</code> keyword.  This applies
+even to adjacent cases.</p>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="nx">i</span> <span class="p">{</span>
+<span class="k">case</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">// empty case body</span>
+<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nx">f</span><span class="p">()</span> <span class="c1">// f is not called when i == 0!</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>But a <code>case</code> can have multiple values.</p>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="nx">i</span> <span class="p">{</span>
+<span class="k">case</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nx">f</span><span class="p">()</span> <span class="c1">// f is called if i == 0 || i == 1.</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The values in a <code>case</code> need not be constants--or even integers;
+any type
+that supports the equality comparison operator, such as strings or
+pointers, can be used--and if the <code>switch</code>
+value is omitted it defaults to <code>true</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nx">f1</span><span class="p">()</span>
+<span class="k">case</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nx">f2</span><span class="p">()</span>
+<span class="k">case</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nx">f3</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The <code>defer</code> statement may be used to call a function after the function containing the <code>defer</code> statement returns.  <code>defer</code> often takes the place of a destructor in C++ but is associated with the calling code, not any particular class or object.</p>
+<div class="highlight"><pre><span></span><span class="nx">fd</span> <span class="o">:=</span> <span class="nx">open</span><span class="p">(</span><span class="s">&quot;filename&quot;</span><span class="p">)</span>
+<span class="k">defer</span> <span class="nb">close</span><span class="p">(</span><span class="nx">fd</span><span class="p">)</span> <span class="c1">// fd will be closed when this function returns.</span>
+</pre></div>
+
+<h2>Operators</h2>
+
+<p>The <code>++</code> and <code>--</code> operators may only be used in
+statements, not in expressions.
+You cannot write <code>c = *p++</code>.  <code>*p++</code> is parsed as
+<code>(*p)++</code>.</p>
+<p>The operator precedence is different. As an example <code>4 &amp; 3 &lt;&lt; 1</code> evaluates to <code>0</code> in Go and <code>4</code> in C++.
+<div class="highlight"><pre><span></span>Go operator precedence:
+1. *   /   %  &lt;&lt;  &gt;&gt;  &amp;  &amp;^
+2. +   -   |  ^
+3. ==  !=  &lt;  &lt;=  &gt;   &gt;=
+4. &amp;&amp;
+5. ||
+</pre></div></p>
+<div class="highlight"><pre><span></span>C++ operator precedence (only relevant operators):
+1.  *    /   %
+2.  +    -
+3.  &lt;&lt;   &gt;&gt;
+4.  &lt;    &lt;=  &gt;   &gt;=
+5.  ==   !=
+6.  &amp;
+7.  ^
+8.  |
+9.  &amp;&amp;
+10. ||
+</pre></div>
+
+<h2>Constants </h2>
+
+<p>In Go constants may be <i>untyped</i>. This applies even to constants
+named with a <code>const</code> declaration, if no
+type is given in the declaration and the initializer expression uses only
+untyped constants.
+A value derived from an untyped constant becomes typed when it
+is used within a context that
+requires a typed value. This permits constants to be used relatively
+freely without requiring general implicit type conversion.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="kt">uint</span>
+<span class="nx">f</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// untyped numeric constant &quot;1&quot; becomes typed as uint</span>
+</pre></div>
+
+<p>The language does not impose any limits on the size of an untyped
+numeric constant or constant expression. A limit is only applied when
+a constant is used where a type is required.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">huge</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">100</span>
+<span class="nx">f</span><span class="p">(</span><span class="nx">huge</span> <span class="o">&gt;&gt;</span> <span class="mi">98</span><span class="p">)</span>
+</pre></div>
+
+<p>Go does not support enums.  Instead, you can use the special name
+<code>iota</code> in a single <code>const</code> declaration to get a
+series of increasing
+value.  When an initialization expression is omitted for a <code>const</code>,
+it reuses the preceding expression.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">red</span>   <span class="p">=</span> <span class="kc">iota</span> <span class="c1">// red == 0</span>
+    <span class="nx">blue</span>         <span class="c1">// blue == 1</span>
+    <span class="nx">green</span>        <span class="c1">// green == 2</span>
+<span class="p">)</span>
+</pre></div>
+
+<h2>Types</h2>
+
+<p>C++ and Go provide similar, but not identical, built-in types: signed and unsigned integers of various widths, 32-bit and 64-bit floating-point numbers (real and complex), <code>struct</code>s, pointers, etc.  In Go, <code>uint8</code>, <code>int64</code>, and like-named integer types are part of the language, not built on top of integers whose sizes are implementation-dependent (e.g., <code>long long</code>).  Go additionally provides native <code>string</code>, <code>map</code>, and <code>channel</code> types as well as first-class arrays and slices (described below).  Strings are encoded with Unicode, not ASCII.</p>
+<p>Go is far more strongly typed than C++.  In particular, there is no implicit type coercion in Go, only explicit type conversion.  This provides additional safety and freedom from a class of bugs but at the cost of some additional typing.  There is also no <code>union</code> type in Go, as this would enable subversion of the type system.  However, a Go <code>interface{}</code> (see below) provides a type-safe alternative.</p>
+<p>Both C++ and Go support type aliases (<code>typedef</code> in C++, <code>type</code> in Go).  However, unlike C++, Go treats these as different types.  Hence, the following is valid in C++:</p>
+<div class="highlight"><pre><span></span><span class="c1">// C++</span>
+<span class="k">typedef</span> <span class="kt">double</span> <span class="n">position</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">double</span> <span class="n">velocity</span><span class="p">;</span>
+
+<span class="n">position</span> <span class="n">pos</span> <span class="o">=</span> <span class="mf">218.0</span><span class="p">;</span>
+<span class="n">velocity</span> <span class="n">vel</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.8</span><span class="p">;</span>
+
+<span class="n">pos</span> <span class="o">+=</span> <span class="n">vel</span><span class="p">;</span>
+</pre></div>
+
+<p>but the equivalent is invalid in Go without an explicit type conversion:</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">position</span> <span class="kt">float64</span>
+<span class="kd">type</span> <span class="nx">velocity</span> <span class="kt">float64</span>
+
+<span class="kd">var</span> <span class="nx">pos</span> <span class="nx">position</span> <span class="p">=</span> <span class="mf">218.0</span>
+<span class="kd">var</span> <span class="nx">vel</span> <span class="nx">velocity</span> <span class="p">=</span> <span class="o">-</span><span class="mf">9.8</span>
+
+<span class="nx">pos</span> <span class="o">+=</span> <span class="nx">vel</span> <span class="c1">// INVALID: mismatched types position and velocity</span>
+<span class="c1">// pos += position(vel)  // Valid</span>
+</pre></div>
+
+<p>The same is true even for unaliased types: an <code>int</code> and a <code>uint</code> cannot be combined in an expression without explicitly converting one to the other.</p>
+<p>Go does not allow pointers to be cast to and from integers, unlike in C++.  However, Go's <code>unsafe</code> package enables one to explicitly bypass this safety mechanism if necessary (e.g., for use in low-level systems code).</p>
+<h2>Slices</h2>
+
+<p>A slice is conceptually a struct with three fields: a
+pointer to an array, a length, and a capacity.
+Slices support
+the <code>[]</code> operator to access elements of the underlying array.
+The builtin
+<code>len</code> function returns the
+length of the slice.  The builtin <code>cap</code> function returns the
+capacity.</p>
+<p>Given an array, or another slice, a new slice is created via
+<code>a[i:j]</code>.  This
+creates a new slice which refers to <code>a</code>, starts at
+index <code>i</code>, and ends before index
+<code>j</code>.  It has length <code>j-i</code>.
+If <code>i</code> is omitted, the slice starts at <code>0</code>.
+If <code>j</code> is omitted, the slice ends at <code>len(a)</code>.
+The new slice refers to the same array
+to which <code>a</code>
+refers.  Two implications of this statement are that ① changes made using the new slice may be seen using
+<code>a</code>, and ② slice creation is (intended to be) cheap; no copy needs to be made of the underlying array.  The
+capacity of the new slice is simply the capacity of <code>a</code> minus
+<code>i</code>.  The capacity
+of an array is the length of the array.</p>
+<p>What this means is that Go uses slices for some cases where C++ uses pointers.
+If you create a value of type <code>[100]byte</code> (an array of 100 bytes,
+perhaps a
+buffer) and you want to pass it to a function without copying it, you should
+declare the function parameter to have type <code>[]byte</code>, and
+pass a slice of the array (<code>a[:]</code> will pass the entire array).
+Unlike in C++, it is not
+necessary to pass the length of the buffer; it is efficiently accessible via
+<code>len</code>.</p>
+<p>The slice syntax may also be used with a string.  It returns a new string,
+whose value is a substring of the original string.
+Because strings are immutable, string slices can be implemented
+without allocating new storage for the slices's contents.</p>
+<h2>Making values</h2>
+
+<p>Go has a builtin function <code>new</code> which takes a type and
+allocates space
+on the heap. The allocated space will be zero-initialized for the type.
+For example, <code>new(int)</code> allocates a new int on the heap,
+initializes it with the value <code>0</code>,
+and returns its address, which has type <code>*int</code>.
+Unlike in C++, <code>new</code> is a function, not an operator;
+<code>new int</code> is a syntax error.</p>
+<p>Perhaps surprisingly, <code>new</code> is not commonly used in Go
+programs.  In Go taking the address of a variable is always safe and
+never yields a dangling pointer.  If the program takes the address of
+a variable, it will be allocated on the heap if necessary.  So these
+functions are equivalent:</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">S</span> <span class="p">{</span> <span class="nx">I</span> <span class="kt">int</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">f1</span><span class="p">()</span> <span class="o">*</span><span class="nx">S</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">new</span><span class="p">(</span><span class="nx">S</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">f2</span><span class="p">()</span> <span class="o">*</span><span class="nx">S</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="nx">S</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">s</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">f3</span><span class="p">()</span> <span class="o">*</span><span class="nx">S</span> <span class="p">{</span>
+    <span class="c1">// More idiomatic: use composite literal syntax.</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">S</span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>In contrast, it is not safe in C++ to return a pointer to a local variable:</p>
+<div class="highlight"><pre><span></span><span class="c1">// C++</span>
+<span class="n">S</span><span class="o">*</span> <span class="nf">f2</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">S</span> <span class="n">s</span><span class="p">;</span>
+  <span class="k">return</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">;</span>   <span class="c1">// INVALID -- contents can be overwritten at any time</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Map and channel values must be allocated using the builtin function
+<code>make</code>.
+A variable declared with map or channel type without an initializer will be
+automatically initialized to <code>nil</code>.
+Calling <code>make(map[int]int)</code> returns a newly allocated value of
+type <code>map[int]int</code>.
+Note that <code>make</code> returns a value, not a pointer.  This is
+consistent with
+the fact that map and channel values are passed by reference.  Calling
+<code>make</code> with
+a map type takes an optional argument which is the expected capacity of the
+map.  Calling <code>make</code> with a channel type takes an optional
+argument which sets the
+buffering capacity of the channel; the default is 0 (unbuffered).</p>
+<p>The <code>make</code> function may also be used to allocate a slice.
+In this case it
+allocates memory for the underlying array and returns a slice referring to it.
+There is one required argument, which is the number of elements in the slice.
+A second, optional, argument is the capacity of the slice.  For example,
+<code>make([]int, 10, 20)</code>.  This is identical to
+<code>new([20]int)[0:10]</code>.  Since
+Go uses garbage collection, the newly allocated array will be discarded
+sometime after there are no references to the returned slice.</p>
+<h2>Interfaces</h2>
+
+<p>Where C++ provides classes, subclasses and templates,
+Go provides interfaces.  A
+Go interface is similar to a C++ pure abstract class: a class with no
+data members, with methods which are all pure virtual.  However, in
+Go, any type which provides the methods named in the interface may be
+treated as an implementation of the interface.  No explicitly declared
+inheritance is required.  The implementation of the interface is
+entirely separate from the interface itself.</p>
+<p>A method looks like an ordinary function definition, except that it
+has a <em>receiver</em>.  The receiver is similar to
+the <code>this</code> pointer in a C++ class method.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myType</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">myType</span><span class="p">)</span> <span class="nx">Get</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">i</span> <span class="p">}</span>
+</pre></div>
+
+<p>This declares a method <code>Get</code> associated with <code>myType</code>.
+The receiver is named <code>p</code> in the body of the function.</p>
+<p>Methods are defined on named types.  If you convert the value
+to a different type, the new value will have the methods of the new type,
+not the old type.</p>
+<p>You may define methods on a builtin type by declaring a new named type
+derived from it.  The new type is distinct from the builtin type.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myInteger</span> <span class="kt">int</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">myInteger</span><span class="p">)</span> <span class="nx">Get</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">}</span> <span class="c1">// Conversion required.</span>
+<span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span>                <span class="p">{}</span>
+
+<span class="kd">var</span> <span class="nx">v</span> <span class="nx">myInteger</span>
+
+<span class="c1">// f(v) is invalid.</span>
+<span class="c1">// f(int(v)) is valid; int(v) has no defined methods.</span>
+</pre></div>
+
+<p>Given this interface:</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myInterface</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Get</span><span class="p">()</span> <span class="kt">int</span>
+    <span class="nx">Set</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>we can make <code>myType</code> satisfy the interface by adding</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">myType</span><span class="p">)</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="nx">p</span><span class="p">.</span><span class="nx">i</span> <span class="p">=</span> <span class="nx">i</span> <span class="p">}</span>
+</pre></div>
+
+<p>Now any function which takes <code>myInterface</code> as a parameter
+will accept a
+variable of type <code>*myType</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetAndSet</span><span class="p">(</span><span class="nx">x</span> <span class="nx">myInterface</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kd">func</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="nx">myType</span>
+    <span class="nx">GetAndSet</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">p</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>In other words, if we view <code>myInterface</code> as a C++ pure abstract
+base
+class, defining <code>Set</code> and <code>Get</code> for
+<code>*myType</code> made <code>*myType</code> automatically
+inherit from <code>myInterface</code>.  A type may satisfy multiple interfaces.</p>
+<p>An anonymous field may be used to implement something much like a C++ child
+class.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myChildType</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">myType</span>
+    <span class="nx">j</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">myChildType</span><span class="p">)</span> <span class="nx">Get</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span> <span class="nx">p</span><span class="p">.</span><span class="nx">j</span><span class="o">++</span><span class="p">;</span> <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">myType</span><span class="p">.</span><span class="nx">Get</span><span class="p">()</span> <span class="p">}</span>
+</pre></div>
+
+<p>This effectively implements <code>myChildType</code> as a child of
+<code>myType</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">f2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="nx">myChildType</span>
+    <span class="nx">GetAndSet</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">p</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The <code>Set</code> method is effectively inherited from
+<code>myType</code>, because
+methods associated with the anonymous field are promoted to become methods
+of the enclosing type.  In this case, because <code>myChildType</code> has an
+anonymous field of type <code>myType</code>, the methods of
+<code>myType</code> also become methods of <code>myChildType</code>.
+In this example, the <code>Get</code> method was
+overridden, and the <code>Set</code> method was inherited.</p>
+<p>This is not precisely the same as a child class in C++.
+When a method of an anonymous field is called,
+its receiver is the field, not the surrounding struct.
+In other words, methods on anonymous fields are not virtual functions.
+When you want the equivalent of a virtual function, use an interface.</p>
+<p>A variable that has an interface type may be converted to have a
+different interface type using a special construct called a type assertion.
+This is implemented dynamically
+at run time, like C++ <code>dynamic_cast</code>.  Unlike
+<code>dynamic_cast</code>, there does
+not need to be any declared relationship between the two interfaces.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">myPrintInterface</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Print</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">f3</span><span class="p">(</span><span class="nx">x</span> <span class="nx">myInterface</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="p">.(</span><span class="nx">myPrintInterface</span><span class="p">).</span><span class="nx">Print</span><span class="p">()</span> <span class="c1">// type assertion to myPrintInterface</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The conversion to <code>myPrintInterface</code> is entirely dynamic.
+It will
+work as long as the dynamic type of x defines
+a <code>print</code> method.</p>
+<p>Because the conversion is dynamic, it may be used to implement generic
+programming similar to templates in C++.  This is done by
+manipulating values of the minimal interface.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Any</span> <span class="kd">interface</span><span class="p">{}</span>
+</pre></div>
+
+<p>Containers may be written in terms of <code>Any</code>, but the caller
+must unbox using a type assertion to recover
+values of the contained type.  As the typing is dynamic rather
+than static, there is no equivalent of the way that a C++ template may
+inline the relevant operations.  The operations are fully type-checked
+at run time, but all operations will involve a function call.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Iterator</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Get</span><span class="p">()</span> <span class="nx">Any</span>
+    <span class="nx">Set</span><span class="p">(</span><span class="nx">v</span> <span class="nx">Any</span><span class="p">)</span>
+    <span class="nx">Increment</span><span class="p">()</span>
+    <span class="nx">Equal</span><span class="p">(</span><span class="nx">arg</span> <span class="nx">Iterator</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Note that <code>Equal</code> has an argument of
+type <code>Iterator</code>.  This does not behave like a C++
+template.  See <a href='go_faq.html#t_and_equal_interface'>the FAQ</a>.</p>
+<h2>Function closures</h2>
+
+<p>In C++ versions prior to C++11, the most common way to create a function with hidden state is to use a "functor"—a class that overloads <code>operator()</code> to make instances look like functions.  For example, the following code defines a <code>my_transform</code> function (a simplified version of the STL's <code>std::transform</code>) that applies a given unary operator (<code>op</code>) to each element of an array (<code>in</code>), storing the result in another array (<code>out</code>).  To implement a prefix sum (i.e., {<code>x[0]</code>, <code>x[0]+x[1]</code>, <code>x[0]+x[1]+x[2]</code>, …}) the code creates a functor (<code>MyFunctor</code>) that keeps track of the running total (<code>total</code>) and passes an instance of this functor to <code>my_transform</code>.</p>
+<div class="highlight"><pre><span></span><span class="c1">// C++</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">UnaryOperator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">my_transform</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">n_elts</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">in</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">out</span><span class="p">,</span> <span class="n">UnaryOperator</span> <span class="n">op</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n_elts</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">op</span><span class="p">(</span><span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">MyFunctor</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">total</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">MyFunctor</span><span class="p">()</span> <span class="o">:</span> <span class="n">total</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+  <span class="n">MyFunctor</span> <span class="n">accumulate</span><span class="p">;</span>
+  <span class="n">my_transform</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">accumulate</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Result is [ &quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>C++11 adds anonymous ("lambda") functions, which can be stored in variables and passed to functions.  They can optionally serve as closures, meaning they can reference state from parent scopes.  This feature greatly simplifies <code>my_transform</code>:</p>
+<div class="highlight"><pre><span></span><span class="c1">// C++11</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">my_transform</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">n_elts</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">in</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">out</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">op</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n_elts</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">op</span><span class="p">(</span><span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">my_transform</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">total</span><span class="p">]</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+    <span class="p">});</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Result is [ &quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>A typical Go version of <code>my_transform</code> looks a lot like the C++11 version:</p>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">my_transform</span><span class="p">(</span><span class="nx">in</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">xform</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">out</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">out</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">in</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+        <span class="nx">out</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">xform</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+    <span class="nx">total</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Result is %v\n&quot;</span><span class="p">,</span> <span class="nx">my_transform</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">v</span>
+        <span class="k">return</span> <span class="nx">total</span>
+    <span class="p">}))</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(Note that we chose to return <code>out</code> from <code>my_transform</code> rather than pass it an <code>out</code> to write to.  This was an aesthetic decision; the code could have been written more like the C++ version in that regard.)</p>
+<p>In Go, functions are always full closures, the equivalent of <code>[&amp;]</code> in C++11.  An important difference is that it is invalid in C++11 for a closure to reference a variable whose scope has gone away (as may be caused by an <a href='http://en.wikipedia.org/wiki/Funarg_problem'>upward funarg</a>—a function that returns a lambda that references local variables).  In Go, this is perfectly valid.</p>
+<h2>Concurrency</h2>
+
+<p>Like C++11's <code>std::thread</code>, Go permits starting new threads of execution that run concurrently in a shared address space.  These are called <em>goroutines</em> and are spawned using the <code>go</code> statement.  While typical <code>std::thread</code> implementations launch heavyweight, operating-system threads, goroutines are implemented as lightweight, user-level threads that are multiplexed among multiple operating-system threads.  Consequently, goroutines are (intended to be) cheap and can be used liberally throughout a program.</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">server</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">go</span> <span class="nx">server</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">go</span> <span class="nx">server</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+<p>(Note that the <code>for</code> statement in the <code>server</code>
+function is equivalent to a C++ <code>while (true)</code> loop.)</p>
+<p>Function literals (which Go implements as closures)
+can be useful with the <code>go</code> statement.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">g</span> <span class="kt">int</span>
+<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">s</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="nx">j</span>
+    <span class="p">}</span>
+    <span class="nx">g</span> <span class="p">=</span> <span class="nx">s</span>
+<span class="p">}(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">// Passes argument 1000 to the function literal.</span>
+</pre></div>
+
+<p>Like C++11, but unlike prior versions of C++, Go defines a
+<a href='http://golang.org/ref/mem'>memory model</a> for unsynchronized accesses to memory.  Although Go provides an analogue of <code>std::mutex</code> in its <code>sync</code> package, this is not the normal way to implement inter-thread communication and synchronization in Go programs.  Instead, Go threads more typically communicate by message passing, which is a fundamentally different approach from locks and barriers.  The Go mantra for this subject is,</p>
+<blockquote>
+<p>Do not communicate by sharing memory; instead, share memory by communicating.</p>
+</blockquote>
+<p>That is, <em>channels</em> are used to communicate among goroutines.  Values of any type (including other channels!) can be
+sent over a channel.  Channels can be unbuffered or buffered (using a buffer length specified at channel-construction time).</p>
+<p>Channels are first-class values; they can be stored in variables and passed to and from functions like any other value.  (When supplied to
+functions, channels are passed by reference.)  Channels are also typed: a <code>chan int</code> is different from a <code>chan string</code>.</p>
+<p>Because they are so widely used in Go programs, channels are (intended to be) efficient and cheap.  To send a value on a channel, use <code>&lt;-</code> as a binary operator.  To receive a value on a channel, use <code>&lt;-</code> as a unary operator.  Channels can be shared among multiple senders and multiple receivers and guarantee that each value sent is received by at most one receiver.</p>
+<p>Here is an example of using a manager function to control access to a
+single value.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Cmd</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">Get</span> <span class="kt">bool</span><span class="p">;</span> <span class="nx">Val</span> <span class="kt">int</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="nx">Manager</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="nx">Cmd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">val</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">c</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span>
+        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Val</span> <span class="p">=</span> <span class="nx">val</span><span class="p">;</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">c</span> <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span> <span class="nx">val</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Val</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>In that example the same channel is used for input and output.
+This is incorrect if there are multiple goroutines communicating
+with the manager at once: a goroutine waiting for a response
+from the manager might receive a request from another goroutine
+instead.
+A solution is to pass in a channel.</p>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Cmd2</span> <span class="kd">struct</span> <span class="p">{</span> <span class="nx">Get</span> <span class="kt">bool</span><span class="p">;</span> <span class="nx">Val</span> <span class="kt">int</span><span class="p">;</span> <span class="nx">Ch</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="nx">Manager2</span><span class="p">(</span><span class="nx">ch</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="nx">Cmd2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">val</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">c</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span>
+        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span> <span class="p">{</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Ch</span> <span class="o">&lt;-</span> <span class="nx">val</span> <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span> <span class="nx">val</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Val</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>To use <code>Manager2</code>, given a channel to it:</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">f4</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="nx">Cmd2</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">myCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Cmd2</span><span class="p">{</span><span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">myCh</span><span class="p">}</span> <span class="c1">// Composite literal syntax.</span>
+    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">c</span>
+    <span class="k">return</span> <span class="o">&lt;-</span><span class="nx">myCh</span>
+<span class="p">}</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../GoArm/" title="GoArm" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GoArm
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GoGenerateTools
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

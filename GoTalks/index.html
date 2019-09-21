@@ -1,0 +1,2560 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/GoTalks/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>GoTalks - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#go-talks" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                GoTalks
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AVX512/" title="AVX512" class="md-nav__link">
+      AVX512
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="GoTalks" class="md-nav__link md-nav__link--active">
+      GoTalks
+    </a>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/GoTalks.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="go-talks">Go talks</h1>
+<p>Check out <a href="http://talks.golang.org">http://talks.golang.org</a> for presentations for some of the talks. For a comprehensive, curated and searchable index, try <a href="http://gophervids.appspot.com/">GopherVids</a> from Damian Gryski.</p>
+<h1 id="official">Official</h1>
+<h2 id="introductory-talks">Introductory Talks</h2>
+<p>An introduction to Go.</p>
+<h3 id="russ-coxs-tour-of-go">Russ Cox's Tour of Go</h3>
+<p>[<a href="http://research.swtch.com/gotour">video and discussion</a>]</p>
+<p>Three things that make Go fast, fun, and productive:interfaces, reflection, and concurrency. Builds a toy web crawler to demonstrate these.</p>
+<h3 id="go-a-simple-programming-environment">Go: a simple programming environment</h3>
+<p>[<a href="http://vimeo.com/53221558">video</a>]
+[<a href="http://vimeo.com/69237265">another video</a>]
+[<a href="http://talks.golang.org/2012/simple.slide">slides</a>]</p>
+<p>Go is a general-purpose language that bridges the gap between efficient statically typed languages and productive dynamic language. But it’s not just the language that makes Go special – Go has broad and consistent standard libraries and powerful but simple tools.</p>
+<p>This talk gives an introduction to Go, followed by a tour of some real programs that demonstrate the power, scope, and simplicity of the Go programming environment.</p>
+<h3 id="get-started-with-go">Get Started with Go</h3>
+<p>[<a href="http://www.youtube.com/watch?v=2KmHtgtEZ1s">video</a>]</p>
+<p>Get a feel for the language and its standard libraries and tools in this session, where we go through installing Go and writing some simple but useful
+programs.</p>
+<h3 id="go-programming">Go Programming</h3>
+<p>[<a href="http://www.youtube.com/watch?v=jgVhBThJdXc">video</a>] 
+[<a href="http://talks.golang.org/2010/io/">code</a>]</p>
+<p>A presentation delivered by Rob Pike and Russ Cox at Google I/O 2010.  It
+illustrates how programming in Go differs from other languages through a set of
+examples demonstrating features particular to Go.  These include concurrency,
+embedded types, methods on any type, and program construction using interfaces.</p>
+<h3 id="the-go-tech-talk">The Go Tech Talk</h3>
+<p>[<a href="http://www.youtube.com/watch?v=rKnDgT73v8s">video</a>]
+[<a href="http://talks.golang.org/2009/go_talk-20091030.pdf">slides</a>]</p>
+<p>An hour-long talk delivered by Rob Pike at Google in October 2009.
+The language's first public introduction. The language has changed since it was made,
+but it's still a good introduction.</p>
+<h2 id="development-in-go">Development in Go</h2>
+<h3 id="writing-web-apps-in-go">Writing Web Apps in Go</h3>
+<p>[<a href="http://www.youtube.com/watch?v=-i0hat7pdpk">video</a>] 
+[<a href="http://talks.golang.org/2011/Writing_Web_Apps_in_Go.pdf">slides</a>]</p>
+<p>A talk by Rob Pike and Andrew Gerrand presented at Google I/O 2011.
+It walks through the construction and deployment of a simple web application
+and unveils the <a href="http://blog.golang.org/2011/05/go-and-google-app-engine.html">Go runtime for App Engine</a>.</p>
+<h3 id="real-world-go">Real World Go</h3>
+<p>[<a href="http://www.youtube.com/watch?v=7QDVRowyUQA">video</a>] 
+[<a href="http://talks.golang.org/2011/Real_World_Go.pdf">slides</a>]</p>
+<p>A talk by Andrew Gerrand presented at Google I/O Bootcamp 2011.
+It gives a broad overview of Go's type system and concurrency model
+and provides four examples of Go programs that solve real problems.</p>
+<h3 id="building-integrated-apps-on-googles-cloud-platform">Building Integrated Apps on Google's Cloud Platform</h3>
+<p>[<a href="http://www.youtube.com/watch?v=Mo1YKpIF1PQ">video</a>]</p>
+<p>A talk by Andrew Gerrand presented at Google Developer Day Japan 2011.
+It discusses the development of a web application that runs on Google
+App Engine and renders raytraced that it stores on Google Cloud Storage.</p>
+<h3 id="high-performance-apps-with-go-on-app-engine">High Performance Apps with Go on App Engine</h3>
+<p>Google I/O, May 2013</p>
+<p>[<a href="http://www.youtube.com/watch?v=fc25ihfXhbg">video</a>] 
+[<a href="http://talks.golang.org/2013/highperf.slide">slides</a>]</p>
+<h3 id="practical-go-programming">Practical Go Programming</h3>
+<p>[<a href="http://www.youtube.com/watch?v=2-pPAvqyluI">video</a>] 
+[<a href="http://wh3rd.net/practical-go">slides</a>] 
+[<a href="http://github.com/nf/goto">code</a>]</p>
+<p>This talk presents the development of a complete web application in Go.
+It looks at design, storage, concurrency, and scaling issues in detail, using
+the simple example of an URL shortening service.</p>
+<h3 id="lexical-scanning-in-go">Lexical Scanning in Go</h3>
+<p>[<a href="http://www.youtube.com/watch?v=HxaD_trXwRE">video</a>]</p>
+<p>This GTUG talk by Rob Pike discusses the detailed design of a lexical scanner that uses Go's
+features in expressive combinations. (The discussion near the end about avoiding goroutines
+at initialization is obsolete: Go 1 allows goroutines in init functions so the extra complexity
+is unnecessary.)</p>
+<h3 id="go-in-production">Go in Production</h3>
+<p>Google I/O, June 2012</p>
+<p>[<a href="http://www.youtube.com/watch?v=kKQLhGZVN4A">video</a>]</p>
+<p>Since Go's release in 2009 many companies (besides Google, of course) have used the language to build cool stuff. In this session programmers from several companies will share their first-hand experience using Go in production environments.</p>
+<h3 id="go-code-that-grows-with-grace">Go: code that grows with grace</h3>
+<p>[<a href="http://vimeo.com/53221560">video</a>]
+[<a href="http://talks.golang.org/2012/chat.slide">slides</a>]</p>
+<p>One of the Go Programming Language’s key design goals is code adaptability; that it should be easy to take a simple design and build upon it in a clean and natural way. In this talk I describe a simple “chat roulette” server that matches pairs of incoming TCP connections, and then use Go’s concurrency mechanisms, interfaces, and standard library to extend it with a web interface and other features. Although the function of the program changes dramatically, the inherent flexibility of Go allows the original design to remain intact as it grows.</p>
+<h3 id="implementing-a-bignum-calculator">Implementing a bignum calculator</h3>
+<p>[<a href="https://www.youtube.com/watch?v=PXoG0WX0r_E">video</a>]
+[<a href="http://go-talks.appspot.com/github.com/robpike/ivy/talks/ivy.slide">slides</a>]</p>
+<p>Rob Pike describes his interpreter for an APL-like calculator language.</p>
+<h3 id="go-in-go">Go in Go</h3>
+<p>[<a href="https://www.youtube.com/watch?v=cF1zJYkBW4A">video</a>]
+[<a href="https://talks.golang.org/2015/gogo.slide">slides</a>]</p>
+<p>Rob Pike speaks on moving the Go toolchain from C to Go</p>
+<h2 id="concurrency-in-go">Concurrency in Go</h2>
+<h3 id="go-concurrency-patterns">Go concurrency patterns</h3>
+<p>Google I/O, June 2012</p>
+<p>[<a href="http://www.youtube.com/watch?v=f6kdp27TYZs">video</a>]</p>
+<h3 id="advanced-concurrency-patterns">Advanced Concurrency Patterns</h3>
+<p>[<a href="https://www.youtube.com/watch?v=QDDwwePbDtw">video</a>]
+[<a href="http://talks.golang.org/2013/advconc.slide">slides</a>]</p>
+<p>Google I/0, May 2013</p>
+<p>Concurrency is the key to designing high performance network services. This talk expands on last year's popular Go Concurrency Patterns talk to dive deeper into Go's concurrency primitives, and see how tricky concurrency problems can be solved gracefully with simple Go code.</p>
+<h2 id="design-of-go">Design of Go</h2>
+<h3 id="the-expressiveness-of-go">The Expressiveness Of Go</h3>
+<p>[<a href="http://talks.golang.org/2010/ExpressivenessOfGo-2010.pdf">slides</a>]</p>
+<p>A discussion of the qualities that make Go an expressive and comprehensible
+language.  The talk was presented by Rob Pike at JAOO 2010.
+The recording of the event was lost due to a hardware error.</p>
+<h3 id="another-go-at-language-design">Another Go at Language Design</h3>
+<p>[<a href="http://sydney.edu.au/engineering/it/videos/seminar_pike">video</a> from Sydney University]
+[<a href="http://assets.en.oreilly.com/1/event/45/Another%20Go%20at%20Language%20Design%20Presentation.pdf">slides</a>]</p>
+<p>A tour, with some background, of the major features of Go, intended for
+an audience new to the language.  The talk was presented at OSCON 2010.
+This talk was also delivered at Sydney University in September 2010.</p>
+<h3 id="go-emerging-languages-conference-talk">Go Emerging Languages Conference Talk</h3>
+<p>[<a href="http://confreaks.com/videos/115-elcamp2010-go">video</a>]
+[<a href="http://assets.en.oreilly.com/1/event/45/Go%20Presentation.pdf">slides</a>] </p>
+<p>Rob Pike's Emerging Languages Conference presentation delivered in July 2010.  Talk abstract:</p>
+<blockquote>
+<p>Go’s approach to concurrency differs from that of many languages, even those
+(such as Erlang) that make concurrency central, yet it has deep roots. The path
+from Hoare’s 1978 paper to Go provides insight into how and why Go works as it
+does.</p>
+</blockquote>
+<h2 id="the-state-of-go">The State of Go</h2>
+<h3 id="june-2014">June 2014</h3>
+<p>[<a href="https://www.youtube.com/watch?v=0KF44QtoByk">video</a>]
+[<a href="https://talks.golang.org/2014/state-of-go.slide">slides</a>]</p>
+<h3 id="february-2015">February 2015</h3>
+<p>[<a href="https://www.youtube.com/watch?v=Kd8EqTvW5EQ">video</a>]
+[<a href="https://talks.golang.org/2015/state-of-go.slide">slides</a>]</p>
+<h3 id="may-2015">May 2015</h3>
+<p>[<a href="https://www.youtube.com/watch?v=S9Bu6fZnLGM">video</a>]
+[<a href="https://talks.golang.org/2015/state-of-go-may.slide">slides</a>]</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<h3 id="the-go-frontend-for-gcc">The Go frontend for GCC</h3>
+<p>[<a href="http://talks.golang.org/2010/gofrontend-gcc-summit-2010.pdf">paper</a>]</p>
+<p>A description of the Go language frontend for gcc.
+Ian Lance Taylor's paper delivered at the GCC Summit 2010.</p>
+<h3 id="the-go-promo-video">The Go Promo Video</h3>
+<p>[<a href="http://www.youtube.com/watch?v=wwoWei-GAPo">video</a>]</p>
+<p>A short promotional video featuring Russ Cox demonstrating Go's fast compiler.</p>
+<h3 id="meet-the-go-team">Meet the Go team</h3>
+<p>Google I/O, June 2012</p>
+<p>[<a href="http://www.youtube.com/watch?v=sln-gJaURzk">video</a>]</p>
+<p>A panel discussion with David Symonds, Robert Griesemer, Rob Pike, Ken Thompson, Andrew Gerrand, and Brad Fitzpatrick.</p>
+<h3 id="fireside-chat-with-go-team">Fireside Chat with Go team</h3>
+<p>Google I/0, May 2013</p>
+<p>[<a href="http://www.youtube.com/watch?v=p9VUCp98ay4">video</a>]</p>
+<p>A fireside chat with Andrew Gerrand, Brad Fitzpatrick, David Symonds, Ian Lance Taylor, Nigel Tao, Rob Pike, Robert Griesemer, Sameer Ajmani.</p>
+<h3 id="the-state-of-the-gopher">The State of the Gopher</h3>
+<p>[<a href="https://www.youtube.com/watch?v=4KFTacxqkcQ">video</a>]
+[<a href="https://talks.golang.org/2014/state-of-the-gopher.slide">slides</a>]</p>
+<h1 id="unofficial">Unofficial</h1>
+<p>Talks by members of the community.</p>
+<h3 id="lets-go-or-introduction-to-go">Let's Go, or introduction to Go</h3>
+<p>[<a href="http://live.digicast.ru/view/1582">video (starting at 14:35)</a>] 
+[<a href="http://talks.godoc.org/github.com/AlekSi/LetsGo/lets-go.slide">slides</a>] 
+[<a href="https://github.com/AlekSi/LetsGo">source</a>]</p>
+<p>This talk gives an introduction to Go in Russian.</p>
+<h3 id="what-are-go-modules-and-how-do-i-use-them">What are Go modules and how do I use them?</h3>
+<p><em><a href="https://twitter.com/_myitcv">Paul Jolly</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/6MbIzJmLz6Q">video</a>]
+[<a href="https://talks.godoc.org/github.com/myitcv/talks/2018-08-15-glug-modules/main.slide#1">slides</a>]</p>
+<h3 id="what-else-is-in-go-111">What else is in Go 1.11</h3>
+<p><em><a href="https://twitter.com/mvdan_">Daniel Martì</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/mQYjjVCGVJ8">video</a>]
+[<a href="https://talks.godoc.org/github.com/mvdan/talks/2018/go1.11.slide#1">slides</a>]</p>
+<p>Sneak peak at the Go 1.11 release</p>
+<h3 id="get-going-with-webassembly">Get Going with WebAssembly</h3>
+<p><em><a href="https://twitter.com/JohanBrandhorst">Johan Brandhorst</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/iTrx0BbUXI4">video</a>]
+[<a href="https://talks.godoc.org/github.com/johanbrandhorst/presentations/wasm-lightning/wasm.slide#1">slides</a>]
+[<a href="https://github.com/johanbrandhorst/wasm-experiments">code wasm</a>]
+[<a href="https://github.com/johanbrandhorst/grpcweb-wasm-example">code grpc</a>]</p>
+<p>In this talk, Johan introduces you to the WebAssembly port in Go 1.11 and how it can help when dealing with JavaScript madness :)</p>
+<h3 id="go-and-mongo-and-how-its-changing">Go and Mongo - and how it's changing</h3>
+<p><em><a href="https://twitter.com/codepope">DJ Walker-Morgan</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/W22tZ5p3aDk">video</a>]
+[<a href="https://github.com/codepope/talks/blob/master/GoAndMongo.pdf">slides</a>]</p>
+<h3 id="building-a-simple-concurrency-teaching-language-with-go">Building a simple concurrency teaching language with Go</h3>
+<p><em><a href="https://twitter.com/nicholascwng">Nicholas Ng</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/7cEp98y6WCs">video</a>]
+[<a href="https://talks.godoc.org/github.com/nickng/londongophers-aug18/londongophers-aug18.slide#1">slides</a>]</p>
+<p>In this talk Nicholas presents the design and implementation of a simple language designed for teaching concurrency theory (process calculi), implemented in Go. He covers some of Go's static analysis tools used in the implementation and show how you can use them too!</p>
+<h3 id="introducing-remoto">Introducing Remoto</h3>
+<p><em><a href="https://twitter.com/matryer">Mat Ryer</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/dhbq7R7h-C0">video</a>]</p>
+<p>Mat shares the first glimpse of a new project that aims to make building RPC services easy. gRPC isn’t good for clients (especially web), and RESTful designs sometimes lead to confusing APIs. Remoto lets you define your service with a Go interface, and generate everything you need to build and consume the service.</p>
+<h3 id="go-swagger">Go Swagger</h3>
+<p><em><a href="https://twitter.com/simone_trubian">Simone Trubian</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/PUejMR82RgU">video</a>]</p>
+<p>Simone gives an overview of the Go Swagger command line tool and briefly explain how he used it to improve productivity in designing REST API's.</p>
+<h3 id="orms-in-go">ORMs in Go</h3>
+<p><em>Renato Serra at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/0XW6wI2FnPA">video</a>]</p>
+<p>Renato explains where ORMs can help, what the options were and what it's been like to use one.</p>
+<h3 id="unused-parameters-in-go-code">Unused parameters in Go code</h3>
+<p><em><a href="https://twitter.com/mvdan_">Daniel Martì</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/VW5jI6V_Y2c">video</a>]
+[<a href="https://talks.godoc.org/github.com/mvdan/talks/2018/unparam.slide#1">slides</a>]</p>
+<p>Daniel talks about how to use SSA and callgraphs to write powerful code analysis tools. In particular, he demonstrates how to detect unused parameters in functions.</p>
+<h3 id="lies-damn-lies-and-benchmarks">Lies, Damn Lies, and Benchmarks</h3>
+<p><em>Amnon at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/YDPKUJndhw4">video</a>]
+[<a href="https://talks.godoc.org/github.com/amnonbc/talks/lies.slide#1">slides</a>]</p>
+<p>Amnon discusses why microbenchmarks can be misleading for optimising real world systems, why data layout is often more significant than code structure, and how Go can help us in the quest for performance.</p>
+<h3 id="a-debugger-from-scratch">A debugger from scratch</h3>
+<p><em><a href="https://twitter.com/LizRice">Liz Rice</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/tZ5PUKbGjO4">video</a>]
+[<a href="https://speakerdeck.com/lizrice/debuggers-from-scratch">slides</a>]
+[<a href="https://github.com/lizrice/debugger-from-scratch">code</a>]</p>
+<p>Liz explains how a debugger works by building one in a few lines of Go. This includes mapping between Go source code and the machine code instructions it compiles to, and using the ptrace system call to set break points and examine and modify the running process.</p>
+<h3 id="fast-fractal-fun-with-sdl">Fast Fractal Fun With SDL</h3>
+<p><em><a href="https://twitter.com/virtualsue">Sue Spence</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/eTjL3grAYAM">video</a>]
+[<a href="https://gitlab.com/virtualsue/sdl-fractal/blob/master/Fast%20Fractal%20Fun.pdf">slides</a>]
+[<a href="https://gitlab.com/virtualsue/sdl-fractal">code</a>]</p>
+<p>Go programs which create images such as the Mandelbrot &amp; Julia sets often output an image file. I will show how to use Go bindings for the Simple Directmedia Layer library to output them on a display device instead.</p>
+<h3 id="concurrency-a-journey-from-ruby-to-go">Concurrency: a Journey from Ruby to Go</h3>
+<p><em><a href="https://twitter.com/mathildathompso">Mathilda Thompson</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/mK3r5PDED-0">video</a>]</p>
+<h3 id="go-in-a-polyglot-environment">Go in a Polyglot Environment</h3>
+<p><em><a href="https://twitter.com/kmckelvin">Kevin McKelvin</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/kWAxBhsEayk">video</a>]</p>
+<p>In this talk Kevin goes through his experience of adopting Go, moving to a polyglot environment, successes and challenges, and how Go fits into his company's overall architecture and strategy.</p>
+<h3 id="delivering-go-services">Delivering Go Services</h3>
+<p><em><a href="https://twitter.com/zakknill">Zak Knill</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/pRdfJTuGxEw">video</a>]</p>
+<p>Delivering Go Services: After introducing Go to your company, and deploying your first go service. What are the next steps? This talk focuses on some of the things that come next, touching on the fabled "New service to prod in X (10, 20, 30) mins", as well as some gotchas along the way.</p>
+<h3 id="go-ing-lambda">Go-ing Lambda</h3>
+<p><em><a href="https://twitter.com/dblooman">David Blooman</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/BBiIr19JOo4">video</a>]</p>
+<p>Go-ing Lambda - A year in production: How we(FundApps) used Go in lambda functions to build a service for importing/scraping/parsing data for financial services to build API's on top of. Tips and tricks of lambda functions in Go, limitations, performance and using the Apex framework.</p>
+<h3 id="the-red-method">The RED method</h3>
+<p><em><a href="https://twitter.com/tom_wilkie">Tom Wilkie</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/rc3V-k-JYAo">video</a>]</p>
+<p>We'll also have a section dedicated to those of you who are hiring or looking to get hired (if we'll miss it like last time, please don't be afraid to remind us).</p>
+<h3 id="abusing-gos-net-package-for-fun-and-profit">Abusing Go’s net package for fun and profit</h3>
+<p><em><a href="https://twitter.com/MWitkow">Michał Witkowski</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/JDjHFmke0ZI">video</a>]</p>
+<p>This talks into the details of how Go’s composition-based philosophy, as applied to the net package, can be creatively leveraged to beautiful and useful hacks that significantly augment the functionality of the stack. We’ll explore the net.Conn, and how one can (ab)use them in creative ways. We’ll take a peek into net/http, and explore how the http.Handler and http.Roundtripper interfaces can be creatively appropriated to build useful middleware. We’ll then dig even deeper into the net/http internals and how they related tls.Conn and x/net/http2, to understand how they work, and armed with that knowledge we’ll demonstrate some of our most beautiful hacks.</p>
+<h3 id="2018s-stringer">2018's stringer</h3>
+<p><em><a href="https://twitter.com/mvdan_">Daniel Martì</a> at <a href="https://twitter.com/LondonGophers"><strong>LondonGophers</strong></a></em></p>
+<p>[<a href="https://youtu.be/IyVEW19IkXE">video</a>]
+[<a href="https://talks.godoc.org/github.com/mvdan/talks/2018/stringer.slide">slides</a>]</p>
+<p>2018's stringer - a demonstration of new features you likely haven't heard of.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../GoStrings/" title="GoStrings" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GoStrings
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../GoUserGroups/" title="GoUserGroups" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GoUserGroups
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

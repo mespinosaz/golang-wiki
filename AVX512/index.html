@@ -1,0 +1,2840 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Personal fork of Go Programming Language Wiki">
+      
+      
+        <link rel="canonical" href="https://zchee.github.io/golang-wiki/AVX512/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>AVX512 - Go Programming Language Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#terminology" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Programming Language Wiki
+            </span>
+            <span class="md-header-nav__topic">
+              
+                AVX512
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Programming Language Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    zchee/golang-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Home/" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      WhyGo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        WhyGo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WhyGo/" title="WhyGo" class="md-nav__link">
+      WhyGo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Windows/" title="Windows" class="md-nav__link">
+      Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
+      Ubuntu
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="Source" class="md-nav__link">
+      Source
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Articles/" title="Articles" class="md-nav__link">
+      Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-nav__link">
+      AssemblyPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        AVX512
+      </label>
+    
+    <a href="./" title="AVX512" class="md-nav__link md-nav__link--active">
+      AVX512
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    Terminology
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-registers" class="md-nav__link">
+    New registers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#masking-support" class="md-nav__link">
+    Masking support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evex-broadcastroundingsae-support" class="md-nav__link">
+    EVEX broadcast/rounding/SAE support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-block-multi-source-operands" class="md-nav__link">
+    Register block (multi-source) operands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avx1-and-avx2-instructions-with-evex-prefix" class="md-nav__link">
+    AVX1 and AVX2 instructions with EVEX prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-extensions" class="md-nav__link">
+    Supported extensions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions-with-size-suffix" class="md-nav__link">
+    Instructions with size suffix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encoder-details" class="md-nav__link">
+    Encoder details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Blogs/" title="Blogs" class="md-nav__link">
+      Blogs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Books/" title="Books" class="md-nav__link">
+      Books
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../BoundingResourceUse/" title="BoundingResourceUse" class="md-nav__link">
+      BoundingResourceUse
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cgo/" title="cgo" class="md-nav__link">
+      cgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ChromeOS/" title="ChromeOS" class="md-nav__link">
+      ChromeOS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReview/" title="CodeReview" class="md-nav__link">
+      CodeReview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeReviewComments/" title="CodeReviewComments" class="md-nav__link">
+      CodeReviewComments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CodeTools/" title="CodeTools" class="md-nav__link">
+      CodeTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Comments/" title="Comments" class="md-nav__link">
+      Comments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommitMessage/" title="CommitMessage" class="md-nav__link">
+      CommitMessage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CommonMistakes/" title="CommonMistakes" class="md-nav__link">
+      CommonMistakes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CompilerOptimizations/" title="CompilerOptimizations" class="md-nav__link">
+      CompilerOptimizations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Conferences/" title="Conferences" class="md-nav__link">
+      Conferences
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Configuring-GoLand-for-WebAssembly/" title="Configuring-GoLand-for-WebAssembly" class="md-nav__link">
+      Configuring-GoLand-for-WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Contributing-to-gopls/" title="Contributing-to-gopls" class="md-nav__link">
+      Contributing-to-gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CoreDumpDebugging/" title="CoreDumpDebugging" class="md-nav__link">
+      CoreDumpDebugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Courses/" title="Courses" class="md-nav__link">
+      Courses
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CreatingSubRepository/" title="CreatingSubRepository" class="md-nav__link">
+      CreatingSubRepository
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CSSStyleGuide/" title="CSSStyleGuide" class="md-nav__link">
+      CSSStyleGuide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../CustomPprofProfiles/" title="CustomPprofProfiles" class="md-nav__link">
+      CustomPprofProfiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Darwin/" title="Darwin" class="md-nav__link">
+      Darwin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DashboardBuilders/" title="DashboardBuilders" class="md-nav__link">
+      DashboardBuilders
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Deprecated/" title="Deprecated" class="md-nav__link">
+      Deprecated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DesignDocuments/" title="DesignDocuments" class="md-nav__link">
+      DesignDocuments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DevExp/" title="DevExp" class="md-nav__link">
+      DevExp
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Diagnostics/" title="Diagnostics" class="md-nav__link">
+      Diagnostics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DragonFly-BSD/" title="DragonFly-BSD" class="md-nav__link">
+      DragonFly-BSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Errors/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ErrorValueFAQ/" title="ErrorValueFAQ" class="md-nav__link">
+      ErrorValueFAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ExperienceReports/" title="ExperienceReports" class="md-nav__link">
+      ExperienceReports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FileTreeDocumentation/" title="FileTreeDocumentation" class="md-nav__link">
+      FileTreeDocumentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FreeBSD/" title="FreeBSD" class="md-nav__link">
+      FreeBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../FromXToGo/" title="FromXToGo" class="md-nav__link">
+      FromXToGo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Frozen/" title="Frozen" class="md-nav__link">
+      Frozen
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gardening/" title="Gardening" class="md-nav__link">
+      Gardening
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GccgoCrossCompilation/" title="GccgoCrossCompilation" class="md-nav__link">
+      GccgoCrossCompilation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GcToolchainTricks/" title="GcToolchainTricks" class="md-nav__link">
+      GcToolchainTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritAccess/" title="GerritAccess" class="md-nav__link">
+      GerritAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GerritBot/" title="GerritBot" class="md-nav__link">
+      GerritBot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GithubAccess/" title="GithubAccess" class="md-nav__link">
+      GithubAccess
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GitHubCodeLayout/" title="GitHubCodeLayout" class="md-nav__link">
+      GitHubCodeLayout
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.10-Release-Party/" title="Go-1.10-Release-Party" class="md-nav__link">
+      Go-1.10-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.6-release-party/" title="Go-1.6-release-party" class="md-nav__link">
+      Go-1.6-release-party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-1.8-Release-Party/" title="Go-1.8-Release-Party" class="md-nav__link">
+      Go-1.8-Release-Party
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Community-Slides/" title="Go-Community-Slides" class="md-nav__link">
+      Go-Community-Slides
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go-Release-Cycle/" title="Go-Release-Cycle" class="md-nav__link">
+      Go-Release-Cycle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go1point1Gotchas/" title="Go1point1Gotchas" class="md-nav__link">
+      Go1point1Gotchas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2/" title="Go2" class="md-nav__link">
+      Go2
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorHandlingFeedback/" title="Go2ErrorHandlingFeedback" class="md-nav__link">
+      Go2ErrorHandlingFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2ErrorValuesFeedback/" title="Go2ErrorValuesFeedback" class="md-nav__link">
+      Go2ErrorValuesFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Go2GenericsFeedback/" title="Go2GenericsFeedback" class="md-nav__link">
+      Go2GenericsFeedback
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoArm/" title="GoArm" class="md-nav__link">
+      GoArm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoForCPPProgrammers/" title="GoForCPPProgrammers" class="md-nav__link">
+      GoForCPPProgrammers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGenerateTools/" title="GoGenerateTools" class="md-nav__link">
+      GoGenerateTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetProxyConfig/" title="GoGetProxyConfig" class="md-nav__link">
+      GoGetProxyConfig
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoGetTools/" title="GoGetTools" class="md-nav__link">
+      GoGetTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../golang-tools/" title="golang-tools" class="md-nav__link">
+      golang-tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gomote/" title="Gomote" class="md-nav__link">
+      Gomote
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GOPATH/" title="GOPATH" class="md-nav__link">
+      GOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Gopher/" title="Gopher" class="md-nav__link">
+      Gopher
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopherbot/" title="gopherbot" class="md-nav__link">
+      gopherbot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls-integrator-FAQ/" title="gopls-integrator-FAQ" class="md-nav__link">
+      gopls-integrator-FAQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gopls/" title="gopls" class="md-nav__link">
+      gopls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoStrings/" title="GoStrings" class="md-nav__link">
+      GoStrings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoTalks/" title="GoTalks" class="md-nav__link">
+      GoTalks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUserGroups/" title="GoUserGroups" class="md-nav__link">
+      GoUserGroups
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoUsers/" title="GoUsers" class="md-nav__link">
+      GoUsers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-nav__link">
+      GoVsGenerics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HandlingIssues/" title="HandlingIssues" class="md-nav__link">
+      HandlingIssues
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Hashing/" title="Hashing" class="md-nav__link">
+      Hashing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump13/" title="heapdump13" class="md-nav__link">
+      heapdump13
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump14/" title="heapdump14" class="md-nav__link">
+      heapdump14
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15-through-heapdump17/" title="heapdump15-through-heapdump17" class="md-nav__link">
+      heapdump15-through-heapdump17
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../heapdump15/" title="heapdump15" class="md-nav__link">
+      heapdump15
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
+      HostedContinuousIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../How-to-ask-for-help/" title="How-to-ask-for-help" class="md-nav__link">
+      How-to-ask-for-help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HowToAsk/" title="HowToAsk" class="md-nav__link">
+      HowToAsk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpFetch/" title="HttpFetch" class="md-nav__link">
+      HttpFetch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../HttpStaticFiles/" title="HttpStaticFiles" class="md-nav__link">
+      HttpStaticFiles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IDEsAndTextEditorPlugins/" title="IDEsAndTextEditorPlugins" class="md-nav__link">
+      IDEsAndTextEditorPlugins
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
+      InstallTroubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InterfaceSlice/" title="InterfaceSlice" class="md-nav__link">
+      InterfaceSlice
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../InvalidFlag/" title="InvalidFlag" class="md-nav__link">
+      InvalidFlag
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../IssueLabels/" title="IssueLabels" class="md-nav__link">
+      IssueLabels
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Learn/" title="Learn" class="md-nav__link">
+      Learn
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnConcurrency/" title="LearnConcurrency" class="md-nav__link">
+      LearnConcurrency
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnErrorHandling/" title="LearnErrorHandling" class="md-nav__link">
+      LearnErrorHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnServerProgramming/" title="LearnServerProgramming" class="md-nav__link">
+      LearnServerProgramming
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LearnTesting/" title="LearnTesting" class="md-nav__link">
+      LearnTesting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
+      LockOSThread
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MethodSets/" title="MethodSets" class="md-nav__link">
+      MethodSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinimumRequirements/" title="MinimumRequirements" class="md-nav__link">
+      MinimumRequirements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MinorReleases/" title="MinorReleases" class="md-nav__link">
+      MinorReleases
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Mobile/" title="Mobile" class="md-nav__link">
+      Mobile
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Modules/" title="Modules" class="md-nav__link">
+      Modules
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-nav__link">
+      MultipleGoRoots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../MutexOrChannel/" title="MutexOrChannel" class="md-nav__link">
+      MutexOrChannel
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NativeClient/" title="NativeClient" class="md-nav__link">
+      NativeClient
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NetBSD/" title="NetBSD" class="md-nav__link">
+      NetBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NewSpeakers/" title="NewSpeakers" class="md-nav__link">
+      NewSpeakers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoMeToo/" title="NoMeToo" class="md-nav__link">
+      NoMeToo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NonEnglish/" title="NonEnglish" class="md-nav__link">
+      NonEnglish
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../NoPlusOne/" title="NoPlusOne" class="md-nav__link">
+      NoPlusOne
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OlderVersions/" title="OlderVersions" class="md-nav__link">
+      OlderVersions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../OpenBSD/" title="OpenBSD" class="md-nav__link">
+      OpenBSD
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackageManagementTools/" title="PackageManagementTools" class="md-nav__link">
+      PackageManagementTools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PackagePublishing/" title="PackagePublishing" class="md-nav__link">
+      PackagePublishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PanicAndRecover/" title="PanicAndRecover" class="md-nav__link">
+      PanicAndRecover
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PerfDashboard/" title="PerfDashboard" class="md-nav__link">
+      PerfDashboard
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Performance/" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Plan9/" title="Plan9" class="md-nav__link">
+      Plan9
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Podcasts/" title="Podcasts" class="md-nav__link">
+      Podcasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PortingPolicy/" title="PortingPolicy" class="md-nav__link">
+      PortingPolicy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../PriorDiscussion/" title="PriorDiscussion" class="md-nav__link">
+      PriorDiscussion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Projects/" title="Projects" class="md-nav__link">
+      Projects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ProviderIntegration/" title="ProviderIntegration" class="md-nav__link">
+      ProviderIntegration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Questions/" title="Questions" class="md-nav__link">
+      Questions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RaceDetector/" title="RaceDetector" class="md-nav__link">
+      RaceDetector
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Range/" title="Range" class="md-nav__link">
+      Range
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../RateLimiting/" title="RateLimiting" class="md-nav__link">
+      RateLimiting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Rationales/" title="Rationales" class="md-nav__link">
+      Rationales
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ResearchPapers/" title="ResearchPapers" class="md-nav__link">
+      ResearchPapers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Resolving-Problems-From-Modified-Module-Path/" title="Resolving-Problems-From-Modified-Module-Path" class="md-nav__link">
+      Resolving-Problems-From-Modified-Module-Path
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Screencasts/" title="Screencasts" class="md-nav__link">
+      Screencasts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
+      SendingMail
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SettingGOPATH/" title="SettingGOPATH" class="md-nav__link">
+      SettingGOPATH
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SignalHandling/" title="SignalHandling" class="md-nav__link">
+      SignalHandling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SimultaneousAssignment/" title="SimultaneousAssignment" class="md-nav__link">
+      SimultaneousAssignment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SliceTricks/" title="SliceTricks" class="md-nav__link">
+      SliceTricks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Solaris/" title="Solaris" class="md-nav__link">
+      Solaris
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Spelling/" title="Spelling" class="md-nav__link">
+      Spelling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLDrivers/" title="SQLDrivers" class="md-nav__link">
+      SQLDrivers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SQLInterface/" title="SQLInterface" class="md-nav__link">
+      SQLInterface
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Style/" title="Style" class="md-nav__link">
+      Style
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SubRepositories/" title="SubRepositories" class="md-nav__link">
+      SubRepositories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../SuccessStories/" title="SuccessStories" class="md-nav__link">
+      SuccessStories
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Switch/" title="Switch" class="md-nav__link">
+      Switch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TableDrivenTests/" title="TableDrivenTests" class="md-nav__link">
+      TableDrivenTests
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../TargetSpecific/" title="TargetSpecific" class="md-nav__link">
+      TargetSpecific
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Timeouts/" title="Timeouts" class="md-nav__link">
+      Timeouts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Training/" title="Training" class="md-nav__link">
+      Training
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vgo/" title="vgo" class="md-nav__link">
+      vgo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAccessibilityResourcesAndTips/" title="WebAccessibilityResourcesAndTips" class="md-nav__link">
+      WebAccessibilityResourcesAndTips
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WebAssembly.asciidoc" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
+      Well-known-struct-tags
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
+      windows-scoop-install-go-cli
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsBuild/" title="WindowsBuild" class="md-nav__link">
+      WindowsBuild
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsCrossCompiling/" title="WindowsCrossCompiling" class="md-nav__link">
+      WindowsCrossCompiling
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WindowsDLLs/" title="WindowsDLLs" class="md-nav__link">
+      WindowsDLLs
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    Terminology
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-registers" class="md-nav__link">
+    New registers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#masking-support" class="md-nav__link">
+    Masking support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evex-broadcastroundingsae-support" class="md-nav__link">
+    EVEX broadcast/rounding/SAE support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-block-multi-source-operands" class="md-nav__link">
+    Register block (multi-source) operands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avx1-and-avx2-instructions-with-evex-prefix" class="md-nav__link">
+    AVX1 and AVX2 instructions with EVEX prefix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-extensions" class="md-nav__link">
+    Supported extensions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions-with-size-suffix" class="md-nav__link">
+    Instructions with size suffix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encoder-details" class="md-nav__link">
+    Encoder details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/AVX512.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>AVX512</h1>
+                
+                <p>Go 1.11 release introduces <a href="https://en.wikipedia.org/wiki/AVX-512">AVX-512</a> support.<br />
+This page describes how to use new features as well as some important encoder details.</p>
+<h3 id="terminology">Terminology</h3>
+<p>Most terminology comes from <a href="https://software.intel.com/en-us/articles/intel-sdm">Intel Software Developer's manual</a>.<br />
+Suffixes originate from Go assembler syntax, which is close to AT&amp;T, which also uses size suffixes.</p>
+<p>Some terms are listed to avoid ambiguity (for example, opcode can have different meanings).</p>
+<table>
+  <tr>
+    <th>Term</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Operand</td>
+    <td>
+      Same as "instruction argument".
+    </td>
+  </tr>
+  <tr>
+    <td>Opcode</td>
+    <td>
+      Name that refers to instruction group. For example, <code>VADDPD</code> is an opcode.<br>
+      It refers to both VEX and EVEX encoded forms and all operand combinations.<br>
+      Most Go assembler opcodes for AVX-512 match Intel manual entries, with exceptions for cases<br>
+      where additional size suffix is used (e.g. <code>VCVTTPD2DQY</code> is <code>VCVTTPD2DQ</code>).
+    </td>
+  </tr>
+  <tr>
+    <td>Opcode suffix</td>
+    <td>
+      Suffix that overrides some opcode properties. Listed after "." (dot).<br>
+      For example, <code>VADDPD.Z</code> has "Z" opcode suffix.<br>
+      There can be multiple dot-separated opcode suffixes.
+    </td>
+  </tr>
+  <tr>
+    <td>Size suffix</td>
+    <td>
+      Suffix that specifies instruction operand size if it can't be inferred from operands alone.<br>
+      For example, <code>VCVTSS2USIL</code> has "L" size suffix.
+    </td>
+  </tr>
+  <tr>
+    <td>Opmask</td>
+    <td>
+      Used for both <code>{k1}</code> notation and to describe instructions that have <code>K</code> registers operands.<br>
+      Related to masking support in EVEX prefix.
+    </td>
+  </tr>
+  <tr>
+    <td>Register block</td>
+    <td>
+      Multi-source operand that encodes register range.<br>
+      Intel manual uses <code>+n</code> notation for register blocks.<br>
+      For example, <code>+3</code> is a register block of 4 registers.
+    </td>
+  </tr>
+  <tr>
+    <td>FP</td>
+    <td>Floating-point</td>
+  </tr>
+</table>
+
+<h3 id="new-registers">New registers</h3>
+<p>EVEX-enabled instructions can access additional 16 <code>X</code> (128-bit xmm) and <code>Y</code> (256-bit ymm) registers, plus 32 new <code>Z</code> (512-bit zmm) registers in 64-bit mode. 32-bit mode only gets <code>Z0-Z7</code>.</p>
+<p>New opmask registers are named <code>K0-K7</code>.<br />
+They can be used for both masking and for special opmask instructions (like <code>KADDB</code>).</p>
+<h3 id="masking-support">Masking support</h3>
+<p>Instructions that support masking can omit <code>K</code> register operand.<br />
+In this case, <code>K0</code> register is implied ("all ones") and merging-masking is performed.<br />
+This is effectively "no masking".</p>
+<p><code>K1-K7</code> registers can be used to override default opmask.<br />
+<code>K</code> register should be placed right before destination operand.</p>
+<p>Zeroing-masking can be activated with <code>Z</code> opcode suffix.</p>
+<p>For example, <code>VADDPD.Z (AX), Z30, K3, Z10</code> uses zeroing-masking and explicit <code>K</code> register.<br />
+- If <code>Z</code> opcode suffix is removed, it's merging-masking.
+- If <code>K3</code> operand is removed, <code>K0</code> operand is implied.</p>
+<p>It's compile-time error to use <code>K0</code> register for <code>{k1}</code> operands (consult <a href="https://software.intel.com/en-us/articles/intel-sdm">manuals</a> for details).</p>
+<h3 id="evex-broadcastroundingsae-support">EVEX broadcast/rounding/SAE support</h3>
+<p>Embedded broadcast, rounding and SAE activated through opcode suffixes.</p>
+<p>For reg-reg FP instructions with <code>{er}</code> enabled, rounding opcode suffix can be specified:</p>
+<ul>
+<li><code>RU_SAE</code> to round towards +Inf</li>
+<li><code>RD_SAE</code> to round towards -Inf</li>
+<li><code>RZ_SAE</code> to round towards zero</li>
+<li><code>RN_SAE</code> to round towards nearest</li>
+</ul>
+<blockquote>
+<p>To read more about rounding modes, see <a href="http://qcd.phys.cmu.edu/QCDcluster/intel/vtune/reference/vc148.htm">MXCSR.RC info</a>.</p>
+</blockquote>
+<p>For reg-reg FP instructions with <code>{sae}</code> enabled, exception suppression can be specified with <code>SAE</code> opcode suffix.</p>
+<p>For reg-mem instrictons with <code>m32bcst/m64bcst</code> operand, broadcasting can be turned on with <code>BCST</code> opcode suffix.</p>
+<p>Zeroing opcode suffix can be combined with any of these.<br />
+For example, <code>VMAXPD.SAE.Z Z3, Z2, Z1</code> uses both <code>Z</code> and <code>SAE</code> opcode suffixes.<br />
+It is important to put zeroing opcode suffix last, otherwise it is a compilation error.</p>
+<h3 id="register-block-multi-source-operands">Register block (multi-source) operands</h3>
+<p>Register blocks are specified using register range syntax.</p>
+<p>It would be enough to specify just first (low) register, but Go assembler requires
+explicit range with both ends for readability reasons.</p>
+<p>For example, instructions with <code>+3</code> range can be used like <code>VP4DPWSSD Z25, [Z0-Z3], (AX)</code>.<br />
+Range <code>[Z0-Z3]</code> reads like "register block of Z0, Z1, Z2, Z3".<br />
+Invalid ranges result in compilation error.</p>
+<h3 id="avx1-and-avx2-instructions-with-evex-prefix">AVX1 and AVX2 instructions with EVEX prefix</h3>
+<p>Previously existed opcodes that can be encoded using EVEX prefix now can access AVX-512 features like wider register file, zeroing/merging masking, etc. For example, <code>VADDPD</code> can now use 512-bit vector registers.</p>
+<p>See <a href="#encoder-details">encoder details</a> for more info.</p>
+<h3 id="supported-extensions">Supported extensions</h3>
+<p>Best way to get up-to-date list of supported extensions is to do <code>ls -1</code> inside <a href="https://github.com/golang/go/tree/master/src/cmd/asm/internal/asm/testdata/avx512enc">test suite</a> directory.</p>
+<p>Latest list includes:
+<div class="highlight"><pre><span></span>aes_avx512f
+avx512_4fmaps
+avx512_4vnniw
+avx512_bitalg
+avx512_ifma
+avx512_vbmi
+avx512_vbmi2
+avx512_vnni
+avx512_vpopcntdq
+avx512bw
+avx512cd
+avx512dq
+avx512er
+avx512f
+avx512pf
+gfni_avx512f
+vpclmulqdq_avx512f
+</pre></div></p>
+<p>128-bit and 256-bit instructions additionally require <code>avx512vl</code>.<br />
+That is, if <code>VADDPD</code> is available in <code>avx512f</code>, you can't use <code>X</code> and <code>Y</code> arguments
+without <code>avx512vl</code>.</p>
+<p>Filenames follow <code>GNU as</code> (gas) conventions.<br />
+<a href="https://gist.github.com/Quasilyte/92321dadcc3f86b05c1aeda2c13c851f">avx512extmap.csv</a> can make naming scheme more apparent.</p>
+<h3 id="instructions-with-size-suffix">Instructions with size suffix</h3>
+<p>Some opcodes do not match Intel manual entries.<br />
+This section is provided for search convenience.</p>
+<table>
+<thead>
+<tr>
+<th>Intel opcode</th>
+<th>Go assembler opcodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VCVTPD2DQ</code></td>
+<td><code>VCVTPD2DQX</code>, <code>VCVTPD2DQY</code></td>
+</tr>
+<tr>
+<td><code>VCVTPD2PS</code></td>
+<td><code>VCVTPD2PSX</code>, <code>VCVTPD2PSY</code></td>
+</tr>
+<tr>
+<td><code>VCVTTPD2DQ</code></td>
+<td><code>VCVTTPD2DQX</code>, <code>VCVTTPD2DQY</code></td>
+</tr>
+<tr>
+<td><code>VCVTQQ2PS</code></td>
+<td><code>VCVTQQ2PSX</code>, <code>VCVTQQ2PSY</code></td>
+</tr>
+<tr>
+<td><code>VCVTUQQ2PS</code></td>
+<td><code>VCVTUQQ2PSX</code>, <code>VCVTUQQ2PSY</code></td>
+</tr>
+<tr>
+<td><code>VCVTPD2UDQ</code></td>
+<td><code>VCVTPD2UDQX</code>, <code>VCVTPD2UDQY</code></td>
+</tr>
+<tr>
+<td><code>VCVTTPD2UDQ</code></td>
+<td><code>VCVTTPD2UDQX</code>, <code>VCVTTPD2UDQY</code></td>
+</tr>
+<tr>
+<td><code>VFPCLASSPD</code></td>
+<td><code>VFPCLASSPDX</code>, <code>VFPCLASSPDY</code>, <code>VFPCLASSPDZ</code></td>
+</tr>
+<tr>
+<td><code>VFPCLASSPS</code></td>
+<td><code>VFPCLASSPSX</code>, <code>VFPCLASSPSY</code>, <code>VFPCLASSPSZ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSD2SI</code></td>
+<td><code>VCVTSD2SI</code>, <code>VCVTSD2SIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTTSD2SI</code></td>
+<td><code>VCVTSD2SI</code>, <code>VCVTSD2SIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTTSS2SI</code></td>
+<td><code>VCVTSD2SI</code>, <code>VCVTSD2SIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSS2SI</code></td>
+<td><code>VCVTSD2SI</code>, <code>VCVTSD2SIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSD2USI</code></td>
+<td><code>VCVTSD2USIL</code>, <code>VCVTSD2USIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSS2USI</code></td>
+<td><code>VCVTSS2USIL</code>, <code>VCVTSS2USIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTTSD2USI</code></td>
+<td><code>VCVTTSD2USIL</code>, <code>VCVTTSD2USIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTTSS2USI</code></td>
+<td><code>VCVTTSS2USIL</code>, <code>VCVTTSS2USIQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTUSI2SD</code></td>
+<td><code>VCVTUSI2SDL</code>, <code>VCVTUSI2SDQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTUSI2SS</code></td>
+<td><code>VCVTUSI2SSL</code>, <code>VCVTUSI2SSQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSI2SD</code></td>
+<td><code>VCVTSI2SDL</code>, <code>VCVTSI2SDQ</code></td>
+</tr>
+<tr>
+<td><code>VCVTSI2SS</code></td>
+<td><code>VCVTSI2SSL</code>, <code>VCVTSI2SSQ</code></td>
+</tr>
+<tr>
+<td><code>ANDN</code></td>
+<td><code>ANDNL</code>, <code>ANDNQ</code></td>
+</tr>
+<tr>
+<td><code>BEXTR</code></td>
+<td><code>BEXTRL</code>, <code>BEXTRQ</code></td>
+</tr>
+<tr>
+<td><code>BLSI</code></td>
+<td><code>BLSIL</code>, <code>BLSIQ</code></td>
+</tr>
+<tr>
+<td><code>BLSMSK</code></td>
+<td><code>BLSMSKL</code>, <code>BLSMSKQ</code></td>
+</tr>
+<tr>
+<td><code>BLSR</code></td>
+<td><code>BLSRL</code>, <code>BLSRQ</code></td>
+</tr>
+<tr>
+<td><code>BZHI</code></td>
+<td><code>BZHIL</code>, <code>BZHIQ</code></td>
+</tr>
+<tr>
+<td><code>MULX</code></td>
+<td><code>MULXL</code>, <code>MULXQ</code></td>
+</tr>
+<tr>
+<td><code>PDEP</code></td>
+<td><code>PDEPL</code>, <code>PDEPQ</code></td>
+</tr>
+<tr>
+<td><code>PEXT</code></td>
+<td><code>PEXTL</code>, <code>PEXTQ</code></td>
+</tr>
+<tr>
+<td><code>RORX</code></td>
+<td><code>RORXL</code>, <code>RORXQ</code></td>
+</tr>
+<tr>
+<td><code>SARX</code></td>
+<td><code>SARXL</code>, <code>SARXQ</code></td>
+</tr>
+<tr>
+<td><code>SHLX</code></td>
+<td><code>SHLXL</code>, <code>SHLXQ</code></td>
+</tr>
+<tr>
+<td><code>SHRX</code></td>
+<td><code>SHRXL</code>, <code>SHRXQ</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="encoder-details">Encoder details</h3>
+<p>Bitwise comparison with older encoder may fail for VEX-encoded instructions due to slightly different encoder tables order.</p>
+<p>This difference may arise for instructions with both <code>{reg, reg/mem}</code> and <code>{reg/mem, reg}</code> forms for reg-reg case. One of such instructions is <code>VMOVUPS</code>. </p>
+<p>This does not affect code behavior, nor makes it bigger/less efficient.<br />
+New encoding selection scheme is borrowed from <a href="https://github.com/intelxed/xed">Intel XED</a>.</p>
+<p>EVEX encoding is used when any of the following is true:</p>
+<ul>
+<li>Instruction uses new registers (High 16 <code>X</code>/<code>Y</code>, <code>Z</code> or <code>K</code> registers)</li>
+<li>Instruction uses EVEX-related opcode suffixes like <code>BCST</code></li>
+<li>Instruction uses operands combination that is only available for AVX-512</li>
+</ul>
+<p>In all other cases VEX encoding is used.<br />
+This means that VEX is used whenever possible, and EVEX whenever required.</p>
+<p>Compressed disp8 is applied whenever possible for EVEX-encoded instructions.<br />
+This also covers broadcasting disp8 which sometimes has different N multiplier.</p>
+<p>Experienced readers can inspect <a href="https://github.com/golang/go/blob/master/src/cmd/internal/obj/x86/avx_optabs.go">avx_optabs.go</a> to learn about N multipliers for any instruction.</p>
+<p>For example, <code>VADDPD</code> has these:
+* <code>N=64</code> for 512-bit form; <code>N=8</code> when broadcasting
+* <code>N=32</code> for 256-bit form; <code>N=8</code> when broadcasting
+* <code>N=16</code> for 128-bit form; <code>N=8</code> when broadcasting</p>
+<h3 id="examples">Examples</h3>
+<p>Exhaustive amount of examples can be found in Go assembler <a href="https://github.com/golang/go/tree/master/src/cmd/asm/internal/asm/testdata/avx512enc">test suite</a>.</p>
+<p>Each file provides several examples for every supported instruction form in particular AVX-512 extension.<br />
+Every example also includes generated machine code.</p>
+<p>Here is adopted "Vectorized Histogram Update Using AVX-512CD" from 
+<a href="https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-optimization-manual.pdf">Intel® Optimization Manual</a>:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">512</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+  <span class="nx">histo</span><span class="p">[</span><span class="nx">key</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="nl">top:</span>
+        <span class="nf">VMOVUPS</span>     <span class="mi">0x40</span><span class="p">(</span><span class="no">SP</span><span class="p">)(</span><span class="no">DX</span><span class="p">*</span><span class="mi">4</span><span class="p">),</span> <span class="no">Z4</span>  <span class="err">//</span><span class="c">; vmovups     zmm4, [rsp+rdx*4+0x40]</span>
+        <span class="nf">VPXORD</span>      <span class="no">Z1</span><span class="p">,</span> <span class="no">Z1</span><span class="p">,</span> <span class="no">Z1</span>          <span class="err">//</span><span class="c">; vpxord      zmm1, zmm1, zmm1</span>
+        <span class="nf">KMOVW</span>       <span class="no">K1</span><span class="p">,</span> <span class="no">K2</span>              <span class="err">//</span><span class="c">; kmovw       k2, k1</span>
+        <span class="nf">VPCONFLICTD</span> <span class="no">Z4</span><span class="p">,</span> <span class="no">Z2</span>              <span class="err">//</span><span class="c">; vpconflictd zmm2, zmm4</span>
+        <span class="nf">VPGATHERDD</span>  <span class="p">(</span><span class="no">AX</span><span class="p">)(</span><span class="no">Z4</span><span class="p">*</span><span class="mi">4</span><span class="p">),</span> <span class="no">K2</span><span class="p">,</span> <span class="no">Z1</span>  <span class="err">//</span><span class="c">; vpgatherdd  zmm1{k2}, [rax+zmm4*4]</span>
+        <span class="nf">VPTESTMD</span>    <span class="no">histo</span><span class="err">&lt;&gt;</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span> <span class="no">Z2</span><span class="p">,</span> <span class="no">K0</span> <span class="err">//</span><span class="c">; vptestmd    k0, zmm2, [rip+0x185c]</span>
+        <span class="nf">KMOVW</span>       <span class="no">K0</span><span class="p">,</span> <span class="no">CX</span>              <span class="err">//</span><span class="c">; kmovw       ecx, k0</span>
+        <span class="nf">VPADDD</span>      <span class="no">Z0</span><span class="p">,</span> <span class="no">Z1</span><span class="p">,</span> <span class="no">Z3</span>          <span class="err">//</span><span class="c">; vpaddd      zmm3, zmm1, zmm0</span>
+        <span class="nf">TESTL</span>       <span class="no">CX</span><span class="p">,</span> <span class="no">CX</span>              <span class="err">//</span><span class="c">; test        ecx, ecx</span>
+        <span class="nf">JZ</span>          <span class="no">noConflicts</span>         <span class="err">//</span><span class="c">; jz          noConflicts</span>
+        <span class="nf">VMOVUPS</span>     <span class="no">histo</span><span class="err">&lt;&gt;</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span> <span class="no">Z1</span>     <span class="err">//</span><span class="c">; vmovups     zmm1, [rip+0x1884]</span>
+        <span class="nf">VPTESTMD</span>    <span class="no">histo</span><span class="err">&lt;&gt;</span><span class="p">(</span><span class="no">SB</span><span class="p">),</span> <span class="no">Z2</span><span class="p">,</span> <span class="no">K0</span> <span class="err">//</span><span class="c">; vptestmd    k0, zmm2, [rip+0x18ba]</span>
+        <span class="nf">VPLZCNTD</span>    <span class="no">Z2</span><span class="p">,</span> <span class="no">Z5</span>              <span class="err">//</span><span class="c">; vplzcntd    zmm5, zmm2</span>
+        <span class="nf">XORB</span>        <span class="no">BX</span><span class="p">,</span> <span class="no">BX</span>              <span class="err">//</span><span class="c">; xor         bl, bl</span>
+        <span class="nf">KMOVW</span>       <span class="no">K0</span><span class="p">,</span> <span class="no">CX</span>              <span class="err">//</span><span class="c">; kmovw       ecx, k0</span>
+        <span class="nf">VPSUBD</span>      <span class="no">Z5</span><span class="p">,</span> <span class="no">Z1</span><span class="p">,</span> <span class="no">Z1</span>          <span class="err">//</span><span class="c">; vpsubd      zmm1, zmm1, zmm5</span>
+        <span class="nf">VPSUBD</span>      <span class="no">Z5</span><span class="p">,</span> <span class="no">Z1</span><span class="p">,</span> <span class="no">Z1</span>          <span class="err">//</span><span class="c">; vpsubd      zmm1, zmm1, zmm5</span>
+
+<span class="nl">resolveConflicts:</span>
+        <span class="nf">VPBROADCASTD</span> <span class="no">CX</span><span class="p">,</span> <span class="no">Z5</span>     <span class="err">//</span><span class="c">; vpbroadcastd zmm5, ecx</span>
+        <span class="nf">KMOVW</span> <span class="no">CX</span><span class="p">,</span> <span class="no">K2</span>            <span class="err">//</span><span class="c">; kmovw        k2, ecx</span>
+        <span class="nf">VPERMD</span> <span class="no">Z3</span><span class="p">,</span> <span class="no">Z1</span><span class="p">,</span> <span class="no">K2</span><span class="p">,</span> <span class="no">Z3</span>   <span class="err">//</span><span class="c">; vpermd       zmm3{k2}, zmm1, zmm3</span>
+        <span class="nf">VPADDD</span> <span class="no">Z0</span><span class="p">,</span> <span class="no">Z3</span><span class="p">,</span> <span class="no">K2</span><span class="p">,</span> <span class="no">Z3</span>   <span class="err">//</span><span class="c">; vpaddd       zmm3{k2}, zmm3, zmm0</span>
+        <span class="nf">VPTESTMD</span> <span class="no">Z2</span><span class="p">,</span> <span class="no">Z5</span><span class="p">,</span> <span class="no">K2</span><span class="p">,</span> <span class="no">K0</span> <span class="err">//</span><span class="c">; vptestmd     k0{k2}, zmm5, zmm2</span>
+        <span class="nf">KMOVW</span> <span class="no">K0</span><span class="p">,</span> <span class="no">SI</span>            <span class="err">//</span><span class="c">; kmovw        esi, k0</span>
+        <span class="nf">ANDL</span> <span class="no">SI</span><span class="p">,</span> <span class="no">CX</span>             <span class="err">//</span><span class="c">; and          ecx, esi</span>
+        <span class="nf">JZ</span> <span class="no">noConflicts</span>          <span class="err">//</span><span class="c">; jz           noConflicts</span>
+        <span class="nf">ADDB</span> <span class="no">$1</span><span class="p">,</span> <span class="no">BX</span>             <span class="err">//</span><span class="c">; add          bl, 0x1</span>
+        <span class="nf">CMPB</span> <span class="no">BX</span><span class="p">,</span> <span class="no">$16</span>            <span class="err">//</span><span class="c">; cmp          bl, 0x10</span>
+        <span class="nf">JB</span> <span class="no">resolveConflicts</span>     <span class="err">//</span><span class="c">; jb           resolveConflicts</span>
+
+<span class="nl">noConflicts:</span>
+        <span class="nf">KMOVW</span>       <span class="no">K1</span><span class="p">,</span> <span class="no">K2</span>             <span class="err">//</span><span class="c">; kmovw       k2, k1</span>
+        <span class="nf">VPSCATTERDD</span> <span class="no">Z3</span><span class="p">,</span> <span class="no">K2</span><span class="p">,</span> <span class="p">(</span><span class="no">AX</span><span class="p">)(</span><span class="no">Z4</span><span class="p">*</span><span class="mi">4</span><span class="p">)</span> <span class="err">//</span><span class="c">; vpscatterdd [rax+zmm4*4]{k2}, zmm3</span>
+        <span class="nf">ADDL</span>        <span class="no">$16</span><span class="p">,</span> <span class="no">DX</span>            <span class="err">//</span><span class="c">; add         edx, 0x10</span>
+        <span class="nf">CMPL</span>        <span class="no">DX</span><span class="p">,</span> <span class="no">$1024</span>          <span class="err">//</span><span class="c">; cmp         edx, 0x400</span>
+        <span class="nf">JB</span>          <span class="no">top</span>                <span class="err">//</span><span class="c">; jb          top</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../AssemblyPolicy/" title="AssemblyPolicy" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                AssemblyPolicy
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Benchmarks/" title="Benchmarks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Benchmarks
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
