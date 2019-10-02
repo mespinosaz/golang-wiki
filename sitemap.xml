@@ -111,6 +111,16 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc></loc>
+     
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/config/mkdocs.yml</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zchee.github.io/golang-wiki/Configuring-GoLand-for-WebAssembly/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
@@ -416,6 +426,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zchee.github.io/golang-wiki/Home/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zchee.github.io/golang-wiki/HostedContinuousIntegration/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
@@ -442,6 +457,31 @@
     </url>
     <url>
      <loc>https://zchee.github.io/golang-wiki/IDEsAndTextEditorPlugins/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc></loc>
+     
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/images/github-to-gerrit.png</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/images/release-cycle.png</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/InstallFromSource/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -751,12 +791,22 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zchee.github.io/golang-wiki/TestComments/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zchee.github.io/golang-wiki/Timeouts/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://zchee.github.io/golang-wiki/Training/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/Ubuntu/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -781,7 +831,17 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zchee.github.io/golang-wiki/WhyGo/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zchee.github.io/golang-wiki/windows-scoop-install-go-cli/</loc>
+     <lastmod>2019-10-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zchee.github.io/golang-wiki/Windows/</loc>
      <lastmod>2019-10-02</lastmod>
      <changefreq>daily</changefreq>
     </url>

@@ -41,6 +41,8 @@ nav:
   - CommonMistakes: CommonMistakes.md
   - CompilerOptimizations: CompilerOptimizations.md
   - Conferences: Conferences.md
+  - config: config
+  - config/mkdocs.yml: config/mkdocs.yml
   - Configuring-GoLand-for-WebAssembly: Configuring-GoLand-for-WebAssembly.md
   - Contributing-to-gopls: Contributing-to-gopls.md
   - CoreDumpDebugging: CoreDumpDebugging.md
@@ -102,12 +104,18 @@ nav:
   - heapdump14: heapdump14.md
   - heapdump15-through-heapdump17: heapdump15-through-heapdump17.md
   - heapdump15: heapdump15.md
+  - Home: Home.md
   - HostedContinuousIntegration: HostedContinuousIntegration.md
   - How-to-ask-for-help: How-to-ask-for-help.md
   - HowToAsk: HowToAsk.md
   - HttpFetch: HttpFetch.md
   - HttpStaticFiles: HttpStaticFiles.md
   - IDEsAndTextEditorPlugins: IDEsAndTextEditorPlugins.md
+  - images: images
+  - images/github-to-gerrit.png: images/github-to-gerrit.png
+  - images/release-cycle.png: images/release-cycle.png
+  - index: index.md
+  - InstallFromSource: InstallFromSource.md
   - InstallTroubleshooting: InstallTroubleshooting.md
   - InterfaceSlice: InterfaceSlice.md
   - InvalidFlag: InvalidFlag.md
@@ -169,13 +177,17 @@ nav:
   - Switch: Switch.md
   - TableDrivenTests: TableDrivenTests.md
   - TargetSpecific: TargetSpecific.md
+  - TestComments: TestComments.md
   - Timeouts: Timeouts.md
   - Training: Training.md
+  - Ubuntu: Ubuntu.md
   - vgo: vgo.md
   - WebAccessibilityResourcesAndTips: WebAccessibilityResourcesAndTips.md
-  - WebAssembly: WebAssembly.asciidoc
+  - WebAssembly.asciidoc: WebAssembly.asciidoc
   - Well-known-struct-tags: Well-known-struct-tags.md
+  - WhyGo: WhyGo.md
   - windows-scoop-install-go-cli: windows-scoop-install-go-cli.md
+  - Windows: Windows.md
   - WindowsBuild: WindowsBuild.md
   - WindowsCrossCompiling: WindowsCrossCompiling.md
   - WindowsDLLs: WindowsDLLs.md
