@@ -196,7 +196,7 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra:
-  version: Sep 21, 2019 (be2fcf041238)
+  version: Mon Sep 30 19:21:17 2019 -0400 (546b73a504df)
 
 markdown_extensions:
   - toc
