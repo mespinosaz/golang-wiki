@@ -106,10 +106,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#to-install-or-update-gopls-run-go-get-golangorgxtoolsgoplslatest" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -1147,8 +1143,6 @@
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
     
     
     <a href="./" title="gopls" class="md-nav__link md-nav__link--active">
@@ -2221,21 +2215,6 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -2244,237 +2223,15 @@
                   <a href="https://github.com/zchee/golang-wiki/edit/master/docs/gopls.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
+                  <h1>gopls</h1>
+                
                 <hr />
 <blockquote>
 <p>This page has been subsumed into the <a href="https://github.com/golang/tools/blob/master/gopls/README.md">committed markdown</a> of the x/tools repository.</p>
 <p>For instructions on using <code>gopls</code>, please read the <a href="https://github.com/golang/tools/blob/master/gopls/doc/user.md">User documentation</a>. </p>
 <p>Please do not edit this page!</p>
-<p>The remaining content will be removed when we are sure it was all replaced.</p>
 </blockquote>
 <hr />
-<p><code>gopls</code> (pronounced: "go please") is an implementation of the Language Server Protocol (LSP) server for Go.
-LSP allows any text editor to be extended with IDE-like features (see <a href="https://langserver.org">https://langserver.org</a> for details). </p>
-<p>It is currently in alpha, so it is not stable. </p>
-<h3 id="to-install-or-update-gopls-run-go-get-golangorgxtoolsgoplslatest">To install or update <code>gopls</code>, run <code>go get golang.org/x/tools/gopls@latest</code>.</h3>
-<p>Do not use the <code>-u</code> flag, as it will update your dependencies to incompatible versions.</p>
-<p>If you see this error:</p>
-<div class="highlight"><pre><span></span>$ go get golang.org/x/tools/gopls@latest
-go: cannot use path@version syntax in GOPATH mode
-</pre></div>
-
-<p>run <code>GO111MODULE=on go get golang.org/x/tools/gopls@latest</code>.</p>
-<h3 id="if-you-are-using-go-modules-you-will-need-to-open-your-editor-to-the-directory-that-contains-the-gomod-file">If you are using Go modules, you will need to open your editor to the directory that contains the <code>go.mod</code> file.</h3>
-<p>We intend to improve this behavior, but for now, this is the recommended approach.</p>
-<h1 id="table-of-contents">Table of Contents</h1>
-<p><a href="#troubleshooting">Troubleshooting</a><br />
-<a href="#known-issues">Known Issues</a><br />
-<a href="#installation">Installation</a><br />
-<a href="#status">Status</a><br />
-<a href="#contributing">Contributing</a><br />
-<a href="#faq">FAQ</a><br />
-<a href="#additional-information">Additional Information</a>  </p>
-<h2 id="troubleshooting">Troubleshooting</h2>
-<p>First, make sure that you are using the latest version of <code>gopls</code>. Things change quickly, so update to the latest version by following <a href="#installation">these instructions</a>. You can confirm your version of <code>gopls</code> by running <code>gopls version</code> on the command line.</p>
-<p>If you have found a bug with the latest version of <code>gopls</code>, please file an issue on the <a href="https://github.com/golang/go/issues/new?title=x%2Ftools%2Fcmd%2Fgopls%3A%20%3Cfill%20this%20in%3E">Go issue tracker</a>.
-Along with an explanation of the issue, please share the information listed here:</p>
-<ul>
-<li>Your editor and any settings you have configured (for example, your VSCode <code>settings.json</code> file).</li>
-<li>A sample program that reproduces the issue, if possible.</li>
-<li>The output of <code>gopls version</code> on the command line.</li>
-<li>The output of <code>gopls -rpc.trace -v check /path/to/file.go</code>.</li>
-<li><code>gopls</code> logs from when the issue occurred, as well as a timestamp for when the issue began to occur. See the instructions below for information on how to capture <code>gopls</code> logs.</li>
-</ul>
-<h3 id="capturing-gopls-logs">Capturing <code>gopls</code> logs</h3>
-<p>For VSCode users, the <code>gopls</code> log can be found by going to "View: Debug Console" -&gt; "Output" -&gt; "Tasks" -&gt; "gopls". For other editors, you may have to directly pass a <code>-logfile</code> flag to <code>gopls</code>.</p>
-<p>To increase the level of detail in your logs, start <code>gopls</code> with the <code>-rpc.trace</code> flag. To start a debug server that will allow you to see profiles and memory usage, start <code>gopls</code> with <code>serve --debug=localhost:6060</code>. See the editor configurations section below for information on how to pass these flags via your editor.</p>
-<h3 id="restart-your-editor">Restart your editor</h3>
-<p>Once you have filed an issue, you can then try to restart your <code>gopls</code> instance by restarting your editor. In many cases, this will correct the problem. In VSCode, the easiest way to restart the language server is by opening the command palette (Ctrl + Shift + P) and selecting "Go: Restart Language Server". You can also reload the VSCode instance by selecting "Developer: Reload Window".</p>
-<p>Feel free to ask questions about <code>gopls</code> on the <code>#gopls</code> <a href="https://invite.slack.golangbridge.org">Gopher Slack</a> channel.</p>
-<h2 id="known-issues">Known Issues</h2>
-<ul>
-<li>Cursor resets to the beginning or end of file on format: <a href="https://github.com/golang/go/issues/31937">#31937</a>.</li>
-<li>Editing multiple modules in one editor window: <a href="https://github.com/golang/go/issues/32394">#32394</a>.</li>
-<li>Language features do not work with <code>cgo</code>: <a href="https://github.com/golang/go/issues/32898">#32898</a>.</li>
-<li>Does not work with build tags: <a href="https://github.com/golang/go/issues/29202">#29202</a>.</li>
-<li>Find references and rename only work in a single package: <a href="https://github.com/golang/go/issues/32869">#32869</a>, <a href="https://github.com/golang/go/issues/32877">#32877</a>.</li>
-<li>Completion does not work well after <code>go</code> or <code>defer</code> statements: <a href="https://github.com/golang/go/issues/29313">#29313</a>.</li>
-<li>Changes in files outside of the editor are not yet tracked: <a href="https://github.com/golang/go/issues/31553">#31553</a>.</li>
-</ul>
-<h2 id="installation">Installation</h2>
-<p>To install or update <code>gopls</code>, run <code>go get golang.org/x/tools/gopls@latest</code>.</p>
-<p>Do not use the <code>-u</code> flag, as it will update your dependencies to incompatible versions.</p>
-<p>If you see this error:</p>
-<div class="highlight"><pre><span></span>$ go get golang.org/x/tools/gopls@latest
-go: cannot use path@version syntax in GOPATH mode
-</pre></div>
-
-<p>run <code>GO111MODULE=on go get golang.org/x/tools/gopls@latest</code>.</p>
-<h3 id="integration-with-your-text-editor">Integration with your text editor</h3>
-<h4 id="vscode">VSCode</h4>
-<p>Use the <a href="https://github.com/microsoft/vscode-go">VSCode-Go</a> plugin, with the following configuration:</p>
-<div class="highlight"><pre><span></span>&quot;go.useLanguageServer&quot;: true,
-&quot;[go]&quot;: {
-    &quot;editor.snippetSuggestions&quot;: &quot;none&quot;,
-    &quot;editor.formatOnSave&quot;: true,
-    &quot;editor.codeActionsOnSave&quot;: {
-        &quot;source.organizeImports&quot;: true
-    }
-},
-&quot;gopls&quot;: {
-    &quot;usePlaceholders&quot;: true, // add parameter placeholders when completing a function
-    &quot;completionDocumentation&quot;: true // for documentation in completion items
-},
-&quot;files.eol&quot;: &quot;\n&quot;, // formatting only supports LF line endings
-</pre></div>
-
-<p>VSCode will complain about the <code>"gopls"</code> settings, but they will still work. Once we have a consistent set of settings, we will make the changes in the VSCode plugin necessary to remove the errors.</p>
-<p>If you encounter problems with import organization, please try setting a higher code action timeout (any value greater than 750ms), for example:</p>
-<div class="highlight"><pre><span></span>&quot;[go]&quot;: {
-  &quot;editor.codeActionsOnSaveTimeout&quot;: 3000
-}
-</pre></div>
-
-<p>To enable more detailed debug information, add the following to your VSCode settings:</p>
-<div class="highlight"><pre><span></span>&quot;go.languageServerFlags&quot;: [
-    &quot;-rpc.trace&quot;, // for more detailed debug logging
-    &quot;serve&quot;,
-    &quot;--debug=localhost:6060&quot;, // to investigate memory usage, see profiles 
-],
-</pre></div>
-
-<p>You can disable features through the <code>"go.languageServerExperimentalFeatures"</code> section of the config. An example of a feature you may want to disable is <code>"documentLink"</code>, which opens Godoc links when you click on import statements in your file.</p>
-<hr />
-<h4 id="vim-neovim">Vim / Neovim</h4>
-<p>Use <a href="https://github.com/fatih/vim-go">vim-go</a> ver 1.20+, with the following configuration:</p>
-<div class="highlight"><pre><span></span>let g:go_def_mode=&#39;gopls&#39;
-let g:go_info_mode=&#39;gopls&#39;
-</pre></div>
-
-<p><strong>or</strong></p>
-<p>Use <a href="https://github.com/autozimu/LanguageClient-neovim">LanguageClient-neovim</a>, with the following configuration:</p>
-<div class="highlight"><pre><span></span>&quot; Launch gopls when Go files are in use
-let g:LanguageClient_serverCommands = {
-       \ &#39;go&#39;: [&#39;gopls&#39;]
-       \ }
-&quot; Run gofmt on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-</pre></div>
-
-<p><strong>or</strong></p>
-<p>Use <a href="https://github.com/w0rp/ale">ale</a>:</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">g</span>:ale_linters <span class="p">=</span> {
-    \ <span class="s1">&#39;go&#39;</span>: [<span class="s1">&#39;gopls&#39;</span>]<span class="p">,</span>
-    \}
-</pre></div>
-
-<p>see <a href="https://github.com/w0rp/ale/issues/2179">this issue</a></p>
-<p><strong>or</strong></p>
-<p>Use <a href="https://github.com/prabirshrestha/vim-lsp/">prabirshrestha/vim-lsp</a>, with the following configuration:</p>
-<div class="highlight"><pre><span></span>augroup LspGo
-  <span class="k">au</span><span class="p">!</span>
-  autocmd <span class="nb">User</span> lsp_setup <span class="k">call</span> <span class="nb">lsp</span>#register_server<span class="p">(</span>{
-      \ <span class="s1">&#39;name&#39;</span>: <span class="s1">&#39;go-lang&#39;</span><span class="p">,</span>
-      \ <span class="s1">&#39;cmd&#39;</span>: {server_info<span class="p">-&gt;</span>[<span class="s1">&#39;gopls&#39;</span>]}<span class="p">,</span>
-      \ <span class="s1">&#39;whitelist&#39;</span>: [<span class="s1">&#39;go&#39;</span>]<span class="p">,</span>
-      \ }<span class="p">)</span>
-  autocmd <span class="nb">FileType</span> <span class="k">go</span> <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span><span class="nb">lsp</span>#<span class="nb">complete</span>
-<span class="c">  &quot;autocmd FileType go nmap &lt;buffer&gt; gd &lt;plug&gt;(lsp-definition)</span>
-<span class="c">  &quot;autocmd FileType go nmap &lt;buffer&gt; ,n &lt;plug&gt;(lsp-next-error)</span>
-<span class="c">  &quot;autocmd FileType go nmap &lt;buffer&gt; ,p &lt;plug&gt;(lsp-previous-error)</span>
-augroup END
-</pre></div>
-
-<p><strong>or</strong></p>
-<p>Use <a href="https://github.com/natebosch/vim-lsc/">natebosch/vim-lsc</a>, with the following configuration:</p>
-<div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">g</span>:lsc_server_commands <span class="p">=</span> {
-\  <span class="s2">&quot;go&quot;</span>: {
-\    <span class="s2">&quot;command&quot;</span>: <span class="s2">&quot;gopls serve&quot;</span><span class="p">,</span>
-\    <span class="s2">&quot;log_level&quot;</span>: <span class="m">-1</span><span class="p">,</span>
-\  }<span class="p">,</span>
-\}
-</pre></div>
-
-<p>The <code>log_level</code> part is needed to prevent breakage from logging. See <a href="https://github.com/natebosch/vim-lsc/issues/180">natebosch/vim-lsc#180</a>.</p>
-<p><strong>or</strong></p>
-<p>Use <a href="https://github.com/neoclide/coc.nvim/">coc.nvim</a>, with the following <code>coc-settings.json</code> configuration:</p>
-<div class="highlight"><pre><span></span>  <span class="s2">&quot;languageserver&quot;</span><span class="err">:</span> <span class="p">{</span>
-    <span class="nt">&quot;golang&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;gopls&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;rootPatterns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;go.mod&quot;</span><span class="p">,</span> <span class="s2">&quot;.vim/&quot;</span><span class="p">,</span> <span class="s2">&quot;.git/&quot;</span><span class="p">,</span> <span class="s2">&quot;.hg/&quot;</span><span class="p">],</span>
-      <span class="nt">&quot;filetypes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;go&quot;</span><span class="p">]</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-</pre></div>
-
-<p>The <code>editor.action.organizeImport</code> code action will auto-format code and add missing imports. To run this automatically on save, add the following line to your <code>init.vim</code>:</p>
-<div class="highlight"><pre><span></span>autocmd <span class="nb">BufWritePre</span> *.<span class="k">go</span> :<span class="k">call</span> CocAction<span class="p">(</span><span class="s1">&#39;runCommand&#39;</span><span class="p">,</span> <span class="s1">&#39;editor.action.organizeImport&#39;</span><span class="p">)</span>
-</pre></div>
-
-<hr />
-<h4 id="vim-classic-only">Vim (classic only)</h4>
-<p>Use the experimental <a href="https://github.com/myitcv/govim"><code>govim</code></a>, simply follow the <a href="https://github.com/myitcv/govim/blob/master/README.md#govim---go-development-plugin-for-vim8">install steps</a>.</p>
-<hr />
-<h4 id="emacs">Emacs</h4>
-<p>Use <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a>. gopls is built in now as a client, so no special config is necessary. You first must install gopls and put it somewhere in your PATH. Here is an example (assuming you are using <a href="https://github.com/jwiegley/use-package">use-package</a>) to get you started:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
-  <span class="ss">:commands</span> <span class="p">(</span><span class="nv">lsp</span> <span class="nv">lsp-deferred</span><span class="p">))</span>
-
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">lsp-deferred</span><span class="p">)</span>
-
-<span class="c1">;; optional - provides fancier overlays</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ui</span>
-  <span class="ss">:commands</span> <span class="nv">lsp-ui-mode</span><span class="p">)</span>
-
-<span class="c1">;; if you use company-mode for completion (otherwise, complete-at-point works out of the box):</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-lsp</span>
-  <span class="ss">:commands</span> <span class="nv">company-lsp</span><span class="p">)</span>
-</pre></div>
-
-<p>Common errors:
-- When prompted by Emacs for your project folder, if you are using modules you must select the module's root folder (i.e. the directory with the "go.mod"). If you are using GOPATH, select your $GOPATH as your folder.
-- Emacs must have your environment set properly (PATH, GOPATH, etc). You can run <code>M-x getenv &lt;RET&gt; PATH &lt;RET&gt;</code> to see if your PATH is set in Emacs. If not, you can try starting Emacs from your terminal, using <a href="https://github.com/purcell/exec-path-from-shell">this package</a>, or moving your shell config from .bashrc into .bashenv (or .zshenv).
-- Make sure <code>lsp-mode</code>, <code>lsp-ui</code> and <code>company-lsp</code> are up-to-date, and make sure <code>lsp-go</code> is <em>not</em> installed.</p>
-<p>To troubleshoot, look in the <code>*lsp-log*</code> buffer for errors.</p>
-<hr />
-<h4 id="acme">Acme</h4>
-<p>Use the experimental <a href="https://github.com/fhs/acme-lsp"><code>acme-lsp</code></a>, simply follow the <a href="https://github.com/fhs/acme-lsp#gopls">install steps</a>.</p>
-<hr />
-<h4 id="sublime-text">Sublime Text</h4>
-<p>Use the <a href="https://packagecontrol.io/packages/LSP">LSP</a> package. After installing it using Package Control, do the following:</p>
-<ul>
-<li>Open the <strong>Command Palette</strong></li>
-<li>Find and run the command <strong>LSP: Enable Language Server Globally</strong></li>
-<li>Select the <strong>gopls</strong> item. Be careful not to select the similarly named <em>golsp</em> by mistake.</li>
-</ul>
-<p>Finally, you should familiarise yourself with the LSP package's <em>Settings</em> and <em>Key Bindings</em>. Find them under the menu item <strong>Preferences &gt; Package Settings &gt; LSP</strong>.</p>
-<hr />
-<h2 id="status">Status</h2>
-<p><code>gopls</code> is currently under active development by the Go team. The code is in the x/tools repository, in <a href="https://golang.org/x/tools/internal/lsp">golang.org/x/tools/internal/lsp</a> and <a href="https://golang.org/x/tools/gopls">golang.org/x/tools/gopls</a>.</p>
-<h3 id="supported-features">Supported Features</h3>
-<ul>
-<li>Autocompletion</li>
-<li>Jump to definition</li>
-<li>Signature help</li>
-<li>Hover</li>
-<li>Document symbols</li>
-<li>References</li>
-<li>Rename</li>
-</ul>
-<h2 id="contributing">Contributing</h2>
-<p>See <a href="https://github.com/golang/go/wiki/Contributing-to-gopls">https://github.com/golang/go/wiki/Contributing-to-gopls</a>.</p>
-<p>Contributions are welcome, but since development is so active, we request that you file an issue and claim it before starting to work on something. Otherwise, it is likely that we might already be working on a fix for your issue. </p>
-<p>All <code>gopls</code> issues are labeled as such (see the <a href="https://github.com/golang/go/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+is%3Aopen+label%3Agopls">gopls label</a>). Available issues are also tagged <code>help wanted</code> (see them <a href="https://github.com/golang/go/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+is%3Aopen+label%3Agopls+label%3A%22help+wanted%22+">here</a>). Before you begin working on an issue, please leave a comment that you are claiming it. </p>
-<h2 id="faq">FAQ</h2>
-<ul>
-<li><strong>Why is it called <code>gopls</code>?</strong> Since <code>gopls</code> works both as a language server and as a command line tool, we wanted a name that could be used as a verb. For example, <code>gopls check</code> should read as "go please check." See: <a href="https://golang.org/cl/158197">golang.org/cl/158197</a>.</li>
-</ul>
-<h2 id="additional-information">Additional Information</h2>
-<ul>
-<li>For information about integrating <code>gopls</code> within an editor, see <a href="https://github.com/golang/go/wiki/gopls-integrator-FAQ">https://github.com/golang/go/wiki/gopls-integrator-FAQ</a>.</li>
-<li>For information about contributing to <code>gopls</code>, see <a href="https://github.com/golang/go/wiki/Contributing-to-gopls">https://github.com/golang/go/wiki/Contributing-to-gopls</a>.</li>
-<li>For more information on latest developments and other Go tools: <a href="https://github.com/golang/go/wiki/golang-tools">https://github.com/golang/go/wiki/golang-tools</a>.</li>
-<li>Other questions can be directed toward <a href="https://github.com/stamblerre">@stamblerre</a> or <a href="https://github.com/ianthehat">@ianthehat</a>.</li>
-</ul>
                 
                   
                 

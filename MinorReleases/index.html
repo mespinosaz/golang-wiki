@@ -2331,7 +2331,7 @@ git codereview mail
 <p>At this time, it's not possible to make a cherry-pick CL by sending a [[Pull Request|GerritBot]]. Only Gerrit is supported. See <a href="https://golang.org/issue/30037">golang.org/issue/30037</a>.</p>
 <h2 id="security-releases">Security releases</h2>
 <p>Security releases preempt the next minor release and need to ship only the security fix.</p>
-<p>To avoid rolling back the release branch in that exceptional case, a new release branch is created based on the previous release. For example <code>release-branch.go1.9.5</code> is branched from tag <code>go1.9.4</code>. The release is tagged from that branch, and the branch is then merged into the main release branch. For example <code>release-branch.go1.9.5</code> is merged into <code>release-branch.go1.9</code>.</p>
+<p>To avoid rolling back the release branch in that exceptional case, a new release branch is created based on the previous release. For example <code>release-branch.go1.9-security</code> is branched from tag <code>go1.9.4</code>. The release is tagged from that branch, and the branch is then merged into the main release branch. For example <code>go1.9.5</code> is tagged from <code>release-branch.go1.9-security</code>, which is then merged into <code>release-branch.go1.9</code>.</p>
                 
                   
                 

@@ -2248,13 +2248,21 @@
 <p>The <code>GOPATH</code> environment variable specifies the location of your workspace. If no <code>GOPATH</code> is set, it is assumed to be <code>$HOME/go</code> on Unix systems and <code>%USERPROFILE%\go</code> on Windows. If you want to use a custom location as your workspace, you can set the <code>GOPATH</code> environment variable. This page explains how to set this variable on various platforms.</p>
 <ul>
 <li><a href="#unix-systems">Unix systems</a></li>
+<li><a href="#go-113">Go 1.13</a></li>
 <li><a href="#bash">Bash</a></li>
 <li><a href="#zsh">Zsh</a></li>
 <li><a href="#fish">fish</a></li>
 <li><a href="#windows">Windows</a></li>
+<li><a href="#go-113-command-line">Go 1.13</a></li>
+<li><a href="#windows-10-gui">Windows 10 (GUI)</a></li>
+<li><a href="#windows-10-command-line">Windows 10 (command line)</a></li>
 </ul>
 <h1 id="unix-systems">Unix systems</h1>
 <p><code>GOPATH</code> can be any directory on your system. In Unix examples, we will set it to <code>$HOME/go</code> (the default since Go 1.8). Note that <code>GOPATH</code> must not be the same path as your Go installation. Another common setup is to set <code>GOPATH=$HOME</code>.</p>
+<h2 id="go-113">Go 1.13</h2>
+<div class="highlight"><pre><span></span>go env -w <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+</pre></div>
+
 <h2 id="bash">Bash</h2>
 <p>Edit your <code>~/.bash_profile</code> to add the following line:
 <div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
@@ -2290,16 +2298,21 @@ but we'll use <code>C:\go-work</code> in this example.</p>
 <li>Type <code>C:\go-work</code> into the "Variable value" field.</li>
 <li>Click OK.</li>
 </ul>
-<h2 id="windows-10">Windows 10</h2>
+<h2 id="go-113-command-line">Go 1.13 (command line)</h2>
+<ul>
+<li>Open a command prompt (<code>Win</code> + <code>r</code> then type <code>cmd</code>) or a powershell window (<code>Win</code> + <code>i</code>).</li>
+<li>Type <code>go env -w GOPATH=c:\go-work</code>.</li>
+</ul>
+<h2 id="windows-10-gui">Windows 10 (GUI)</h2>
 <p>There is a faster way to edit <code>Environment Variables</code> via search:
 * Left click on "Search" and type <code>env</code> or <code>environment</code>.
 * Select "Edit environment variables for your account".
 * ... and follow steps above.</p>
-<h2 id="windows-10-cli-version">Windows 10 (cli version)</h2>
+<h2 id="windows-10-command-line">Windows 10 (command line)</h2>
 <ul>
-<li>Open a command prompt (windows-key + r then type "cmd") or a powershell window (windows-key + i)</li>
-<li>Type <code>setx GOPATH %USERPROFILE%\go</code> (this will set the <code>GOPATH</code> to your <code>[home folder]\go</code> e.g. <code>C:\Users\yourusername\go</code></li>
-<li>Close the command or powershell window (the environment variable is only available for new command or powershell windows, not for the current window).</li>
+<li>Open a command prompt (<code>Win</code> + <code>r</code> then type <code>cmd</code>) or a powershell window (<code>Win</code> + <code>i</code>).</li>
+<li>Type <code>setx GOPATH %USERPROFILE%\go</code>. (This will set the <code>GOPATH</code> to your <code>[home folder]\go</code>, such as <code>C:\Users\yourusername\go</code>.)</li>
+<li>Close the command or powershell window. (The environment variable is only available for new command or powershell windows, not for the current window.)</li>
 </ul>
                 
                   

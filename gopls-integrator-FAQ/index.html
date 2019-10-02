@@ -106,10 +106,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#table-of-contents" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -1136,69 +1132,10 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        gopls-integrator-FAQ
-      </label>
     
     <a href="./" title="gopls-integrator-FAQ" class="md-nav__link md-nav__link--active">
       gopls-integrator-FAQ
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supported-features" class="md-nav__link">
-    Supported features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utf-8-utf-16-and-position-information" class="md-nav__link">
-    UTF-8, UTF-16 and position information
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#textedit-responses" class="md-nav__link">
-    []TextEdit responses
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rpc-response-errors" class="md-nav__link">
-    RPC response errors
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#files-that-change-outside-of-the-editor" class="md-nav__link">
-    Files that change outside of the editor
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -2278,65 +2215,6 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supported-features" class="md-nav__link">
-    Supported features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utf-8-utf-16-and-position-information" class="md-nav__link">
-    UTF-8, UTF-16 and position information
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#textedit-responses" class="md-nav__link">
-    []TextEdit responses
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rpc-response-errors" class="md-nav__link">
-    RPC response errors
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#files-that-change-outside-of-the-editor" class="md-nav__link">
-    Files that change outside of the editor
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -2345,61 +2223,14 @@
                   <a href="https://github.com/zchee/golang-wiki/edit/master/docs/gopls-integrator-FAQ.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
+                  <h1>gopls-integrator-FAQ</h1>
+                
                 <hr />
 <blockquote>
 <p>This page has been subsumed into the <a href="https://github.com/golang/tools/blob/master/gopls/doc/integrating.md">committed markdown</a> of x/tools repository</p>
 <p>Please do not edit this page!</p>
-<p>The remaining content will be removed when we are sure it was all replaced.</p>
 </blockquote>
 <hr />
-<p>This page is meant to provide information to those who are developing LSP clients to integrate with <code>gopls</code>. Examples of such clients include <a href="https://github.com/microsoft/vscode-go">VSCode-Go</a>, <a href="https://github.com/fatih/vim-go">vim-go</a>, <a href="https://github.com/myitcv/govim">govim</a>, <a href="https://github.com/emacs-lsp/lsp-mode">emacs-lsp</a>, and many others. For a more complete list, see all of the editors that support gopls <a href="https://github.com/golang/go/wiki/gopls#installation">here</a>.</p>
-<p>The best starting point for any integrator is the <a href="https://microsoft.github.io/language-server-protocol/specification">Language Service Protocol Specification</a>. The same specification can be found as a markdown document on Github <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md">here</a>.
-<a href="https://godoc.org/golang.org/x/tools/internal/lsp/protocol"><code>golang.org/x/tools/internal/lsp/protocol</code></a> represents a Go definition of the spec.</p>
-<p>Feel free to add additional questions and answers here as they come up. To ask a question that isn't answered here, please reach out to the <code>gopls</code> developers either by filing an issue in the <a href="https://github.com/golang/go/issues">Go issue tracker</a> or by sending a message to the <code>#gopls</code> channel in the <a href="https://invite.slack.golangbridge.org/">Gophers Slack</a>. </p>
-<h1 id="table-of-contents">Table of Contents</h1>
-<ul>
-<li><a href="#supported-features">Supported features</a></li>
-<li><a href="#utf-8-utf-16-and-position-information">UTF-8, UTF-16 and position information</a></li>
-<li><a href="#textedit-responses"><code>[]TextEdit</code> responses</a></li>
-<li><a href="#rpc-response-errors">RPC response errors</a></li>
-<li><a href="#files-that-change-outside-of-the-editor">Files that change outside of the editor</a></li>
-</ul>
-<h2 id="supported-features">Supported features</h2>
-<p><code>gopls</code> is in active development, so the set of supported features is in flux. A basic overview of supported features can be found on the <a href="https://github.com/golang/go/wiki/gopls#status"><code>gopls</code> wiki page</a>.</p>
-<p>For the most current answer, see the <a href="https://godoc.org/golang.org/x/tools/internal/lsp/protocol#InitializeResult"><code>InitializeResult</code></a> response to the <a href="https://microsoft.github.io/language-server-protocol/specification#initialize"><code>Initialize</code></a> request. The server enumerates its <code>capabilities</code> in the <a href="https://godoc.org/golang.org/x/tools/internal/lsp/protocol#ServerCapabilities"><code>ServerCapabilities</code></a>, so it explicitly states which features it does support.</p>
-<p>At the time of writing (2019-08-06), <code>gopls</code> returns the <a href="https://godoc.org/golang.org/x/tools/internal/lsp/protocol#InitializeResult"><code>InitializeResult</code></a> in the <code>server.initialize</code> function which can be found in <a href="https://github.com/golang/tools/blob/master/internal/lsp/general.go"><code>golang.org/x/tools/internal/lsp/general.go</code></a>. All of the exported <code>gopls</code> server functions can be found in <a href="https://github.com/golang/tools/blob/master/internal/lsp/server.go"><code>golang.org/x/tools/internal/lsp/server.go</code></a>.</p>
-<h2 id="utf-8-utf-16-and-position-information">UTF-8, UTF-16 and position information</h2>
-<p>The majority of LSP requests require the client to pass position information to the server. This is described in the <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#text-documents">LSP specification</a>. Specifically, it is important to note that:</p>
-<blockquote>
-<p>A position inside a document (see Position definition below) is expressed as a zero-based line and character offset. The offsets are based on a UTF-16 string representation. So a string of the form a𐐀b the character offset of the character a is 0, the character offset of 𐐀 is 1 and the character offset of b is 3 since 𐐀 is represented using two code units in UTF-16.  </p>
-</blockquote>
-<p>This means that integrators will need to calculate UTF-16 based column offsets.</p>
-<p>For Go-based integrators, the <a href="https://godoc.org/golang.org/x/tools/internal/span#NewPoint"><code>golang.org/x/tools/internal/span</code></a> will be of use. 
-<a href="https://github.com/golang/go/issues/31080">#31080</a> tracks making <code>span</code> and other useful packages non-internal.</p>
-<h2 id="textedit-responses"><code>[]TextEdit</code> responses</h2>
-<p>At the time of writing (2019-07-15) the <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#textedit"><code>[]TextEdit</code></a> response to <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#document-formatting-request--leftwards_arrow_with_hook"><code>textDocument/formatting</code></a> and the <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#workspaceedit"><code>WorkspaceEdit</code></a> response to <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#textDocument_rename"><code>textDocument/rename</code></a> comprises range-based deltas. The spec is not explicit about how these deltas should be applied, instead simply stating:</p>
-<blockquote>
-<p>If multiple inserts have the same position, the order in the array defines the order in which the inserted strings appear in the resulting text.</p>
-</blockquote>
-<p>All <code>[]TextEdit</code> are sorted such that applying the array of deltas received in reverse order achieves the desired result that holds with the spec.</p>
-<h2 id="rpc-response-errors">RPC response errors</h2>
-<p>A server method can return an error if it fails. Various error codes are described in the <a href="https://github.com/Microsoft/language-server-protocol/blob/gh-pages/specification.md#response-message">LSP specification</a>. We are still determining what it means for a method to return an error. That is, are errors only for low-level LSP/transport issues or can other conditions cause errors to be returned? See some of this discussion on <a href="https://github.com/golang/go/issues/31526">#31526</a>.</p>
-<p>Here is our current approach, which is subject to change:
-* <code>textDocument/codeAction</code>: Return error if there was an error computing code actions.
-* <code>textDocument/completion</code>: Log errors, return empty result list.
-* <code>textDocument/definition</code>: Return error if there was an error computing the definition for the position.
-* <code>textDocument/typeDefinition</code>: Return error if there was an error computing the type definition for the position.
-* <code>textDocument/formatting</code>: Return error if there was an error formatting the file.
-* <code>textDocument/highlight</code>: Log errors, return empty result.
-* <code>textDocument/hover</code>: Return empty result.
-* <code>textDocument/documentLink</code>: Log errors, return nil result.
-* <code>textDocument/publishDiagnostics</code>: Log errors if there were any while computing diagnostics.
-* <code>textDocument/references</code>: Log errors, return empty result.
-* <code>textDocument/rename</code>: Return error if there was an error computing renames.
-* <code>textDocument/signatureHelp</code>: Log errors, return nil result.
-* <code>textDocument/documentSymbols</code>: Return error if there was an error computing document symbols.</p>
-<h2 id="files-that-change-outside-of-the-editor">Files that change outside of the editor</h2>
-<p>Files can change outside of the purview of <code>gopls</code> if they are modified in a different editor or created/modified/removed as a result of <code>go generate</code>. These cases will be handled by supporting the <a href="https://microsoft.github.io/language-server-protocol/specification#workspace_didChangeWatchedFiles"><code>workspace/didChangeWatchedFiles</code></a>. This is not yet implemented on the <code>gopls</code> side, but it is tracked in <a href="https://github.com/golang/go/issues/31553">#31553</a>.</p>
                 
                   
                 

@@ -2306,7 +2306,7 @@ misc/trace contains a generated file used by go tool trace</p>
 </pre></div>
 
 <p>test contains tests of the Go tool chain and runtime</p>
-<p>the github.com/golang net and tools sub-repositories and github.com/gonum/gonum repository can be located in /usr/share/gocode, utilising the following commands</p>
+<p>The github.com/golang net and tools sub-repositories and github.com/gonum/gonum repository can be located in /usr/share/gocode, utilising the following commands.</p>
 <div class="highlight"><pre><span></span>% su -c tcsh
 Password:
 # setenv GOPATH /usr/share/gocode
@@ -2318,7 +2318,7 @@ Password:
 %
 </pre></div>
 
-<p>to compile Go code with the libraries in /usr/share/gocode you must add the location to $GOPATH</p>
+<p>To compile Go code with the libraries in /usr/share/gocode you must add the location to $GOPATH.</p>
 <div class="highlight"><pre><span></span>% setenv GOPATH $HOME/go:/usr/share/gocode
 % go get -u golang.org/x/blog
 package golang.org/x/blog: no Go files in /home/eric/go/src/golang.org/x/blog
@@ -2328,9 +2328,10 @@ package golang.org/x/blog: no Go files in /home/eric/go/src/golang.org/x/blog
 %
 </pre></div>
 
-<p>this page utilises the C shell as <a href="https://github.com/golang/go/wiki/SettingGOPATH">Setting GOPATH</a> doesn't include that shell</p>
-<p>for information on running the blog server see <a href="https://github.com/golang/blog">Go Blog</a>; those instructions might be more comprehensive being edited, but for Un*x just omit the .exe
-file extension</p>
+<p>This page utilises the C shell as <a href="https://github.com/golang/go/wiki/SettingGOPATH">SettingGOPATH</a> doesn't include that shell.</p>
+<p>For information on running the blog server see <a href="https://github.com/golang/blog">Go Blog</a>; those instructions might be more comprehensive being edited, but for Un*x just omit the .exe
+file extension.</p>
+<p>See also: <a href="https://github.com/golang/go/wiki/modules">Modules</a></p>
                 
                   
                 

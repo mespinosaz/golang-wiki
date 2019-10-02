@@ -1578,6 +1578,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#recent-changes" class="md-nav__link">
+    Recent Changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#table-of-contents" class="md-nav__link">
     Table of Contents
   </a>
@@ -2922,6 +2929,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#recent-changes" class="md-nav__link">
+    Recent Changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#table-of-contents" class="md-nav__link">
     Table of Contents
   </a>
@@ -3607,8 +3621,33 @@
                 
                 <h1 id="go-111-modules">Go 1.11 Modules</h1>
 <p>Go 1.11 includes preliminary support for versioned modules as proposed <a href="https://golang.org/design/24301-versioned-go">here</a>. Modules are an experimental opt-in feature in Go 1.11, with the plan of incorporating feedback and <a href="https://github.com/golang/go/issues/31857">finalizing</a> the feature for Go 1.14. Even though some details may change, future releases will support modules defined using Go 1.11, 1.12, and 1.13.</p>
-<p>The initial prototype <code>vgo</code> was <a href="https://research.swtch.com/vgo">announced</a> in February 2018. In July 2018, support for versioned modules <a href="https://groups.google.com/d/msg/golang-dev/a5PqQuBljF4/61QK4JdtBgAJ">landed</a> in the main repository. Go 1.11 was released in August 2018.</p>
+<p>The initial prototype <code>vgo</code> was <a href="https://research.swtch.com/vgo">announced</a> in February 2018. In July 2018, versioned modules <a href="https://groups.google.com/d/msg/golang-dev/a5PqQuBljF4/61QK4JdtBgAJ">landed</a> in the main Go repository.</p>
 <p>Please provide feedback on modules via <a href="https://github.com/golang/go/wiki/Modules#github-issues">existing or new issues</a> and <a href="https://github.com/golang/go/wiki/ExperienceReports">experience reports</a>.</p>
+<h2 id="recent-changes">Recent Changes</h2>
+<p>There were significant improvements and changes to modules in Go 1.13.</p>
+<p>If you use modules, it is important to carefully review the <a href="https://golang.org/doc/go1.13#modules">modules section</a> of the Go 1.13 release notes.</p>
+<p>Three notable changes:</p>
+<ol>
+<li>
+<p>The <code>go</code> tool now defaults to downloading modules from the public Go module mirror at <a href="https://proxy.golang.org">https://proxy.golang.org</a>, and also defaults to validating downloaded modules (regardless of source) against the public Go checksum database at <a href="https://sum.golang.org">https://sum.golang.org</a>.</p>
+<ul>
+<li>If you have private code, you most likely should configure the <code>GOPRIVATE</code> setting (such as <code>go env -w GOPRIVATE=*.corp.com,github.com/secret/repo</code>), or the more fine-grained variants <code>GONOPROXY</code> or <code>GONOSUMDB</code> that support less frequent use cases. See the <a href="https://golang.org/cmd/go/#hdr-Module_configuration_for_non_public_modules">documentation</a> for more details.</li>
+</ul>
+</li>
+<li>
+<p><code>GO111MODULE=auto</code> enables module-mode if any go.mod is found, even inside GOPATH. (Prior to Go 1.13, <code>GO111MODULE=auto</code> would never enable module-mode inside GOPATH).</p>
+</li>
+<li>
+<p><code>go get</code> arguments have changed:</p>
+<ul>
+<li><code>go get -u</code> (without any arguments) now only upgrades the direct and indirect dependencies of your current <em>package</em>, and no longer examines your entire <em>module</em>.</li>
+<li><code>go get -u ./...</code> from your module root upgrades all the direct and indirect dependencies of your module, and now excludes test dependencies.</li>
+<li><code>go get -u -t ./...</code> is similar, but also upgrades test dependencies.</li>
+<li><code>go get</code> no longer supports <code>-m</code> (because it would have largely overlapped with <code>go get -d</code> due to other changes;  you can usually replace <code>go get -m foo</code> with <code>go get -d foo</code>).</li>
+</ul>
+</li>
+</ol>
+<p>Please see the <a href="https://golang.org/doc/go1.13#modules">release notes</a> for more details on these and other changes.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <p>The "Quick Start" and "New Concepts" sections are particularly important for someone who is starting to work with modules. The "How to..." sections cover more details on mechanics. The largest quantity of content on this page is in the FAQs answering more specific questions; it can be worthwhile to at least skim the FAQ one-liners listed here.</p>
 <ul>
@@ -3732,8 +3771,8 @@ require rsc.io/quote v1.5.2
 <ul>
 <li><code>go list -m all</code> — View final versions that will be used in a build for all direct and indirect dependencies (<a href="https://github.com/golang/go/wiki/Modules#version-selection">details</a>)</li>
 <li><code>go list -u -m all</code> — View available minor and patch upgrades for all direct and indirect dependencies (<a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">details</a>)</li>
-<li><code>go get -u</code> or <code>go get -u=patch</code> — Update all direct and indirect dependencies to latest minor or patch upgrades (pre-releases are ignored) (<a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">details</a>)</li>
-<li><code>go build ./...</code> or <code>go test ./...</code> — Build or test all packages in the module when run from the module root directory (<a href="https://github.com/golang/go/wiki/Modules#how-to-define-a-module">details</a>)</li>
+<li><code>go get -u ./...</code> or <code>go get -u=patch ./...</code> (from module root directory) — Update all direct and indirect dependencies to latest minor or patch upgrades (pre-releases are ignored) (<a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">details</a>)</li>
+<li><code>go build ./...</code> or <code>go test ./...</code> (from module root directory) — Build or test all packages in the module (<a href="https://github.com/golang/go/wiki/Modules#how-to-define-a-module">details</a>)</li>
 <li><code>go mod tidy</code> — Prune any no-longer-needed dependencies from <code>go.mod</code> and add any dependencies needed for other combinations of OS, architecture, and build tags (<a href="https://github.com/golang/go/wiki/Modules#how-to-prepare-for-a-release">details</a>)</li>
 <li><code>replace</code> directive or <code>gohack</code> — Use a fork, local copy or exact version of a dependency (<a href="https://github.com/golang/go/wiki/Modules#when-should-i-use-the-replace-directive">details</a>)</li>
 <li><code>go mod vendor</code> — Optional step to create a <code>vendor</code> directory (<a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-vendoring-with-modules-is-vendoring-going-away">details</a>)</li>
@@ -3870,9 +3909,9 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <p>Day-to-day upgrading and downgrading of dependencies should be done using 'go get', which will automatically update the <code>go.mod</code> file. Alternatively, you can edit <code>go.mod</code> directly.</p>
 <p>In addition, go commands like 'go build', 'go test', or even 'go list' will automatically add new dependencies as needed to satisfy imports (updating <code>go.mod</code> and downloading the new dependencies).</p>
 <p>To view available minor and patch upgrades for all direct and indirect dependencies, run <code>go list -u -m all</code>.</p>
-<p>To upgrade to the latest version for all direct and indirect dependencies of the current module:
- * run <code>go get -u</code> to use the latest <em>minor or patch</em> releases
- * run <code>go get -u=patch</code> to use the latest <em>patch</em> releases</p>
+<p>To upgrade to the latest version for all direct and indirect dependencies of the current module, the following can be run from the module root directory:
+ * <code>go get -u ./...</code> to use the latest <em>minor or patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)
+ * <code>go get -u=patch ./...</code> to use the latest <em>patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)</p>
 <p><code>go get foo</code> updates to the latest version of <code>foo</code>. <code>go get foo</code> is equivalent to <code>go get foo@latest</code> — in other words, <code>@latest</code> is the default if no <code>@</code> version is specified.</p>
 <p>In this section, "latest" is the latest version with a <a href="https://semver.org/">semver</a> tag, or the latest known commit if there are no semver tags. Prerelease tags are not selected as "latest" unless there are no other semver tags on the repository (<a href="https://golang.org/cmd/go/#hdr-Module_aware_go_get">details</a>).</p>
 <p>A common mistake is thinking <code>go get -u foo</code> solely gets the latest version of <code>foo</code>. In actuality, the <code>-u</code> in <code>go get -u foo</code> or <code>go get -u foo@latest</code> means to <em>also</em> get the latest versions for <em>all</em> of the direct and indirect dependencies of <code>foo</code>. A common starting point when upgrading <code>foo</code> is instead to do <code>go get foo</code> or <code>go get foo@latest</code> without a <code>-u</code> (and after things are working, consider <code>go get -u=patch foo</code>, <code>go get -u=patch</code>, <code>go get -u foo</code>, or <code>go get -u</code>).</p>
