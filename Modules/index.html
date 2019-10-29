@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
@@ -3946,12 +3946,12 @@ require (
 
 <p>A module declares its identity in its <code>go.mod</code> via the <code>module</code> directive, which provides the <em>module path</em>. The import paths for all packages in a module share the module path as a common prefix. The module path and the relative path from the <code>go.mod</code> to a package's directory together determine a package's import path.</p>
 <p>For example, if you are creating a module for a repository <code>github.com/my/repo</code> that will contain two packages with import paths <code>github.com/my/repo/foo</code> and <code>github.com/my/repo/bar</code>, then the first line in your <code>go.mod</code> file typically would declare your module path as <code>module github.com/my/repo</code>, and the corresponding on-disk structure could be:</p>
-<div class="highlight"><pre><span></span>repo/
-├── go.mod
-├── bar
-│   └── bar.go
-└── foo
-    └── foo.go
+<div class="highlight"><pre><span></span>repo
+|-- bar
+|   `-- bar.go
+|-- foo
+|   `-- foo.go
+`-- go.mod
 </pre></div>
 
 <p>In Go source code, packages are imported using the full path including the module path. For example, if a module declared its identity in its <code>go.mod</code> as <code>module example.com/my/module</code>, a consumer could do:
@@ -4600,22 +4600,22 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>A multi-module repository is a repository that contains multiple modules, each with its own go.mod file. Each module starts at the directory containing its go.mod file, and contains all packages from that directory and its subdirectories recursively, excluding any subtree that contains another go.mod file.</p>
 <p>Each module has its own version information. Version tags for modules below the root of the repository must include the relative directory as a prefix. For example, consider the following repository:</p>
 <div class="highlight"><pre><span></span>my-repo
-|____foo
-| |____rop
-| | |____go.mod
+`-- foo
+    `-- rop
+        `-- go.mod
 </pre></div>
 
 <p>The tag for version 1.2.3 of module "my-repo/foo/rop" is "foo/rop/v1.2.3".</p>
 <p>Typically, the path for one module in the repository will be a prefix of the others. For example, consider this repository:</p>
 <p><div class="highlight"><pre><span></span>my-repo
-|____go.mod
-|____bar
-|____foo
-| |____rop
-| |____yut
-|____mig
-| |____go.mod
-| |____vub
+|-- bar
+|-- foo
+|   |-- rop
+|   `-- yut
+|-- go.mod
+`-- mig
+    |-- go.mod
+    `-- vub
 </pre></div>
 <img alt="Fig. A top-level module's path is a prefix of another module's path." src="https://github.com/jadekler/module-testing/blob/master/imagery/multi_module_repo.png" /></p>
 <p><em>Fig. A top-level module's path is a prefix of another module's path.</em></p>
@@ -4645,13 +4645,13 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>The first class: the package to which the module is being added to is not in version control yet (a new package). This case is straightforward: add the package and the go.mod in the same commit, tag the commit, and push.</p>
 <p>The second class: the path at which the module is being added is in version control and contains one or more existing packages. This case requires a considerable amount of care. To illustrate, consider again the following repository (now in a github.com location to simulate the real-world better):</p>
 <div class="highlight"><pre><span></span>github.com/my-repo
-|____go.mod
-|____bar
-|____foo
-| |____rop
-| |____yut
-|____mig
-| |____vub
+|-- bar
+|-- foo
+|   |-- rop
+|   `-- yut
+|-- go.mod
+`-- mig
+    `-- vub
 </pre></div>
 
 <p>Consider adding module "github.com/my-repo/mig". If one were to follow the same approach as above, the package /my-repo/mig could be provided by two different modules: the old version of "github.com/my-repo", and the new, standalone module "github.com/my-repo/mig. If both modules are active, importing "github.com/my-repo/mig" would cause an “ambiguous import” error at compile time.</p>
@@ -4695,18 +4695,18 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 <h3 id="can-a-module-depend-on-an-internal-in-another">Can a module depend on an internal/ in another?</h3>
 <p>Yes. Packages in one module are allowed to import internal packages from another module as long as they share the same path prefix up to the internal/ path component. For example, consider the following repository:</p>
 <div class="highlight"><pre><span></span>my-repo
-|____go.mod
-|____internal
-|____foo
-| |____go.mod
+|-- foo
+|   `-- go.mod
+|-- go.mod
+`-- internal
 </pre></div>
 
 <p>Here, package foo can import /my-repo/internal as long as module "my-repo/foo" depends on module "my-repo". Similarly, in the following repository:</p>
 <div class="highlight"><pre><span></span>my-repo
-|____internal
-| |____go.mod
-|____foo
-| |____go.mod
+|-- foo
+|   `-- go.mod
+`-- internal
+    `-- go.mod
 </pre></div>
 
 <p>Here, package foo can import my-repo/internal as long as module "my-repo/foo" depends on module "my-repo/internal". The semantics are the same in both: since my-repo is a shared path prefix between my-repo/internal and my-repo/foo, package foo is allowed to import package internal.</p>
@@ -4948,7 +4948,7 @@ stored in the package directory</em>, not in subdirectories.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

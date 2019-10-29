@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
@@ -2412,6 +2412,7 @@ Fixes #nnnn
 <li>there is <strong>no</strong> Markdown in the commit message</li>
 <li>we <strong>do not</strong> use <code>Signed-off-by</code> lines. Don't add them. Our Gerrit server &amp; GitHub bots enforce CLA compliance instead.</li>
 <li>when referencing CLs, prefer saying "CL nnn" or using a golang.org/cl/nnn shortlink over a direct Gerrit URL, since that's more future-proof.</li>
+<li>when moving code between repos, include the CL, repository name, and git hash that it was moved from/to, so it is easier to trace history/blame.</li>
 </ul>
 <p>If it's not a complete fix and more is coming, use:</p>
 <div class="highlight"><pre><span></span>Updates #nnnn
@@ -2504,7 +2505,7 @@ PR's title &amp; description. See <a href="https://github.com/golang/go/wiki/Ger
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

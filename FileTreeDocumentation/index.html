@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
@@ -2369,9 +2369,9 @@
                 
                   <h1>FileTreeDocumentation</h1>
                 
-                <p>This wiki page documents the file tree for a source installation of go1.9.2 to which have been added the github.com/golang blog, net and tools sub-repositories, and the github.com/gonum/gonum repository. It is somewhat consistent with the file tree of the golang.org/dl pre-compiled downloads for GNU/Linux. It presumes the reader is familiar with utilisation of $GOPATH on Un*x as a colon-separated string; GNU/Linux being a multi-user OS the added sub-repositories and repository are located in $HOME/go and /usr/share/gocode.</p>
-<div class="highlight"><pre><span></span>% tree -d -L 2 /usr/lib/go1.9.2 | head
-/usr/lib/go1.9.2
+                <p>This page documents the file tree for a source installation of go1.13.1.</p>
+<div class="highlight"><pre><span></span>$ tree -d -L 2 /usr/lib/go1.13.1 | head
+/usr/lib/go1.13.1
 `-- go
     |-- api
     |-- bin
@@ -2381,101 +2381,65 @@
     |-- pkg
     |-- src
     `-- test
-%
+$
 </pre></div>
 
 <p>api contains data for Go's API checker</p>
-<div class="highlight"><pre><span></span>% ls $GOROOT/api
-README     go1.1.txt  go1.3.txt  go1.5.txt  go1.7.txt go1.9.txt  next.txt
-except.txt  go1.2.txt  go1.4.txt  go1.6.txt  go1.8.txt go1.txt
-%
+<div class="highlight"><pre><span></span>$ ls $GOROOT/api
+README      go1.10.txt  go1.13.txt  go1.4.txt  go1.7.txt  go1.txt
+except.txt  go1.11.txt  go1.2.txt   go1.5.txt  go1.8.txt  next.txt
+go1.1.txt   go1.12.txt  go1.3.txt   go1.6.txt  go1.9.txt
+$
 </pre></div>
 
 <p>bin contains the go and gofmt executables</p>
-<div class="highlight"><pre><span></span>% ls -l $GOROOT/bin
-total 7588
--rwxr-xr-x 1 root root 5918348 Oct 31 16:06 go
--rwxr-xr-x 1 root root 1831140 Oct 31 16:06 gofmt
-%
+<div class="highlight"><pre><span></span>$ ls -l $GOROOT/bin
+total 11576
+-rwxr-xr-x 1 root root 9652760 Oct  2 03:02 go
+-rwxr-xr-x 1 root root 2197756 Oct  2 03:02 gofmt
+$
 </pre></div>
 
 <p>doc contains .css, .go, .html, .js, and .png files</p>
 <p>lib contains the compressed time zone database</p>
-<div class="highlight"><pre><span></span>% tree $GOROOT/lib | head -n 5
-/usr/lib/go1.9.2/go/lib
+<div class="highlight"><pre><span></span>$ tree $GOROOT/lib | head -n 5
+/usr/lib/go1.13.1/go/lib
 `-- time
-|-- README
-|-- update.bash
-`-- zoneinfo.zip
-%
+    |-- README
+    |-- update.bash
+    `-- zoneinfo.zip
+$
 </pre></div>
 
-<p>misc/android contains information on development for android<br/>
-misc/arm contains a script for executing go binaries on android<br/>
-misc/cgo contains tests and examples of cgo<br/>
-misc/chrome contains a Chrome extension<br/>
-misc/git contains a pre-commit hook<br/>
-misc/ios contains information on cross compiling for iOS<br/>
-misc/linkcheck contains a program checking links on the godoc website<br/>
-misc/nacl contains Go's integration with nacl, used by the Go playground<br/>
-misc/sortac contains a utility for sorting the AUTHORS and CONTRIBUTORS files<br/>
-misc/swig contains examples of using Go with SWIG<br/>
-misc/trace contains a generated file used by go tool trace</p>
-<div class="highlight"><pre><span></span>% tree -d -L 1 $GOROOT/misc | head -n 12
-/usr/lib/go1.9.2/go/misc
+<p>misc contains files pertaining to specific build modes and platforms</p>
+<div class="highlight"><pre><span></span>$ tree -d -L 1 $GOROOT/misc | head -n 12
+/usr/lib/go1.13.1/go/misc
 |-- android
 |-- arm
 |-- cgo
 |-- chrome
-|-- git
 |-- ios
 |-- linkcheck
 |-- nacl
-|-- sortac
+|-- reboot
 |-- swig
-`-- trace
-%
+|-- trace
+`-- wasm
+$
 </pre></div>
 
 <p>pkg contains libs, header files, compiled object files, and executables</p>
-<div class="highlight"><pre><span></span>% tree -d -L 1 $GOROOT/pkg | head -n 7
-/usr/lib/go1.9.2/go/pkg
-|-- bootstrap
+<p><div class="highlight"><pre><span></span>$ tree -d -L 1 $GOROOT/pkg | head -n 6
+/usr/lib/go1.13.1/go/pkg
 |-- include
 |-- linux_386
 |-- linux_386_dynlink
 |-- obj
 `-- tool
-%
+$
 </pre></div>
-
-<p>test contains tests of the Go tool chain and runtime</p>
-<p>The github.com/golang net and tools sub-repositories and github.com/gonum/gonum repository can be located in /usr/share/gocode, utilising the following commands.</p>
-<div class="highlight"><pre><span></span>% su -c tcsh
-Password:
-# setenv GOPATH /usr/share/gocode
-# go get -u golang.org/x/tools/...
-# go get -u gonum.org/v1/gonum/...
-# find $GOPATH -print0 | xargs -0 file | grep &quot;executable&quot; | grep ELF \
-? | cut -f 1 -d : | xargs strip --strip-unneeded
-# exit
-%
-</pre></div>
-
-<p>To compile Go code with the libraries in /usr/share/gocode you must add the location to $GOPATH.</p>
-<div class="highlight"><pre><span></span>% setenv GOPATH $HOME/go:/usr/share/gocode
-% go get -u golang.org/x/blog
-package golang.org/x/blog: no Go files in /home/eric/go/src/golang.org/x/blog
-% cd go/src/golang.org/x/blog/blog
-% go build
-% mv blog $HOME/go/bin
-%
-</pre></div>
-
-<p>This page utilises the C shell as <a href="https://github.com/golang/go/wiki/SettingGOPATH">SettingGOPATH</a> doesn't include that shell.</p>
-<p>For information on running the blog server see <a href="https://github.com/golang/blog">Go Blog</a>; those instructions might be more comprehensive being edited, but for Un*x just omit the .exe
-file extension.</p>
-<p>See also: <a href="https://github.com/golang/go/wiki/modules">Modules</a></p>
+src contains the go1.13.1 source code</p>
+<p>test contains tests of the Go toolchain and runtime</p>
                 
                   
                 
@@ -2545,7 +2509,7 @@ file extension.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

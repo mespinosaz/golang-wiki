@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
@@ -2428,6 +2428,10 @@
 </ul>
 <p>If you're running Plan 9 on Raspberry Pi, you'll require the latest <a href="https://9p.io/magic/webls?dir=/sources/contrib/miller/9/bcm">bcm</a> kernel from Richard Miller.</p>
 <p>CA certificates for <code>crypto/x509</code> package needs to be installed at <code>/sys/lib/tls/ca.pem</code>. You can download it from <code>https://curl.haxx.se/ca/cacert.pem</code> or copy from another system.</p>
+<p>For 9front, you may need to configure loopback addresses for standard library tests:</p>
+<pre><code>ip/ipconfig -P loopback /dev/null 127.1
+ip/ipconfig -P loopback /dev/null ::1
+</code></pre>
 <h1 id="installation">Installation</h1>
 <p>Since Go is written in Go, you may want to bootstrap Go with Go 1.4.3, which is the latest release of Go written in C.</p>
 <p>However, since the Go 1.4 runtime wasn't mature enough on Plan 9, we recommend you to bootstrap from a more recent version of Go, using another operating system.</p>
@@ -2573,7 +2577,7 @@ tar xzf ../gobootstrap-plan9-386.tar.gz
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
