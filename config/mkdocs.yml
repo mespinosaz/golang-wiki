@@ -41,8 +41,6 @@ nav:
   - CommonMistakes: CommonMistakes.md
   - CompilerOptimizations: CompilerOptimizations.md
   - Conferences: Conferences.md
-  - config: config
-  - config/mkdocs.yml: config/mkdocs.yml
   - Configuring-GoLand-for-WebAssembly: Configuring-GoLand-for-WebAssembly.md
   - Contributing-to-gopls: Contributing-to-gopls.md
   - CoreDumpDebugging: CoreDumpDebugging.md
@@ -87,6 +85,7 @@ nav:
   - GoGetProxyConfig: GoGetProxyConfig.md
   - GoGetTools: GoGetTools.md
   - golang-tools: golang-tools.md
+  - GoMips: GoMips.md
   - Gomote: Gomote.md
   - GOPATH: GOPATH.md
   - Gopher: Gopher.md
@@ -111,15 +110,11 @@ nav:
   - HttpFetch: HttpFetch.md
   - HttpStaticFiles: HttpStaticFiles.md
   - IDEsAndTextEditorPlugins: IDEsAndTextEditorPlugins.md
-  - images: images
-  - images/github-to-gerrit.png: images/github-to-gerrit.png
-  - images/release-cycle.png: images/release-cycle.png
-  - index: index.md
   - InstallFromSource: InstallFromSource.md
   - InstallTroubleshooting: InstallTroubleshooting.md
   - InterfaceSlice: InterfaceSlice.md
   - InvalidFlag: InvalidFlag.md
-  - Iota: Iota.md
+  - Iota:Iota.md
   - IssueLabels: IssueLabels.md
   - Learn: Learn.md
   - LearnConcurrency: LearnConcurrency.md
@@ -153,6 +148,7 @@ nav:
   - PortingPolicy: PortingPolicy.md
   - PriorDiscussion: PriorDiscussion.md
   - Projects: Projects.md
+  - Proposals: Proposals.md
   - ProviderIntegration: ProviderIntegration.md
   - Questions: Questions.md
   - RaceDetector: RaceDetector.md
@@ -162,11 +158,12 @@ nav:
   - ResearchPapers: ResearchPapers.md
   - Resolving-Problems-From-Modified-Module-Path: Resolving-Problems-From-Modified-Module-Path.md
   - Screencasts: Screencasts.md
-  - SendingMail: SendingMail.md
+  - SendingMail: endingMail.md
   - SettingGOPATH: SettingGOPATH.md
   - SignalHandling: SignalHandling.md
   - SimultaneousAssignment: SimultaneousAssignment.md
   - SliceTricks: SliceTricks.md
+  - SlowBots: SlowBots.md
   - Solaris: Solaris.md
   - Spelling: Spelling.md
   - SQLDrivers: SQLDrivers.md
@@ -183,9 +180,7 @@ nav:
   - Ubuntu: Ubuntu.md
   - vgo: vgo.md
   - WebAccessibilityResourcesAndTips: WebAccessibilityResourcesAndTips.md
-  - WebAssembly.asciidoc: WebAssembly.asciidoc
   - Well-known-struct-tags: Well-known-struct-tags.md
-  - WhyGo: WhyGo.md
   - windows-scoop-install-go-cli: windows-scoop-install-go-cli.md
   - Windows: Windows.md
   - WindowsBuild: WindowsBuild.md
