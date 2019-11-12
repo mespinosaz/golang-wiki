@@ -2392,47 +2392,37 @@
 </ul>
 <h3 id="needs-investigation">Needs Investigation</h3>
 <ul>
-<li>Is correctly formatted.<ul>
+<li>Is correctly formatted.</li>
 <li>The title has a path prefix.</li>
 <li>The body describes the issue.</li>
-</ul>
-</li>
-<li>Has a milestone.<ul>
+<li>Has a milestone.</li>
 <li>If the issue is not important, it is ok to set the milestone to unplanned. Otherwise, set it to the next upcoming release.</li>
-</ul>
-</li>
-<li>Has the label <code>NeedsInvestigation</code>.<ul>
+<li>Has the label <code>NeedsInvestigation</code>.</li>
 <li>May also have the label <code>WaitingForInfo</code> if the investigator is waiting for more information from someone (e.g., the issue reporter).</li>
-</ul>
-</li>
 <li>To transition from this state, someone must examine the issue and confirm that it is valid and not a duplicate of an existing issue.</li>
 </ul>
 <h3 id="needs-decision">Needs Decision</h3>
 <ul>
-<li>The issue is real, but we're not sure what action to take.<ul>
+<li>The issue is real, but we're not sure what action to take.</li>
 <li>The issue can be addressed in Go 1.</li>
 <li>Feedback is required from experts, contributors, and/or the community before a fix can be made.</li>
 <li>Note that the majority of issues will never transition to this state, as most of the time the decision is an obvious “Yes, this should be fixed.”</li>
-</ul>
-</li>
 <li>Has a milestone.</li>
-<li>Has the label <code>NeedsDecision</code>.<ul>
+<li>Has the label <code>NeedsDecision</code>.</li>
 <li>May have the label <code>WaitingForInfo</code>.</li>
 <li>May have the label <code>Blocked</code> if forward progress depends upon the resolution of another issue or the release of a future version of Go. An accompanying comment should explain the blockage.</li>
 <li>Must not have the label <code>Go2</code>. (Those issues are handled separately.)</li>
+<li>To transition from this state, someone must decide how the issue is to be resolved.<ul>
+<li>If the decision is complicated, the issue may be given a <a href="https://github.com/golang/proposal/"><code>Proposal</code></a> label. The issue remains in this state until the proposal process is complete, and moves to <code>NeedsFix</code> if approved.</li>
 </ul>
 </li>
-<li>To transition from this state, someone must decide how the issue is to be resolved.
-    - If the decision is complicated, the issue may be given a <a href="https://github.com/golang/proposal/"><code>Proposal</code></a> label. The issue remains in this state until the proposal process is complete, and moves to <code>NeedsFix</code> if approved.</li>
 </ul>
 <h3 id="needs-fix">Needs Fix</h3>
 <ul>
 <li>The path to resolution is known, but the work has not been done.</li>
 <li>Has a milestone.</li>
-<li>Has the label <code>NeedsFix</code>.<ul>
+<li>Has the label <code>NeedsFix</code>.</li>
 <li>May have the labels <code>Blocked</code> or <code>WaitingForInfo</code>.</li>
-</ul>
-</li>
 <li>To transition from this state, someone must do the work to fix the issue.</li>
 </ul>
 <h3 id="fixed">Fixed</h3>
@@ -2447,35 +2437,37 @@ Unassigned issues are considered available for anyone to address.</p>
 <h1 id="milestones">Milestones</h1>
 <p>Milestones describe the timeline for issue resolution.</p>
 <ul>
-<li>Go1.x.y<p>Must be fixed for release 1.x.y, or explicitly postponed to a later release.</p>
+<li>
+<p>Go1.x.y</p>
+<p>Must be fixed for release 1.x.y, or explicitly postponed to a later release.</p>
 </li>
-</ul>
-<ul>
-<li>Proposal<p>Is a proposal and does not pertain to a specific release.</p>
+<li>
+<p>Proposal</p>
+<p>Is a proposal and does not pertain to a specific release.</p>
 </li>
-</ul>
-<ul>
-<li>Soon<p>Should be fixed soon, but is not included in or needed by a release.</p>
+<li>
+<p>Soon</p>
+<p>Should be fixed soon, but is not included in or needed by a release.</p>
 </li>
-</ul>
-<ul>
-<li>Backlog<p>Someone has plans to work on it, but it is not assigned to a release milestone yet.</p>
+<li>
+<p>Backlog</p>
+<p>Someone has plans to work on it, but it is not assigned to a release milestone yet.</p>
 </li>
-</ul>
-<ul>
-<li>Unplanned<p>Might be fixed at some point, but nobody is planning to do it.</p>
+<li>
+<p>Unplanned</p>
+<p>Might be fixed at some point, but nobody is planning to do it.</p>
 </li>
-</ul>
-<ul>
-<li>Unreleased<p>Is not included in or needed by a release.</p>
+<li>
+<p>Unreleased</p>
+<p>Is not included in or needed by a release.</p>
 </li>
-</ul>
-<ul>
-<li>Gccgo<p>For gccgo issues.</p>
+<li>
+<p>Gccgo</p>
+<p>For gccgo issues.</p>
 </li>
-</ul>
-<ul>
-<li>Go2<p>Deferred until Go 2.</p>
+<li>
+<p>Go2</p>
+<p>Deferred until Go 2.</p>
 </li>
 </ul>
 <p>Additional milestones may be used to manage specific project work.</p>

@@ -2281,8 +2281,10 @@
                 
                 
                 <p>Heap dump format for other versions:</p>
-<p>* Go 1.4: [[heapdump14]]
-  * Go 1.5 and later: [[heapdump15-through-heapdump17]]</p>
+<ul>
+<li>Go 1.4: [[heapdump14]]</li>
+<li>Go 1.5 and later: [[heapdump15-through-heapdump17]]</li>
+</ul>
 <h1 id="introduction">Introduction</h1>
 <p>Go 1.3 added a runtime/debug.WriteHeapDump function that writes all objects in the heap plus additional info (roots, goroutines, finalizers, etc.) to a file.  The format of this file is specified here.</p>
 <h1 id="details">Details</h1>
@@ -2315,35 +2317,43 @@
 <h1 id="eof">EOF</h1>
 <p>An EOF record has no fields and must appear last.</p>
 <h1 id="object">object</h1>
-<p>* uvarint: address of object
-  * uvarint: address of type descriptor (or 0 if unknown)
-  * uvarint: kind of object (0=regular 1=array 2=channel 127=conservatively scanned)
-  * string: contents of object</p>
+<ul>
+<li>uvarint: address of object</li>
+<li>uvarint: address of type descriptor (or 0 if unknown)</li>
+<li>uvarint: kind of object (0=regular 1=array 2=channel 127=conservatively scanned)</li>
+<li>string: contents of object</li>
+</ul>
 <p>For array or channel kinds, the type must be nonzero.</p>
 <p>The size of the contents string is the size of the containing sizeclass, not the size of the type itself.  As such, contents size may be somewhat bigger than the type size.  It may be a lot bigger for array and channel types.  For instance, an array with n elements will have a content size bigger than or equal to n times the type size.</p>
 <h1 id="otherroot">otherroot</h1>
-<p>* string: textual description of where this root came from
-  * uvarint: root pointer</p>
+<ul>
+<li>string: textual description of where this root came from</li>
+<li>uvarint: root pointer</li>
+</ul>
 <h1 id="type">type</h1>
-<p>* uvarint: address of type descriptor
-  * uvarint: size of an object of this type
-  * string: name of type
-  * bool: whether the data field of an interface containing a value of this type is a pointer
-  * fieldlist: a list of the kinds and locations of pointer-containing fields in objects of this type</p>
+<ul>
+<li>uvarint: address of type descriptor</li>
+<li>uvarint: size of an object of this type</li>
+<li>string: name of type</li>
+<li>bool: whether the data field of an interface containing a value of this type is a pointer</li>
+<li>fieldlist: a list of the kinds and locations of pointer-containing fields in objects of this type</li>
+</ul>
 <h1 id="goroutine-g">goroutine (G)</h1>
-<p>* uvarint: address of descriptor
-  * uvarint: pointer to the top of stack (the currently running frame, a.k.a. depth 0)
-  * uvarint: go routine ID
-  * uvarint: the location of the go statement that created this goroutine
-  * uvarint: status
-  * bool: is a Go routine started by the system
-  * bool: is a background Go routine
-  * uvarint: approximate time the go routine last started waiting (nanoseconds since the Epoch)
-  * string: textual reason why it is waiting
-  * uvarint: context pointer of currently running frame
-  * uvarint: address of os thread descriptor (M)
-  * uvarint: top defer record
-  * uvarint: top panic record</p>
+<ul>
+<li>uvarint: address of descriptor</li>
+<li>uvarint: pointer to the top of stack (the currently running frame, a.k.a. depth 0)</li>
+<li>uvarint: go routine ID</li>
+<li>uvarint: the location of the go statement that created this goroutine</li>
+<li>uvarint: status</li>
+<li>bool: is a Go routine started by the system</li>
+<li>bool: is a background Go routine</li>
+<li>uvarint: approximate time the go routine last started waiting (nanoseconds since the Epoch)</li>
+<li>string: textual reason why it is waiting</li>
+<li>uvarint: context pointer of currently running frame</li>
+<li>uvarint: address of os thread descriptor (M)</li>
+<li>uvarint: top defer record</li>
+<li>uvarint: top panic record</li>
+</ul>
 <p>Possible statuses:
   * 0 = idle
   * 1 = runnable
@@ -2351,80 +2361,114 @@
   * 4 = waiting</p>
 <p>The wait fields must be present in all cases, but they only mean something if the status is "waiting".</p>
 <h1 id="stack-frame">stack frame</h1>
-<p>* uvarint: stack pointer (lowest address in frame)
-  * uvarint: depth in stack (0 = top of stack)
-  * uvarint: stack pointer of child frame (or 0 if none)
-  * string: contents of stack frame
-  * uvarint: entry pc for function
-  * uvarint: current pc for function
-  * uvarint: continuation pc for function (where function may resume, if anywhere)
-  * string: function name
-  * fieldlist: list of kind and offset of pointer-containing fields in this frame</p>
+<ul>
+<li>uvarint: stack pointer (lowest address in frame)</li>
+<li>uvarint: depth in stack (0 = top of stack)</li>
+<li>uvarint: stack pointer of child frame (or 0 if none)</li>
+<li>string: contents of stack frame</li>
+<li>uvarint: entry pc for function</li>
+<li>uvarint: current pc for function</li>
+<li>uvarint: continuation pc for function (where function may resume, if anywhere)</li>
+<li>string: function name</li>
+<li>fieldlist: list of kind and offset of pointer-containing fields in this frame</li>
+</ul>
 <h1 id="dump-params">dump params</h1>
-<p>* bool: big endian
-  * uvarint: pointer size in bytes
-  * uvarint: channel header size in bytes
-  * uvarint: starting address of heap
-  * uvarint: ending address of heap
-  * uvarint: thechar = architecture specifier
-  * string: GOEXPERIMENT environment variable value
-  * uvarint: runtime.ncpu</p>
+<ul>
+<li>bool: big endian</li>
+<li>uvarint: pointer size in bytes</li>
+<li>uvarint: channel header size in bytes</li>
+<li>uvarint: starting address of heap</li>
+<li>uvarint: ending address of heap</li>
+<li>uvarint: thechar = architecture specifier</li>
+<li>string: GOEXPERIMENT environment variable value</li>
+<li>uvarint: runtime.ncpu</li>
+</ul>
 <h1 id="finalizer">finalizer</h1>
-<p>* uvarint: address of object that has a finalizer
-  * uvarint: pointer to FuncVal describing the finalizer
-  * uvarint: PC of finalizer entry point
-  * uvarint: type of finalizer argument
-  * uvarint: type of object</p>
+<ul>
+<li>uvarint: address of object that has a finalizer</li>
+<li>uvarint: pointer to FuncVal describing the finalizer</li>
+<li>uvarint: PC of finalizer entry point</li>
+<li>uvarint: type of finalizer argument</li>
+<li>uvarint: type of object</li>
+</ul>
 <p>This finalizer has been registered with the runtime system, but the object to which it refers was either reachable as of the most recent GC or allocated since the most recent GC.</p>
 <h1 id="itab">itab</h1>
-<p>* uvarint: Itab address
-  * bool: whether the data field of an Iface with this itab is a pointer</p>
+<ul>
+<li>uvarint: Itab address</li>
+<li>bool: whether the data field of an Iface with this itab is a pointer</li>
+</ul>
 <h1 id="osthread-m">osthread (M)</h1>
-<p>* uvarint: address of this os thread descriptor
-  * uvarint: Go internal id of thread
-  * uvarint: os's id for thread</p>
+<ul>
+<li>uvarint: address of this os thread descriptor</li>
+<li>uvarint: Go internal id of thread</li>
+<li>uvarint: os's id for thread</li>
+</ul>
 <h1 id="memstats">memstats</h1>
 <p>Dumps the first 26 fields of <a href="http://golang.org/pkg/runtime/#MemStats">MemStats</a>.  All fields are dumped with a uvarint except the 25<sup>th</sup> which is dumped with 256 uvarints.</p>
 <h1 id="queuedfinalizer">queuedfinalizer</h1>
-<p>* uvarint: address of object that has a finalizer
-  * uvarint: pointer to FuncVal describing the finalizer
-  * uvarint: PC of finalizer entry point
-  * uvarint: type of finalizer argument
-  * uvarint: type of object</p>
+<ul>
+<li>uvarint: address of object that has a finalizer</li>
+<li>uvarint: pointer to FuncVal describing the finalizer</li>
+<li>uvarint: PC of finalizer entry point</li>
+<li>uvarint: type of finalizer argument</li>
+<li>uvarint: type of object</li>
+</ul>
 <p>This finalizer is ready to run - the object to which it refers is unreachable.  The runtime system just hasn't gotten around to running it yet.</p>
 <h1 id="data">data</h1>
-<p>* uvarint: address of the start of the data segment
-  * string: contents of the data segment
-  * fieldlist: kind and offset of pointer-containing fields in the data segment.</p>
+<ul>
+<li>uvarint: address of the start of the data segment</li>
+<li>string: contents of the data segment</li>
+<li>fieldlist: kind and offset of pointer-containing fields in the data segment.</li>
+</ul>
 <h1 id="bss">bss</h1>
 <p>Same format as data, but for the bss segment.</p>
 <h1 id="defer">defer</h1>
-<p>* uvarint: defer record address
-  * uvarint: containing goroutine
-  * uvarint: argp
-  * uvarint: pc
-  * uvarint: FuncVal of defer
-  * uvarint: PC of defer entry point
-  * uvarint: link to next defer record</p>
+<ul>
+<li>uvarint: defer record address</li>
+<li>uvarint: containing goroutine</li>
+<li>uvarint: argp</li>
+<li>uvarint: pc</li>
+<li>uvarint: FuncVal of defer</li>
+<li>uvarint: PC of defer entry point</li>
+<li>uvarint: link to next defer record</li>
+</ul>
 <h1 id="panic">panic</h1>
-<p>* uvarint: panic record address
-  * uvarint: containing goroutine
-  * uvarint: type ptr of panic arg eface
-  * uvarint: data field of panic arg eface
-  * uvarint: ptr to defer record that's currently running
-  * uvarint: link to next panic record</p>
+<ul>
+<li>uvarint: panic record address</li>
+<li>uvarint: containing goroutine</li>
+<li>uvarint: type ptr of panic arg eface</li>
+<li>uvarint: data field of panic arg eface</li>
+<li>uvarint: ptr to defer record that's currently running</li>
+<li>uvarint: link to next panic record</li>
+</ul>
 <h1 id="allocfree-profile-record">alloc/free profile record</h1>
-<p>* uvarint: record identifier
-  * uvarint: size of allocated object
-  * uvarint: number of stack frames.  For each frame:
-  * - string: function name
-  * - string: file name
-  * - uvarint: line number
-  * uvarint: number of allocations
-  * uvarint: number of frees</p>
+<ul>
+<li>uvarint: record identifier</li>
+<li>uvarint: size of allocated object</li>
+<li>uvarint: number of stack frames.  For each frame:</li>
+<li>
+<ul>
+<li>string: function name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>string: file name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>uvarint: line number</li>
+</ul>
+</li>
+<li>uvarint: number of allocations</li>
+<li>uvarint: number of frees</li>
+</ul>
 <h1 id="alloc-sample-record">alloc sample record</h1>
-<p>* uvarint: address of object
-  * uvarint: alloc/free profile record identifier</p>
+<ul>
+<li>uvarint: address of object</li>
+<li>uvarint: alloc/free profile record identifier</li>
+</ul>
                 
                   
                 

@@ -2284,14 +2284,18 @@
 <p>If you want to run your Go programs on a platform that is not supported by the standard Go compiler <em>gc</em> you can build a version of the GCC compiler that targets your desired target platform, since GCC supports many more platforms. This is possible because there is a Go frontend to GCC named <a href="https://github.com/golang/gofrontend">gccgo</a>.</p>
 <h1 id="details">Details</h1>
 <h2 id="definitions">Definitions</h2>
-<p>* <strong>Build</strong> This is the computer where you are building the cross-compiler.
-  * <strong>Host</strong> The computer that will run the cross-compiler once it's built. This is usually the same as Build.
-  * <strong>Target</strong> This is the destination system, where you want the cross-compiled program to run.</p>
+<ul>
+<li><strong>Build</strong> This is the computer where you are building the cross-compiler.</li>
+<li><strong>Host</strong> The computer that will run the cross-compiler once it's built. This is usually the same as Build.</li>
+<li><strong>Target</strong> This is the destination system, where you want the cross-compiled program to run.</li>
+</ul>
 <p>More definitions and complex cross situations can be found at the <a href="http://en.wikipedia.org/wiki/Cross_compiler">Wikipedia article</a>.</p>
 <h2 id="go-tools-and-gccgo">Go tools and gccgo</h2>
 <p>You will later need to source code to the Go tool, so you might as well uninstall the version you have installed from your package manager to avoid confusion  (fully optional tho). Also build &amp; install gccgo targeting host(!, that's right, you need a gcco compiling for not only target but one for host).</p>
-<p>* <a href="http://golang.org/doc/install/source">Installing Go from source</a>
-  * <a href="http://golang.org/doc/install/gccgo">Official Go documentation</a></p>
+<ul>
+<li><a href="http://golang.org/doc/install/source">Installing Go from source</a></li>
+<li><a href="http://golang.org/doc/install/gccgo">Official Go documentation</a></li>
+</ul>
 <h2 id="build-the-cross-compiler">Build the cross-compiler</h2>
 <h3 id="build">Build</h3>
 <p>First you have to build your cross-compiling version of GCC. This is complex process as it requires several stages with bootstrapping since there are mutual dependency relations between GCC and libc implementations. A very fine tutorial on how to build a GCC cross-toolchain with eglic (works with glibc too) was written by Jim Blandy and posted at eglibc's mailinglist <a href="http://www.eglibc.org/archives/patches/msg00078.html">patches Cross-building instructions</a>. In the final stage where the full GCC is built, simply configure script with <em>--enable-languages=c,c++,go</em> (see <a href="http://golang.org/doc/install/gccgo">official Go documentation</a>).</p>
@@ -2330,10 +2334,11 @@ done
 <p>If you haven't compiled a shared object of the go library, <em>libgo</em>, for your target you might want to compile your Go programs statically, just like <em>gc</em> does, to include all what is needed to run your program. Do this by adding the <em>-static</em> switch to gccgo. If you're unsure how your produced ELF file is linked, inspect it with <em>readelf -d <code>&lt;elf&gt;</code></em> or <em>objdump -T <code>&lt;elf&gt;</code></em>.</p>
 <h2 id="build-a-cross-gccgo-aware-version-of-the-go-tool">Build a cross-gccgo aware version of the Go tool</h2>
 <h3 id="assumptions">Assumptions</h3>
-<p>* Assuming that you've followed the instructions on <a href="http://golang.org/doc/install/source">Installing Go from source</a> you should have a checked out version of the go source at <em><span><span class="MathJax_Preview">GOROOT_.
-  * Envvar _</span><script type="math/tex">GOROOT_.
-  * Envvar _</script></span>GOROOT</em> is set.
-  * The envvars <em><span><span class="MathJax_Preview">GOARCH_ and _</span><script type="math/tex">GOARCH_ and _</script></span>GOOS</em> represent the <strong>target</strong> architecture and operating system. Figure these out and set them to these values when you want to cross-compile.</p>
+<ul>
+<li>Assuming that you've followed the instructions on <a href="http://golang.org/doc/install/source">Installing Go from source</a> you should have a checked out version of the go source at <em>$GOROOT</em>.</li>
+<li>Envvar <em>$GOROOT</em> is set.</li>
+<li>The envvars <em><span><span class="MathJax_Preview">GOARCH_ and _</span><script type="math/tex">GOARCH_ and _</script></span>GOOS</em> represent the <strong>target</strong> architecture and operating system. Figure these out and set them to these values when you want to cross-compile.</li>
+</ul>
 <h3 id="build_1">Build</h3>
 <p>You can specify the compiler to use when building with the go tool with <em>go build -compiler gccgo <code>&lt;go-package,files&gt;</code></em>. This is however not enough. If you have set <em><span><span class="MathJax_Preview">GOARCH_ and _</span><script type="math/tex">GOARCH_ and _</script></span>GOOS</em> to something that is not supported by <em>gc</em> but with <em>gccgo</em> you have to build a special version of the go tool that understands these extra architectures. If you compile another version of the go tool with the go tool but specify to use gccgo targeting your host, the resulting go tool will be able to compile programs with all the architectures supported by gccgo.</p>
 <p><div class="highlight"><pre><span></span>    $ cd ~/tmp

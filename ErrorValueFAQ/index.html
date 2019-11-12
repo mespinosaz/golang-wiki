@@ -2408,24 +2408,24 @@
    becomes
    <div class="highlight"><pre><span></span>if errors.Is(err, io.ErrUnexpectedEOF)
 </pre></div></p>
-<ul>
-<li>Checks of the form <code>if err != nil</code> need not be changed.</li>
-<li>Comparisons to <code>io.EOF</code> need not be changed, because <code>io.EOF</code> should never be wrapped.</li>
-</ul>
 </li>
-</ul>
-<ul>
-<li>If you check for an error type using a type assertion or type switch, use <code>errors.As</code> instead. Example:
+<li>
+<p>Checks of the form <code>if err != nil</code> need not be changed.</p>
+</li>
+<li>
+<p>Comparisons to <code>io.EOF</code> need not be changed, because <code>io.EOF</code> should never be wrapped.</p>
+</li>
+<li>
+<p>If you check for an error type using a type assertion or type switch, use <code>errors.As</code> instead. Example:
   <div class="highlight"><pre><span></span>if e, ok := err.(*os.PathError); ok
 </pre></div>
   becomes
   <div class="highlight"><pre><span></span>var e *os.PathError
 if errors.As(err, &amp;e)
-</pre></div><ul>
+</pre></div></p>
+</li>
 <li>Also use this pattern to check whether an error implements an interface. (This is one of those rare cases when a pointer to an interface is appropriate.)</li>
 <li>Rewrite a type switch as a sequence of if-elses.</li>
-</ul>
-</li>
 </ul>
 <h2 id="i-am-already-using-fmterrorf-with-v-or-s-to-provide-context-for-an-error-when-should-i-switch-to-w">I am already using <code>fmt.Errorf</code> with <code>%v</code> or <code>%s</code> to provide context for an error. When should I switch to <code>%w</code>?</h2>
 <p>It's common to see code like

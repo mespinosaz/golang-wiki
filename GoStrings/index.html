@@ -2264,9 +2264,11 @@
                 <p>Strings are <strong>not</strong> required to be UTF-8. Go source code <strong>is</strong> required
 to be UTF-8. There is a complex path between the two.</p>
 <p>In short, there are three kinds of strings. They are:</p>
-<p>1. the substring of the source that lexes into a string literal.
-  1. a string literal.
-  1. a value of type string.</p>
+<ol>
+<li>the substring of the source that lexes into a string literal.</li>
+<li>a string literal.</li>
+<li>a value of type string.</li>
+</ol>
 <p>Only the first is required to be UTF-8. The second is required to be
 written in UTF-8, but its contents are interpreted various ways
 and may encode arbitrary bytes. The third can contain any bytes at

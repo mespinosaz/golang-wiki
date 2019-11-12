@@ -2328,27 +2328,41 @@
 <h2 id="steps">Steps</h2>
 <ol>
 <li>Create a new empty Gerrit repository at <a href="https://go.googlesource.com">https://go.googlesource.com</a>, complete with a description.</li>
-<li>Create a new empty GitHub repository at <a href="https://github.com/golang">https://github.com/golang</a> with the same name and description.
-    - Turn off Wikis, Issues, Projects in repository settings.
-    - On "Collaborators &amp; teams" tab:
-        - Add "golang org admins" team with Admin access.
-        - Add "gophers" team with Write access.
-        - Add "robots" team with Write access (can only be done by a maintainer of golang organization; ask someone else if you're not).
-    - Create "cla: yes" and "cla: no" labels, they need to exist so that <a href="https://github.com/googlebot">@googlebot</a> can automatically apply them. (Without a "cla: yes" label, PRs won't be imported into Gerrit.)</li>
-<li>Modify 3 x/build commands:
-    - In <code>cmd/gitmirror</code>, add the new repo to <code>shouldMirror</code> function.
-    - In <code>maintner/maintnerd</code>, add the new repo to <code>goGitHubProjects</code> slice.
-    - In <code>cmd/gerritbot</code>, add the new repo to <code>gerritProjectWhitelist</code> map.
-    - See <a href="https://golang.org/cl/133896">an example CL</a> for all 3 changes.</li>
-<li>Modify 1 x/website command:
-    - In <code>cmd/golangorg</code>, add the new repo to <code>xMap</code> map.
-        - See <a href="https://golang.org/cl/160137">an example CL</a>.</li>
-<li>Redeploy all affected commands in the following order:
-    1. <code>cmd/gitmirror</code> first
-    2. <code>maintner/maintnerd</code> second
-        - Note that it's expected for the new repo not to appear in maintner until first issue or PR is created (see <a href="https://golang.org/issue/25744">#25744</a>).
-    3. <code>cmd/gerritbot</code> third
-    4. <code>cmd/golangorg</code> fourth</li>
+<li>Create a new empty GitHub repository at <a href="https://github.com/golang">https://github.com/golang</a> with the same name and description.<ul>
+<li>Turn off Wikis, Issues, Projects in repository settings.</li>
+<li>On "Collaborators &amp; teams" tab:<ul>
+<li>Add "golang org admins" team with Admin access.</li>
+<li>Add "gophers" team with Write access.</li>
+<li>Add "robots" team with Write access (can only be done by a maintainer of golang organization; ask someone else if you're not).</li>
+</ul>
+</li>
+<li>Create "cla: yes" and "cla: no" labels, they need to exist so that <a href="https://github.com/googlebot">@googlebot</a> can automatically apply them. (Without a "cla: yes" label, PRs won't be imported into Gerrit.)</li>
+</ul>
+</li>
+<li>Modify 3 x/build commands:<ul>
+<li>In <code>cmd/gitmirror</code>, add the new repo to <code>shouldMirror</code> function.</li>
+<li>In <code>maintner/maintnerd</code>, add the new repo to <code>goGitHubProjects</code> slice.</li>
+<li>In <code>cmd/gerritbot</code>, add the new repo to <code>gerritProjectWhitelist</code> map.</li>
+<li>See <a href="https://golang.org/cl/133896">an example CL</a> for all 3 changes.</li>
+</ul>
+</li>
+<li>Modify 1 x/website command:<ul>
+<li>In <code>cmd/golangorg</code>, add the new repo to <code>xMap</code> map.<ul>
+<li>See <a href="https://golang.org/cl/160137">an example CL</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Redeploy all affected commands in the following order:<ol>
+<li><code>cmd/gitmirror</code> first</li>
+<li><code>maintner/maintnerd</code> second<ul>
+<li>Note that it's expected for the new repo not to appear in maintner until first issue or PR is created (see <a href="https://golang.org/issue/25744">#25744</a>).</li>
+</ul>
+</li>
+<li><code>cmd/gerritbot</code> third</li>
+<li><code>cmd/golangorg</code> fourth</li>
+</ol>
+</li>
 </ol>
                 
                   
