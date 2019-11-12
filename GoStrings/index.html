@@ -1302,18 +1302,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1386,18 +1374,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1434,8 +1410,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -1962,7 +1938,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2190,18 +2166,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2240,18 +2204,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -2312,11 +2264,9 @@
                 <p>Strings are <strong>not</strong> required to be UTF-8. Go source code <strong>is</strong> required
 to be UTF-8. There is a complex path between the two.</p>
 <p>In short, there are three kinds of strings. They are:</p>
-<ol>
-<li>the substring of the source that lexes into a string literal.</li>
-<li>a string literal.</li>
-<li>a value of type string.</li>
-</ol>
+<p>1. the substring of the source that lexes into a string literal.
+  1. a string literal.
+  1. a value of type string.</p>
 <p>Only the first is required to be UTF-8. The second is required to be
 written in UTF-8, but its contents are interpreted various ways
 and may encode arbitrary bytes. The third can contain any bytes at

@@ -1299,18 +1299,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1383,18 +1371,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1431,8 +1407,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -2662,7 +2638,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2890,18 +2866,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2940,18 +2904,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -3713,54 +3665,58 @@
 <p>Three notable changes:</p>
 <ol>
 <li>
-<p>The <code>go</code> tool now defaults to downloading modules from the public Go module mirror at <a href="https://proxy.golang.org">https://proxy.golang.org</a>, and also defaults to validating downloaded modules (regardless of source) against the public Go checksum database at <a href="https://sum.golang.org">https://sum.golang.org</a>.</p>
-<ul>
-<li>If you have private code, you most likely should configure the <code>GOPRIVATE</code> setting (such as <code>go env -w GOPRIVATE=*.corp.com,github.com/secret/repo</code>), or the more fine-grained variants <code>GONOPROXY</code> or <code>GONOSUMDB</code> that support less frequent use cases. See the <a href="https://golang.org/cmd/go/#hdr-Module_configuration_for_non_public_modules">documentation</a> for more details.</li>
-</ul>
+<p>The <code>go</code> tool now defaults to downloading modules from the public Go module mirror at <a href="https://proxy.golang.org">https://proxy.golang.org</a>, and also defaults to validating downloaded modules (regardless of source) against the public Go checksum database at <a href="https://sum.golang.org">https://sum.golang.org</a>.
+     * If you have private code, you most likely should configure the <code>GOPRIVATE</code> setting (such as <code>go env -w GOPRIVATE=*.corp.com,github.com/secret/repo</code>), or the more fine-grained variants <code>GONOPROXY</code> or <code>GONOSUMDB</code> that support less frequent use cases. See the <a href="https://golang.org/cmd/go/#hdr-Module_configuration_for_non_public_modules">documentation</a> for more details.</p>
 </li>
 <li>
 <p><code>GO111MODULE=auto</code> enables module-mode if any go.mod is found, even inside GOPATH. (Prior to Go 1.13, <code>GO111MODULE=auto</code> would never enable module-mode inside GOPATH).</p>
 </li>
 <li>
-<p><code>go get</code> arguments have changed:</p>
-<ul>
-<li><code>go get -u</code> (without any arguments) now only upgrades the direct and indirect dependencies of your current <em>package</em>, and no longer examines your entire <em>module</em>.</li>
-<li><code>go get -u ./...</code> from your module root upgrades all the direct and indirect dependencies of your module, and now excludes test dependencies.</li>
-<li><code>go get -u -t ./...</code> is similar, but also upgrades test dependencies.</li>
-<li><code>go get</code> no longer supports <code>-m</code> (because it would have largely overlapped with <code>go get -d</code> due to other changes;  you can usually replace <code>go get -m foo</code> with <code>go get -d foo</code>).</li>
-</ul>
+<p><code>go get</code> arguments have changed:
+     * <code>go get -u</code> (without any arguments) now only upgrades the direct and indirect dependencies of your current <em>package</em>, and no longer examines your entire <em>module</em>.
+     * <code>go get -u ./...</code> from your module root upgrades all the direct and indirect dependencies of your module, and now excludes test dependencies.
+     * <code>go get -u -t ./...</code> is similar, but also upgrades test dependencies.
+     * <code>go get</code> no longer supports <code>-m</code> (because it would have largely overlapped with <code>go get -d</code> due to other changes;  you can usually replace <code>go get -m foo</code> with <code>go get -d foo</code>).</p>
 </li>
 </ol>
 <p>Please see the <a href="https://golang.org/doc/go1.13#modules">release notes</a> for more details on these and other changes.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <p>The "Quick Start" and "New Concepts" sections are particularly important for someone who is starting to work with modules. The "How to..." sections cover more details on mechanics. The largest quantity of content on this page is in the FAQs answering more specific questions; it can be worthwhile to at least skim the FAQ one-liners listed here.</p>
 <ul>
-<li><a href="https://github.com/golang/go/wiki/Modules#quick-start">Quick Start</a></li>
+<li><a href="https://github.com/golang/go/wiki/Modules#quick-start">Quick Start</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#example">Example</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#daily-workflow">Daily Workflow</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#new-concepts">New Concepts</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#new-concepts">New Concepts</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#modules">Modules</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#gomod">go.mod</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#version-selection">Version Selection</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">Semantic Import Versioning</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#how-to-use-modules">How to Use Modules</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#how-to-use-modules">How to Use Modules</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-to-install-and-activate-module-support">How to Install and Activate Module Support</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-to-define-a-module">How to Define a Module</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">How to Upgrade and Downgrade Dependencies</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-to-prepare-for-a-release">How to Prepare for a Release (All Versions)</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher">How to Prepare for a Release (v2 or Higher)</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#publishing-a-release">Publishing a Release</a></li>
+</ul>
+</li>
 <li><a href="https://github.com/golang/go/wiki/Modules#migrating-to-modules">Migrating to Modules</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#additional-resources">Additional Resources</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#changes-since-the-initial-vgo-proposal">Changes Since the Initial Vgo Proposal</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#github-issues">GitHub Issues</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs">FAQs</a></li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs">FAQs</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-are-versions-marked-as-incompatible">How are versions marked as incompatible?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#when-do-i-get-old-behavior-vs-new-module-based-behavior">When do I get old behavior vs. new module-based behavior?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-does-installing-a-tool-via-go-get-fail-with-error-cannot-find-main-module">Why does installing a tool via 'go get' fail with error 'cannot find main module'?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module">How can I track tool dependencies for a module?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-is-the-status-of-module-support-in-ides-editors-and-standard-tools-like-goimports-gorename-etc">What is the status of module support in IDEs, editors and standard tools like goimports, gorename, etc.?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--additional-control">FAQs — Additional Control</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--additional-control">FAQs — Additional Control</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-community-tooling-exists-for-working-with-modules">What community tooling exists for working with modules?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#when-should-i-use-the-replace-directive">When should I use the 'replace' directive?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-i-work-entirely-outside-of-vcs-on-my-local-filesystem">Can I work entirely outside of VCS on my local filesystem?</a></li>
@@ -3768,12 +3724,16 @@
 <li><a href="https://github.com/golang/go/wiki/Modules#are-there-always-on-module-repositories-and-enterprise-proxies">Are there "always on" module repositories and enterprise proxies?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-i-control-when-gomod-gets-updated-and-when-the-go-tools-use-the-network-to-satisfy-dependencies">Can I control when go.mod gets updated and when the go tools use the network to satisfy dependencies?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-modules-with-ci-systems-such-as-travis-or-circleci">How do I use modules with CI systems such as Travis or CircleCI?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--gomod-and-gosum">FAQs — go.mod and go.sum</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--gomod-and-gosum">FAQs — go.mod and go.sum</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-does-go-mod-tidy-record-indirect-and-test-dependencies-in-my-gomod">Why does 'go mod tidy' record indirect and test dependencies in my 'go.mod'?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#is-gosum-a-lock-file-why-does-gosum-include-information-for-module-versions-i-am-no-longer-using">Is 'go.sum' a lock file? Why does 'go.sum' include information for module versions I am no longer using?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#should-i-still-add-a-gomod-file-if-i-do-not-have-any-dependencies">Should I still add a 'go.mod' file if I do not have any dependencies?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file">Should I commit my 'go.sum' file as well as my 'go.mod' file?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--semantic-import-versioning">FAQs — Semantic Import Versioning</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--semantic-import-versioning">FAQs — Semantic Import Versioning</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-must-major-version-numbers-appear-in-import-paths">Why must major version numbers appear in import paths?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-are-major-versions-v0-v1-omitted-from-import-paths">Why are major versions v0, v1 omitted from import paths?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-are-some-implications-of-tagging-my-project-with-major-version-v0-v1-or-making-breaking-changes-with-v2">What are some implications of tagging my project with major version v0, v1, or making breaking changes with v2+?</a></li>
@@ -3782,16 +3742,22 @@
 <li><a href="https://github.com/golang/go/wiki/Modules#how-are-v2-modules-treated-in-a-build-if-modules-support-is-not-enabled-how-does-minimal-module-compatibility-work-in-197-1103-and-111">How are v2+ modules treated in a build if modules support is not enabled? How does "minimal module compatibility" work in 1.9.7+, 1.10.3+, and 1.11?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-happens-if-i-create-a-gomod-but-do-not-apply-semver-tags-to-my-repository">What happens if I create a go.mod but do not apply semver tags to my repository?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-a-module-depend-on-a-different-version-of-itself">Can a module depend on a different version of itself?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--multi-module-repositories">FAQs — Multi-Module Repositories</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--multi-module-repositories">FAQs — Multi-Module Repositories</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-are-multi-module-repositories">What are multi-module repositories?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#should-i-have-multiple-modules-in-a-single-repository">Should I have multiple modules in a single repository?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#is-it-possible-to-add-a-module-to-a-multi-module-repository">Is it possible to add a module to a multi-module repository?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#is-it-possible-to-remove-a-module-from-a-multi-module-repository">Is it possible to remove a module from a multi-module repository?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-a-module-depend-on-an-internal-in-another">Can a module depend on an internal/ in another?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-an-additional-gomod-exclude-unnecessary-content-do-modules-have-the-equivalent-of-a-gitignore-file">Can an additional go.mod exclude unnecessary content? Do modules have the equivalent of a .gitignore file?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--minimal-version-selection">FAQs — Minimal Version Selection</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--minimal-version-selection">FAQs — Minimal Version Selection</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#wont-minimal-version-selection-keep-developers-from-getting-important-updates">Won't minimal version selection keep developers from getting important updates?</a></li>
-<li><a href="https://github.com/golang/go/wiki/Modules#faqs--possible-problems">FAQs — Possible Problems</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/golang/go/wiki/Modules#faqs--possible-problems">FAQs — Possible Problems</a><ul>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-are-some-general-things-i-can-spot-check-if-i-am-seeing-a-problem">What are some general things I can spot check if I am seeing a problem?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#what-can-i-check-if-i-am-not-seeing-the-expected-version-of-a-dependency">What can I check if I am not seeing the expected version of a dependency?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-am-i-getting-an-error-cannot-find-module-providing-package-foo">Why am I getting an error 'cannot find module providing package foo'?</a></li>
@@ -3801,6 +3767,8 @@
 <li><a href="https://github.com/golang/go/wiki/Modules#why-does-go-build-require-gcc-and-why-are-prebuilt-packages-such-as-nethttp-not-used">Why does 'go build' require gcc, and why are prebuilt packages such as net/http not used?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#do-modules-work-with-relative-imports-like-import-subdir">Do modules work with relative imports like <code>import "./subdir"</code>?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#some-needed-files-may-not-be-present-in-populated-vendor-directory">Some needed files may not be present in populated vendor directory</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="quick-start">Quick Start</h2>
 <h4 id="example">Example</h4>
@@ -3951,42 +3919,44 @@ the new package must be backwards compatible with the old package."</p>
 <h3 id="how-to-define-a-module">How to Define a Module</h3>
 <p>To create a <code>go.mod</code> for an existing project:</p>
 <ol>
-<li>Navigate to the root of the module's source tree outside of GOPATH:</li>
-</ol>
+<li>
+<p>Navigate to the root of the module's source tree outside of GOPATH:</p>
 <p><div class="highlight"><pre><span></span>$ cd &lt;project path outside $GOPATH/src&gt;         # e.g., cd ~/projects/hello
 </pre></div>
-   Note that outside of GOPATH, you do not need to set <code>GO111MODULE</code> to activate module mode.</p>
+ Note that outside of GOPATH, you do not need to set <code>GO111MODULE</code> to activate module mode.</p>
 <p>Alternatively, if you want to work in your GOPATH:</p>
 <div class="highlight"><pre><span></span>$ export GO111MODULE=on                         # manually active module mode
 $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you/hello
 </pre></div>
 
-<ol>
-<li>Create the initial module definition and write it to the <code>go.mod</code> file:</li>
-</ol>
+</li>
+<li>
+<p>Create the initial module definition and write it to the <code>go.mod</code> file:</p>
 <p><div class="highlight"><pre><span></span>$ go mod init                  
 </pre></div>
-   This step converts from any existing <a href="https://github.com/golang/dep"><code>dep</code></a> <code>Gopkg.lock</code> file or any of the other <a href="https://tip.golang.org/pkg/cmd/go/internal/modconv/?m=all#pkg-variables">nine total supported dependency formats</a>, adding require statements to match the existing configuration.</p>
+ This step converts from any existing <a href="https://github.com/golang/dep"><code>dep</code></a> <code>Gopkg.lock</code> file or any of the other <a href="https://tip.golang.org/pkg/cmd/go/internal/modconv/?m=all#pkg-variables">nine total supported dependency formats</a>, adding require statements to match the existing configuration.</p>
 <p><code>go mod init</code> will often be able to use auxiliary data (such as VCS meta-data) to automatically determine the appropriate module path, but if <code>go mod init</code> states it can not automatically determine the module path, or if you need to otherwise override that path, you can supply the <a href="https://github.com/golang/go/wiki/Modules#gomod">module path</a> as an optional argument to <code>go mod init</code>, for example:</p>
 <div class="highlight"><pre><span></span>$ go mod init github.com/my/repo
 </pre></div>
 
 <p>Note that if your dependencies include v2+ modules, or if you are initializing a v2+ module, then after running <code>go mod init</code> you might also need to edit your <code>go.mod</code> and <code>.go</code> code to add <code>/vN</code> to import paths and module paths as described in the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import Versioning"</a> section above. This applies even if <code>go mod init</code> automatically converted your dependency information from <code>dep</code> or other dependency managers. (Because of this, after running <code>go mod init</code>, you typically should not run <code>go mod tidy</code> until you have successfully run <code>go build ./...</code> or similar, which is the sequence shown in this section).</p>
-<ol>
-<li>Build the module. When executed from the root directory of a module, the <code>./...</code> pattern matches all the packages within the current module.  <code>go build</code> will automatically add missing or unconverted dependencies as needed to satisfy imports for this particular build invocation:</li>
-</ol>
+</li>
+<li>
+<p>Build the module. When executed from the root directory of a module, the <code>./...</code> pattern matches all the packages within the current module.  <code>go build</code> will automatically add missing or unconverted dependencies as needed to satisfy imports for this particular build invocation:</p>
 <p><div class="highlight"><pre><span></span>$ go build ./...
 </pre></div>
 4. Test the module as configured to ensure that it works with the selected versions:</p>
 <div class="highlight"><pre><span></span>$ go test ./...
 </pre></div>
 
-<ol>
-<li>(Optional) Run the tests for your module plus the tests for all direct and indirect dependencies to check for incompatibilities:</li>
-</ol>
+</li>
+<li>
+<p>(Optional) Run the tests for your module plus the tests for all direct and indirect dependencies to check for incompatibilities:</p>
 <div class="highlight"><pre><span></span>$ go test all
 </pre></div>
 
+</li>
+</ol>
 <p>Prior to tagging a release, see the <a href="https://github.com/golang/go/wiki/Modules#how-to-prepare-for-a-release">"How to Prepare for a Release"</a> section below.</p>
 <p>For more information on all of these topics, the primary entry point to the official modules documentation is <a href="https://golang.org/cmd/go/#hdr-Modules__module_versions__and_more">available on golang.org</a>.</p>
 <h2 id="how-to-upgrade-and-downgrade-dependencies">How to Upgrade and Downgrade Dependencies</h2>
@@ -4013,40 +3983,44 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <p>Best practices for creating a release of a module are expected to emerge as part of the initial modules experiment. Many of these might end up being automated by a <a href="https://github.com/golang/go/issues/26420">future 'go release' tool</a>.</p>
 <p>Some current suggested best practices to consider prior to tagging a release:</p>
 <ul>
-<li>Run <code>go mod tidy</code> to possibly prune any extraneous requirements (as described <a href="https://tip.golang.org/cmd/go/#hdr-Maintaining_module_requirements">here</a>) and also ensure your current go.mod reflects all possible build tags/OS/architecture combinations (as described <a href="https://github.com/golang/go/issues/25971#issuecomment-399091682">here</a>). </li>
-<li>
-<p>In contrast, other commands like <code>go build</code> and <code>go test</code> will not remove dependencies from <code>go.mod</code> that are no longer required and only update <code>go.mod</code> based on the current build invocation's tags/OS/architecture.</p>
+<li>Run <code>go mod tidy</code> to possibly prune any extraneous requirements (as described <a href="https://tip.golang.org/cmd/go/#hdr-Maintaining_module_requirements">here</a>) and also ensure your current go.mod reflects all possible build tags/OS/architecture combinations (as described <a href="https://github.com/golang/go/issues/25971#issuecomment-399091682">here</a>). <ul>
+<li>In contrast, other commands like <code>go build</code> and <code>go test</code> will not remove dependencies from <code>go.mod</code> that are no longer required and only update <code>go.mod</code> based on the current build invocation's tags/OS/architecture.</li>
+</ul>
 </li>
-<li>
-<p>Run <code>go test all</code> to test your module (including running the tests for your direct and indirect dependencies) as a way of validating that the currently selected package versions are compatible. </p>
-</li>
+</ul>
+<ul>
+<li>Run <code>go test all</code> to test your module (including running the tests for your direct and indirect dependencies) as a way of validating that the currently selected package versions are compatible. <ul>
 <li>The number of possible version combinations is exponential in the number of modules, so in general, you cannot expect your dependencies to have tested against all possible combinations of their dependencies.</li>
-<li>
-<p>As part of the modules work, <code>go test all</code> has been <a href="https://research.swtch.com/vgo-cmd">re-defined to be more useful</a>: to include all the packages in the current module plus all the packages they depend on through a sequence of one or more imports while excluding packages that don't matter in the current module.</p>
+<li>As part of the modules work, <code>go test all</code> has been <a href="https://research.swtch.com/vgo-cmd">re-defined to be more useful</a>: to include all the packages in the current module plus all the packages they depend on through a sequence of one or more imports while excluding packages that don't matter in the current module.</li>
+</ul>
 </li>
-<li>
-<p>Ensure your <code>go.sum</code> file is committed along with your <code>go.mod</code> file. See <a href="https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file">FAQ below</a> for more details and rationale. </p>
-</li>
+</ul>
+<ul>
+<li>Ensure your <code>go.sum</code> file is committed along with your <code>go.mod</code> file. See <a href="https://github.com/golang/go/wiki/Modules#should-i-commit-my-gosum-file-as-well-as-my-gomod-file">FAQ below</a> for more details and rationale. </li>
 </ul>
 <h3 id="releasing-modules-v2-or-higher">Releasing Modules (v2 or Higher)</h3>
 <p>If you are releasing a v2 or higher module, please first review the discussion in the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import Versioning" </a> section above, which includes why major versions are included in the module path and import path for v2+ modules, as well as how Go versions 1.9.7+ and 1.10.3+ have been updated to simplify that transition.</p>
 <p>Note that if you are adopting modules for the first time for a pre-existing repository or set of packages that have already been tagged <code>v2.0.0</code> or higher before adopting modules, then the <a href="https://github.com/golang/go/issues/25967#issuecomment-422828770">recommended best practice</a> is to increment the major version when first adopting modules. For example, if you are the author of <code>foo</code>, and the latest tag for the <code>foo</code> repository is <code>v2.2.2</code>, and <code>foo</code> has not yet adopted modules, then the best practice would be to use <code>v3.0.0</code> for the first release of <code>foo</code> to adopt modules (and hence the first release of <code>foo</code> to contain a <code>go.mod</code> file). Incrementing the major version in this case provides greater clarity to consumers of <code>foo</code>, allows for additional non-module patches or minor releases on the v2 series of <code>foo</code> if needed, and provides a strong signal for a module-based consumer of <code>foo</code> that different major versions result if you do <code>import "foo"</code> and a corresponding <code>require foo v2.2.2+incompatible</code>, vs. <code>import "foo/v3"</code> and a corresponding <code>require foo/v3 v3.0.0</code>. (Note that this advice regarding incrementing the major version when first adopting modules does <em>not</em> apply to pre-existing repos or packages whose latest versions are v0.x.x or v1.x.x).</p>
 <p>There are two alternative mechanisms to release a v2 or higher module. Note that with both techniques, the new module release becomes available to consumers when the module author pushes the new tags. Using the example of creating a <code>v3.0.0</code> release, the two options are:</p>
 <ol>
-<li><strong>Major branch</strong>: Update the <code>go.mod</code> file to include a <code>/v3</code> at the end of the module path in the <code>module</code> directive (e.g., <code>module github.com/my/module/v3</code>). Update import statements within the module to also use <code>/v3</code> (e.g., <code>import "github.com/my/module/v3/mypkg"</code>). Tag the release with <code>v3.0.0</code>. </li>
+<li>
+<p><strong>Major branch</strong>: Update the <code>go.mod</code> file to include a <code>/v3</code> at the end of the module path in the <code>module</code> directive (e.g., <code>module github.com/my/module/v3</code>). Update import statements within the module to also use <code>/v3</code> (e.g., <code>import "github.com/my/module/v3/mypkg"</code>). Tag the release with <code>v3.0.0</code>. </p>
+<ul>
 <li>Go versions 1.9.7+, 1.10.3+, and 1.11 are able to properly consume and build a v2+ module created using this approach without requiring updates to consumer code that has not yet opted in to modules (as described in the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import Versioning"</a> section above). </li>
 <li>A community tool <a href="https://github.com/marwan-at-work/mod">github.com/marwan-at-work/mod</a> helps automate this procedure. See the <a href="https://github.com/marwan-at-work/mod">repository</a> or the <a href="https://github.com/golang/go/wiki/Modules#what-community-tooling-exists-for-working-with-modules">community tooling FAQ</a> below for an overview.</li>
 <li>To avoid confusion with this approach, consider putting the <code>v3.*.*</code> commits for the module on a separate v3 branch.</li>
 <li><strong>Note:</strong> creating a new branch is <em>not</em> required. If instead you have been previously releasing on master and would prefer to tag <code>v3.0.0</code> on master, that is a viable option. (However, be aware that introducing an incompatible API change in <code>master</code> can cause issues for non-modules users who issue a <code>go get -u</code> given the <code>go</code> tool is not aware of <a href="https://semver.org">semver</a> prior to Go 1.11 or when <a href="https://github.com/golang/go/wiki/Modules#when-do-i-get-old-behavior-vs-new-module-based-behavior">module mode</a> is not enabled in Go 1.11+).</li>
-<li>
-<p>Pre-existing dependency management solutions such as <code>dep</code> currently can have problems consuming a v2+ module created in this way. See for example <a href="https://github.com/golang/dep/issues/1962">dep#1962</a>.</p>
+<li>Pre-existing dependency management solutions such as <code>dep</code> currently can have problems consuming a v2+ module created in this way. See for example <a href="https://github.com/golang/dep/issues/1962">dep#1962</a>.</li>
+</ul>
 </li>
 <li>
 <p><strong>Major subdirectory</strong>: Create a new <code>v3</code> subdirectory (e.g., <code>my/module/v3</code>) and place a new <code>go.mod</code> file in that subdirectory. The module path must end with <code>/v3</code>. Copy or move the code into the <code>v3</code> subdirectory. Update import statements within the module to also use <code>/v3</code> (e.g., <code>import "github.com/my/module/v3/mypkg"</code>). Tag the release with <code>v3.0.0</code>.</p>
-</li>
+<ul>
 <li>This provides greater backwards-compatibility. In particular, Go versions older than 1.9.7 and 1.10.3 are also able to properly consume and build a v2+ module created using this approach.</li>
 <li>A more sophisticated approach here could exploit type aliases (introduced in Go 1.9) and forwarding shims between major versions residing in different subdirectories.  This can provide additional compatibility and allow one major version to be implemented in terms of another major version but would entail more work for a module author. An in-progress tool to automate this is <code>goforward</code>. Please see <a href="https://golang.org/cl/137076">here</a> for more details and rationale, along with a functioning initial version of <code>goforward</code>.</li>
 <li>Pre-existing dependency management solutions such as <code>dep</code> should be able to consume a v2+ module created in this way. </li>
+</ul>
+</li>
 </ol>
 <p>See <a href="https://research.swtch.com/vgo-module">https://research.swtch.com/vgo-module</a> for a more in-depth discussion of these alternatives.</p>
 <h3 id="publishing-a-release">Publishing a release</h3>
@@ -4066,34 +4040,22 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 </ul>
 <p>Migration topics:</p>
 <h4 id="automatic-migration-from-prior-dependency-managers">Automatic Migration from Prior Dependency Managers</h4>
-<ul>
-<li><code>go mod init</code> automatically translates the required information from <a href="https://tip.golang.org/pkg/cmd/go/internal/modconv/?m=all#pkg-variables">dep, glide, govendor, godep, and 5 other pre-existing dependency managers</a> into a <code>go.mod</code>file that produces the equivalent build.</li>
-<li>If you are creating a v2+ module, be sure your <code>module</code> directive in the converted <code>go.mod</code> includes the appropriate <code>/vN</code> (e.g., <code>module foo/v3</code>).</li>
-<li>Note that if you are importing v2+ modules, you might need to do some manual adjustments after an initial conversion in order to add <code>/vN</code> to the <code>require</code> statements that <code>go mod init</code> generates after translating from a prior dependency manager. See the <a href="https://github.com/golang/go/wiki/Modules#how-to-define-a-module">"How to Define a Module"</a> section above for more details.</li>
-<li>In addition, <code>go mod init</code> will not edit your <code>.go</code> code to add any required <code>/vN</code> to import statements. See the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import versioning"</a> and <a href="https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher">"Releasing Modules (v2 or Higher)"</a> sections above for the required steps, including some options around community tools to automate the conversion.</li>
-</ul>
+<p>* <code>go mod init</code> automatically translates the required information from <a href="https://tip.golang.org/pkg/cmd/go/internal/modconv/?m=all#pkg-variables">dep, glide, govendor, godep, and 5 other pre-existing dependency managers</a> into a <code>go.mod</code>file that produces the equivalent build.
+  * If you are creating a v2+ module, be sure your <code>module</code> directive in the converted <code>go.mod</code> includes the appropriate <code>/vN</code> (e.g., <code>module foo/v3</code>).
+  * Note that if you are importing v2+ modules, you might need to do some manual adjustments after an initial conversion in order to add <code>/vN</code> to the <code>require</code> statements that <code>go mod init</code> generates after translating from a prior dependency manager. See the <a href="https://github.com/golang/go/wiki/Modules#how-to-define-a-module">"How to Define a Module"</a> section above for more details.
+  * In addition, <code>go mod init</code> will not edit your <code>.go</code> code to add any required <code>/vN</code> to import statements. See the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import versioning"</a> and <a href="https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher">"Releasing Modules (v2 or Higher)"</a> sections above for the required steps, including some options around community tools to automate the conversion.</p>
 <h4 id="providing-dependency-information-to-older-versions-of-go-and-non-module-consumers">Providing Dependency Information to Older Versions of Go and Non-Module Consumers</h4>
-<ul>
-<li>Older versions of Go understand how to consume a vendor directory created by <code>go mod vendor</code>, as do Go 1.11 and 1.12+ when module mode is disabled. Therefore, vendoring is one way for a module to provide dependencies to older versions of Go that do not fully understand modules, as well as to consumers that have not enabled modules themselves. See the <a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-vendoring-with-modules-is-vendoring-going-away">vendoring FAQ</a> and the <code>go</code> command <a href="https://tip.golang.org/cmd/go/#hdr-Modules_and_vendoring">documentation</a> for more details.</li>
-</ul>
+<p>* Older versions of Go understand how to consume a vendor directory created by <code>go mod vendor</code>, as do Go 1.11 and 1.12+ when module mode is disabled. Therefore, vendoring is one way for a module to provide dependencies to older versions of Go that do not fully understand modules, as well as to consumers that have not enabled modules themselves. See the <a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-vendoring-with-modules-is-vendoring-going-away">vendoring FAQ</a> and the <code>go</code> command <a href="https://tip.golang.org/cmd/go/#hdr-Modules_and_vendoring">documentation</a> for more details.</p>
 <h4 id="updating-pre-existing-install-instructions">Updating Pre-Existing Install Instructions</h4>
-<ul>
-<li>Pre-modules, it is common for install instructions to include <code>go get -u foo</code>. If you are publishing a module <code>foo</code>, consider dropping the <code>-u</code> in instructions for modules-based consumers.<ul>
-<li><code>-u</code> asks the <code>go</code> tool to upgrade all the direct and indirect dependencies of <code>foo</code>. </li>
-<li>A module consumer might choose to run <code>go get -u foo</code> later, but there are more benefits of <a href="https://github.com/golang/proposal/blob/master/design/24301-versioned-go.md#update-timing--high-fidelity-builds">"High Fidelity Builds"</a> if <code>-u</code> is not part of the initial install instructions. See <a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">"How to Upgrade and Downgrade Dependencies"</a> for more details.</li>
-<li><code>go get -u foo</code> does still work, and can still be a valid choice for install instructions.</li>
-</ul>
-</li>
-<li>In addition, <code>go get foo</code> is not strictly needed for a module-based consumer. <ul>
-<li>Simply adding an import statement <code>import "foo"</code> is sufficient. (Subsequent commands like <code>go build</code> or <code>go test</code> will automatically download <code>foo</code> and update <code>go.mod</code> as needed).</li>
-</ul>
-</li>
-<li>Module-based consumers will not use a <code>vendor</code> directory by default. <ul>
-<li>When module mode is enabled in the <code>go</code> tool, <code>vendor</code> is not strictly required when consuming a module (given the information contained in <code>go.mod</code> and the cryptographic checksums in <code>go.sum</code>), but some pre-existing install instructions assume the <code>go</code> tool will use <code>vendor</code> by default. See the <a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-vendoring-with-modules-is-vendoring-going-away">vendoring FAQ</a> for more details.</li>
-</ul>
-</li>
-<li>Install instructions that include <code>go get foo/...</code> might have issues in some cases (see discussion in <a href="https://github.com/golang/go/issues/27215#issuecomment-427672781">#27215</a>).</li>
-</ul>
+<p>* Pre-modules, it is common for install instructions to include <code>go get -u foo</code>. If you are publishing a module <code>foo</code>, consider dropping the <code>-u</code> in instructions for modules-based consumers.
+     * <code>-u</code> asks the <code>go</code> tool to upgrade all the direct and indirect dependencies of <code>foo</code>. 
+     * A module consumer might choose to run <code>go get -u foo</code> later, but there are more benefits of <a href="https://github.com/golang/proposal/blob/master/design/24301-versioned-go.md#update-timing--high-fidelity-builds">"High Fidelity Builds"</a> if <code>-u</code> is not part of the initial install instructions. See <a href="https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies">"How to Upgrade and Downgrade Dependencies"</a> for more details.
+     * <code>go get -u foo</code> does still work, and can still be a valid choice for install instructions.
+  * In addition, <code>go get foo</code> is not strictly needed for a module-based consumer. 
+     * Simply adding an import statement <code>import "foo"</code> is sufficient. (Subsequent commands like <code>go build</code> or <code>go test</code> will automatically download <code>foo</code> and update <code>go.mod</code> as needed).
+  * Module-based consumers will not use a <code>vendor</code> directory by default. 
+     * When module mode is enabled in the <code>go</code> tool, <code>vendor</code> is not strictly required when consuming a module (given the information contained in <code>go.mod</code> and the cryptographic checksums in <code>go.sum</code>), but some pre-existing install instructions assume the <code>go</code> tool will use <code>vendor</code> by default. See the <a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-vendoring-with-modules-is-vendoring-going-away">vendoring FAQ</a> for more details.
+  * Install instructions that include <code>go get foo/...</code> might have issues in some cases (see discussion in <a href="https://github.com/golang/go/issues/27215#issuecomment-427672781">#27215</a>).</p>
 <h4 id="avoid-breaking-existing-import-paths">Avoid Breaking Existing Import Paths</h4>
 <p>A module declares its identity in its <code>go.mod</code> via the <code>module</code> directive, such as <code>module github.com/my/module</code>. All packages within the module must be imported by any module-aware consumer with import paths that match the module's declared module path (either exactly for a root package, or with the module path as a prefix of the import path). The <code>go</code> command reports an <code>unexpected module path</code> error if there is a mismatch between an import path vs. the corresponding module's declared module path.</p>
 <p>When adopting modules for a pre-existing set of packages, care should be taken to avoid breaking existing import paths used by existing consumers, unless you are incrementing your major version when adopting modules. </p>
@@ -4109,37 +4071,25 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 </ul>
 <h4 id="v2-modules-allow-multiple-major-versions-within-a-single-build">v2+ Modules Allow Multiple Major Versions Within a Single Build</h4>
 <ul>
-<li>If a module is on v2 or higher, an implication is that multiple major versions can be in a single build (e.g., <code>foo</code> and <code>foo/v3</code> might end up in a single build).</li>
+<li>If a module is on v2 or higher, an implication is that multiple major versions can be in a single build (e.g., <code>foo</code> and <code>foo/v3</code> might end up in a single build).<ul>
 <li>This flows naturally from the rule that "packages with different import paths are different packages".</li>
 <li>When this happens, there will be multiple copies of package-level state (e.g., package-level state for <code>foo</code> and package-level state for <code>foo/v3</code>) as well as each major version will run its own <code>init</code> function.</li>
 <li>This approach helps with multiple aspects of the modules system, including helping with diamond dependency problems, gradual migration to new versions within large codebases, and allowing a major version to be implemented as a shim around a different major version.</li>
+</ul>
+</li>
 <li>See the "Avoiding Singleton Problems" section of <a href="https://research.swtch.com/vgo-import">https://research.swtch.com/vgo-import</a> or <a href="https://github.com/golang/go/issues/27514">#27514</a> for some related discussion.</li>
 </ul>
 <h4 id="modules-consuming-non-module-code">Modules Consuming Non-Module Code</h4>
-<ul>
-<li>Modules are capable of consuming packages that have not yet opted into modules, with the appropriate package version information recorded in the importing module's <code>go.mod</code>.  Modules can consume packages that do not yet have any proper semver tags. See FAQ <a href="https://github.com/golang/go/wiki/Modules#can-a-module-consume-a-package-that-has-not-opted-in-to-modules">below</a> for more details.</li>
-<li>Modules can also import a v2+ package that has not opted into modules. It will be recorded with a <code>+incompatible</code> suffix if the imported v2+ package has valid semver tags. See FAQ <a href="https://github.com/golang/go/wiki/Modules#can-a-module-consume-a-v2-package-that-has-not-opted-into-modules-what-does-incompatible-mean">below</a> for more details.</li>
-</ul>
+<p>* Modules are capable of consuming packages that have not yet opted into modules, with the appropriate package version information recorded in the importing module's <code>go.mod</code>.  Modules can consume packages that do not yet have any proper semver tags. See FAQ <a href="https://github.com/golang/go/wiki/Modules#can-a-module-consume-a-package-that-has-not-opted-in-to-modules">below</a> for more details.
+  * Modules can also import a v2+ package that has not opted into modules. It will be recorded with a <code>+incompatible</code> suffix if the imported v2+ package has valid semver tags. See FAQ <a href="https://github.com/golang/go/wiki/Modules#can-a-module-consume-a-v2-package-that-has-not-opted-into-modules-what-does-incompatible-mean">below</a> for more details.</p>
 <h4 id="non-module-code-consuming-modules">Non-Module Code Consuming Modules</h4>
-<ul>
-<li>
-<p><strong>Non-module code consuming v0 and v1 modules</strong>:  </p>
-<ul>
-<li>Code that has not yet opted in to modules can consume and build v0 and v1 modules (without any requirement related to the Go version used).</li>
-</ul>
-</li>
-<li>
-<p><strong>Non-module code consuming v2+ modules</strong>:</p>
-<ul>
-<li>
-<p>Go versions 1.9.7+, 1.10.3+ and 1.11 have been updated so that code built with those releases can properly consume v2+ modules without requiring modification of pre-existing code as described in the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import versioning"</a> and <a href="https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher">"Releasing Modules (v2 or Higher)"</a> sections above.</p>
-</li>
-<li>
-<p>Go versions prior to 1.9.7 and 1.10.3 can consume v2+ modules if the v2+ module was created following the "Major subdirectory" approach outlined in the <a href="https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher">"Releasing Modules (v2 or Higher)"</a> section.</p>
-</li>
-</ul>
-</li>
-</ul>
+<p>* <strong>Non-module code consuming v0 and v1 modules</strong>:<br />
+     * Code that has not yet opted in to modules can consume and build v0 and v1 modules (without any requirement related to the Go version used).</p>
+<p>* <strong>Non-module code consuming v2+ modules</strong>:</p>
+<pre><code>* Go versions 1.9.7+, 1.10.3+ and 1.11 have been updated so that code built with those releases can properly consume v2+ modules without requiring modification of pre-existing code as described in the ["Semantic Import versioning"](https://github.com/golang/go/wiki/Modules#semantic-import-versioning) and ["Releasing Modules (v2 or Higher)"](https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher) sections above.
+
+* Go versions prior to 1.9.7 and 1.10.3 can consume v2+ modules if the v2+ module was created following the "Major subdirectory" approach outlined in the ["Releasing Modules (v2 or Higher)"](https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher) section.
+</code></pre>
 <h4 id="strategies-for-authors-of-pre-existing-v2-packages">Strategies for Authors of Pre-Existing v2+ Packages</h4>
 <p>For authors of pre-existing v2+ packages considering opting in to modules, one way to summarize the alternative approaches is as a choice between three top-level strategies. Each choice then has follow-on decisions and variations (as outlined above). These alternative top-level strategies are:</p>
 <ol>
@@ -4159,21 +4109,27 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <h2 id="additional-resources">Additional Resources</h2>
 <h3 id="documentation-and-proposal">Documentation and Proposal</h3>
 <ul>
-<li>Official documentation:</li>
+<li>Official documentation:<ul>
 <li>Latest <a href="https://golang.org/cmd/go/#hdr-Modules__module_versions__and_more">HTML documentation for modules on golang.org</a></li>
 <li>Run <code>go help modules</code> for more about modules. (This is the main entry point for modules topics via <code>go help</code>)</li>
 <li>Run <code>go help mod</code> for more about the <code>go mod</code> command.</li>
 <li>Run <code>go help module-get</code> for more about the behavior of <code>go get</code> when in module-aware mode.</li>
 <li>Run <code>go help goproxy</code> for more about the module proxy, including a pure file-based option via a <code>file:///</code> URL.</li>
+</ul>
+</li>
 <li>The initial <a href="https://research.swtch.com/vgo">"Go &amp; Versioning"</a> series of blog posts on <code>vgo</code> by Russ Cox (first posted February 20, 2018)</li>
-<li>Official <a href="https://blog.golang.org/versioning-proposal">golang.org blog post introducing the proposal</a> (March 26, 2018)</li>
+<li>Official <a href="https://blog.golang.org/versioning-proposal">golang.org blog post introducing the proposal</a> (March 26, 2018)<ul>
 <li>This provides a more succinct overview of the proposal than the full <code>vgo</code> blog series, along with some of the history and process behind the proposal</li>
+</ul>
+</li>
 <li>Official <a href="https://golang.org/design/24301-versioned-go">Versioned Go Modules Proposal</a> (last updated March 20, 2018)</li>
 </ul>
 <h3 id="introductory-material">Introductory Material</h3>
 <ul>
-<li>Introductory 40-minute video <a href="https://www.youtube.com/watch?v=F8nrpe0XWRg&amp;list=PLq2Nv-Sh8EbbIjQgDzapOFeVfv5bGOoPE&amp;index=3&amp;t=0s">"The Principles of Versions in Go"</a> from GopherCon Singapore by Russ Cox (May 2, 2018)</li>
+<li>Introductory 40-minute video <a href="https://www.youtube.com/watch?v=F8nrpe0XWRg&amp;list=PLq2Nv-Sh8EbbIjQgDzapOFeVfv5bGOoPE&amp;index=3&amp;t=0s">"The Principles of Versions in Go"</a> from GopherCon Singapore by Russ Cox (May 2, 2018)<ul>
 <li>Succinctly covers the philosophy behind the design of versioned Go modules, including the three core principles of "Compatibility", "Repeatability", and "Cooperation"</li>
+</ul>
+</li>
 <li>Example based 35-minute introductory video <a href="https://www.youtube.com/watch?v=6MbIzJmLz6Q&amp;list=PL8QGElREVyDA2iDrPNeCe8B1u7li5S6ep&amp;index=5&amp;t=0s">"What are Go modules and how do I use them?"</a> (<a href="https://talks.godoc.org/github.com/myitcv/talks/2018-08-15-glug-modules/main.slide#1">slides</a>) by Paul Jolly (August 15, 2018)</li>
 <li>Introductory blog post <a href="https://dave.cheney.net/2018/07/14/taking-go-modules-for-a-spin">"Taking Go Modules for a Spin"</a> by Dave Cheney (July 14, 2018)</li>
 <li>Introductory <a href="https://docs.google.com/presentation/d/1ansfXN8a_aVL-QuvQNY7xywnS78HE8aG7fPiITNQWMM/edit#slide=id.g3d87f3177d_0_0">Go Meetup slides on modules</a> by Chris Hines (July 16, 2018)</li>
@@ -4183,8 +4139,10 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <ul>
 <li>Blog post <a href="https://arslan.io/2018/08/26/using-go-modules-with-vendor-support-on-travis-ci/">"Using Go modules with vendor support on Travis CI"</a> by Fatih Arslan (August 26, 2018)</li>
 <li>Blog post <a href="https://medium.com/@toddkeech/go-modules-and-circleci-c0d6fac0b000">"Go Modules and CircleCI"</a> by Todd Keech (July 30, 2018)</li>
-<li>Blog post <a href="https://research.swtch.com/vgo-accepted">"The vgo proposal is accepted. Now what?"</a> by Russ Cox (May 29, 2018)</li>
+<li>Blog post <a href="https://research.swtch.com/vgo-accepted">"The vgo proposal is accepted. Now what?"</a> by Russ Cox (May 29, 2018)<ul>
 <li>Includes a summary of what it means that versioned modules are currently an experimental opt-in feature</li>
+</ul>
+</li>
 <li>Blog post on <a href="https://carolynvanslyck.com/blog/2018/07/building-go-from-source/">how to build go from tip and start using go modules</a> by Carolyn Van Slyck (July 16, 2018)</li>
 </ul>
 <h2 id="changes-since-the-initial-vgo-proposal">Changes Since the Initial Vgo Proposal</h2>
@@ -4223,10 +4181,12 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <ul>
 <li>Inside GOPATH — defaults to old 1.10 behavior (ignoring modules)</li>
 <li>Outside GOPATH while inside a file tree with a <code>go.mod</code> — defaults to modules behavior</li>
-<li>GO111MODULE environment variable:</li>
+<li>GO111MODULE environment variable:<ul>
 <li>unset or <code>auto</code> —  default behavior above</li>
 <li><code>on</code> —  force module support on regardless of directory location</li>
 <li><code>off</code> — force module support off regardless of directory location</li>
+</ul>
+</li>
 </ul>
 <h3 id="why-does-installing-a-tool-via-go-get-fail-with-error-cannot-find-main-module">Why does installing a tool via <code>go get</code> fail with error <code>cannot find main module</code>?</h3>
 <p>This occurs when you have set <code>GO111MODULE=on</code>, but are not inside of a file tree with a <code>go.mod</code> when you run <code>go get</code>.</p>
@@ -4290,24 +4250,34 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <h3 id="what-community-tooling-exists-for-working-with-modules">What community tooling exists for working with modules?</h3>
 <p>The community is starting to build tooling on top of modules. For example:</p>
 <ul>
-<li><a href="https://github.com/rogpeppe/gohack">github.com/rogpeppe/gohack</a></li>
+<li><a href="https://github.com/rogpeppe/gohack">github.com/rogpeppe/gohack</a><ul>
 <li>A new community tool to automate and greatly simplify <code>replace</code> and multi-module workflows, including allowing you to easily modify one of your dependencies </li>
 <li>For example, <code>gohack example.com/some/dependency</code> automatically clones the appropriate repository and adds the necessary <code>replace</code> directives to your <code>go.mod</code></li>
 <li>Remove all gohack replace statements with <code>gohack undo</code></li>
 <li>The project is continuing to expand to make other module-related workflows easier</li>
-<li><a href="https://github.com/marwan-at-work/mod">github.com/marwan-at-work/mod</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/marwan-at-work/mod">github.com/marwan-at-work/mod</a><ul>
 <li>Command line tool to automatically upgrade/downgrade major versions for modules</li>
 <li>Automatically adjusts <code>go.mod</code> files and related import statements in go source code</li>
 <li>Helps with upgrades, or when first opting into modules with a v2+ package</li>
-<li><a href="https://github.com/akyoto/mgit">github.com/akyoto/mgit</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/akyoto/mgit">github.com/akyoto/mgit</a><ul>
 <li>Lets you view &amp; control semver tags of all of your local projects</li>
 <li>Shows untagged commits and lets you tag them all at once (<code>mgit -tag +0.0.1</code>)</li>
-<li><a href="https://github.com/goware/modvendor">github.com/goware/modvendor</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/goware/modvendor">github.com/goware/modvendor</a><ul>
 <li>Helps copy additional files into the <code>vendor/</code> folder, such as shell scripts, .cpp files, .proto files, etc.</li>
-<li><a href="https://github.com/psampaz/go-mod-outdated">github.com/psampaz/go-mod-outdated</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/psampaz/go-mod-outdated">github.com/psampaz/go-mod-outdated</a><ul>
 <li>Displays outdated dependencies in a human friendly way </li>
 <li>Provides a way to filter indirect dependencies and dependencies without updates</li>
 <li>Provides a way to break CI pipelines in case of outdated dependencies</li>
+</ul>
+</li>
 </ul>
 <h3 id="when-should-i-use-the-replace-directive">When should I use the replace directive?</h3>
 <p>As described in the <a href="https://github.com/golang/go/wiki/Modules#gomod">'go.mod' concepts section above</a>, <code>replace</code> directives provide additional control in the top-level <code>go.mod</code> for what is actually used to satisfy a dependency found in the Go source or go.mod files, while <code>replace</code> directives in modules other than the main module are ignored when building the main module.</p>
@@ -4434,13 +4404,17 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>It is helpful to first review some core principles that are generally useful but particularly important to keep in mind when thinking about the behavior described in this FAQ.</p>
 <p>The following core principles are <em>always</em> true when the <code>go</code> tool is operating in module mode (e.g., <code>GO111MODULE=on</code>):</p>
 <ol>
-<li>A package's import path defines the identity of the package.</li>
+<li>A package's import path defines the identity of the package.<ul>
 <li>Packages with <em>different</em> import paths are treated as <em>different</em> packages.</li>
 <li>Packages with the <em>same</em> import path are treated as the <em>same</em> package (and this is true <em>even if</em> the VCS tags say the packages have different major versions).</li>
+</ul>
+</li>
 <li>An import path without a <code>/vN</code> is treated as a v1 or v0 module (and this is true <em>even if</em> the imported package has not opted in to modules and has VCS tags that say the major version is greater than 1).</li>
-<li>The module path (such as <code>module foo/v2</code>) declared at the start of a module's <code>go.mod</code> file is both:</li>
+<li>The module path (such as <code>module foo/v2</code>) declared at the start of a module's <code>go.mod</code> file is both:<ul>
 <li>the definitive declaration of that module's identity</li>
 <li>the definitive declaration of how that module must be imported by consuming code</li>
+</ul>
+</li>
 </ol>
 <p>As we will see in the next FAQ, these principles are not always true when the <code>go</code> tool is <em>not</em> in module mode, but these principles are always true when the <code>go</code> tool <em>is</em> in module mode.</p>
 <p>In short, the <code>+incompatible</code> suffix indicates that principle 2 above is in effect when the following are true:
@@ -4500,21 +4474,29 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>When a v2+ module author has <em>not</em> created <code>/v2</code> or <code>/vN</code> subdirectories and you are instead relying on the "minimal module compatibility" mechanism in Go 1.9.7+, 1.10.3+ and 1.11:</p>
 <ul>
 <li>A package that has <em>not</em> opted in to modules would <em>not</em> include the major version in the import path for any imported v2+ modules. </li>
-<li>In contrast, a package that <em>has</em> opted in to modules <em>must</em> include the major version in the import path to import any v2+ modules. </li>
+<li>In contrast, a package that <em>has</em> opted in to modules <em>must</em> include the major version in the import path to import any v2+ modules. <ul>
 <li>If a package has opted in to modules, but does not include the major version in the import path when importing a v2+ modules, it will not import a v2+ version of that module when the <code>go</code> tool is operating in full module mode. (A package that has opted in to modules is assumed to "speak" Semantic Import Versioning. If <code>foo</code> is a module with v2+ versions, then under Semantic Import Versioning saying <code>import "foo"</code> means import the v1 Semantic Import Versioning series of <code>foo</code>). </li>
-<li>The mechanism used to implement "minimal module compatibility" is intentionally very narrow:</li>
+</ul>
+</li>
+<li>The mechanism used to implement "minimal module compatibility" is intentionally very narrow:<ul>
 <li>The entirety of the logic is – when operating in GOPATH mode, an unresolvable import statement containing a <code>/vN</code> will be tried again after removing the <code>/vN</code> if the import statement is inside code that has opted in to modules (that is, import statements in <code>.go</code> files within a tree with a valid <code>go.mod</code> file). </li>
 <li>The net effect is that an import statement such as <code>import "foo/v2"</code> within code that lives inside of a module will still compile correctly in GOPATH mode in 1.9.7+, 1.10.3+ and 1.11, and it will resolve as if it said <code>import "foo"</code> (without the <code>/v2</code>), which means it will use the version of <code>foo</code> that resides in your GOPATH without being confused by the extra <code>/v2</code>.</li>
 <li>"Minimal module compatibility" does not affect anything else, including it does not the affect paths used in the <code>go</code> command line (such as arguments to <code>go get</code> or <code>go list</code>).</li>
-<li>This transitional "minimal module awareness" mechanism purposefully breaks the rule of "packages with different import paths are treated as different packages" in pursuit a very specific backwards-compatibility goal – to allow old code to compile unmodified when it is consuming a v2+ module. In slightly more detail:</li>
+</ul>
+</li>
+<li>This transitional "minimal module awareness" mechanism purposefully breaks the rule of "packages with different import paths are treated as different packages" in pursuit a very specific backwards-compatibility goal – to allow old code to compile unmodified when it is consuming a v2+ module. In slightly more detail:<ul>
 <li>It would be a more burdensome for the overall ecosystem if the only way for old code to consume a v2+ module was to first change the old code. </li>
 <li>If we are not modifying old code, then that old code must work with pre-module import paths for v2+ modules.</li>
 <li>On the other hand, new or updated code opting in to modules must use the new <code>/vN</code> import for v2+ modules.</li>
 <li>The new import path is not equal to old import path, yet both are allowed to work in a single build, and therefore we have two different functioning import paths that resolve to the same package.</li>
 <li>For example, when operating in GOPATH mode, <code>import "foo/v2"</code> appearing in module-based code resolves to the same code residing in your GOPATH as <code>import "foo"</code>, and the build ends up with one copy of <code>foo</code> – in particular, whatever version is on disk in GOPATH. This allows module-based code with  <code>import "foo/v2"</code> to compile even in GOPATH mode in 1.9.7+, 1.10.3+ and 1.11.</li>
-<li>In contrast, when the <code>go</code> tool is operating in full module mode:</li>
+</ul>
+</li>
+<li>In contrast, when the <code>go</code> tool is operating in full module mode:<ul>
 <li>There are no exceptions to the rule "packages with different import paths are different packages" (including vendoring has been refined in full module mode to also adhere to this rule).</li>
 <li>For example, if the <code>go</code> tool is in full module mode and <code>foo</code> is a v2+ module, then <code>import "foo"</code> is asking for a v1 version of <code>foo</code> vs. <code>import "foo/v2"</code> is asking for a v2 version of <code>foo</code>.</li>
+</ul>
+</li>
 </ul>
 <h3 id="what-happens-if-i-create-a-gomod-but-do-not-apply-semver-tags-to-my-repository">What happens if I create a go.mod but do not apply semver tags to my repository?</h3>
 <p><a href="https://semver.org">semver</a> is a foundation of the modules system. In order to provide the best experience for consumers, module authors are encouraged to apply semver VCS tags (e.g., <code>v0.1.0</code> or <code>v1.2.3-rc.1</code>), but semver VCS tags are not strictly required:</p>
@@ -4660,19 +4642,29 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 <h2 id="faqs-possible-problems">FAQs — Possible Problems</h2>
 <h3 id="what-are-some-general-things-i-can-spot-check-if-i-am-seeing-a-problem">What are some general things I can spot check if I am seeing a problem?</h3>
 <ul>
-<li>Double-check that modules are enabled by running <code>go env</code> to confirm it does not show an empty value for the read-only <code>GOMOD</code> variable.</li>
+<li>Double-check that modules are enabled by running <code>go env</code> to confirm it does not show an empty value for the read-only <code>GOMOD</code> variable.<ul>
 <li>Note: you never set <code>GOMOD</code> as a variable because it is effectively read-only debug output that <code>go env</code> outputs.  </li>
 <li>If you are setting <code>GO111MODULE=on</code> to enable modules, double-check that it is not accidentally the plural <code>GO111MODULES=on</code>. (People sometimes naturally include the <code>S</code> because the feature is often called "modules").</li>
-<li>If vendoring is expected to be used, check that the <code>-mod=vendor</code> flag is being passed to <code>go build</code>or similar, or that <code>GOFLAGS=-mod=vendor</code> is set. </li>
+</ul>
+</li>
+<li>If vendoring is expected to be used, check that the <code>-mod=vendor</code> flag is being passed to <code>go build</code>or similar, or that <code>GOFLAGS=-mod=vendor</code> is set. <ul>
 <li>Modules by default ignore the <code>vendor</code> directory unless you ask the <code>go</code> tool to use <code>vendor</code>.</li>
-<li>It is frequently helpful to check <code>go list -m all</code> to see the list of actual versions selected for your build</li>
+</ul>
+</li>
+<li>It is frequently helpful to check <code>go list -m all</code> to see the list of actual versions selected for your build<ul>
 <li><code>go list -m all</code> usually gives you more detail compared to if you were to instead just look a <code>go.mod</code> file. </li>
-<li>If running <code>go get foo</code> fails in some way, or if <code>go build</code> is failing on a particular package <code>foo</code>, it often can be helpful to check the output from <code>go get -v foo</code> or <code>go get -v -x foo</code>:</li>
+</ul>
+</li>
+<li>If running <code>go get foo</code> fails in some way, or if <code>go build</code> is failing on a particular package <code>foo</code>, it often can be helpful to check the output from <code>go get -v foo</code> or <code>go get -v -x foo</code>:<ul>
 <li>In general, <code>go get</code> will often provide more a detailed error message than <code>go build</code>.</li>
 <li>The <code>-v</code> flag to <code>go get</code> asks to print more verbose details, though be mindful that certain "errors" such as 404 errors <em>might</em> be expected based on how a remote repository was configured.</li>
 <li>If the nature of the problem is still not clear, you can also try the more verbose <code>go get -v -x foo</code>, which also shows the git or other VCS commands being issued.  (If warranted, you can often execute the same git commands outside of the context of the <code>go</code> tool for troubleshooting purposes).</li>
-<li>You can check to see if you are using a particularly old git version</li>
+</ul>
+</li>
+<li>You can check to see if you are using a particularly old git version<ul>
 <li>Older versions of git were a common source of problems for the <code>vgo</code> prototype and Go 1.11 beta, but much less frequently in the GA 1.11. </li>
+</ul>
+</li>
 <li>The module cache in Go 1.11 can sometimes cause various errors, primarily if there were previously network issues or multiple <code>go</code> commands executing in parallel (see <a href="https://github.com/golang/go/issues/26794">#26794</a>, which is addressed for Go 1.12).  As a troubleshooting step, you can copy $GOPATH/pkg/mod to a backup directory (in case further investigation is warranted later), run <code>go clean -modcache</code>, and then see whether the original problem persists.</li>
 <li>If you are using Docker, it can be helpful to check if you can reproduce the behavior outside of Docker (and if the behavior only occurs in Docker, the list of bullets above can be used as a starting point to compare results between inside Docker vs. outside).</li>
 </ul>
@@ -4703,12 +4695,10 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 * See the first troubleshooting FAQ in this section <a href="https://github.com/golang/go/wiki/Modules#what-are-some-general-things-i-can-spot-check-if-i-am-seeing-a-problem">above</a> for more details.</p>
 <p>Some other possible causes:</p>
 <ul>
-<li>
-<p>You might see the error <code>cannot find module providing package foo</code> if you have issued <code>go build</code> or <code>go build .</code> but do not have any <code>.go</code> source files in the current directory. If this is what you are encountering, the solution might be an alternative invocation such as <code>go build ./...</code> (where the <code>./...</code> expands out to match all the packages within the current module). See <a href="https://github.com/golang/go/issues/27122">#27122</a>.</p>
-</li>
-<li>
-<p>The module cache in Go 1.11 can cause this error, including in the face of network issues or multiple <code>go</code> commands executing in parallel. This is resolved in Go 1.12. See the first troubleshooting FAQ in this section <a href="https://github.com/golang/go/wiki/Modules#what-are-some-general-things-i-can-spot-check-if-i-am-seeing-a-problem">above</a> for more details and possible corrective steps.</p>
-</li>
+<li>You might see the error <code>cannot find module providing package foo</code> if you have issued <code>go build</code> or <code>go build .</code> but do not have any <code>.go</code> source files in the current directory. If this is what you are encountering, the solution might be an alternative invocation such as <code>go build ./...</code> (where the <code>./...</code> expands out to match all the packages within the current module). See <a href="https://github.com/golang/go/issues/27122">#27122</a>.</li>
+</ul>
+<ul>
+<li>The module cache in Go 1.11 can cause this error, including in the face of network issues or multiple <code>go</code> commands executing in parallel. This is resolved in Go 1.12. See the first troubleshooting FAQ in this section <a href="https://github.com/golang/go/wiki/Modules#what-are-some-general-things-i-can-spot-check-if-i-am-seeing-a-problem">above</a> for more details and possible corrective steps.</li>
 </ul>
 <h3 id="why-does-go-mod-init-give-the-error-cannot-determine-module-path-for-source-directory">Why does 'go mod init' give the error 'cannot determine module path for source directory'?</h3>
 <p><code>go mod init</code> without any arguments will attempt to guess the proper module path based on different hints such as VCS meta data. However, it is not expected that <code>go mod init</code> will always be able to guess the proper module path.</p>
@@ -4770,15 +4760,15 @@ Because the problematic old import is often in an indirect dependency, upgrading
 </li>
 <li>
 <p>If the steps above have not resolved the error, the next approach is slightly more complicated, but most often should work to resolve an "old name" vs. "new name" form of this error. This uses just information solely from the error message itself, plus some brief looking at some VCS history.</p>
-</li>
-</ol>
 <p>4.1. Go to the <code>example.com/some/NEW/name</code> repository</p>
 <p>4.2. Determine when the <code>go.mod</code> file was introduced there (e.g., by looking at the blame or history view for the <code>go.mod</code>).</p>
 <p>4.3. Pick the release or commit from <em>just before</em> the <code>go.mod</code> file was introduced there.</p>
 <p>4.4. In your <code>go.mod</code> file, add a <code>replace</code> statement using the old name on both sides of the <code>replace</code> statement:
-       <div class="highlight"><pre><span></span>replace example.com/some/OLD/name =&gt; example.com/some/OLD/name &lt;version-just-before-go.mod&gt;
+     <div class="highlight"><pre><span></span>replace example.com/some/OLD/name =&gt; example.com/some/OLD/name &lt;version-just-before-go.mod&gt;
 </pre></div>
 Using our prior example where <code>github.com/Quasilyte/go-consistent</code> is the old name and <code>github.com/quasilyte/go-consistent</code> is the new name, we can see that the <code>go.mod</code> was first introduced there in commit <a href="https://github.com/quasilyte/go-consistent/tree/00c5b0cf371a96059852487731370694d75ffacf">00c5b0cf371a</a>. That repository is not using semver tags, so we will take the immediately prior commit <a href="https://github.com/quasilyte/go-consistent/tree/00dd7fb039e1eff09e7c0bfac209934254409360">00dd7fb039e</a> and add it to the replace using the old uppercase Quasilyte name on both sides of the <code>replace</code>:</p>
+</li>
+</ol>
 <div class="highlight"><pre><span></span>replace github.com/Quasilyte/go-consistent =&gt; github.com/Quasilyte/go-consistent 00dd7fb039e
 </pre></div>
 

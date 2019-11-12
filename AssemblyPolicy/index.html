@@ -1337,18 +1337,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1421,18 +1409,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1469,8 +1445,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -1997,7 +1973,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2225,18 +2201,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2275,18 +2239,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -2377,21 +2329,19 @@
 <p>This document describes when and how to add assembly code to routines in the Go-maintained packages. This document is a work in progress.</p>
 <p>In general, the rules are:</p>
 <ul>
-<li>
-<p>We prefer portable Go, not assembly. Code in assembly means (N packages * M architectures) to maintain, rather than just N packages.</p>
-</li>
-<li>
-<p>Minimize use of assembly. We'd rather have a small amount of assembly for a 50% speedup rather than twice as much assembly for a 55% speedup. Explain the decision to place the assembly/Go boundary where it is in the commit message, and support it with benchmarks.</p>
-</li>
-<li>
-<p>Explain the root causes in code comments or commit messages. What changes in the compiler and standard library would allow you to replace this assembly with Go? (New intrinsics, SSA pattern matching, other optimizations.)</p>
-</li>
-<li>
-<p>Make your assembly easy to review; ideally, auto-generate it using a simpler Go program. Comment it well.</p>
-</li>
-<li>
-<p>Test it well. The bar for new assembly code is high; it needs commensurate test coverage. Existing high-level tests for Go implementations are often inadequate for hundreds of lines of assembly. Test subroutines individually. Fuzz the assembly implementation against the Go implementation.</p>
-</li>
+<li>We prefer portable Go, not assembly. Code in assembly means (N packages * M architectures) to maintain, rather than just N packages.</li>
+</ul>
+<ul>
+<li>Minimize use of assembly. We'd rather have a small amount of assembly for a 50% speedup rather than twice as much assembly for a 55% speedup. Explain the decision to place the assembly/Go boundary where it is in the commit message, and support it with benchmarks.</li>
+</ul>
+<ul>
+<li>Explain the root causes in code comments or commit messages. What changes in the compiler and standard library would allow you to replace this assembly with Go? (New intrinsics, SSA pattern matching, other optimizations.)</li>
+</ul>
+<ul>
+<li>Make your assembly easy to review; ideally, auto-generate it using a simpler Go program. Comment it well.</li>
+</ul>
+<ul>
+<li>Test it well. The bar for new assembly code is high; it needs commensurate test coverage. Existing high-level tests for Go implementations are often inadequate for hundreds of lines of assembly. Test subroutines individually. Fuzz the assembly implementation against the Go implementation.</li>
 </ul>
 <h2 id="future-directions">Future directions</h2>
 <ul>

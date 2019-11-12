@@ -1308,18 +1308,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1392,18 +1380,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1440,8 +1416,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -1968,7 +1944,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2196,18 +2172,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2246,18 +2210,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -2344,81 +2296,72 @@ started with the Go 2 <a href="https://go.googlesource.com/proposal/+/master/des
 <h1 id="requirements">Requirements</h1>
 <p>Discussions of the requirements for a new error handling method.</p>
 <ul>
-<li>
-<p>Warren Stephens, "<a href="https://github.com/warrenstephens/Go2ErrorHandlingFeedback">Go 2 <code>handle</code> should provide line number, source filename, version</a>", December 2018</p>
-</li>
-<li>
-<p>Liam Breck, “<a href="https://gist.github.com/networkimprov/961c9caa2631ad3b95413f7d44a2c98a">Requirements to Consider for Go 2 Error Handling</a>”, September 2018</p>
-</li>
-<li>
-<p>jimmyfrasche, "<a href="https://gist.github.com/jimmyfrasche/f2cd6aff16db5e46c577da44ec0cfa72">Don't special case error or nil</a>", September 2018</p>
-</li>
-<li>
-<p>Matt Dee "<a href="https://gist.github.com/mattdee123/a04f95ef5639489668cafd9c3b675a8c">Error Handling Should Support Custom Error Types</a>", August 2018</p>
-</li>
-<li>
-<p>Ian Lance Taylor, “<a href="https://github.com/golang/go/issues/21161#issuecomment-389380686">Incomplete list of criteria</a>” from GitHub proposal discussion, May 2018</p>
-</li>
-<li>
-<p>Rob Pike (posted by @matjam) “<a href="https://www.youtube.com/watch?v=rFejpH_tAHM">Simplicity is Complicated</a>”, December 2015</p>
-</li>
+<li>Warren Stephens, "<a href="https://github.com/warrenstephens/Go2ErrorHandlingFeedback">Go 2 <code>handle</code> should provide line number, source filename, version</a>", December 2018</li>
+</ul>
+<ul>
+<li>Liam Breck, “<a href="https://gist.github.com/networkimprov/961c9caa2631ad3b95413f7d44a2c98a">Requirements to Consider for Go 2 Error Handling</a>”, September 2018</li>
+</ul>
+<ul>
+<li>jimmyfrasche, "<a href="https://gist.github.com/jimmyfrasche/f2cd6aff16db5e46c577da44ec0cfa72">Don't special case error or nil</a>", September 2018</li>
+</ul>
+<ul>
+<li>Matt Dee "<a href="https://gist.github.com/mattdee123/a04f95ef5639489668cafd9c3b675a8c">Error Handling Should Support Custom Error Types</a>", August 2018</li>
+</ul>
+<ul>
+<li>Ian Lance Taylor, “<a href="https://github.com/golang/go/issues/21161#issuecomment-389380686">Incomplete list of criteria</a>” from GitHub proposal discussion, May 2018</li>
+</ul>
+<ul>
+<li>Rob Pike (posted by @matjam) “<a href="https://www.youtube.com/watch?v=rFejpH_tAHM">Simplicity is Complicated</a>”, December 2015</li>
 </ul>
 <h1 id="in-support">In support</h1>
 <p>This includes supporting the existing chaining/stacking of handlers without changes.</p>
 <ul>
-<li>
-<p>Tokyo Gophers, "<a href="https://docs.google.com/document/d/1yTDMP0E9hlJyLnKyr-6XL84RogiiwDnk0fMg9HDOKkc/edit#heading=h.f7ryl4573bu9">In support comments from Go 2 feedback event</a>", October 2018</p>
-</li>
-<li>
-<p>Adam Bouhenguel "<a href="https://gist.github.com/ajbouh/716f8daba40199fe4d4d702704f3dfcc">In support of more declarative error handling</a>", August 2018</p>
-</li>
-<li>
-<p>Daniel Theophanes, "<a href="https://docs.google.com/document/d/e/2PACX-1vSq487dLylRHjgtKV42EbTKHW1aHZaaso3MZ4HOG1OS-s8suOnR9WZz6ahzH4Kufs2vwKKDMhoj1_I6/pub">Go 2 Design: Error Handling Net Win</a>", August 2018</p>
-</li>
+<li>Tokyo Gophers, "<a href="https://docs.google.com/document/d/1yTDMP0E9hlJyLnKyr-6XL84RogiiwDnk0fMg9HDOKkc/edit#heading=h.f7ryl4573bu9">In support comments from Go 2 feedback event</a>", October 2018</li>
+</ul>
+<ul>
+<li>Adam Bouhenguel "<a href="https://gist.github.com/ajbouh/716f8daba40199fe4d4d702704f3dfcc">In support of more declarative error handling</a>", August 2018</li>
+</ul>
+<ul>
+<li>Daniel Theophanes, "<a href="https://docs.google.com/document/d/e/2PACX-1vSq487dLylRHjgtKV42EbTKHW1aHZaaso3MZ4HOG1OS-s8suOnR9WZz6ahzH4Kufs2vwKKDMhoj1_I6/pub">Go 2 Design: Error Handling Net Win</a>", August 2018</li>
 </ul>
 <h2 id="example-code">Example code</h2>
 <p>Code changed to use the existing proposal.</p>
 <ul>
-<li>
-<p>Mateusz Czapliński, "<a href="https://gist.github.com/akavel/62d90bdc43088574c638eb3b16301a92">Converting a fragment of real code with error handling to Go 2 'design draft'</a>", August 2018</p>
-</li>
-<li>
-<p>Blake Mizerany, “<a href="https://gist.github.com/bmizerany/fcd0348bda96edce05a4fc7426e47751">How best to account for partial writes when using check/handle?</a>”, August 2018</p>
-</li>
+<li>Mateusz Czapliński, "<a href="https://gist.github.com/akavel/62d90bdc43088574c638eb3b16301a92">Converting a fragment of real code with error handling to Go 2 'design draft'</a>", August 2018</li>
+</ul>
+<ul>
+<li>Blake Mizerany, “<a href="https://gist.github.com/bmizerany/fcd0348bda96edce05a4fc7426e47751">How best to account for partial writes when using check/handle?</a>”, August 2018</li>
 </ul>
 <h1 id="against">Against</h1>
 <p>Critiques without counter-proposals</p>
 <ul>
-<li>
-<p>Pasha Osipyants, “<a href="https://godoc.org/github.com/pashaosipyants/errors">Error handling mechanism using current go possibilities</a>”, February 2019</p>
-</li>
-<li>
-<p>Anonymous, “<a href="https://groups.google.com/d/topic/golang-nuts/1McP4_-oOpo/discussion">Go 2 Error Handling Non-Proposal</a>”, October 2018</p>
-</li>
-<li>
-<p>Stripe developers, “<a href="https://groups.google.com/d/msg/golang-nuts/3A_MpcNKg7k/DWiHBLArCAAJ">Feedback on Go 2 draft designs</a>”, October 2018</p>
-</li>
-<li>
-<p>Tokyo Gophers, "<a href="https://docs.google.com/document/d/1yTDMP0E9hlJyLnKyr-6XL84RogiiwDnk0fMg9HDOKkc/edit#heading=h.fy8rnze9tll5">Against comments from Go 2 feedback event</a>", Oct 2018</p>
-</li>
-<li>
-<p>Liam Breck, “<a href="https://medium.com/@mnmnotmail/golang-how-dare-you-handle-my-checks-d5485f991289">Golang, How dare you handle my checks!</a>”, September 2018</p>
-</li>
-<li>
-<p>Nate Finch, "<a href="https://npf.io/2018/09/check-and-handle/">Handle and Check, Let's Not</a>", September 2018</p>
-</li>
-<li>
-<p>Jozef Slezak, "<a href="https://gist.github.com/jozef-slezak/93a7d9d3d18d3fce3f8c3990c031f8d0">Use semicolons instead of new keywords: check+handle</a>", September 2018</p>
-</li>
-<li>
-<p>Shannon Wynter "<a href="https://gist.github.com/freman/0b372e46c72f6a27652538b9930ee851">Error Handling as it can already be done</a>", August 2018</p>
-</li>
+<li>Pasha Osipyants, “<a href="https://godoc.org/github.com/pashaosipyants/errors">Error handling mechanism using current go possibilities</a>”, February 2019</li>
+</ul>
+<ul>
+<li>Anonymous, “<a href="https://groups.google.com/d/topic/golang-nuts/1McP4_-oOpo/discussion">Go 2 Error Handling Non-Proposal</a>”, October 2018</li>
+</ul>
+<ul>
+<li>Stripe developers, “<a href="https://groups.google.com/d/msg/golang-nuts/3A_MpcNKg7k/DWiHBLArCAAJ">Feedback on Go 2 draft designs</a>”, October 2018</li>
+</ul>
+<ul>
+<li>Tokyo Gophers, "<a href="https://docs.google.com/document/d/1yTDMP0E9hlJyLnKyr-6XL84RogiiwDnk0fMg9HDOKkc/edit#heading=h.fy8rnze9tll5">Against comments from Go 2 feedback event</a>", Oct 2018</li>
+</ul>
+<ul>
+<li>Liam Breck, “<a href="https://medium.com/@mnmnotmail/golang-how-dare-you-handle-my-checks-d5485f991289">Golang, How dare you handle my checks!</a>”, September 2018</li>
+</ul>
+<ul>
+<li>Nate Finch, "<a href="https://npf.io/2018/09/check-and-handle/">Handle and Check, Let's Not</a>", September 2018</li>
+</ul>
+<ul>
+<li>Jozef Slezak, "<a href="https://gist.github.com/jozef-slezak/93a7d9d3d18d3fce3f8c3990c031f8d0">Use semicolons instead of new keywords: check+handle</a>", September 2018</li>
+</ul>
+<ul>
+<li>Shannon Wynter "<a href="https://gist.github.com/freman/0b372e46c72f6a27652538b9930ee851">Error Handling as it can already be done</a>", August 2018</li>
 </ul>
 <h1 id="recurring-themes">Recurring themes</h1>
 <p>Concepts that appear repeatedly among the suggestions below.</p>
 <ul>
-<li>
-<p>Invoke handler via assignment, e.g. <code>v, ? := f()</code><br />
+<li>Invoke handler via assignment, e.g. <code>v, ? := f()</code><br />
   references:
   <a href="https://gist.github.com/oktalz/f04f36a3c2f61af22c7a6e06095d18eb">1</a>,
   <a href="https://gist.github.com/pborman/c69e79690d86dfc5c371f096be22930c">2</a>,
@@ -2433,10 +2376,10 @@ started with the Go 2 <a href="https://go.googlesource.com/proposal/+/master/des
   <a href="https://github.com/gooid/gonotes/blob/master/inline_style_error_handle.md">11</a>,
   <a href="https://gist.github.com/Kiura/4826db047e22b7720d378ac9ac642027">12</a>,
   <a href="https://github.com/golang/go/issues/27519">13</a>,
-  <a href="https://gist.github.com/lldld/bf93ca94c24f172e95baf8c123427ace">14</a></p>
-</li>
-<li>
-<p>Invoke one of several handlers by name, e.g. <code>v := check f() ? name</code><br />
+  <a href="https://gist.github.com/lldld/bf93ca94c24f172e95baf8c123427ace">14</a></li>
+</ul>
+<ul>
+<li>Invoke one of several handlers by name, e.g. <code>v := check f() ? name</code><br />
   references:
   <a href="https://didenko.github.io/grab/grab_worth_it_0.1.1.html">1</a>,
   <a href="https://gist.github.com/forstmeier/b6c6a6d2f6f2f72a81a076322959c959">2</a>,
@@ -2454,208 +2397,189 @@ started with the Go 2 <a href="https://go.googlesource.com/proposal/+/master/des
   <a href="https://gist.github.com/bserdar/4c728f85ca30de25a433e84ad5a065a1">14</a>,
   <a href="https://medium.com/@marode/the-return-of-the-return-278b8ae261ab">15</a>,
   <a href="https://gist.github.com/dpremus/3b141157e7e47418ca6ccb1fc0210fc7">16</a>,
-  <a href="https://github.com/golang/go/issues/27519">17</a></p>
-</li>
+  <a href="https://github.com/golang/go/issues/27519">17</a></li>
 </ul>
 <h1 id="modest-revisions">Modest revisions</h1>
 <ul>
-<li>
-<p>Leidong Liu, "<a href="https://gist.github.com/lldld/bf93ca94c24f172e95baf8c123427ace">a, b, !checkError := Sub(...)</a>", Nov 2019</p>
-</li>
-<li>
-<p>Jin Feng, "[A simplified Go 2 error handling solution with no handler], (<a href="https://gist.github.com/jfeng45/416d4ecb42a4df50bebf86ce1c41c668">https://gist.github.com/jfeng45/416d4ecb42a4df50bebf86ce1c41c668</a>)", July 2019</p>
-</li>
-<li>
-<p>Dave Arnold, "<a href="http://blog.oldcloudguy.com/2019/04/18/error-handling-in-go-2-draft/">Move special check keyword to left-hand side of assignment</a>", April 2019</p>
-</li>
-<li>
-<p>Rockmen, "<a href="https://github.com/rockmenjack/go-2-proposals/blob/master/error_handling.md">Add handle and ? as syntax sugar maybe</a>", December 2018</p>
-</li>
-<li>
-<p>Steve Manuel, "<a href="https://github.com/golang/go/issues/28344">Go 2 <code>handle</code> statement to optionally use a type switch</a>", October 2018</p>
-</li>
-<li>
-<p>Zlatko Bratkovic, "<a href="https://gist.github.com/oktalz/f04f36a3c2f61af22c7a6e06095d18eb">In support with tiny change</a>", October 2018</p>
-</li>
-<li>
-<p>DeedleFake, "<a href="https://gist.github.com/DeedleFake/5e8e9e39203dff4839793981f79123aa">Possible Solution to <code>check</code> Awkwardness with Chained Method Calls</a>", September 2018</p>
-</li>
-<li>
-<p>Yesuu Zhang, "<a href="https://github.com/yesuu/go-proposal/blob/master/go2errorhanding.md">Pass the check and handle parameters, custom handle</a>", September 2018</p>
-</li>
-<li>
-<p>Viktor Kojouharov, "<a href="https://gist.github.com/urandom/6519990ef9eb7547e888a5f2da7f1a93">Reducing the special casing around the new error design draft</a>", September 2018</p>
-</li>
-<li>
-<p>Aleksei Pavliukov, “<a href="https://github.com/a5i/go-proposal/blob/master/use%20a%20function%20as%20a%20handle%20parameter.md">Use a function as a handle parameter</a>”, September 2018</p>
-</li>
-<li>
-<p>Savino Pio Liguori, "<a href="https://gist.github.com/8lall0/cb43e1fa4aae42bc709b138bda02284e">Feedback for Go2 error handling design</a>", August 2018</p>
-</li>
-<li>
-<p>Jeffrey Koehler, "<a href="https://gist.github.com/deef0000dragon1/eb224ce4918d4ec3bdbaedf83a32aeb1">In support of Handle Chaining;  On Check</a>", August 2018</p>
-</li>
-<li>
-<p>Garrus, "<a href="https://gist.github.com/garrus/5b1f73a7640726c92273700eabed9056">Another style of syntactic sugar on error handling</a>", August 2018</p>
-</li>
-<li>
-<p>Paul Borman, "<a href="https://gist.github.com/pborman/c69e79690d86dfc5c371f096be22930c">Arguments against the Go 2 error handling proposal</a>", August 2018</p>
-</li>
-<li>
-<p>krhubert, "<a href="https://golang.org/issue/32361">Error default handler for tests</a>", May 2019</p>
-</li>
+<li>Leidong Liu, "<a href="https://gist.github.com/lldld/bf93ca94c24f172e95baf8c123427ace">a, b, !checkError := Sub(...)</a>", Nov 2019</li>
+</ul>
+<ul>
+<li>Jin Feng, "[A simplified Go 2 error handling solution with no handler], (<a href="https://gist.github.com/jfeng45/416d4ecb42a4df50bebf86ce1c41c668">https://gist.github.com/jfeng45/416d4ecb42a4df50bebf86ce1c41c668</a>)", July 2019</li>
+</ul>
+<ul>
+<li>Dave Arnold, "<a href="http://blog.oldcloudguy.com/2019/04/18/error-handling-in-go-2-draft/">Move special check keyword to left-hand side of assignment</a>", April 2019</li>
+</ul>
+<ul>
+<li>Rockmen, "<a href="https://github.com/rockmenjack/go-2-proposals/blob/master/error_handling.md">Add handle and ? as syntax sugar maybe</a>", December 2018</li>
+</ul>
+<ul>
+<li>Steve Manuel, "<a href="https://github.com/golang/go/issues/28344">Go 2 <code>handle</code> statement to optionally use a type switch</a>", October 2018</li>
+</ul>
+<ul>
+<li>Zlatko Bratkovic, "<a href="https://gist.github.com/oktalz/f04f36a3c2f61af22c7a6e06095d18eb">In support with tiny change</a>", October 2018</li>
+</ul>
+<ul>
+<li>DeedleFake, "<a href="https://gist.github.com/DeedleFake/5e8e9e39203dff4839793981f79123aa">Possible Solution to <code>check</code> Awkwardness with Chained Method Calls</a>", September 2018</li>
+</ul>
+<ul>
+<li>Yesuu Zhang, "<a href="https://github.com/yesuu/go-proposal/blob/master/go2errorhanding.md">Pass the check and handle parameters, custom handle</a>", September 2018</li>
+</ul>
+<ul>
+<li>Viktor Kojouharov, "<a href="https://gist.github.com/urandom/6519990ef9eb7547e888a5f2da7f1a93">Reducing the special casing around the new error design draft</a>", September 2018</li>
+</ul>
+<ul>
+<li>Aleksei Pavliukov, “<a href="https://github.com/a5i/go-proposal/blob/master/use%20a%20function%20as%20a%20handle%20parameter.md">Use a function as a handle parameter</a>”, September 2018</li>
+</ul>
+<ul>
+<li>Savino Pio Liguori, "<a href="https://gist.github.com/8lall0/cb43e1fa4aae42bc709b138bda02284e">Feedback for Go2 error handling design</a>", August 2018</li>
+</ul>
+<ul>
+<li>Jeffrey Koehler, "<a href="https://gist.github.com/deef0000dragon1/eb224ce4918d4ec3bdbaedf83a32aeb1">In support of Handle Chaining;  On Check</a>", August 2018</li>
+</ul>
+<ul>
+<li>Garrus, "<a href="https://gist.github.com/garrus/5b1f73a7640726c92273700eabed9056">Another style of syntactic sugar on error handling</a>", August 2018</li>
+</ul>
+<ul>
+<li>Paul Borman, "<a href="https://gist.github.com/pborman/c69e79690d86dfc5c371f096be22930c">Arguments against the Go 2 error handling proposal</a>", August 2018</li>
+</ul>
+<ul>
+<li>krhubert, "<a href="https://golang.org/issue/32361">Error default handler for tests</a>", May 2019</li>
 </ul>
 <h2 id="remove-handler-chaining">Remove handler chaining</h2>
 <ul>
-<li>
-<p>Markus Heukelom, "<a href="https://github.com/golang/go/issues/31442">proposal: Improve error handing using <code>guard</code> and <code>must</code> keywords</a>", April 2019</p>
-</li>
-<li>
-<p>Alessandro Arzilli, “<a href="https://gist.github.com/aarzilli/1a85db632edecc8159505e2c785882ed">Against check as an operator and handler chains</a>”, August 2018</p>
-</li>
-<li>
-<p>Simon Howard, “<a href="https://gist.github.com/fragglet/df6c5471771d87b2ad597d2efc57cb3e">Go 2 errors response: One Handler Per Function</a>”, August 2018</p>
-</li>
-<li>
-<p>Eli Bendersky, "<a href="https://gist.github.com/eliben/d0c872054864bfc1110ec761c3c53c47">Thoughts on the Go 2 Error Handling proposal</a>", September 2018</p>
-</li>
-<li>
-<p>Yoshiki Shibukawa, "<a href="https://gist.github.com/shibukawa/42a9dee400c2f8577b4a763bcb1a5e5f">Every handles should have return statement</a>", September 2018</p>
-</li>
+<li>Markus Heukelom, "<a href="https://github.com/golang/go/issues/31442">proposal: Improve error handing using <code>guard</code> and <code>must</code> keywords</a>", April 2019</li>
+</ul>
+<ul>
+<li>Alessandro Arzilli, “<a href="https://gist.github.com/aarzilli/1a85db632edecc8159505e2c785882ed">Against check as an operator and handler chains</a>”, August 2018</li>
+</ul>
+<ul>
+<li>Simon Howard, “<a href="https://gist.github.com/fragglet/df6c5471771d87b2ad597d2efc57cb3e">Go 2 errors response: One Handler Per Function</a>”, August 2018</li>
+</ul>
+<ul>
+<li>Eli Bendersky, "<a href="https://gist.github.com/eliben/d0c872054864bfc1110ec761c3c53c47">Thoughts on the Go 2 Error Handling proposal</a>", September 2018</li>
+</ul>
+<ul>
+<li>Yoshiki Shibukawa, "<a href="https://gist.github.com/shibukawa/42a9dee400c2f8577b4a763bcb1a5e5f">Every handles should have return statement</a>", September 2018</li>
 </ul>
 <h1 id="counter-proposals">Counter-proposals</h1>
 <h2 id="error-handling-with-normal-functions">Error handling with normal functions</h2>
 <ul>
-<li>
-<p>Andrew Phillips, “<a href="http://devmethodologies.blogspot.com/2018/10/go-error-handling-using-closures.html">Use closures rather than handlers</a>”, October 2018</p>
-</li>
-<li>
-<p>Taihei Morikuni, "<a href="https://gist.github.com/morikuni/bbe4b2b0384507b42e6a79d4eca5fc61">Use functions as an error handler, Add syntactic sugar to remove duplicated if statement</a>", September 2018</p>
-</li>
-<li>
-<p>Scott Pakin, "<a href="https://gist.github.com/spakin/86ea86ca48aefc78b672636914f4fc23">Go 2 error handling based on non-local returns</a>", September 2018</p>
-</li>
-<li>
-<p>Greg Weber "<a href="https://github.com/golang/go/issues/27567">Error handling with functions and an error return?</a>", September 2018. Originally linked <a href="https://gist.github.com/gregwebs/02479eeef8082cd199d9e6461cd1dab3">gist</a>.</p>
-</li>
-<li>
-<p>Gigi Sayfan, “<a href="https://gist.github.com/the-gigi/3c1acfc521d7991309eec140f40ccc2b">Go 2 error handling feedback + alternative solution</a>", September 2018</p>
-</li>
-<li>
-<p>Ruan Kunliang, "<a href="https://gist.github.com/PeterRK/4f59579c1162cdbc28086f6b5f7b4fa2">Simple Error Handling for Go 2</a>", August 2018</p>
-</li>
-<li>
-<p>Martin Rode, "<a href="https://medium.com/@marode/the-return-of-the-return-278b8ae261ab">The return of the return, Error Handling for Go 2</a>", November 2018</p>
-</li>
+<li>Andrew Phillips, “<a href="http://devmethodologies.blogspot.com/2018/10/go-error-handling-using-closures.html">Use closures rather than handlers</a>”, October 2018</li>
+</ul>
+<ul>
+<li>Taihei Morikuni, "<a href="https://gist.github.com/morikuni/bbe4b2b0384507b42e6a79d4eca5fc61">Use functions as an error handler, Add syntactic sugar to remove duplicated if statement</a>", September 2018</li>
+</ul>
+<ul>
+<li>Scott Pakin, "<a href="https://gist.github.com/spakin/86ea86ca48aefc78b672636914f4fc23">Go 2 error handling based on non-local returns</a>", September 2018</li>
+</ul>
+<ul>
+<li>Greg Weber "<a href="https://github.com/golang/go/issues/27567">Error handling with functions and an error return?</a>", September 2018. Originally linked <a href="https://gist.github.com/gregwebs/02479eeef8082cd199d9e6461cd1dab3">gist</a>.</li>
+</ul>
+<ul>
+<li>Gigi Sayfan, “<a href="https://gist.github.com/the-gigi/3c1acfc521d7991309eec140f40ccc2b">Go 2 error handling feedback + alternative solution</a>", September 2018</li>
+</ul>
+<ul>
+<li>Ruan Kunliang, "<a href="https://gist.github.com/PeterRK/4f59579c1162cdbc28086f6b5f7b4fa2">Simple Error Handling for Go 2</a>", August 2018</li>
+</ul>
+<ul>
+<li>Martin Rode, "<a href="https://medium.com/@marode/the-return-of-the-return-278b8ae261ab">The return of the return, Error Handling for Go 2</a>", November 2018</li>
 </ul>
 <h2 id="labeled-error-handlers">Labeled error handlers</h2>
 <ul>
-<li>
-<p>Danijel Premus, "<a href="https://gist.github.com/dpremus/3b141157e7e47418ca6ccb1fc0210fc7">Use existing go labels</a>", December 2018</p>
-</li>
-<li>
-<p>Burak Serdar, "<a href="https://gist.github.com/bserdar/4c728f85ca30de25a433e84ad5a065a1">Handler for err declares both err and errHandler, less intrusive labeled error handling</a>", October 2018</p>
-</li>
-<li>
-<p>John Forstmeier, "<a href="https://gist.github.com/forstmeier/b6c6a6d2f6f2f72a81a076322959c959">Labeled error handling</a>", September 2018</p>
-</li>
-<li>
-<p>Mikaël Cluseau, "<a href="https://gist.github.com/mcluseau/1c20c3973fa3acb544d0505637be8d67">Multiple handlers, unambiguous on which return value is used</a>", September 2018</p>
-</li>
-<li>
-<p>Kiura Magomadov, “<a href="https://gist.github.com/Kiura/4826db047e22b7720d378ac9ac642027">Addition to Go2 draft error handling</a>", September 2018</p>
-</li>
-<li>
-<p>Liam Breck, “<a href="https://github.com/golang/go/issues/27519">The <code>#id/catch</code> Error Model</a>”, September 2018</p>
-</li>
-<li>
-<p>Marlon Che, "<a href="https://gist.github.com/marlonche/4e5d4e5aec0555958ec1f181991325f6">How about separating check and handle?</a>", August 2018</p>
-</li>
+<li>Danijel Premus, "<a href="https://gist.github.com/dpremus/3b141157e7e47418ca6ccb1fc0210fc7">Use existing go labels</a>", December 2018</li>
+</ul>
+<ul>
+<li>Burak Serdar, "<a href="https://gist.github.com/bserdar/4c728f85ca30de25a433e84ad5a065a1">Handler for err declares both err and errHandler, less intrusive labeled error handling</a>", October 2018</li>
+</ul>
+<ul>
+<li>John Forstmeier, "<a href="https://gist.github.com/forstmeier/b6c6a6d2f6f2f72a81a076322959c959">Labeled error handling</a>", September 2018</li>
+</ul>
+<ul>
+<li>Mikaël Cluseau, "<a href="https://gist.github.com/mcluseau/1c20c3973fa3acb544d0505637be8d67">Multiple handlers, unambiguous on which return value is used</a>", September 2018</li>
+</ul>
+<ul>
+<li>Kiura Magomadov, “<a href="https://gist.github.com/Kiura/4826db047e22b7720d378ac9ac642027">Addition to Go2 draft error handling</a>", September 2018</li>
+</ul>
+<ul>
+<li>Liam Breck, “<a href="https://github.com/golang/go/issues/27519">The <code>#id/catch</code> Error Model</a>”, September 2018</li>
+</ul>
+<ul>
+<li>Marlon Che, "<a href="https://gist.github.com/marlonche/4e5d4e5aec0555958ec1f181991325f6">How about separating check and handle?</a>", August 2018</li>
 </ul>
 <h2 id="inlining">Inlining</h2>
 <ul>
-<li>
-<p>Patrick Kelly, "<a href="https://medium.com/@phlatphrog/handling-more-than-just-errors-in-go-f97c5aa2eac4">handling more than just errors in go</a>", August 2018</p>
-</li>
-<li>
-<p>Vlad Didenko, “<a href="https://didenko.github.io/grab/grab_worth_it_0.1.1.html">Error Handling with <code>grab | name()</code></a>”, November 2017</p>
-</li>
-<li>
-<p>Gooid, “<a href="https://github.com/gooid/gonotes/blob/master/inline_style_error_handle.md">Inline style error handle(simple unambiguous)</a>”, August 2018</p>
-</li>
+<li>Patrick Kelly, "<a href="https://medium.com/@phlatphrog/handling-more-than-just-errors-in-go-f97c5aa2eac4">handling more than just errors in go</a>", August 2018</li>
+</ul>
+<ul>
+<li>Vlad Didenko, “<a href="https://didenko.github.io/grab/grab_worth_it_0.1.1.html">Error Handling with <code>grab | name()</code></a>”, November 2017</li>
+</ul>
+<ul>
+<li>Gooid, “<a href="https://github.com/gooid/gonotes/blob/master/inline_style_error_handle.md">Inline style error handle(simple unambiguous)</a>”, August 2018</li>
 </ul>
 <h2 id="use-defer">Use defer</h2>
 <ul>
-<li>
-<p>Victoria Raymond, “<a href="https://gist.github.com/VictoriaRaymond/d70663a6ec6cdc59816b8806dccf7826">Force 'check' to return error instead of allowing customized logic</a>”, August 2018</p>
-</li>
-<li>
-<p>Night-walker and daokoder, "<a href="https://github.com/daokoder/dao/issues/191#issuecomment-44784919">Extend and repurpose defer instead of introducing new syntax</a>", June 2014</p>
-</li>
+<li>Victoria Raymond, “<a href="https://gist.github.com/VictoriaRaymond/d70663a6ec6cdc59816b8806dccf7826">Force 'check' to return error instead of allowing customized logic</a>”, August 2018</li>
+</ul>
+<ul>
+<li>Night-walker and daokoder, "<a href="https://github.com/daokoder/dao/issues/191#issuecomment-44784919">Extend and repurpose defer instead of introducing new syntax</a>", June 2014</li>
 </ul>
 <h2 id="trycatchfinally-syntax">try/catch/finally syntax</h2>
 <ul>
-<li>
-<p>Mathieu Devos, "<a href="https://gist.github.com/mathieudevos/2bdae70596aca711e50d1f2ff6d7b7cb">Go2 Error Handling Proposal: Scoped Check/Handle</a>", August 2018</p>
-</li>
-<li>
-<p>Rust RFC, “<a href="https://github.com/rust-lang/rfcs/blob/master/text/0243-trait-based-exception-handling.md">Trait-Based Exception Handling (wherein <code>catch</code> is akin to <code>try</code>)</a>”, February 2016</p>
-</li>
-<li>
-<p>ZhiFeng Hu, "<a href="https://www.netroby.com/view/3910">[Go2ErrorHandling] Go should support Exception handler</a>", August 2018</p>
-</li>
-<li>
-<p>Jan Semmelink, “<a href="https://gist.github.com/jansemmelink/235228a0fb56d0eeba8085ab5f8178f3">if-else-undo-done</a>”, August 2018</p>
-</li>
-<li>
-<p>Vladimir Utoplov, "<a href="https://gist.github.com/trashgenerator/d58e05522d2f83709e1a601564b68fee">Handling throws/throw idiom</a>", September 2018</p>
-</li>
-<li>
-<p>Gokan EKINCI, "<a href="https://gist.github.com/eau-de-la-seine/9e2e74d6369aef4a76aa50976e34de6d">try-with-resources</a>", December 2018</p>
-</li>
+<li>Mathieu Devos, "<a href="https://gist.github.com/mathieudevos/2bdae70596aca711e50d1f2ff6d7b7cb">Go2 Error Handling Proposal: Scoped Check/Handle</a>", August 2018</li>
+</ul>
+<ul>
+<li>Rust RFC, “<a href="https://github.com/rust-lang/rfcs/blob/master/text/0243-trait-based-exception-handling.md">Trait-Based Exception Handling (wherein <code>catch</code> is akin to <code>try</code>)</a>”, February 2016</li>
+</ul>
+<ul>
+<li>ZhiFeng Hu, "<a href="https://www.netroby.com/view/3910">[Go2ErrorHandling] Go should support Exception handler</a>", August 2018</li>
+</ul>
+<ul>
+<li>Jan Semmelink, “<a href="https://gist.github.com/jansemmelink/235228a0fb56d0eeba8085ab5f8178f3">if-else-undo-done</a>”, August 2018</li>
+</ul>
+<ul>
+<li>Vladimir Utoplov, "<a href="https://gist.github.com/trashgenerator/d58e05522d2f83709e1a601564b68fee">Handling throws/throw idiom</a>", September 2018</li>
+</ul>
+<ul>
+<li>Gokan EKINCI, "<a href="https://gist.github.com/eau-de-la-seine/9e2e74d6369aef4a76aa50976e34de6d">try-with-resources</a>", December 2018</li>
 </ul>
 <h2 id="other-possibilities">Other possibilities</h2>
 <ul>
-<li>
-<p>Alex Hornbake, "<a href="https://gist.github.com/alexhornbake/6a4c1c6a0f2a063da6dda1bf6ec0f5f3">refuse. conditional return keyword</a>", June 2019</p>
-</li>
-<li>
-<p>yaxinlx, "<a href="https://gist.github.com/yaxinlx/1e013fec0e3c2469f97074dbf5d2e2c0">Use ? as suffix to remove the last error value from multi-value tuples</a>", March 2019</p>
-</li>
-<li>
-<p>Plamen Stoev, "<a href="https://gist.github.com/coquebg/afe44e410f883a313dc849da3e1ff34c">Go 2 block-level checks</a>", November 2018</p>
-</li>
-<li>
-<p>Peter Goetz, "<a href="https://medium.com/@peter.gtz/thinking-about-new-ways-of-error-handling-in-go-2-e56d116952f1">Formalize and Enforce Error Handling</a>", September 2017</p>
-</li>
-<li>
-<p>Fedir RYKHTIK, "<a href="https://gist.github.com/fedir/50158bc351b43378b829948290102470">Go 2 error handling with exclamation mark</a>", September 2018</p>
-</li>
-<li>
-<p>Einthusan Vigneswaran, “<a href="https://gist.github.com/einthusan/24e18f6359a31b3537815284cde0f6de">Error Aware Keywords - return, defer, if, != and forcing the error object to be the last argument</a>”, September 2018</p>
-</li>
-<li>
-<p>Andrew Phillips, “<a href="http://devmethodologies.blogspot.com/2017/10/improving-go-error-handling.html">Improving Go Error Handling</a>”, October 2017</p>
-</li>
+<li>Alex Hornbake, "<a href="https://gist.github.com/alexhornbake/6a4c1c6a0f2a063da6dda1bf6ec0f5f3">refuse. conditional return keyword</a>", June 2019</li>
+</ul>
+<ul>
+<li>yaxinlx, "<a href="https://gist.github.com/yaxinlx/1e013fec0e3c2469f97074dbf5d2e2c0">Use ? as suffix to remove the last error value from multi-value tuples</a>", March 2019</li>
+</ul>
+<ul>
+<li>Plamen Stoev, "<a href="https://gist.github.com/coquebg/afe44e410f883a313dc849da3e1ff34c">Go 2 block-level checks</a>", November 2018</li>
+</ul>
+<ul>
+<li>Peter Goetz, "<a href="https://medium.com/@peter.gtz/thinking-about-new-ways-of-error-handling-in-go-2-e56d116952f1">Formalize and Enforce Error Handling</a>", September 2017</li>
+</ul>
+<ul>
+<li>Fedir RYKHTIK, "<a href="https://gist.github.com/fedir/50158bc351b43378b829948290102470">Go 2 error handling with exclamation mark</a>", September 2018</li>
+</ul>
+<ul>
+<li>Einthusan Vigneswaran, “<a href="https://gist.github.com/einthusan/24e18f6359a31b3537815284cde0f6de">Error Aware Keywords - return, defer, if, != and forcing the error object to be the last argument</a>”, September 2018</li>
+</ul>
+<ul>
+<li>Andrew Phillips, “<a href="http://devmethodologies.blogspot.com/2017/10/improving-go-error-handling.html">Improving Go Error Handling</a>”, October 2017</li>
 </ul>
 <h1 id="uncategorized">Uncategorized</h1>
 <p>Please help categorize the rest of the proposals here.</p>
 <ul>
-<li>
-<p>Andrew Gwozdziewycz, "<a href="http://sigusr2.net/check-for-go-errors.html">Check for Go Errors</a>", June 2019 </p>
-</li>
-<li>
-<p>DeedleFake, "<a href="https://deedlefake.com/2018/08/feedback-for-go-2-design-drafts/">Feedback for Go 2 Design Drafts</a>", August 2018</p>
-</li>
-<li>
-<p>Loki Verloren, “<a href="https://gist.github.com/l0k1verloren/8aec03b8c48fdb5d3dab3a77153ce162">Go 2 error handling feedback and my thoughts on how to improve programmer's efficiency and experience</a>”, September 2018</p>
-</li>
-<li>
-<p>Gima, "<a href="https://gitlab.com/snippets/1726097">Procedural code, separate error handling</a>", June 2018</p>
-</li>
-<li>
-<p>Konstantin, "<a href="https://github.com/Konstantin8105/Go2ErrorTree">error handling for error-tree</a>", <a href="https://github.com/golang/go/issues/32099">Discyssion</a> May 2019</p>
-</li>
+<li>Andrew Gwozdziewycz, "<a href="http://sigusr2.net/check-for-go-errors.html">Check for Go Errors</a>", June 2019 </li>
+</ul>
+<ul>
+<li>DeedleFake, "<a href="https://deedlefake.com/2018/08/feedback-for-go-2-design-drafts/">Feedback for Go 2 Design Drafts</a>", August 2018</li>
+</ul>
+<ul>
+<li>Loki Verloren, “<a href="https://gist.github.com/l0k1verloren/8aec03b8c48fdb5d3dab3a77153ce162">Go 2 error handling feedback and my thoughts on how to improve programmer's efficiency and experience</a>”, September 2018</li>
+</ul>
+<ul>
+<li>Gima, "<a href="https://gitlab.com/snippets/1726097">Procedural code, separate error handling</a>", June 2018</li>
+</ul>
+<ul>
+<li>Konstantin, "<a href="https://github.com/Konstantin8105/Go2ErrorTree">error handling for error-tree</a>", <a href="https://github.com/golang/go/issues/32099">Discyssion</a> May 2019</li>
 </ul>
 <h2 id="adding-your-feedback">Adding your feedback</h2>
 <p>Please format all entries as below.</p>

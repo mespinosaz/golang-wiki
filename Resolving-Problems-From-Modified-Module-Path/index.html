@@ -1299,18 +1299,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1383,18 +1371,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1431,8 +1407,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -2021,7 +1997,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2249,18 +2225,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2299,18 +2263,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -2510,50 +2462,36 @@ some-other/lib@v2.5.4 some/lib@v1.7.1
 <p>Since <code>some/lib</code> and <code>some-other/lib</code> depend on each other at the same version, there's no path backwards in time to a point where <code>github.com/golang/lint</code> is provided.</p>
 <p>Here are the steps to achieve this atomic version bump, assuming <code>some/lib</code> is at <code>v1.7.0</code> and <code>some-other/lib</code> is at <code>v2.5.3</code>:</p>
 <ol>
-<li>Verify that the error does in fact exist:<ol>
-<li>Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>. </li>
-<li>In both repos you should observe the error go: <code>github.com/golang/lint@v0.0.0-20190313153728-d0100b6bd8b3: parsing go.mod: unexpected module path "golang.org/x/lint"</code>.</li>
-</ol>
-</li>
+<li>Verify that the error does in fact exist:
+    1. Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>. 
+    1. In both repos you should observe the error go: <code>github.com/golang/lint@v0.0.0-20190313153728-d0100b6bd8b3: parsing go.mod: unexpected module path "golang.org/x/lint"</code>.</li>
 <li>Verify that the latest version of <code>some/lib</code> depends on <code>golang.org/x/lint</code> instead of <code>github.com/golang/lint</code>. It would be a shame to remove the historical trails but keep the broken dependency to <code>github.com/golang/lint</code>!</li>
-<li>Bump both libs to non-existent future versions of each other using alpha tags (which are safer since go modules won't consider alpha versions as newer when evaluating the latest released version of a module):<ol>
-<li><code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.3</code> to <code>v2.5.4-alpha</code>.</li>
-<li><code>some/lib</code> tags the commit <code>v1.7.1-alpha</code> and pushes the commit and tag.</li>
-<li><code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.6.0</code> to <code>v1.7.1-alpha</code>.</li>
-<li><code>some-other/lib</code> tags the commit <code>v2.5.4-alpha</code> and pushes the commit and tag.</li>
-</ol>
-</li>
-<li>Verify results whilst things are still in an alpha state:<ol>
-<li><code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some/lib</code>.</li>
-<li><code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some-other/lib</code>.</li>
-<li><code>GO111MODULE=on go mod graph</code> in both repos and assert that there's no path to <code>github.com/golang/lint</code>.</li>
-<li>Note: <code>go get -u</code> still will not work because - as mentioned above - alpha versions aren't considered when evaluating latest versions.</li>
-</ol>
-</li>
-<li>If everything looks good, continue by once again bumping to non-existent future versions of each other:<ol>
-<li><code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.4-alpha</code> to <code>v2.5.4</code></li>
-<li><code>some/lib</code> tags the commit <code>v1.7.1</code> and pushes the commit and tag.</li>
-<li><code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.7.1-alpha</code> to <code>v1.7.1</code>.</li>
-<li><code>some-other/lib</code> tags the commit <code>v2.5.4</code> and pushes the commit and tag. </li>
-</ol>
-</li>
-<li>Verify that the error no longer exists:<ol>
-<li>Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>.</li>
-<li>No parsing <code>go.mod: unexpected module path "golang.org/x/lint"</code> error should occur.</li>
-</ol>
-</li>
-<li>Currently, the <code>go.sum</code>s of <code>some/lib</code> and <code>some-other/lib</code> are incomplete. This is due to the fact that we depended upon future, non-existent versions of modules, so we were not able to generate go.sum entries until the process was finished. So let's fix this:<ol>
-<li><code>GO111MODULE=on go mod tidy</code> in <code>some/lib</code>.</li>
-<li>Commit, tag the commit <code>v1.7.2</code>, and push both commit and tag.</li>
-<li><code>GO111MODULE=on go mod tidy</code> in <code>some-other/lib</code>.</li>
-<li>Commit, tag the commit <code>v2.5.5</code>, and push both commit and tag.</li>
-</ol>
-</li>
-<li>Finally, let's make sure that <code>my-go-project</code> depends on these new versions of <code>some/lib</code> and <code>some-other/lib</code> which do not have long historical tails:<ol>
-<li>Change the <code>my-go-project</code> <code>go.mod</code> entry from <code>some/lib v1.7.0</code> to <code>some/lib 1.7.2</code>.</li>
-<li>Test by running <code>GO111MODULE=on go get -u ./...</code> in <code>my-go-project</code>. </li>
-</ol>
-</li>
+<li>Bump both libs to non-existent future versions of each other using alpha tags (which are safer since go modules won't consider alpha versions as newer when evaluating the latest released version of a module):
+    1. <code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.3</code> to <code>v2.5.4-alpha</code>.
+    1. <code>some/lib</code> tags the commit <code>v1.7.1-alpha</code> and pushes the commit and tag.
+    1. <code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.6.0</code> to <code>v1.7.1-alpha</code>.
+    1. <code>some-other/lib</code> tags the commit <code>v2.5.4-alpha</code> and pushes the commit and tag.</li>
+<li>Verify results whilst things are still in an alpha state:
+    1. <code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some/lib</code>.
+    1. <code>GO111MODULE=on go build ./...</code> &amp;&amp; <code>go test ./...</code> in <code>some-other/lib</code>.
+    1. <code>GO111MODULE=on go mod graph</code> in both repos and assert that there's no path to <code>github.com/golang/lint</code>.
+    1. Note: <code>go get -u</code> still will not work because - as mentioned above - alpha versions aren't considered when evaluating latest versions.</li>
+<li>If everything looks good, continue by once again bumping to non-existent future versions of each other:
+    1. <code>some/lib</code> changes its <code>some-other/lib</code> dependency from <code>v2.5.4-alpha</code> to <code>v2.5.4</code>
+    1. <code>some/lib</code> tags the commit <code>v1.7.1</code> and pushes the commit and tag.
+    1. <code>some-other/lib</code> changes its <code>some/lib</code> dependency from <code>v1.7.1-alpha</code> to <code>v1.7.1</code>.
+    1. <code>some-other/lib</code> tags the commit <code>v2.5.4</code> and pushes the commit and tag. </li>
+<li>Verify that the error no longer exists:
+    1. Run <code>GO111MODULE=on go get -u ./...</code> in <code>some/lib</code> and <code>some-other/lib</code>.
+    1. No parsing <code>go.mod: unexpected module path "golang.org/x/lint"</code> error should occur.</li>
+<li>Currently, the <code>go.sum</code>s of <code>some/lib</code> and <code>some-other/lib</code> are incomplete. This is due to the fact that we depended upon future, non-existent versions of modules, so we were not able to generate go.sum entries until the process was finished. So let's fix this:
+    1. <code>GO111MODULE=on go mod tidy</code> in <code>some/lib</code>.
+    1. Commit, tag the commit <code>v1.7.2</code>, and push both commit and tag.
+    1. <code>GO111MODULE=on go mod tidy</code> in <code>some-other/lib</code>.
+    1. Commit, tag the commit <code>v2.5.5</code>, and push both commit and tag.</li>
+<li>Finally, let's make sure that <code>my-go-project</code> depends on these new versions of <code>some/lib</code> and <code>some-other/lib</code> which do not have long historical tails:
+    1. Change the <code>my-go-project</code> <code>go.mod</code> entry from <code>some/lib v1.7.0</code> to <code>some/lib 1.7.2</code>.
+    1. Test by running <code>GO111MODULE=on go get -u ./...</code> in <code>my-go-project</code>. </li>
 </ol>
 <p>Note that between steps 5.b and 5.d, users are broken: a version of <code>some/lib</code> has been released that depends on a non-existent version of <code>some-other/lib</code>. Therefore, this process should ideally been done real-time so that step 5.d is finished very soon after step 5.b, creating as small a window of breakage as possible.</p>
 <h2 id="larger-cycles">Larger Cycles</h2>

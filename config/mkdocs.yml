@@ -3,7 +3,7 @@ site_description: Personal fork of Go Programming Language Wiki
 
 theme:
   name: "material"
-  include_search_page: false
+  include_search_page: true
   search_index_only: true
   include_homepage_in_sidebar: true
   prev_next_buttons_location: "bottom"
@@ -16,6 +16,37 @@ repo_url: https://github.com/zchee/golang-wiki
 docs_dir: "../"
 site_dir: "../../docs"
 
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML'
+
+markdown_extensions:
+  - toc
+  - admonition
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - mdx_truly_sane_lists
+
+plugins:
+  - search
+
+extra:
+  version: Wed Nov 6 13:19:33 2019 -0500 (4b97d4875e8f)
+
+## $ find ./ -type f -name '*.md' | awk -F/ '{print $2}' | awk -F'.md' '{print "  - "$1": "$0}' | sort --ignore-case | grep -v -e '  - _' -e 'Home:' -e 'WhyGo:' -e 'Windows:' -e 'Ubuntu:' -e 'Source:'
 nav:
   - Home: Home.md
   - WhyGo:
@@ -103,18 +134,16 @@ nav:
   - heapdump14: heapdump14.md
   - heapdump15-through-heapdump17: heapdump15-through-heapdump17.md
   - heapdump15: heapdump15.md
-  - Home: Home.md
   - HostedContinuousIntegration: HostedContinuousIntegration.md
   - How-to-ask-for-help: How-to-ask-for-help.md
   - HowToAsk: HowToAsk.md
   - HttpFetch: HttpFetch.md
   - HttpStaticFiles: HttpStaticFiles.md
   - IDEsAndTextEditorPlugins: IDEsAndTextEditorPlugins.md
-  - InstallFromSource: InstallFromSource.md
   - InstallTroubleshooting: InstallTroubleshooting.md
   - InterfaceSlice: InterfaceSlice.md
   - InvalidFlag: InvalidFlag.md
-  - Iota:Iota.md
+  - Iota: Iota.md
   - IssueLabels: IssueLabels.md
   - Learn: Learn.md
   - LearnConcurrency: LearnConcurrency.md
@@ -158,7 +187,7 @@ nav:
   - ResearchPapers: ResearchPapers.md
   - Resolving-Problems-From-Modified-Module-Path: Resolving-Problems-From-Modified-Module-Path.md
   - Screencasts: Screencasts.md
-  - SendingMail: endingMail.md
+  - SendingMail: SendingMail.md
   - SettingGOPATH: SettingGOPATH.md
   - SignalHandling: SignalHandling.md
   - SimultaneousAssignment: SimultaneousAssignment.md
@@ -177,41 +206,10 @@ nav:
   - TestComments: TestComments.md
   - Timeouts: Timeouts.md
   - Training: Training.md
-  - Ubuntu: Ubuntu.md
   - vgo: vgo.md
   - WebAccessibilityResourcesAndTips: WebAccessibilityResourcesAndTips.md
   - Well-known-struct-tags: Well-known-struct-tags.md
   - windows-scoop-install-go-cli: windows-scoop-install-go-cli.md
-  - Windows: Windows.md
   - WindowsBuild: WindowsBuild.md
   - WindowsCrossCompiling: WindowsCrossCompiling.md
   - WindowsDLLs: WindowsDLLs.md
-
-extra_javascript:
-  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML'
-
-extra:
-  version: Mon Sep 30 19:21:17 2019 -0400 (546b73a504df)
-
-markdown_extensions:
-  - toc
-  - admonition
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-plugins:
-  - search

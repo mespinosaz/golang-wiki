@@ -1299,18 +1299,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Home/" title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../HostedContinuousIntegration/" title="HostedContinuousIntegration" class="md-nav__link">
       HostedContinuousIntegration
     </a>
@@ -1383,18 +1371,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
-      InstallFromSource
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1431,8 +1407,8 @@
 
 
   <li class="md-nav__item">
-    <a href="Iota:Iota.md" title="None" class="md-nav__link">
-      None
+    <a href="../Iota/" title="Iota" class="md-nav__link">
+      Iota
     </a>
   </li>
 
@@ -2060,7 +2036,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../endingMail.md" title="SendingMail" class="md-nav__link">
+    <a href="../SendingMail/" title="SendingMail" class="md-nav__link">
       SendingMail
     </a>
   </li>
@@ -2288,18 +2264,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Ubuntu/" title="Ubuntu" class="md-nav__link">
-      Ubuntu
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../vgo/" title="vgo" class="md-nav__link">
       vgo
     </a>
@@ -2338,18 +2302,6 @@
   <li class="md-nav__item">
     <a href="../windows-scoop-install-go-cli/" title="windows-scoop-install-go-cli" class="md-nav__link">
       windows-scoop-install-go-cli
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../Windows/" title="Windows" class="md-nav__link">
-      Windows
     </a>
   </li>
 
@@ -2528,39 +2480,39 @@ what percent of CPU time. There are 3 ways you can get access to it:</p>
 <p>The simplest one is -cpuprofile flag of 'go test'
     (<a href="http://golang.org/cmd/go/#hdr-Description_of_testing_flags">http://golang.org/cmd/go/#hdr-Description_of_testing_flags</a>) command. For
     example, the following command:</p>
-<pre><code>$ go test -run=none -bench=ClientServerParallel4 -cpuprofile=cprof net/http
+<pre><code>  $ go test -run=none -bench=ClientServerParallel4 -cpuprofile=cprof net/http
 </code></pre>
 <p>will profile the given benchmark and write CPU profile into 'cprof' file.
-Then:</p>
-<pre><code>$ go tool pprof --text http.test cprof
+  Then:</p>
+<pre><code>  $ go tool pprof --text http.test cprof
 </code></pre>
 <p>will print a list of the hottest functions.</p>
 <p>There are several output types available, the most useful ones are:
-<code>--text</code>, <code>--web</code> and <code>--list</code>. Run <code>go tool pprof</code> to get the complete
-list. The obvious drawback of this option is that it works only for tests.</p>
+  <code>--text</code>, <code>--web</code> and <code>--list</code>. Run <code>go tool pprof</code> to get the complete
+  list. The obvious drawback of this option is that it works only for tests.</p>
 </li>
 <li>
 <p><a href="http://golang.org/pkg/net/http/pprof">net/http/pprof</a>: This is the ideal
     solution for network servers. You merely need to import <code>net/http/pprof</code>,
     and collect profiles with:</p>
-<pre><code>$ go tool pprof --text mybin  http://myserver:6060:/debug/pprof/profile
+<pre><code>  $ go tool pprof --text mybin  http://myserver:6060:/debug/pprof/profile
 </code></pre>
 </li>
 <li>
 <p>Manual profile collection. You need to import
     <a href="http://golang.org/pkg/runtime/pprof/">runtime/pprof</a> and add the following
     code to main function:</p>
-<pre><code>if *flagCpuprofile != "" {
-    f, err := os.Create(*flagCpuprofile)
-    if err != nil {
-        log.Fatal(err)
-    }
-    pprof.StartCPUProfile(f)
-    defer pprof.StopCPUProfile()
-}
+<pre><code>  if *flagCpuprofile != "" {
+      f, err := os.Create(*flagCpuprofile)
+      if err != nil {
+          log.Fatal(err)
+      }
+      pprof.StartCPUProfile(f)
+      defer pprof.StopCPUProfile()
+  }
 </code></pre>
 <p>The profile will be written to the specified file, visualize it the same way
-as in the first option.</p>
+  as in the first option.</p>
 </li>
 </ol>
 <p>Here is an example of a profile visualized with <code>--web</code> option:
@@ -2701,40 +2653,40 @@ suggestions.</p>
     heap allocations. Compiler generally can't prove that several variables have
     the same life time, so it allocates each such variable separately. So you
     can use the above advise for local variables as well. For example, replace:</p>
-<pre><code>for k, v := range m {
-    k, v := k, v   // copy for capturing by the goroutine
-    go func() {
-        // use k and v
-    }()
-}
+<pre><code>  for k, v := range m {
+      k, v := k, v   // copy for capturing by the goroutine
+      go func() {
+          // use k and v
+      }()
+  }
 </code></pre>
 <p>with:</p>
-<pre><code>for k, v := range m {
-    x := struct{ k, v string }{k, v}   // copy for capturing by the goroutine
-    go func() {
-        // use x.k and x.v
-    }()
-}
+<pre><code>  for k, v := range m {
+      x := struct{ k, v string }{k, v}   // copy for capturing by the goroutine
+      go func() {
+          // use x.k and x.v
+      }()
+  }
 </code></pre>
 <p>This replaces two memory allocations with a single allocation. However, this
-optimization usually negatively affects code readability, so use it
-reasonably.</p>
+  optimization usually negatively affects code readability, so use it
+  reasonably.</p>
 </li>
 <li>
 <p>A special case of allocation combining is slice array preallocation. If you
     know a typical size of the slice, you can preallocate a backing array for it
     as follows:</p>
-<pre><code>type X struct {
-    buf      []byte
-    bufArray [16]byte // Buf usually does not grow beyond 16 bytes.
-}
+<pre><code>  type X struct {
+      buf      []byte
+      bufArray [16]byte // Buf usually does not grow beyond 16 bytes.
+  }
 
-func MakeX() *X {
-    x := &amp;X{}
-    // Preinitialize buf with the backing array.
-    x.buf = x.bufArray[:0]
-    return x
-}
+  func MakeX() *X {
+      x := &amp;X{}
+      // Preinitialize buf with the backing array.
+      x.buf = x.bufArray[:0]
+      return x
+  }
 </code></pre>
 </li>
 <li>
@@ -2833,24 +2785,24 @@ visualization.</p>
     copy-on-write technique. If the protected data structure is modified
     infrequently and it's feasible to make copies of it, then it can be updated
     as follows:</p>
-<pre><code>type Config struct {
-    Routes   map[string]net.Addr
-    Backends []net.Addr
-}
+<pre><code>  type Config struct {
+      Routes   map[string]net.Addr
+      Backends []net.Addr
+  }
 
-var config atomic.Value  // actual type is *Config
+  var config atomic.Value  // actual type is *Config
 
-// Worker goroutines use this function to obtain the current config.
-  // UpdateConfig must be called at least once before this func.
-func CurrentConfig() *Config {
-    return config.Load().(*Config)
-}
+  // Worker goroutines use this function to obtain the current config.
+    // UpdateConfig must be called at least once before this func.
+  func CurrentConfig() *Config {
+      return config.Load().(*Config)
+  }
 
-// Background goroutine periodically creates a new Config object
-// as sets it as current using this function.
-func UpdateConfig(cfg *Config) {
-  config.Store(cfg)
-}
+  // Background goroutine periodically creates a new Config object
+  // as sets it as current using this function.
+  func UpdateConfig(cfg *Config) {
+    config.Store(cfg)
+  }
 </code></pre>
 <p>This pattern prevents the writer from blocking readers during update.</p>
 </li>
@@ -2858,46 +2810,46 @@ func UpdateConfig(cfg *Config) {
 <p>Partitioning is another general technique for reducing contention/blocking
     on shared mutable data structures. Below is an example of how to partition a
     hashmap:</p>
-<pre><code>type Partition struct {
-    sync.RWMutex
-    m map[string]string
-}
+<pre><code>  type Partition struct {
+      sync.RWMutex
+      m map[string]string
+  }
 
-const partCount = 64
-var m [partCount]Partition
+  const partCount = 64
+  var m [partCount]Partition
 
-func Find(k string) string {
-    idx := hash(k) % partCount
-    part := &amp;m[idx]
-    part.RLock()
-    v := part.m[k]
-    part.RUnlock()
-    return v
-}
+  func Find(k string) string {
+      idx := hash(k) % partCount
+      part := &amp;m[idx]
+      part.RLock()
+      v := part.m[k]
+      part.RUnlock()
+      return v
+  }
 </code></pre>
 </li>
 <li>
 <p>Local caching and batching of updates can help to reduce contention on
     un-partitionable data structures. Below you can see how to batch sends to a
     channel:</p>
-<pre><code>const CacheSize = 16
+<pre><code>  const CacheSize = 16
 
-type Cache struct {
-    buf [CacheSize]int
-    pos int
-}
+  type Cache struct {
+      buf [CacheSize]int
+      pos int
+  }
 
-func Send(c chan [CacheSize]int, cache *Cache, value int) {
-    cache.buf[cache.pos] = value
-    cache.pos++
-    if cache.pos == CacheSize {
-        c &lt;- cache.buf
-        cache.pos = 0
-    }
-}
+  func Send(c chan [CacheSize]int, cache *Cache, value int) {
+      cache.buf[cache.pos] = value
+      cache.pos++
+      if cache.pos == CacheSize {
+          c &lt;- cache.buf
+          cache.pos = 0
+      }
+  }
 </code></pre>
 <p>This technique is not limited to channels. It can be used to batch updates
-to a map, batch allocations, etc.</p>
+  to a map, batch allocations, etc.</p>
 </li>
 <li>
 <p>Use <a href="http://tip.golang.org/pkg/sync/#Pool">sync.Pool</a> for freelists instead
