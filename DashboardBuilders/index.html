@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
     
     
       
@@ -44,12 +44,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
@@ -2288,7 +2288,7 @@
 <p>For design details about the coordinator, see <a href="https://golang.org/s/builderplan">https://golang.org/s/builderplan</a></p>
 <h1 id="how-to-set-up-a-builder">How to set up a builder</h1>
 <ol>
-<li>talk to golang-dev@ to get a builder host type &amp; hash (they can get one from e.g. <a href="https://build-dot-golang-org.appspot.com/key?builder=host-foo-bar">https://build-dot-golang-org.appspot.com/key?builder=host-foo-bar</a>), and put that in <code>~/.gobuildkey</code> or <code>~/.gobuildkey-host-foo-bar</code> or the file pointed to by env var <code>$GO_BUILD_KEY_PATH</code>.</li>
+<li>talk to golang-dev@ to get a builder host type &amp; hash (they can get one from using the <code>golang.org/x/build/cmd/genbuilderkey</code> tool), and put that in <code>~/.gobuildkey</code> or <code>~/.gobuildkey-host-foo-bar</code> or the file pointed to by env var <code>$GO_BUILD_KEY_PATH</code>.</li>
 <li>define your new builder in <a href="https://github.com/golang/build/blob/master/dashboard/builders.go">https://github.com/golang/build/blob/master/dashboard/builders.go</a> with a new HostConfig and BuildConfig.</li>
 <li>have golang-dev deploy the build coordinator rebuilt with the dashboard/builders.go change</li>
 <li>have golang-dev modify golang.org/x/build/cmd/buildlet/Makefile to add your port and to uploads its buildlet binary to Google Cloud Storage (you can do this step out of order if your compiler changes aren't yet upstream)</li>
@@ -2381,7 +2381,7 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../assets/javascripts/application.a8b5e56f.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
     
     
       
@@ -44,12 +44,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
@@ -3944,7 +3944,19 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <h2 id="how-to-upgrade-and-downgrade-dependencies">How to Upgrade and Downgrade Dependencies</h2>
 <p>Day-to-day upgrading and downgrading of dependencies should be done using 'go get', which will automatically update the <code>go.mod</code> file. Alternatively, you can edit <code>go.mod</code> directly.</p>
 <p>In addition, go commands like 'go build', 'go test', or even 'go list' will automatically add new dependencies as needed to satisfy imports (updating <code>go.mod</code> and downloading the new dependencies).</p>
-<p>To view available minor and patch upgrades for all direct and indirect dependencies, run <code>go list -u -m all</code>.</p>
+<p>To upgrade a dependency to the latest version:
+<div class="highlight"><pre><span></span>go get example.com/package
+</pre></div></p>
+<p>To upgrade a dependency <em>and all its dependencies</em> to the latest version:
+<div class="highlight"><pre><span></span>go get -u example.com/package
+</pre></div></p>
+<p>To view available minor and patch upgrades for all direct and indirect dependencies:</p>
+<div class="highlight"><pre><span></span>go list -u -m all
+</pre></div>
+
+<p>To view available minor and patch upgrades <em>only</em> for the direct dependencies, run:
+<div class="highlight"><pre><span></span>go list -u -f &#39;{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Version}} -&gt; {{.Update.Version}}{{end}}&#39; -m all 2&gt; /dev/null
+</pre></div></p>
 <p>To upgrade to the latest version for all direct and indirect dependencies of the current module, the following can be run from the module root directory:
  * <code>go get -u ./...</code> to use the latest <em>minor or patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)
  * <code>go get -u=patch ./...</code> to use the latest <em>patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)</p>
@@ -4840,7 +4852,7 @@ stored in the package directory</em>, not in subdirectories.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../assets/javascripts/application.a8b5e56f.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
