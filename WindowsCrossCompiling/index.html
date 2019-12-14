@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
     
     
       
@@ -54,7 +54,7 @@
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -2187,6 +2187,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../WebAssembly/" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
       Well-known-struct-tags
     </a>
@@ -2342,7 +2354,7 @@
                 <h1 id="building-windows-go-programs-on-linux">Building windows go programs on linux</h1>
 <p>See <a href="https://golang.org/doc/install/source#environment">here</a> for available <code>GOOS</code> and <code>GOARCH</code> values.</p>
 <h2 id="go-version-15">Go version &gt;= 1.5</h2>
-<p>Since Go version 1.5 cross-compiling has become very easy. Try it out with the code below. More can be found at this blog post by <a href="http://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5">Dave Cheney</a>.</p>
+<p>Since Go version 1.5 cross-compiling of pure Go executables has become very easy. Try it out with the code below. More can be found at this blog post by <a href="http://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5">Dave Cheney</a>.</p>
 <div class="highlight"><pre><span></span><span class="err">$</span> <span class="nx">cat</span> <span class="nx">hello</span><span class="p">.</span><span class="k">go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
@@ -2359,7 +2371,7 @@
 <div class="highlight"><pre><span></span>GOOS=windows GOARCH=amd64 go install
 </pre></div>
 
-<p>Note also that <code>cgo</code> is disabled when cross-compiling, so any file that mentions <code>import "C"</code> will be silently ignored (See <a href="https://github.com/golang/go/issues/24068">https://github.com/golang/go/issues/24068</a>).</p>
+<p>Note also that <code>cgo</code> is disabled when cross-compiling, so any file that mentions <code>import "C"</code> will be silently ignored (See <a href="https://github.com/golang/go/issues/24068">https://github.com/golang/go/issues/24068</a>).  In order to use cgo, or any of the build modes <code>c-archive</code>, <code>c-shared</code>, <code>shared</code>, <code>plugin</code>, you need to have a C cross-compiler.</p>
 <h2 id="older-go-version-15">Older Go version (&lt;1.5)</h2>
 <p>I use linux/386, but, I suspect, this procedure will apply to other host platforms as well.</p>
 <p>Preparation (if needed):
@@ -2424,6 +2436,7 @@ go install -v -a std
 <p>We just need to find Windows computer to run our hello.exe.</p>
                 
                   
+                
                 
               
               
@@ -2491,7 +2504,7 @@ go install -v -a std
       
     </div>
     
-      <script src="../assets/javascripts/application.a8b5e56f.js"></script>
+      <script src="../assets/javascripts/application.808e90bb.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

@@ -36,7 +36,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
     
     
       
@@ -54,7 +54,7 @@
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
@@ -2221,6 +2221,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../WebAssembly/" title="WebAssembly" class="md-nav__link">
+      WebAssembly
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
       Well-known-struct-tags
     </a>
@@ -2339,33 +2351,23 @@
 <li>Create "cla: yes" and "cla: no" labels, they need to exist so that <a href="https://github.com/googlebot">@googlebot</a> can automatically apply them. (Without a "cla: yes" label, PRs won't be imported into Gerrit.)</li>
 </ul>
 </li>
-<li>Modify 3 x/build commands:<ul>
-<li>In <code>cmd/gitmirror</code>, add the new repo to <code>shouldMirror</code> function.</li>
-<li>In <code>maintner/maintnerd</code>, add the new repo to <code>goGitHubProjects</code> slice.</li>
-<li>In <code>cmd/gerritbot</code>, add the new repo to <code>gerritProjectWhitelist</code> map.</li>
-<li>See <a href="https://golang.org/cl/133896">an example CL</a> for all 3 changes.</li>
-</ul>
-</li>
-<li>Modify 1 x/website command:<ul>
-<li>In <code>cmd/golangorg</code>, add the new repo to <code>xMap</code> map.<ul>
-<li>See <a href="https://golang.org/cl/160137">an example CL</a>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Redeploy all affected commands in the following order:<ol>
-<li><code>cmd/gitmirror</code> first</li>
-<li><code>maintner/maintnerd</code> second<ul>
+<li>Modify the <code>x/build/repos</code> package.</li>
+<li>Bump x/website's <code>go.mod</code> dep of x/build with <code>go get -u golang.org/x/build/repos</code></li>
+<li>Redeploy all affected commands: (the order shouldn't matter)<ol>
+<li><code>x/build/cmd/gitmirror</code></li>
+<li><code>x/build/maintner/maintnerd</code><ul>
 <li>Note that it's expected for the new repo not to appear in maintner until first issue or PR is created (see <a href="https://golang.org/issue/25744">#25744</a>).</li>
 </ul>
 </li>
-<li><code>cmd/gerritbot</code> third</li>
-<li><code>cmd/golangorg</code> fourth</li>
+<li><code>x/build/cmd/gerritbot</code></li>
+<li><code>x/build/app/appengine</code> </li>
+<li><code>x/website/cmd/golangorg</code></li>
 </ol>
 </li>
 </ol>
                 
                   
+                
                 
               
               
@@ -2433,7 +2435,7 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.a8b5e56f.js"></script>
+      <script src="../assets/javascripts/application.808e90bb.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       

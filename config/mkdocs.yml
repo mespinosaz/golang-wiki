@@ -43,7 +43,7 @@ plugins:
   - search
 
 extra:
-  version: Wed Nov 6 13:19:33 2019 -0500 (4b97d4875e8f)
+  revision: 88c58f750e41
 
 ## $ find ./ -type f -name '*.md' | awk -F/ '{print $2}' | awk -F'.md' '{print "  - "$1": "$0}' | sort --ignore-case | grep -v -e '  - _' -e 'Home:' -e 'WhyGo:' -e 'Windows:' -e 'Ubuntu:' -e 'Source:'
 nav:
@@ -207,6 +207,7 @@ nav:
   - Training: Training.md
   - vgo: vgo.md
   - WebAccessibilityResourcesAndTips: WebAccessibilityResourcesAndTips.md
+  - WebAssembly: WebAssembly.md
   - Well-known-struct-tags: Well-known-struct-tags.md
   - windows-scoop-install-go-cli: windows-scoop-install-go-cli.md
   - WindowsBuild: WindowsBuild.md
