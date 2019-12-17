@@ -43,7 +43,7 @@ plugins:
   - search
 
 extra:
-  revision: 88c58f750e41
+  revision: d2dc234032b7
 
 ## $ find ./ -type f -name '*.md' | awk -F/ '{print $2}' | awk -F'.md' '{print "  - "$1": "$0}' | sort --ignore-case | grep -v -e '  - _' -e 'Home:' -e 'WhyGo:' -e 'Windows:' -e 'Ubuntu:' -e 'Source:'
 nav:
