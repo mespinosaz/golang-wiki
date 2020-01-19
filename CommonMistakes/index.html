@@ -2295,10 +2295,55 @@
                 <h1 id="table-of-contents">Table of Contents</h1>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
+<li><a href="#using-reference-to-loop-iterator-variable">Using reference to loop iterator variable</a></li>
 <li><a href="#using-goroutines-on-loop-iterator-variables">Using goroutines on loop iterator variables</a></li>
 </ul>
 <h1 id="introduction">Introduction</h1>
 <p>When new programmers start using Go or when old Go programmers start using a new concept, there are some common mistakes that many of them make.  Here is a non-exhaustive list of some frequent mistakes that show up on the mailing lists and in IRC.</p>
+<h1 id="using-reference-to-loop-iterator-variable">Using reference to loop iterator variable</h1>
+<p>In Go, the loop iterator variable is a single variable that takes different values in each loop iteration. This is very efficient, but might lead to unintended behavior when used incorrectly. For example, see the following program:</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">out</span> <span class="p">[]</span><span class="o">*</span><span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">out</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">out</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Values:&quot;</span><span class="p">,</span> <span class="o">*</span><span class="nx">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="nx">out</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">*</span><span class="nx">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Addresses:&quot;</span><span class="p">,</span> <span class="nx">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">out</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>It will output unexpected results:</p>
+<div class="highlight"><pre><span></span>Values: 3 3 3
+Addresses: 0x40e020 0x40e020 0x40e020
+</pre></div>
+
+<p>Explanation: in each iteration we append the address of <code>i</code> to the <code>out</code> slice, but since it is the same variable, we append the same address which eventually contains the last value that was assigned to <code>i</code>. One of the solutions is to copy the loop variable into a new variable:</p>
+<div class="highlight"><pre><span></span> for i := 0; i &lt; 3; i++ {
+<span class="gi">+   i := i // Copy i into a new variable.</span>
+    out = append(out, &amp;i)
+ }
+</pre></div>
+
+<p>The new output of the program is what was expected:</p>
+<div class="highlight"><pre><span></span>Values: 0 1 2
+Addresses: 0x40e020 0x40e024 0x40e028
+</pre></div>
+
+<p>Explanation: the line <code>i := i</code> copies the loop variable <code>i</code> into a new variable scoped to the for loop body block, also called <code>i</code>. The address of the new variable is the one that is appended to the array, which makes it outlive the for loop body block. In each loop iteration a new variable is created.</p>
+<p>While this example might look a bit obvious, the same unexpected behavior could be more hidden in some other cases. For example, the loop variable can be an array and the reference can be a slice:</p>
+<div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">out</span> <span class="p">[][]</span><span class="kt">int</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="p">[][</span><span class="mi">1</span><span class="p">]</span><span class="kt">int</span><span class="p">{{</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">}}</span> <span class="p">{</span>
+        <span class="nx">out</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">out</span><span class="p">,</span> <span class="nx">i</span><span class="p">[:])</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Values:&quot;</span><span class="p">,</span> <span class="nx">out</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Output:
+<div class="highlight"><pre><span></span>Values: [[3] [3] [3]]
+</pre></div></p>
+<p>The same issue can be demonstrated also when the loop variable is being used in a Goroutine (see the following section).</p>
 <h1 id="using-goroutines-on-loop-iterator-variables">Using goroutines on loop iterator variables</h1>
 <p>When iterating in Go, one might attempt to use goroutines to process data in parallel. For example, you might write something like this, using a closure:</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">values</span> <span class="p">{</span>

@@ -2293,7 +2293,7 @@
                 
                 
                 <h1 id="go-on-netbsd">Go on NetBSD</h1>
-<p>Go on NetBSD is not stable as of Go 1.8/Go 1.9. See <a href="https://tip.golang.org/doc/go1.9#known_issues">https://tip.golang.org/doc/go1.9#known_issues</a> and <a href="https://github.com/golang/go/issues/20852">https://github.com/golang/go/issues/20852</a></p>
+<p>Go on NetBSD is fairly stable on the architectures below. However, some bugs remain; see the <a href="https://github.com/golang/go/issues?q=is%3Aissue+is%3Aopen+label%3AOS-NetBSD">issue tracker</a> for details.</p>
 <table>
 <thead>
 <tr>
@@ -2320,7 +2320,7 @@
 <td align="left">6.0 through 6.1</td>
 <td align="left">amd64, arm, 386</td>
 <td align="left">Go 1.3 <em>*</em></td>
-<td align="left"></td>
+<td align="left">Go 1.9.7</td>
 </tr>
 <tr>
 <td align="left">5.0 through 5.2 (EOL)</td>
@@ -2331,9 +2331,14 @@
 </tbody>
 </table>
 <p><em>*</em> Go 1.5 or above is recommended.</p>
+<p>Support for the arm64 architecture is a work in progress, see <a href="https://golang.org/issue/30824">https://golang.org/issue/30824</a>.</p>
+<h1 id="go-packages-in-pkgsrc">Go packages in pkgsrc</h1>
+<p><a href="https://pkgsrc.org/">pkgsrc</a>, the NetBSD package collection, contains up-to-date packages for released Go versions. The packages contain the version in the name (e.g. <a href="http://pkgsrc.se/lang/go113"><code>lang/go113</code></a>) so that multiple versions can be installed in parallel. <a href="http://pkgsrc.se/lang/go"><code>lang/go</code></a> is a meta-package that always depends on the default go version.</p>
+<p>Note that the <code>go</code> binary name is also installed with a version suffix. Install the <a href="http://pkgsrc.se/pkgtools/pkg_alternatives"><code>pkgtools/pkg_alternatives</code></a> package to get a <code>go</code> command symlink in your PATH.</p>
+<p>There are a number of packages for software written in Go in pkgsrc. At the moment, module-based builds are experimental, and packages are built using a GOPATH layout.</p>
 <h1 id="preparing-netbsd-for-go">Preparing NetBSD for Go</h1>
 <ul>
-<li>install NetBSD 6.0 (remember to install pkgsrc in the last step)</li>
+<li>install NetBSD (remember to install pkgsrc in the last step)</li>
 <li>install shells/bash and devel/git (do <code>make package-install clean</code> in <code>/usr/pkgsrc/shells/bash</code> and <code>/usr/pkgsrc/devel/git</code>.<ul>
 <li>Using binary packages: <code>pkgin install bash git</code></li>
 </ul>

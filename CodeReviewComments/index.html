@@ -526,15 +526,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declaring-empty-slices" class="md-nav__link">
-    Declaring Empty Slices
+  <a href="#crypto-rand" class="md-nav__link">
+    Crypto Rand
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#crypto-rand" class="md-nav__link">
-    Crypto Rand
+  <a href="#declaring-empty-slices" class="md-nav__link">
+    Declaring Empty Slices
   </a>
   
 </li>
@@ -2550,15 +2550,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declaring-empty-slices" class="md-nav__link">
-    Declaring Empty Slices
+  <a href="#crypto-rand" class="md-nav__link">
+    Crypto Rand
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#crypto-rand" class="md-nav__link">
-    Crypto Rand
+  <a href="#declaring-empty-slices" class="md-nav__link">
+    Declaring Empty Slices
   </a>
   
 </li>
@@ -2841,19 +2841,6 @@ the slice in the copy may alias the array in the original, causing subsequent me
 calls to have surprising effects.</p>
 <p>In general, do not copy a value of type <code>T</code> if its methods are associated with the
 pointer type, <code>*T</code>.</p>
-<h2 id="declaring-empty-slices">Declaring Empty Slices</h2>
-<p>When declaring an empty slice, prefer</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">t</span> <span class="p">[]</span><span class="kt">string</span>
-</pre></div>
-
-<p>over </p>
-<div class="highlight"><pre><span></span><span class="nx">t</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
-</pre></div>
-
-<p>The former declares a nil slice value, while the latter is non-nil but zero-length. They are functionally equivalent—their <code>len</code> and <code>cap</code> are both zero—but the nil slice is the preferred style.</p>
-<p>Note that there are limited circumstances where a non-nil but zero-length slice is preferred, such as when encoding JSON objects (a <code>nil</code> slice encodes to <code>null</code>, while <code>[]string{}</code> encodes to the JSON array <code>[]</code>).</p>
-<p>When designing interfaces, avoid making a distinction between a nil slice and a non-nil, zero-length slice, as this can lead to subtle programming errors.</p>
-<p>For more discussion about nil in Go see Francesc Campoy's talk <a href="https://www.youtube.com/watch?v=ynoY2xz-F8s">Understanding Nil</a>.</p>
 <h2 id="crypto-rand">Crypto Rand</h2>
 <p>Do not use package <code>math/rand</code> to generate keys, even throwaway ones.
 Unseeded, the generator is completely predictable. Seeded with <code>time.Nanoseconds()</code>,
@@ -2878,6 +2865,19 @@ and if you need text, print to hexadecimal or base64:</p>
 <span class="p">}</span>
 </pre></div>
 
+<h2 id="declaring-empty-slices">Declaring Empty Slices</h2>
+<p>When declaring an empty slice, prefer</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">t</span> <span class="p">[]</span><span class="kt">string</span>
+</pre></div>
+
+<p>over </p>
+<div class="highlight"><pre><span></span><span class="nx">t</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+</pre></div>
+
+<p>The former declares a nil slice value, while the latter is non-nil but zero-length. They are functionally equivalent—their <code>len</code> and <code>cap</code> are both zero—but the nil slice is the preferred style.</p>
+<p>Note that there are limited circumstances where a non-nil but zero-length slice is preferred, such as when encoding JSON objects (a <code>nil</code> slice encodes to <code>null</code>, while <code>[]string{}</code> encodes to the JSON array <code>[]</code>).</p>
+<p>When designing interfaces, avoid making a distinction between a nil slice and a non-nil, zero-length slice, as this can lead to subtle programming errors.</p>
+<p>For more discussion about nil in Go see Francesc Campoy's talk <a href="https://www.youtube.com/watch?v=ynoY2xz-F8s">Understanding Nil</a>.</p>
 <h2 id="doc-comments">Doc Comments</h2>
 <p>All top-level, exported names should have doc comments, as should non-trivial unexported type or function declarations. See <a href="https://golang.org/doc/effective_go.html#commentary">https://golang.org/doc/effective_go.html#commentary</a> for more information about commentary conventions.</p>
 <h2 id="dont-panic">Don't Panic</h2>
@@ -2917,7 +2917,7 @@ The standard library packages are always in the first group.</p>
     <span class="s">&quot;appengine/foo&quot;</span>
     <span class="s">&quot;appengine/user&quot;</span>
 
-        <span class="s">&quot;github.com/foo/bar&quot;</span>
+    <span class="s">&quot;github.com/foo/bar&quot;</span>
     <span class="s">&quot;rsc.io/goversion/version&quot;</span>
 <span class="p">)</span>
 </pre></div>

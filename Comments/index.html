@@ -2309,6 +2309,19 @@
   <span class="o">...</span>
 <span class="p">}</span>
 </pre></div>
+
+<p>All text that you indent inside a comment, godoc will render as a pre-formatted block. This facilitates code samples.</p>
+<div class="highlight"><pre><span></span><span class="c1">// fight can be used on any enemy and returns whether Superman won.</span>
+<span class="c1">//</span>
+<span class="c1">// Examples:</span>
+<span class="c1">//</span>
+<span class="c1">//  fight(&quot;a random potato&quot;)</span>
+<span class="c1">//  fight(LexLuthor{})</span>
+<span class="c1">//</span>
+<span class="kd">func</span> <span class="nx">fight</span><span class="p">(</span><span class="nx">enemy</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
                 
                   
                 
