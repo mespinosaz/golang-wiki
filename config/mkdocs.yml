@@ -20,13 +20,12 @@ docs_dir: "../"
 site_dir: "../../docs"
 
 extra_javascript:
-  # - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/MathJax.js?config=TeX-MML-AM_CHTML'
-  - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/startup.js"
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'
 
 markdown_extensions:
   - toc
-  - codehilite
   - admonition
+  - codehilite
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
