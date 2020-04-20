@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Personal fork of Go Programming Language Wiki">
       
@@ -16,27 +14,8 @@
         <link rel="canonical" href="https://zchee.github.io/golang-wiki/Modules/">
       
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.1">
     
     
       
@@ -44,117 +23,95 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a676eddb.min.css">
       
       
     
-    
-      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-89201129-1","https://zchee.github.io/golang-wiki/"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#go-111-modules" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#go-modules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Go Programming Language Wiki
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Modules
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo" aria-label="Go Programming Language Wiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Go Programming Language Wiki
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Modules
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Type to start searching
           </div>
@@ -164,71 +121,56 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     zchee/golang-wiki
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo" aria-label="Go Programming Language Wiki">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Go Programming Language Wiki
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     zchee/golang-wiki
   </div>
@@ -256,13 +198,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       WhyGo
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="WhyGo" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         WhyGo
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -292,13 +240,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Install
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Install" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         Install
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1371,6 +1325,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
+      InstallFromSource
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1503,6 +1469,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../LinuxKernelSignalVectorBug/" title="LinuxKernelSignalVectorBug" class="md-nav__link">
+      LinuxKernelSignalVectorBug
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../LockOSThread/" title="LockOSThread" class="md-nav__link">
       LockOSThread
     </a>
@@ -1566,13 +1544,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Modules
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
       </label>
     
     <a href="./" title="Modules" class="md-nav__link md-nav__link--active">
@@ -1580,19 +1561,44 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#recent-changes" class="md-nav__link">
     Recent Changes
   </a>
+  
+    <nav class="md-nav" aria-label="Recent Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go-114" class="md-nav__link">
+    Go 1.14
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-113" class="md-nav__link">
+    Go 1.13
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1608,7 +1614,7 @@
     Quick Start
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1635,7 +1641,7 @@
     New Concepts
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="New Concepts">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1676,7 +1682,7 @@
     How to Use Modules
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How to Use Modules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1710,7 +1716,7 @@
     How to Prepare for a Release
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How to Prepare for a Release">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1744,7 +1750,7 @@
     Migrating to Modules
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Migrating to Modules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1820,7 +1826,7 @@
     Additional Resources
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Additional Resources">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1868,7 +1874,7 @@
     FAQs
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1916,7 +1922,7 @@
     FAQs — Additional Control
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Additional Control">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1968,6 +1974,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#how-do-i-download-modules-needed-to-build-specific-packages-or-tests" class="md-nav__link">
+    How do I download modules needed to build specific packages or tests?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1978,7 +1991,7 @@
     FAQs — go.mod and go.sum
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — go.mod and go.sum">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2019,7 +2032,7 @@
     FAQs — Semantic Import Versioning
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Semantic Import Versioning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2088,7 +2101,7 @@
     FAQS — Multi-Module Repositories
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQS — Multi-Module Repositories">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2143,7 +2156,7 @@
     FAQs — Minimal Version Selection
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Minimal Version Selection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2163,7 +2176,7 @@
     FAQs — Possible Problems
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Possible Problems">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2206,7 +2219,7 @@
     How can I resolve "parsing go.mod: unexpected module path" and "error loading module requirements" errors caused by a mismatch between import paths vs. declared module identity?
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How can I resolve "parsing go.mod: unexpected module path" and "error loading module requirements" errors caused by a mismatch between import paths vs. declared module identity?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2260,10 +2273,6 @@
     </nav>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -2890,18 +2899,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../WebAssembly/" title="WebAssembly" class="md-nav__link">
-      WebAssembly
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
       Well-known-struct-tags
     </a>
@@ -2967,19 +2964,44 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#recent-changes" class="md-nav__link">
     Recent Changes
   </a>
+  
+    <nav class="md-nav" aria-label="Recent Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go-114" class="md-nav__link">
+    Go 1.14
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-113" class="md-nav__link">
+    Go 1.13
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2995,7 +3017,7 @@
     Quick Start
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3022,7 +3044,7 @@
     New Concepts
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="New Concepts">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3063,7 +3085,7 @@
     How to Use Modules
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How to Use Modules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3097,7 +3119,7 @@
     How to Prepare for a Release
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How to Prepare for a Release">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3131,7 +3153,7 @@
     Migrating to Modules
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Migrating to Modules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3207,7 +3229,7 @@
     Additional Resources
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Additional Resources">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3255,7 +3277,7 @@
     FAQs
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3303,7 +3325,7 @@
     FAQs — Additional Control
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Additional Control">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3355,6 +3377,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#how-do-i-download-modules-needed-to-build-specific-packages-or-tests" class="md-nav__link">
+    How do I download modules needed to build specific packages or tests?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3365,7 +3394,7 @@
     FAQs — go.mod and go.sum
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — go.mod and go.sum">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3406,7 +3435,7 @@
     FAQs — Semantic Import Versioning
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Semantic Import Versioning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3475,7 +3504,7 @@
     FAQS — Multi-Module Repositories
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQS — Multi-Module Repositories">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3530,7 +3559,7 @@
     FAQs — Minimal Version Selection
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Minimal Version Selection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3550,7 +3579,7 @@
     FAQs — Possible Problems
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="FAQs — Possible Problems">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3593,7 +3622,7 @@
     How can I resolve "parsing go.mod: unexpected module path" and "error loading module requirements" errors caused by a mismatch between import paths vs. declared module identity?
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="How can I resolve "parsing go.mod: unexpected module path" and "error loading module requirements" errors caused by a mismatch between import paths vs. declared module identity?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3648,10 +3677,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -3664,38 +3689,44 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Modules.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/Modules.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
                 
                 
-                <h1 id="go-111-modules">Go 1.11 Modules</h1>
-<p>Go 1.11 includes preliminary support for versioned modules as proposed <a href="https://golang.org/design/24301-versioned-go">here</a>. Modules are an experimental opt-in feature in Go 1.11, with the plan of incorporating feedback and <a href="https://github.com/golang/go/issues/31857">finalizing</a> the feature for Go 1.14. Even though some details may change, future releases will support modules defined using Go 1.11, 1.12, and 1.13.</p>
-<p>The initial prototype <code>vgo</code> was <a href="https://research.swtch.com/vgo">announced</a> in February 2018. In July 2018, versioned modules <a href="https://groups.google.com/d/msg/golang-dev/a5PqQuBljF4/61QK4JdtBgAJ">landed</a> in the main Go repository.</p>
-<p>Please provide feedback on modules via <a href="https://github.com/golang/go/wiki/Modules#github-issues">existing or new issues</a> and <a href="https://github.com/golang/go/wiki/ExperienceReports">experience reports</a>.</p>
+                  
+                
+                
+                <h1 id="go-modules">Go Modules</h1>
+<p>Go has included support for versioned modules as proposed <a href="https://golang.org/design/24301-versioned-go">here</a> since 1.11. The initial prototype  <code>vgo</code> was <a href="https://research.swtch.com/vgo">announced</a> in February 2018. In July 2018, versioned modules <a href="https://groups.google.com/d/msg/golang-dev/a5PqQuBljF4/61QK4JdtBgAJ">landed</a> in the main Go repository.</p>
+<p>In <a href="https://golang.org/doc/go1.14">Go 1.14</a>, module support is considered ready for production use, and all users are encouraged to migrate to modules from other dependency management systems. If you are unable to migrate due to a problem in the Go toolchain, please ensure that the problem has an <a href="#github-issues">open issue</a> filed. (If the issue is not on the Go1.15 milestone, please comment on why it prevents you from migrating so it can be prioritized appropriately). You can also provide an <a href="https://github.com/golang/go/wiki/ExperienceReports">experience report</a> for more detailed feedback.</p>
 <h2 id="recent-changes">Recent Changes</h2>
-<p>There were significant improvements and changes to modules in Go 1.13.</p>
-<p>If you use modules, it is important to carefully review the <a href="https://golang.org/doc/go1.13#modules">modules section</a> of the Go 1.13 release notes.</p>
-<p>Three notable changes:</p>
-<ol>
-<li>
-<p>The <code>go</code> tool now defaults to downloading modules from the public Go module mirror at <a href="https://proxy.golang.org">https://proxy.golang.org</a>, and also defaults to validating downloaded modules (regardless of source) against the public Go checksum database at <a href="https://sum.golang.org">https://sum.golang.org</a>.</p>
+<h3 id="go-114">Go 1.14</h3>
+<p>See the <a href="https://golang.org/doc/go1.14#go-command">Go 1.14 release notes</a> for details.</p>
 <ul>
+<li>When the main module contains a top-level vendor directory and its <code>go.mod file</code> specifies <code>go 1.14</code> or higher, the go command now defaults to <code>-mod=vendor</code> for operations that accept that flag.</li>
+<li><code>-mod=readonly</code> is now set by default when the go.mod file is read-only and no top-level vendor directory is present.</li>
+<li><code>-modcacherw</code> is a new flag that instructs the go command to leave newly-created directories in the module cache at their default permissions rather than making them read-only.</li>
+<li><code>-modfile=file</code> is a new flag that instructs the go command to read (and possibly write) an alternate <code>go.mod</code> file instead of the one in the module root directory.</li>
+<li>When module-aware mode is enabled explicitly (by setting <code>GO111MODULE=on</code>), most module commands have more limited functionality if no <code>go.mod</code> file is present.</li>
+<li>The go command now supports Subversion repositories in module mode.</li>
+</ul>
+<h3 id="go-113">Go 1.13</h3>
+<p>See the <a href="https://golang.org/doc/go1.13#modules">Go 1.13 release notes</a> for details.</p>
+<ul>
+<li>The <code>go</code> tool now defaults to downloading modules from the public Go module mirror at <a href="https://proxy.golang.org">https://proxy.golang.org</a>, and also defaults to validating downloaded modules (regardless of source) against the public Go checksum database at <a href="https://sum.golang.org">https://sum.golang.org</a>.<ul>
 <li>If you have private code, you most likely should configure the <code>GOPRIVATE</code> setting (such as <code>go env -w GOPRIVATE=*.corp.com,github.com/secret/repo</code>), or the more fine-grained variants <code>GONOPROXY</code> or <code>GONOSUMDB</code> that support less frequent use cases. See the <a href="https://golang.org/cmd/go/#hdr-Module_configuration_for_non_public_modules">documentation</a> for more details.</li>
 </ul>
 </li>
-<li>
-<p><code>GO111MODULE=auto</code> enables module-mode if any go.mod is found, even inside GOPATH. (Prior to Go 1.13, <code>GO111MODULE=auto</code> would never enable module-mode inside GOPATH).</p>
-</li>
-<li>
-<p><code>go get</code> arguments have changed:</p>
-<ul>
+<li><code>GO111MODULE=auto</code> enables module-mode if any go.mod is found, even inside GOPATH. (Prior to Go 1.13, <code>GO111MODULE=auto</code> would never enable module-mode inside GOPATH).</li>
+<li><code>go get</code> arguments have changed:<ul>
 <li><code>go get -u</code> (without any arguments) now only upgrades the direct and indirect dependencies of your current <em>package</em>, and no longer examines your entire <em>module</em>.</li>
 <li><code>go get -u ./...</code> from your module root upgrades all the direct and indirect dependencies of your module, and now excludes test dependencies.</li>
 <li><code>go get -u -t ./...</code> is similar, but also upgrades test dependencies.</li>
 <li><code>go get</code> no longer supports <code>-m</code> (because it would have largely overlapped with <code>go get -d</code> due to other changes;  you can usually replace <code>go get -m foo</code> with <code>go get -d foo</code>).</li>
 </ul>
 </li>
-</ol>
-<p>Please see the <a href="https://golang.org/doc/go1.13#modules">release notes</a> for more details on these and other changes.</p>
+</ul>
 <h2 id="table-of-contents">Table of Contents</h2>
 <p>The "Quick Start" and "New Concepts" sections are particularly important for someone who is starting to work with modules. The "How to..." sections cover more details on mechanics. The largest quantity of content on this page is in the FAQs answering more specific questions; it can be worthwhile to at least skim the FAQ one-liners listed here.</p>
 <ul>
@@ -3732,6 +3763,7 @@
 <li><a href="https://github.com/golang/go/wiki/Modules#are-there-always-on-module-repositories-and-enterprise-proxies">Are there "always on" module repositories and enterprise proxies?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#can-i-control-when-gomod-gets-updated-and-when-the-go-tools-use-the-network-to-satisfy-dependencies">Can I control when go.mod gets updated and when the go tools use the network to satisfy dependencies?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#how-do-i-use-modules-with-ci-systems-such-as-travis-or-circleci">How do I use modules with CI systems such as Travis or CircleCI?</a></li>
+<li><a href="https://github.com/golang/go/wiki/Modules#how-do-i-download-modules-needed-to-build-specific-packages-or-tests">How do I download modules needed to build specific packages or tests?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#faqs--gomod-and-gosum">FAQs — go.mod and go.sum</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#why-does-go-mod-tidy-record-indirect-and-test-dependencies-in-my-gomod">Why does 'go mod tidy' record indirect and test dependencies in my 'go.mod'?</a></li>
 <li><a href="https://github.com/golang/go/wiki/Modules#is-gosum-a-lock-file-why-does-gosum-include-information-for-module-versions-i-am-no-longer-using">Is 'go.sum' a lock file? Why does 'go.sum' include information for module versions I am no longer using?</a></li>
@@ -3770,18 +3802,18 @@
 <h4 id="example">Example</h4>
 <p>The details are covered in the remainder of this page, but here is a simple example of creating a module from scratch.</p>
 <p>Create a directory outside of your GOPATH, and optionally initialize VCS:
-<div class="highlight"><pre><span></span>$ mkdir -p /tmp/scratchpad/repo
+<div class="highlight"><pre><span></span><code>$ mkdir -p /tmp/scratchpad/repo
 $ cd /tmp/scratchpad/repo
 $ git init -q
 $ git remote add origin https://github.com/my/repo
-</pre></div></p>
+</code></pre></div></p>
 <p>Initialize a new module:
-<div class="highlight"><pre><span></span>$ go mod init github.com/my/repo
+<div class="highlight"><pre><span></span><code>$ go mod init github.com/my/repo
 
 go: creating new go.mod: module github.com/my/repo
-</pre></div></p>
+</code></pre></div></p>
 <p>Write your code:
-<div class="highlight"><pre><span></span>$ cat &lt;&lt;EOF &gt; hello.go
+<div class="highlight"><pre><span></span><code>$ cat &lt;&lt;EOF &gt; hello.go
 package main
 
 import (
@@ -3793,27 +3825,27 @@ func main() {
     fmt.Println(quote.Hello())
 }
 EOF
-</pre></div></p>
+</code></pre></div></p>
 <p>Build and run:
-<div class="highlight"><pre><span></span>$ go build -o hello
+<div class="highlight"><pre><span></span><code>$ go build -o hello
 $ ./hello
 
 Hello, world.
-</pre></div></p>
+</code></pre></div></p>
 <p>The <code>go.mod</code> file was updated to include explicit versions for your dependencies, where <code>v1.5.2</code> here is a <a href="https://semver.org">semver</a> tag:
-<div class="highlight"><pre><span></span>$ cat go.mod
+<div class="highlight"><pre><span></span><code>$ cat go.mod
 
 module github.com/my/repo
 
 require rsc.io/quote v1.5.2
-</pre></div></p>
+</code></pre></div></p>
 <h4 id="daily-workflow">Daily Workflow</h4>
 <p>Note there was no <code>go get</code> required in the example above. </p>
 <p>Your typical day-to-day workflow can be:</p>
 <ul>
 <li>Add import statements to your <code>.go</code> code as needed.</li>
 <li>Standard commands like <code>go build</code> or <code>go test</code> will automatically add new dependencies as needed to satisfy imports (updating <code>go.mod</code> and downloading the new dependencies).</li>
-<li>When needed, more specific versions of dependencies can be chosen with commands such as <code>go get foo@v1.2.3</code>, <code>go get foo@master</code> (<code>foo@tip</code> with mercurial), <code>go get foo@e3702bed2</code>, or by editing <code>go.mod</code> directly.</li>
+<li>When needed, more specific versions of dependencies can be chosen with commands such as <code>go get foo@v1.2.3</code>, <code>go get foo@master</code> (<code>foo@default</code> with mercurial), <code>go get foo@e3702bed2</code>, or by editing <code>go.mod</code> directly.</li>
 </ul>
 <p>A brief tour of other common functionality you might use:</p>
 <ul>
@@ -3840,28 +3872,28 @@ require rsc.io/quote v1.5.2
 <h3 id="gomod">go.mod</h3>
 <p>A module is defined by a tree of Go source files with a <code>go.mod</code> file in the tree's root directory. Module source code may be located outside of GOPATH. There are four directives: <code>module</code>, <code>require</code>, <code>replace</code>, <code>exclude</code>. </p>
 <p>Here is an example <code>go.mod</code> file defining the module <code>github.com/my/thing</code>:</p>
-<div class="highlight"><pre><span></span>module github.com/my/thing
+<div class="highlight"><pre><span></span><code>module github.com/my/thing
 
 require (
     github.com/some/dependency v1.2.3
     github.com/another/dependency/v4 v4.0.0
 )
-</pre></div>
+</code></pre></div>
 
 <p>A module declares its identity in its <code>go.mod</code> via the <code>module</code> directive, which provides the <em>module path</em>. The import paths for all packages in a module share the module path as a common prefix. The module path and the relative path from the <code>go.mod</code> to a package's directory together determine a package's import path.</p>
-<p>For example, if you are creating a module for a repository <code>github.com/my/repo</code> that will contain two packages with import paths <code>github.com/my/repo/foo</code> and <code>github.com/my/repo/bar</code>, then the first line in your <code>go.mod</code> file typically would declare your module path as <code>module github.com/my/repo</code>, and the corresponding on-disk structure could be:</p>
-<div class="highlight"><pre><span></span>repo
+<p>For example, if you are creating a module for a repository <code>github.com/user/mymod</code> that will contain two packages with import paths <code>github.com/user/mymod/foo</code> and <code>github.com/user/mymod/bar</code>, then the first line in your <code>go.mod</code> file typically would declare your module path as <code>module github.com/user/mymod</code>, and the corresponding on-disk structure could be:</p>
+<div class="highlight"><pre><span></span><code>mymod
 |-- bar
 |   `-- bar.go
 |-- foo
 |   `-- foo.go
 `-- go.mod
-</pre></div>
+</code></pre></div>
 
-<p>In Go source code, packages are imported using the full path including the module path. For example, if a module declared its identity in its <code>go.mod</code> as <code>module example.com/my/module</code>, a consumer could do:
-<div class="highlight"><pre><span></span>import &quot;example.com/my/module/mypkg&quot;
-</pre></div>
-This imports package <code>mypkg</code> from the module <code>example.com/my/module</code>.</p>
+<p>In Go source code, packages are imported using the full path including the module path. For example, if in our example above, we declared the module identity in <code>go.mod</code> as <code>module github.com/user/mymod</code>, a consumer could do:
+<div class="highlight"><pre><span></span><code>import &quot;github.com/user/mymod/bar&quot;
+</code></pre></div>
+This imports package <code>bar</code> from the module <code>github.com/user/mymod</code>.</p>
 <p><code>exclude</code> and <code>replace</code> directives only operate on the current (“main”) module. <code>exclude</code> and <code>replace</code> directives in modules other than the main module are ignored when building the main module. The <code>replace</code> and <code>exclude</code> statements, therefore, allow the main module complete control over its own build, without also being subject to complete control by dependencies.  (See FAQ <a href="https://github.com/golang/go/wiki/Modules#when-should-i-use-the-replace-directive">below</a> for a discussion of when to use a <code>replace</code> directive).</p>
 <h3 id="version-selection">Version Selection</h3>
 <p>If you add a new import to your source code that is not yet covered by a <code>require</code> in <code>go.mod</code>, most go commands like 'go build' and 'go test' will automatically look up the proper module and add the <em>highest</em> version of that new direct dependency to your module's <code>go.mod</code> as a <code>require</code> directive. For example, if your new import corresponds to dependency M whose latest tagged release version is <code>v1.2.3</code>, your module's <code>go.mod</code> will end up with <code>require M v1.2.3</code>, which indicates module M is a dependency with allowed version &gt;= v1.2.3 (and &lt; v2, given v2 is considered incompatible with v1).</p>
@@ -3917,39 +3949,39 @@ the new package must be backwards compatible with the old package."</p>
 <ol>
 <li>Navigate to the root of the module's source tree outside of GOPATH:</li>
 </ol>
-<p><div class="highlight"><pre><span></span>$ cd &lt;project path outside $GOPATH/src&gt;         # e.g., cd ~/projects/hello
-</pre></div>
+<p><div class="highlight"><pre><span></span><code>$ cd &lt;project path outside $GOPATH/src&gt;         # e.g., cd ~/projects/hello
+</code></pre></div>
    Note that outside of GOPATH, you do not need to set <code>GO111MODULE</code> to activate module mode.</p>
 <p>Alternatively, if you want to work in your GOPATH:</p>
-<div class="highlight"><pre><span></span>$ export GO111MODULE=on                         # manually active module mode
+<div class="highlight"><pre><span></span><code>$ export GO111MODULE=on                         # manually active module mode
 $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you/hello
-</pre></div>
+</code></pre></div>
 
 <ol>
 <li>Create the initial module definition and write it to the <code>go.mod</code> file:</li>
 </ol>
-<p><div class="highlight"><pre><span></span>$ go mod init                  
-</pre></div>
+<p><div class="highlight"><pre><span></span><code>$ go mod init
+</code></pre></div>
    This step converts from any existing <a href="https://github.com/golang/dep"><code>dep</code></a> <code>Gopkg.lock</code> file or any of the other <a href="https://tip.golang.org/pkg/cmd/go/internal/modconv/?m=all#pkg-variables">nine total supported dependency formats</a>, adding require statements to match the existing configuration.</p>
 <p><code>go mod init</code> will often be able to use auxiliary data (such as VCS meta-data) to automatically determine the appropriate module path, but if <code>go mod init</code> states it can not automatically determine the module path, or if you need to otherwise override that path, you can supply the <a href="https://github.com/golang/go/wiki/Modules#gomod">module path</a> as an optional argument to <code>go mod init</code>, for example:</p>
-<div class="highlight"><pre><span></span>$ go mod init github.com/my/repo
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ go mod init github.com/my/repo
+</code></pre></div>
 
 <p>Note that if your dependencies include v2+ modules, or if you are initializing a v2+ module, then after running <code>go mod init</code> you might also need to edit your <code>go.mod</code> and <code>.go</code> code to add <code>/vN</code> to import paths and module paths as described in the <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import Versioning"</a> section above. This applies even if <code>go mod init</code> automatically converted your dependency information from <code>dep</code> or other dependency managers. (Because of this, after running <code>go mod init</code>, you typically should not run <code>go mod tidy</code> until you have successfully run <code>go build ./...</code> or similar, which is the sequence shown in this section).</p>
 <ol>
 <li>Build the module. When executed from the root directory of a module, the <code>./...</code> pattern matches all the packages within the current module.  <code>go build</code> will automatically add missing or unconverted dependencies as needed to satisfy imports for this particular build invocation:</li>
 </ol>
-<p><div class="highlight"><pre><span></span>$ go build ./...
-</pre></div>
+<p><div class="highlight"><pre><span></span><code>$ go build ./...
+</code></pre></div>
 4. Test the module as configured to ensure that it works with the selected versions:</p>
-<div class="highlight"><pre><span></span>$ go test ./...
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ go test ./...
+</code></pre></div>
 
 <ol>
 <li>(Optional) Run the tests for your module plus the tests for all direct and indirect dependencies to check for incompatibilities:</li>
 </ol>
-<div class="highlight"><pre><span></span>$ go test all
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ go test all
+</code></pre></div>
 
 <p>Prior to tagging a release, see the <a href="https://github.com/golang/go/wiki/Modules#how-to-prepare-for-a-release">"How to Prepare for a Release"</a> section below.</p>
 <p>For more information on all of these topics, the primary entry point to the official modules documentation is <a href="https://golang.org/cmd/go/#hdr-Modules__module_versions__and_more">available on golang.org</a>.</p>
@@ -3957,18 +3989,18 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <p>Day-to-day upgrading and downgrading of dependencies should be done using 'go get', which will automatically update the <code>go.mod</code> file. Alternatively, you can edit <code>go.mod</code> directly.</p>
 <p>In addition, go commands like 'go build', 'go test', or even 'go list' will automatically add new dependencies as needed to satisfy imports (updating <code>go.mod</code> and downloading the new dependencies).</p>
 <p>To upgrade a dependency to the latest version:
-<div class="highlight"><pre><span></span>go get example.com/package
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>go get example.com/package
+</code></pre></div></p>
 <p>To upgrade a dependency <em>and all its dependencies</em> to the latest version:
-<div class="highlight"><pre><span></span>go get -u example.com/package
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>go get -u example.com/package
+</code></pre></div></p>
 <p>To view available minor and patch upgrades for all direct and indirect dependencies:</p>
-<div class="highlight"><pre><span></span>go list -u -m all
-</pre></div>
+<div class="highlight"><pre><span></span><code>go list -u -m all
+</code></pre></div>
 
 <p>To view available minor and patch upgrades <em>only</em> for the direct dependencies, run:
-<div class="highlight"><pre><span></span>go list -u -f &#39;{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Version}} -&gt; {{.Update.Version}}{{end}}&#39; -m all 2&gt; /dev/null
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>go list -u -f &#39;{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Version}} -&gt; {{.Update.Version}}{{end}}&#39; -m all 2&gt; /dev/null
+</code></pre></div></p>
 <p>To upgrade to the latest version for all direct and indirect dependencies of the current module, the following can be run from the module root directory:
  * <code>go get -u ./...</code> to use the latest <em>minor or patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)
  * <code>go get -u=patch ./...</code> to use the latest <em>patch</em> releases (and add <code>-t</code> to also upgrade test dependencies)</p>
@@ -3976,13 +4008,13 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <p>In this section, "latest" is the latest version with a <a href="https://semver.org/">semver</a> tag, or the latest known commit if there are no semver tags. Prerelease tags are not selected as "latest" unless there are no other semver tags on the repository (<a href="https://golang.org/cmd/go/#hdr-Module_aware_go_get">details</a>).</p>
 <p>A common mistake is thinking <code>go get -u foo</code> solely gets the latest version of <code>foo</code>. In actuality, the <code>-u</code> in <code>go get -u foo</code> or <code>go get -u foo@latest</code> means to <em>also</em> get the latest versions for <em>all</em> of the direct and indirect dependencies of <code>foo</code>. A common starting point when upgrading <code>foo</code> is instead to do <code>go get foo</code> or <code>go get foo@latest</code> without a <code>-u</code> (and after things are working, consider <code>go get -u=patch foo</code>, <code>go get -u=patch</code>, <code>go get -u foo</code>, or <code>go get -u</code>).</p>
 <p>To upgrade or downgrade to a more specific version, 'go get' allows version selection to be overridden by adding an @version suffix or <a href="https://golang.org/cmd/go/#hdr-Module_queries">"module query"</a> to the package argument, such as <code>go get foo@v1.6.2</code>, <code>go get foo@e3702bed2</code>, or <code>go get foo@'&lt;v1.6.2'</code>. </p>
-<p>Using a branch name such as <code>go get foo@master</code> (<code>foo@tip</code> with mercurial) is one way to obtain the latest commit regardless of whether or not it has a semver tag.</p>
+<p>Using a branch name such as <code>go get foo@master</code> (<code>foo@default</code> with mercurial) is one way to obtain the latest commit regardless of whether or not it has a semver tag.</p>
 <p>In general, module queries that do not resolve to a semver tag will be recorded as <a href="https://tip.golang.org/cmd/go/#hdr-Pseudo_versions">pseudo-versions</a> in the <code>go.mod</code> file.</p>
 <p>See the <a href="https://golang.org/cmd/go/#hdr-Module_aware_go_get">"Module-aware go get"</a> and <a href="https://golang.org/cmd/go/#hdr-Module_queries">"Module queries"</a> sections of the <code>go</code> command documentation for more information on the topics here.</p>
 <p>Modules are capable of consuming packages that have not yet opted into modules, including recording any available semver tags in <code>go.mod</code> and using those semver tags to upgrade or downgrade. Modules can also consume packages that do not yet have any proper semver tags (in which case they will be recorded using pseudo-versions in <code>go.mod</code>).</p>
 <p>After upgrading or downgrading any dependencies, you may then want to run the tests again for all packages in your build (including direct and indirect dependencies) to check for incompatibilities:</p>
-<div class="highlight"><pre><span></span>$ go test all
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ go test all
+</code></pre></div>
 
 <h2 id="how-to-prepare-for-a-release">How to Prepare for a Release</h2>
 <h3 id="releasing-modules-all-versions">Releasing Modules (All Versions)</h3>
@@ -4284,6 +4316,8 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <li>Displays outdated dependencies in a human friendly way </li>
 <li>Provides a way to filter indirect dependencies and dependencies without updates</li>
 <li>Provides a way to break CI pipelines in case of outdated dependencies</li>
+<li><a href="https://github.com/oligot/go-mod-upgrade">github.com/oligot/go-mod-upgrade</a></li>
+<li>Update outdated Go dependencies interactively</li>
 </ul>
 <h3 id="when-should-i-use-the-replace-directive">When should I use the replace directive?</h3>
 <p>As described in the <a href="https://github.com/golang/go/wiki/Modules#gomod">'go.mod' concepts section above</a>, <code>replace</code> directives provide additional control in the top-level <code>go.mod</code> for what is actually used to satisfy a dependency found in the Go source or go.mod files, while <code>replace</code> directives in modules other than the main module are ignored when building the main module.</p>
@@ -4307,14 +4341,14 @@ $ cd $GOPATH/src/&lt;project path&gt;                 # e.g., cd $GOPATH/src/you
 <p>Yes. VCS is not required. </p>
 <p>This is very simple if you have a single module you want to edit at a time outside of VCS (and you either have only one module in total, or if the other modules reside in VCS). In this case, you can place the file tree containing the single <code>go.mod</code> in a convenient location. Your <code>go build</code>, <code>go test</code> and similar commands will work even if your single module is outside of VCS (without requiring any use of <code>replace</code> in your <code>go.mod</code>).</p>
 <p>If you want to have multiple inter-related modules on your local disk that you want to edit at the same time, then <code>replace</code> directives are one approach. Here is a sample <code>go.mod</code> that uses a <code>replace</code> with a relative path to point the <code>hello</code> module at the on-disk location of the <code>goodbye</code> module (without relying on any VCS):</p>
-<p><div class="highlight"><pre><span></span>module example.com/me/hello
+<p><div class="highlight"><pre><span></span><code>module example.com/me/hello
 
 require (
   example.com/me/goodbye v0.0.0
 )
 
 replace example.com/me/goodbye =&gt; ../goodbye
-</pre></div>
+</code></pre></div>
 As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as the version in the <code>require</code> directive. Note that as mentioned in the prior FAQ, in Go 1.11 a <code>require</code> directive must be manually added here, but that <code>require</code> directive no longer needs to be manually added in Go 1.12+ (<a href="https://golang.org/issue/26241">#26241</a>).</p>
 <p>A small runnable example is shown in this <a href="https://groups.google.com/d/msg/golang-nuts/1nYoAMFZVVM/eppaRW2rCAAJ">thread</a>.</p>
 <h3 id="how-do-i-use-vendoring-with-modules-is-vendoring-going-away">How do I use vendoring with modules? Is vendoring going away?</h3>
@@ -4331,6 +4365,7 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>For example:
 * <a href="https://proxy.golang.org">proxy.golang.org</a> - Official project - Run by <a href="https://www.google.com">Google</a> - The default Go module proxy built by the Go team.
 * <a href="https://gocenter.io">gocenter.io</a> - Free community project - Run by <a href="https://jfrog.com">JFrog Artifactory</a> - The central Go modules repository.
+* <a href="https://mirrors.tencent.com/go/">mirrors.tencent.com/go</a> - Commercial project - Run by <a href="https://cloud.tencent.com/">Tencent Cloud</a> - A Go module proxy alternate.
 * <a href="https://mirrors.aliyun.com/goproxy">mirrors.aliyun.com/goproxy</a> - Commercial project - Run by <a href="https://www.alibabacloud.com">Alibaba Cloud</a> - A Go module proxy alternate.
 * <a href="https://goproxy.cn">goproxy.cn</a> - Open source project - Run by <a href="https://www.qiniu.com">Qiniu Cloud</a> - The most trusted Go module proxy in China.
 * <a href="https://goproxy.io">goproxy.io</a> - Open source project - Run by China Golang Contributor Club - A global proxy for Go modules.
@@ -4352,6 +4387,12 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <li><a href="https://arslan.io/2018/08/26/using-go-modules-with-vendor-support-on-travis-ci/">"Using Go modules with vendor support on Travis CI"</a> by Fatih Arslan </li>
 <li><a href="https://medium.com/@toddkeech/go-modules-and-circleci-c0d6fac0b000">"Go Modules and CircleCI"</a> by Todd Keech </li>
 </ul>
+<h3 id="how-do-i-download-modules-needed-to-build-specific-packages-or-tests">How do I download modules needed to build specific packages or tests?</h3>
+<p>The <code>go mod download</code> command (or equivalently, <code>go mod download all</code>) downloads all modules in the build list (as reported by <code>go list -m all</code>). Many of these modules aren't needed to build packages in the main module, since the full build list contains things like test dependencies and tool dependencies for other modules. Consequently, Docker images prepared with <code>go mod download</code> may be larger than necessary.</p>
+<p>Instead, consider using <code>go list</code>. For example, <code>go list ./...</code> will download the modules needed to build the packages <code>./...</code> (the set of packages in the main module, when run from the module root directory).</p>
+<p>To download test dependencies as well, use <code>go list -test ./...</code>.</p>
+<p>By default, <code>go list</code> will only consider dependencies needed for the current platform. You can set <code>GOOS</code> and <code>GOARCH</code> to make <code>go list</code> consider another platform, for example, <code>GOOS=linux GOARCH=amd64 go list ./...</code>. The <code>-tags</code> flag may also be used to select packages with specific build tags.</p>
+<p>This technique may be less necessary in the future when lazy module loading is implemented (see <a href="https://github.com/golang/go/issues/36460">#36460</a>), since the module pattern <code>all</code> will include fewer modules.</p>
 <h2 id="faqs-gomod-and-gosum">FAQs — go.mod and go.sum</h2>
 <h3 id="why-does-go-mod-tidy-record-indirect-and-test-dependencies-in-my-gomod">Why does 'go mod tidy' record indirect and test dependencies in my 'go.mod'?</h3>
 <p>The modules system records precise dependency requirements in your <code>go.mod</code>. (For more details, see the <a href="https://github.com/golang/go/wiki/Modules#gomod">go.mod concepts</a> section above or the <a href="https://tip.golang.org/cmd/go/#hdr-The_go_mod_file">go.mod tip documentation</a>).</p>
@@ -4398,8 +4439,8 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>Yes.</p>
 <p>If a repository has not opted in to modules but has been tagged with valid <a href="https://semver.org">semver</a> tags (including the required leading <code>v</code>), then those semver tags can be used in a <code>go get</code>, and a corresponding semver version will be record in the importing module's <code>go.mod</code> file. If the repository does not have any valid semver tags, then the repository's version will be recorded with a <a href="https://golang.org/cmd/go/#hdr-Pseudo_versions">"pseudo-version"</a> such as <code>v0.0.0-20171006230638-a6e239ea1c69</code> (which includes a timestamp and a commit hash, and which are designed to allow a total ordering across versions recored in <code>go.mod</code> and to make it easier to reason about which recorded versions are "later" than another recorded version).</p>
 <p>For example, if the latest version of package <code>foo</code> is tagged <code>v1.2.3</code> but <code>foo</code> has not itself opted in to modules, then running <code>go get foo</code> or <code>go get foo@v1.2.3</code> from inside module M will be recorded in module M's <code>go.mod</code> file as:</p>
-<div class="highlight"><pre><span></span>require  foo  v1.2.3
-</pre></div>
+<div class="highlight"><pre><span></span><code>require  foo  v1.2.3
+</code></pre></div>
 
 <p>The <code>go</code> tool will also use available semver tags for a non-module package in additional workflows (such as <code>go list -u=patch</code>, which upgrades the dependencies of a module to available patch releases, or <code>go list -u -m all</code>, which shows available upgrades, etc.).</p>
 <p>Please see the next FAQs for additional details related to v2+ packages that have not opted in to modules.</p>
@@ -4430,24 +4471,24 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 * <code>oldpackage</code> has never opted in to modules (and hence does not have a <code>go.mod</code> itself)
 * <code>oldpackage</code> has a valid semver tag <code>v3.0.1</code>, which is its latest tag</p>
 <p>In this case, running for example <code>go get oldpackage@latest</code> from inside module M will record the following in module M's <code>go.mod</code> file:</p>
-<div class="highlight"><pre><span></span>require  oldpackage  v3.0.1+incompatible
-</pre></div>
+<div class="highlight"><pre><span></span><code>require  oldpackage  v3.0.1+incompatible
+</code></pre></div>
 
 <p>Note that there is no <code>/v3</code> used at the end of <code>oldpackage</code> in the <code>go get</code> command above or in the recorded <code>require</code> directive – using <code>/vN</code> in module paths and import paths is a feature of <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">Semantic Import Versioning</a>, and <code>oldpackage</code> has not signaled its acceptance and understanding of Semantic Import Versioning given <code>oldpackage</code> has not opted into modules by having a <code>go.mod</code> file within <code>oldpackage</code> itself. In other words, even though <code>oldpackage</code> has a <a href="https://semver.org">semver</a> tag of <code>v3.0.1</code>, <code>oldpackage</code> is not granted the rights and responsibilities of <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">Semantic Import Versioning</a> (such as using <code>/vN</code> in import paths) because <code>oldpackage</code> has not yet stated its desire to do so.</p>
 <p>The <code>+incompatible</code> suffix indicates that the <code>v3.0.1</code> version of <code>oldpackage</code> has not actively opted in to modules, and hence the <code>v3.0.1</code> version of <code>oldpackage</code> is assumed to <em>not</em> understand Semantic Import Versioning or how to use major versions in import paths. Therefore, when operating in <a href="https://github.com/golang/go/wiki/Modules#when-do-i-get-old-behavior-vs-new-module-based-behavior">module mode</a>, the <code>go</code> tool will treat the non-module <code>v3.0.1</code> version of <code>oldpackage</code> as an (incompatible) extension of the v1 version series of <code>oldpackage</code> and assume that the <code>v3.0.1</code> version of <code>oldpackage</code> has no awareness of Semantic Import Versioning, and the <code>+incompatible</code> suffix is an indication that the <code>go</code> tool is doing so. </p>
 <p>The fact that the <code>v3.0.1</code> version of <code>oldpackage</code> is considered to be part of the v1 release series according to Semantic Import Versioning means for example that versions <code>v1.0.0</code>, <code>v2.0.0</code>, and <code>v3.0.1</code> are all always imported using the same import path:</p>
-<div class="highlight"><pre><span></span>import  &quot;oldpackage&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code>import  &quot;oldpackage&quot;
+</code></pre></div>
 
 <p>Note again that there is no <code>/v3</code> used at the end of <code>oldpackage</code>.</p>
 <p>In general, packages with different import paths are different packages. In this example, given versions <code>v1.0.0</code>, <code>v2.0.0</code>, and <code>v3.0.1</code> of <code>oldpackage</code> would all be imported using the same import path, they are therefore treated by a build as the same package (again because <code>oldpackage</code> has not yet opted in to Semantic Import Versioning), with a single copy of <code>oldpackage</code> ending up in any given build. (The version used will be the semantically highest of the versions listed in any <code>require</code> directives; see <a href="https://github.com/golang/go/wiki/Modules#version-selection">"Version Selection"</a>).</p>
 <p>If we suppose that later a new <code>v4.0.0</code> release of <code>oldpackage</code> is created that adopts modules and hence contains a <code>go.mod</code> file, that is the signal that <code>oldpackage</code> now understands the rights and responsibilities of Semantic Import Versioning, and hence a module-based consumer would now import using <code>/v4</code> in the import path:</p>
-<div class="highlight"><pre><span></span>import  &quot;oldpackage/v4&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code>import  &quot;oldpackage/v4&quot;
+</code></pre></div>
 
 <p>and the version would be recorded as:</p>
-<div class="highlight"><pre><span></span>require  oldpackage/v4  v4.0.0
-</pre></div>
+<div class="highlight"><pre><span></span><code>require  oldpackage/v4  v4.0.0
+</code></pre></div>
 
 <p><code>oldpackage/v4</code> is now a different import path than <code>oldpackage</code>, and hence a different package.  Two copies (one for each import path) would end up in a module-aware build if some consumers in the build have <code>import "oldpackage/v4"</code> while other consumers in the same build have <code>import "oldpackage"</code>. This is desirable as part of the strategy to allow gradual adoption of modules. In addition, even after modules are out of their current transitional phase, this behavior is also desirable to allow gradual code evolution over time with different consumers upgrading at different rates to newer versions (e.g., allowing different consumers in a large build to choose to upgrade at different rates from <code>oldpackage/v4</code> to some future <code>oldpackage/v5</code>).</p>
 <h3 id="how-are-v2-modules-treated-in-a-build-if-modules-support-is-not-enabled-how-does-minimal-module-compatibility-work-in-197-1103-and-111">How are v2+ modules treated in a build if modules support is not enabled? How does "minimal module compatibility" work in 1.9.7+, 1.10.3+, and 1.11?</h3>
@@ -4515,15 +4556,15 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <h3 id="what-are-multi-module-repositories">What are multi-module repositories?</h3>
 <p>A multi-module repository is a repository that contains multiple modules, each with its own go.mod file. Each module starts at the directory containing its go.mod file, and contains all packages from that directory and its subdirectories recursively, excluding any subtree that contains another go.mod file.</p>
 <p>Each module has its own version information. Version tags for modules below the root of the repository must include the relative directory as a prefix. For example, consider the following repository:</p>
-<div class="highlight"><pre><span></span>my-repo
+<div class="highlight"><pre><span></span><code>my-repo
 `-- foo
     `-- rop
         `-- go.mod
-</pre></div>
+</code></pre></div>
 
 <p>The tag for version 1.2.3 of module "my-repo/foo/rop" is "foo/rop/v1.2.3".</p>
 <p>Typically, the path for one module in the repository will be a prefix of the others. For example, consider this repository:</p>
-<p><div class="highlight"><pre><span></span>my-repo
+<p><div class="highlight"><pre><span></span><code>my-repo
 |-- bar
 |-- foo
 |   |-- rop
@@ -4532,7 +4573,7 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 `-- mig
     |-- go.mod
     `-- vub
-</pre></div>
+</code></pre></div>
 <img alt="Fig. A top-level module's path is a prefix of another module's path." src="https://github.com/jadekler/module-testing/blob/master/imagery/multi_module_repo.png" /></p>
 <p><em>Fig. A top-level module's path is a prefix of another module's path.</em></p>
 <p>This repository contains two modules. However, the module "my-repo" is a prefix of the path of the module "my-repo/mig".</p>
@@ -4560,7 +4601,7 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <p>Yes. However, there are two classes of this problem:</p>
 <p>The first class: the package to which the module is being added to is not in version control yet (a new package). This case is straightforward: add the package and the go.mod in the same commit, tag the commit, and push.</p>
 <p>The second class: the path at which the module is being added is in version control and contains one or more existing packages. This case requires a considerable amount of care. To illustrate, consider again the following repository (now in a github.com location to simulate the real-world better):</p>
-<div class="highlight"><pre><span></span>github.com/my-repo
+<div class="highlight"><pre><span></span><code>github.com/my-repo
 |-- bar
 |-- foo
 |   |-- rop
@@ -4568,7 +4609,7 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 |-- go.mod
 `-- mig
     `-- vub
-</pre></div>
+</code></pre></div>
 
 <p>Consider adding module "github.com/my-repo/mig". If one were to follow the same approach as above, the package /my-repo/mig could be provided by two different modules: the old version of "github.com/my-repo", and the new, standalone module "github.com/my-repo/mig. If both modules are active, importing "github.com/my-repo/mig" would cause an “ambiguous import” error at compile time.</p>
 <p>The way to get around this is to make the newly-added module depend on the module it was "carved out" from, at a version after which it was carved out.</p>
@@ -4576,14 +4617,14 @@ As shown in this example, if outside of VCS you can use <code>v0.0.0</code> as t
 <ol>
 <li>
 <p>Add github.com/my-repo/mig/go.mod:</p>
-<div class="highlight"><pre><span></span>cd path-to/github.com/my-repo/mig
+<div class="highlight"><pre><span></span><code>cd path-to/github.com/my-repo/mig
 go mod init github.com/my-repo/mig
 
 # Note: if &quot;my-repo/mig&quot; does not actually depend on &quot;my-repo&quot;, add a blank
 # import.
 # Note: version must be at or after the carve-out.
 go mod edit -require github.com/myrepo@v1.3
-</pre></div>
+</code></pre></div>
 
 </li>
 <li>
@@ -4593,15 +4634,15 @@ go mod edit -require github.com/myrepo@v1.3
 <li><code>git tag mig/v1.0.0</code></li>
 <li>
 <p>Next, let's test these. We can't <code>go build</code> or <code>go test</code> naively, since the go commands would try to fetch each dependent module from the module cache. So, we need to use replace rules to cause <code>go</code> commands to use the local copies:</p>
-<div class="highlight"><pre><span></span>cd path-to/github.com/my-repo/mig
+<div class="highlight"><pre><span></span><code>cd path-to/github.com/my-repo/mig
 go mod edit -replace github.com/my-repo@v1.3.0=../
 go test ./...
 go mod edit -dropreplace github.com/my-repo@v1.3.0
-</pre></div>
+</code></pre></div>
 
 </li>
 <li>
-<p><code>git push origin master v1.2.4 mig/v1.0.0</code> push the commit and both tags</p>
+<p><code>git push origin master v1.3.0 mig/v1.0.0</code> push the commit and both tags</p>
 </li>
 </ol>
 <p>Note that in the future <a href="https://github.com/golang/go/issues/28835">golang.org/issue/28835</a> should make the testing step a more straightforward experience.</p>
@@ -4610,20 +4651,20 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 <p>Yes, with the same two cases and similar steps as above. </p>
 <h3 id="can-a-module-depend-on-an-internal-in-another">Can a module depend on an internal/ in another?</h3>
 <p>Yes. Packages in one module are allowed to import internal packages from another module as long as they share the same path prefix up to the internal/ path component. For example, consider the following repository:</p>
-<div class="highlight"><pre><span></span>my-repo
+<div class="highlight"><pre><span></span><code>my-repo
 |-- foo
 |   `-- go.mod
 |-- go.mod
 `-- internal
-</pre></div>
+</code></pre></div>
 
 <p>Here, package foo can import /my-repo/internal as long as module "my-repo/foo" depends on module "my-repo". Similarly, in the following repository:</p>
-<div class="highlight"><pre><span></span>my-repo
+<div class="highlight"><pre><span></span><code>my-repo
 |-- foo
 |   `-- go.mod
 `-- internal
     `-- go.mod
-</pre></div>
+</code></pre></div>
 
 <p>Here, package foo can import my-repo/internal as long as module "my-repo/foo" depends on module "my-repo/internal". The semantics are the same in both: since my-repo is a shared path prefix between my-repo/internal and my-repo/foo, package foo is allowed to import package internal.</p>
 <h3 id="can-an-additional-gomod-exclude-unnecessary-content-do-modules-have-the-equivalent-of-a-gitignore-file">Can an additional go.mod exclude unnecessary content? Do modules have the equivalent of a .gitignore file?</h3>
@@ -4667,8 +4708,8 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 </ol>
 <p><code>go mod why -m &lt;module&gt;</code> can also be useful here, although it is typically more useful for seeing why a dependency is included at all (rather than why a dependency ends up with a particular version).</p>
 <p><code>go list</code> provides many more variations of queries that can be useful to interrogate your modules if needed. One example is the following, which will show the exact versions used in your build excluding test-only dependencies:
-<div class="highlight"><pre><span></span>go list -deps -f &#39;{{with .Module}}{{.Path}} {{.Version}}{{end}}&#39; ./... | sort -u
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>go list -deps -f &#39;{{with .Module}}{{.Path}} {{.Version}}{{end}}&#39; ./... | sort -u
+</code></pre></div></p>
 <p>A more detailed set of commands and examples for interrogating your modules can be seen in a runnable "Go Modules by Example" <a href="https://github.com/go-modules-by-example/index/tree/master/018_go_list_mod_graph_why">walkthough</a>.</p>
 <p>One cause of unexpected versions can be due to someone having created an invalid or unexpected <code>go.mod</code> file that was not intended, or a related mistake (for example: a <code>v2.0.1</code> version of module might have incorrectly declared itself to be <code>module foo</code> in its <code>go.mod</code> without the required <code>/v2</code>; an import statement in <code>.go</code> code intended to import a v3 module might be be missing the required <code>/v3</code>; a <code>require</code> statement in a <code>go.mod</code> for a v4 module might be be missing the required <code>/v4</code>). Therefore, if the cause of a particular issue you are seeing is not obvious, it can be worthwhile to first re-read the material in the <a href="https://github.com/golang/go/wiki/Modules#gomod">"go.mod"</a> and <a href="https://github.com/golang/go/wiki/Modules#semantic-import-versioning">"Semantic Import Versioning"</a> sections above (given these include important rules that modules must follow) and then take a few minutes to spot check the most relevant <code>go.mod</code> files and import statements.</p>
 <h3 id="why-am-i-getting-an-error-cannot-find-module-providing-package-foo">Why am I getting an error 'cannot find module providing package foo'?</h3>
@@ -4695,11 +4736,11 @@ go mod edit -dropreplace github.com/my-repo@v1.3.0
 <p>However, if instead you are adding a new dependency that has not yet opted in to modules itself, there is not a similar automatic conversion process from any prior dependency manager that your new dependency might have been using. If that new dependency itself has non-module dependencies that have had breaking changes, then in some cases that can cause incompatibility problems. In other words, a prior dependency manager of your new dependency is not automatically used, and that can cause problems with your indirect dependencies in some cases.</p>
 <p>One approach is to run <code>go mod init</code> on your problematic non-module direct dependency to convert from its current dependency manager, and then use the <code>require</code> directives from the resulting temporary <code>go.mod</code> to populate or update the <code>go.mod</code> in your module.</p>
 <p>For example, if <code>github.com/some/nonmodule</code> is a problematic direct dependency of your module that is currently using another dependency manager, you can do something similar to:</p>
-<div class="highlight"><pre><span></span>$ git clone -b v1.2.3 https://github.com/some/nonmodule /tmp/scratchpad/nonmodule
+<div class="highlight"><pre><span></span><code>$ git clone -b v1.2.3 https://github.com/some/nonmodule /tmp/scratchpad/nonmodule
 $ cd /tmp/scratchpad/nonmodule
 $ go mod init
 $ cat go.mod
-</pre></div>
+</code></pre></div>
 
 <p>The resulting <code>require</code> information from the temporary <code>go.mod</code> can be manually moved into the actual <code>go.mod</code> for your module, or you can consider using <a href="https://github.com/rogpeppe/gomodmerge">https://github.com/rogpeppe/gomodmerge</a>, which is a community tool targeting this use case. In addition, you will want to add a <code>require github.com/some/nonmodule v1.2.3</code> to your actual <code>go.mod</code> to match the version that you manually cloned.</p>
 <p>A concrete example of following this technique for docker is in this <a href="https://github.com/golang/go/issues/28489#issuecomment-454795390">#28489 comment</a>, which illustrates getting a consistent set of versions
@@ -4735,10 +4776,10 @@ go get: error loading module requirements</p>
 </li>
 <li>
 <p>If you received this error during an upgrade, you should try upgrading using the tip version of Go, which has more targeted upgrade logic (<a href="https://github.com/golang/go/issues/26902">#26902</a>) that can often sidestep this problem and also often has a better error message for this situation. Note that the <code>go get</code> arguments in tip / 1.13 are different than in 1.12. Example of obtaining tip and using it to upgrade your dependencies: 
-<div class="highlight"><pre><span></span>go get golang.org/dl/gotip &amp;&amp; gotip download
+<div class="highlight"><pre><span></span><code>go get golang.org/dl/gotip &amp;&amp; gotip download
 gotip get -u all
 gotip mod tidy
-</pre></div>
+</code></pre></div>
 Because the problematic old import is often in an indirect dependency, upgrading with tip and then running <code>go mod tidy</code> can frequently upgrade you past the problematic version and then also remove the problematic version from your <code>go.mod</code> as no longer needed, which then puts you into a functioning state when you return to using Go 1.12 or 1.11 for day-to-day use. For example, see that approach work <a href="https://github.com/golang/go/issues/30831#issuecomment-489463638">here</a> to upgrade past <code>github.com/golang/lint</code> vs. <code>golang.org/x/lint</code> problems.</p>
 </li>
 <li>
@@ -4752,21 +4793,21 @@ Because the problematic old import is often in an indirect dependency, upgrading
 <p>4.2. Determine when the <code>go.mod</code> file was introduced there (e.g., by looking at the blame or history view for the <code>go.mod</code>).</p>
 <p>4.3. Pick the release or commit from <em>just before</em> the <code>go.mod</code> file was introduced there.</p>
 <p>4.4. In your <code>go.mod</code> file, add a <code>replace</code> statement using the old name on both sides of the <code>replace</code> statement:
-       <div class="highlight"><pre><span></span>replace example.com/some/OLD/name =&gt; example.com/some/OLD/name &lt;version-just-before-go.mod&gt;
-</pre></div>
+       <div class="highlight"><pre><span></span><code>replace example.com/some/OLD/name =&gt; example.com/some/OLD/name &lt;version-just-before-go.mod&gt;
+</code></pre></div>
 Using our prior example where <code>github.com/Quasilyte/go-consistent</code> is the old name and <code>github.com/quasilyte/go-consistent</code> is the new name, we can see that the <code>go.mod</code> was first introduced there in commit <a href="https://github.com/quasilyte/go-consistent/tree/00c5b0cf371a96059852487731370694d75ffacf">00c5b0cf371a</a>. That repository is not using semver tags, so we will take the immediately prior commit <a href="https://github.com/quasilyte/go-consistent/tree/00dd7fb039e1eff09e7c0bfac209934254409360">00dd7fb039e</a> and add it to the replace using the old uppercase Quasilyte name on both sides of the <code>replace</code>:</p>
-<div class="highlight"><pre><span></span>replace github.com/Quasilyte/go-consistent =&gt; github.com/Quasilyte/go-consistent 00dd7fb039e
-</pre></div>
+<div class="highlight"><pre><span></span><code>replace github.com/Quasilyte/go-consistent =&gt; github.com/Quasilyte/go-consistent 00dd7fb039e
+</code></pre></div>
 
 <p>This <code>replace</code> statement then enables us to upgrade past the problematic "old name" vs. "new name" mismatch by effectively preventing the old name from being upgraded to the new name in the presence of a <code>go.mod</code>. Usually, an upgrade via <code>go get -u</code> or similar can now avoid the error. If the upgrade completes, you can check to see if anyone is still importing the old name (e.g., <code>go mod graph | grep github.com/Quasilyte/go-consistent</code>) and if not, the <code>replace</code> can then be removed. (The reason this often works is because the upgrade itself can otherwise fail if an old problematic import path is used even though it might not be used in the final result if the upgrade had completed, which is tracked in <a href="https://github.com/golang/go/issues/30831">#30831</a>).</p>
 <ol>
 <li>If the above steps have not resolved the problem, it might be because the problematic old import path is still in use by the latest version of one or more of your dependencies. In this case, it is important to identify who is still using the problematic old import path, and find or open an issue asking that the problematic importer change to using the now canonical import path. Using <code>gotip</code> in step 2. above might identify the problematic importer, but it does not do so in all cases, especially for upgrades (<a href="https://github.com/golang/go/issues/30661#issuecomment-480981833">#30661</a>). If it is unclear who is importing using the problematic old import path, you can usually find out by creating a clean module cache, performing the operation or operations that trigger the error, and then grepping for the old problematic import path within the module cache. For example:</li>
 </ol>
-<div class="highlight"><pre><span></span>export GOPATH=$(mktemp -d)
+<div class="highlight"><pre><span></span><code>export GOPATH=$(mktemp -d)
 go get -u foo               # peform operation that generates the error of interest
 cd $GOPATH/pkg/mod
 grep -R --include=&quot;*.go&quot; github.com/Quasilyte/go-consistent
-</pre></div>
+</code></pre></div>
 
 <ol>
 <li>If these steps are not sufficient to resolve the issue, or if you are a maintainer of a project that seems unable to remove references to an older problematic import path due to circular references, please see a much more detailed write-up of the problem on a separate <a href="https://github.com/golang/go/wiki/Resolving-Problems-From-Modified-Module-Path">wiki page</a>.</li>
@@ -4796,9 +4837,6 @@ stored in the package directory</em>, not in subdirectories.</p>
 <p>See additional discussion in <a href="https://github.com/golang/go/issues/26366#issuecomment-405683150">#26366</a>.</p>
 <p>An alternative approach to traditional vendoring is to check in the module cache. It can end up with similar benefits as traditional vendoring and in some ways ends up with a higher fidelity copy. This approach is explained as a "Go Modules by Example" <a href="https://github.com/go-modules-by-example/index/blob/master/012_modvendor/README.md">walkthrough</a>.</p>
                 
-                  
-                
-                
               
               
                 
@@ -4814,34 +4852,34 @@ stored in the package directory</em>, not in subdirectories.</p>
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Mobile/" title="Mobile" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../Mobile/" title="Mobile" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Mobile
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../MultipleGoRoots/" title="MultipleGoRoots" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 MultipleGoRoots
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
           </a>
         
@@ -4852,11 +4890,10 @@ stored in the package directory</em>, not in subdirectories.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -4865,11 +4902,20 @@ stored in the package directory</em>, not in subdirectories.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../assets/javascripts/vendor.c51dfa35.min.js"></script>
+      <script src="../assets/javascripts/bundle.eaaa3931.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.58d22e8e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/startup.js"></script>
       
     
   </body>

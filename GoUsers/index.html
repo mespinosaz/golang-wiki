@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Personal fork of Go Programming Language Wiki">
       
@@ -16,27 +14,8 @@
         <link rel="canonical" href="https://zchee.github.io/golang-wiki/GoUsers/">
       
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.1">
     
     
       
@@ -44,117 +23,95 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a676eddb.min.css">
       
       
     
-    
-      <script src="../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-89201129-1", "https://zchee.github.io/golang-wiki/")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-89201129-1","https://zchee.github.io/golang-wiki/"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#companies-currently-using-go-throughout-the-world" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#companies-currently-using-go-throughout-the-world" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Go Programming Language Wiki
-            </span>
-            <span class="md-header-nav__topic">
-              
-                GoUsers
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-header-nav__button md-logo" aria-label="Go Programming Language Wiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Go Programming Language Wiki
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              GoUsers
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Type to start searching
           </div>
@@ -164,71 +121,56 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     zchee/golang-wiki
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://zchee.github.io/golang-wiki/" title="Go Programming Language Wiki" class="md-nav__button md-logo" aria-label="Go Programming Language Wiki">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Go Programming Language Wiki
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/zchee/golang-wiki/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     zchee/golang-wiki
   </div>
@@ -256,13 +198,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       WhyGo
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="WhyGo" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         WhyGo
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -292,13 +240,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Install
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Install" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         Install
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1206,13 +1160,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         GoUsers
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
       </label>
     
     <a href="./" title="GoUsers" class="md-nav__link md-nav__link--active">
@@ -1220,13 +1177,18 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -1483,7 +1445,7 @@
       
         <li class="md-nav__item">
   <a href="#middle-east" class="md-nav__link">
-    Middle East
+    Middle-East
   </a>
   
 </li>
@@ -1691,10 +1653,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -1864,6 +1822,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../InstallFromSource/" title="InstallFromSource" class="md-nav__link">
+      InstallFromSource
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../InstallTroubleshooting/" title="InstallTroubleshooting" class="md-nav__link">
       InstallTroubleshooting
     </a>
@@ -1986,6 +1956,18 @@
   <li class="md-nav__item">
     <a href="../Linux/" title="Linux" class="md-nav__link">
       Linux
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LinuxKernelSignalVectorBug/" title="LinuxKernelSignalVectorBug" class="md-nav__link">
+      LinuxKernelSignalVectorBug
     </a>
   </li>
 
@@ -2680,18 +2662,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../WebAssembly/" title="WebAssembly" class="md-nav__link">
-      WebAssembly
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../Well-known-struct-tags/" title="Well-known-struct-tags" class="md-nav__link">
       Well-known-struct-tags
     </a>
@@ -2757,13 +2727,18 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -3020,7 +2995,7 @@
       
         <li class="md-nav__item">
   <a href="#middle-east" class="md-nav__link">
-    Middle East
+    Middle-East
   </a>
   
 </li>
@@ -3228,10 +3203,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -3244,7 +3215,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/GoUsers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/zchee/golang-wiki/edit/master/docs/GoUsers.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
                 
                 
                 <h1 id="companies-currently-using-go-throughout-the-world">Companies currently using Go throughout the world</h1>
@@ -3272,6 +3248,7 @@
 <li><a href="https://buildkite.com/">Buildkite</a> - <a href="https://github.com/buildkite/agent">github</a></li>
 <li><a href="https://crewmojo.com">Crewmojo</a> - People management platform.</li>
 <li><a href="http://dgraph.io">Dgraph Labs</a> - <a href="https://github.com/dgraph-io/dgraph">github</a></li>
+<li><a href="http://fleet.space/">Fleet Space Technologies</a> </li>
 <li><a href="http://fly365.com">Fly365</a> - <a href="https://github.com/fly365com">github</a></li>
 <li><a href="http://www.oneconfig.com">OneConfig</a> - <a href="https://my.oneconfig.com/devices">my.oneconfig.com</a></li>
 <li><a href="https://www.go1.com/">GO1</a></li>
@@ -3284,6 +3261,7 @@
 <h2 id="austria">Austria</h2>
 <ul>
 <li><a href="http://www.digital-city.io/">Digital City Solutions</a></li>
+<li><a href="https://symflower.com/en">Symflower</a>, <a href="https://github.com/symflower/">github</a></li>
 </ul>
 <h2 id="bangladesh">Bangladesh</h2>
 <ul>
@@ -3298,6 +3276,8 @@
 <h2 id="belarus">Belarus</h2>
 <ul>
 <li><a href="https://cactussoft.biz/">Cactussoft</a> - <a href="https://github.com/cactussoft">github</a></li>
+<li><a href="https://bykovsoft.com">BykovSoft</a> - <a href="https://github.com/bykovme">github</a></li>
+<li><a href="https://smartpro.by">SmartPro</a></li>
 </ul>
 <h2 id="belgium">Belgium</h2>
 <ul>
@@ -3344,6 +3324,7 @@
 <li><a href="https://www.band.uol.com.br/">Grupo Bandeirantes</a> </li>
 <li><a href="http://www.hurb.com">Hurb</a> - <a href="https://github.com/HotelUrbano">github</a> </li>
 <li><a href="http://www.hubcash.com">Hubcash</a> - <a href="https://github.com/hubcash/">github</a></li>
+<li><a href="https://www.ifood.com.br/">iFood</a> - <a href="https://github.com/orgs/ifood/">github</a></li>
 <li><a href="http://www.inlocomedia.com">In Loco</a> - <a href="https://github.com/In-Loco-Media">github</a></li>
 <li><a href="https://www.involves.com">Involves</a> - <a href="https://github.com/involvestecnologia">github</a></li>
 <li><a href="https://www.iq.com.br/">IQ Escolhas Inteligentes</a> - <a href="https://github.com/IQ-tech">github</a></li>
@@ -3375,6 +3356,7 @@
 <li><a href="http://www.sage.com/pt-br">Sage Brasil</a></li>
 <li><a href="http://www.servicenet.com.br">ServiceNet</a></li>
 <li><a href="http://www.sibbr.gov.br">SiBBr.gov.br</a> - <a href="https://github.com/sibbr">github</a></li>
+<li><a href="https://sumup.com.br">SumUp</a></li>
 <li><a href="http://www.stone.com.br">Stone Pagamentos</a> - <a href="https://github.com/stone-payments/">github</a></li>
 <li><a href="https://www.studiosol.com.br">Studio Sol</a> - <a href="https://github.com/StudioSol">github</a></li>
 <li><a href="http://www.synchro.com.br">Synchro</a></li>
@@ -3387,6 +3369,7 @@
 <h2 id="bulgaria">Bulgaria</h2>
 <ul>
 <li><a href="http://clouway.com/">clouWay</a> - <a href="https://github.com/clouway">github</a></li>
+<li><a href="https://sumup.com">SumUp</a></li>
 </ul>
 <h2 id="canada">Canada</h2>
 <ul>
@@ -3404,6 +3387,7 @@
 <li><a href="https://klei.com">Klei Entertainment</a> - <a href="https://klei.com/careers">jobs</a></li>
 <li><a href="https://www.koho.ca/">KOHO</a> - <a href="https://www.koho.ca/careers">jobs</a></li>
 <li><a href="https://league.com">League</a> - <a href="https://league.com/careers-at-league/">jobs</a></li>
+<li><a href="https://lendesk.com">Lendesk</a> - <a href="https://lendesk.com/careers">jobs</a></li>
 <li><a href="https://manifold.co">Manifold</a></li>
 <li><a href="https://www.nvdigital.co/">NV Digital</a></li>
 <li><a href="https://www.pressly.com/">Pressly</a> - <a href="https://github.com/goware/httpcoala">github</a></li>
@@ -3463,6 +3447,7 @@
 <li><a href="https://www.youmi.net/">Youmi</a> - a global leading comprehensive mobile internet enterprise</li>
 <li><a href="https://www.cshome.com/">cshome</a></li>
 <li><a href="https://www.didiglobal.com/">DiDi</a></li>
+<li><a href="https://www.meicai.cn">meicai</a> - Catering supply chain service provider</li>
 </ul>
 <h2 id="croatia">Croatia</h2>
 <ul>
@@ -3472,6 +3457,7 @@
 <li><a href="https://minus5.hr/">minus5</a> - <a href="https://github.com/minus5">github</a></li>
 <li><a href="http://www.nivas.hr/">Nivas</a> - <a href="https://github.com/nivas">github</a></li>
 <li><a href="https://rentl.io">Rentlio</a> - <a href="https://github.com/rentlio">github</a></li>
+<li><a href="https://www.croz.net">CROZ</a> - <a href="https://github.com/croz-ltd">github</a></li>
 </ul>
 <h2 id="colombia">Colombia</h2>
 <ul>
@@ -3524,6 +3510,7 @@
 <li><a href="https://ulule.com/">Ulule</a> - <a href="https://github.com/ulule/">github</a></li>
 <li><a href="http://vente-privee.com">Veepee</a> - <a href="https://github.com/vente-privee">github</a> - <a href="https://medium.com/@vptech">blog</a></li>
 <li><a href="https://zen.ly/">Zenly</a></li>
+<li><a href="http://teckinside.com/">teckinside</a></li>
 </ul>
 <h2 id="germany">Germany</h2>
 <ul>
@@ -3549,6 +3536,7 @@
 <li><a href="https://www.meplato.com/">Meplato</a></li>
 <li><a href="https://nagavirtual.com/">Naga Virtual</a></li>
 <li><a href="https://www.native-instruments.com/">Native Instruments</a> - <a href="https://github.com/nativeinstruments">github</a></li>
+<li><a href="https://networkteam.com/">networkteam GmbH</a> - <a href="https://github.com/networkteam?language=go">github</a></li>
 <li><a href="https://www.optiopay.com">OptioPay</a></li>
 <li><a href="https://posteo.de/en">Posteo</a> - Green, secure, ad-free email service</li>
 <li><a href="https://www.pubnative.net/">PubNative</a> - <a href="https://github.com/pubnative">github</a></li>
@@ -3557,8 +3545,10 @@
 <li><a href="https://spreadshirt.com">Spreadshirt</a></li>
 <li><a href="https://solarisbank.com">solarisBank</a></li>
 <li><a href="https://soundcloud.com">SoundCloud</a> - <a href="https://developers.soundcloud.com/blog/go-at-soundcloud">blog</a></li>
+<li><a href="https://sumup.com">SumUp</a></li>
 <li><a href="http://streetspotr.com">Streetspotr</a> - <a href="https://thcyron.de/2015/go-at-streetspotr.html">blog</a> - <a href="https://twitter.com/thcyron/status/372350650580865024">tweet</a></li>
 <li><a href="https://www.tourlane.de">Tourlane</a></li>
+<li><a href="https://www.trivago.com/">trivago N.V.</a> - <a href="https://tech.trivago.com/">blog</a> - <a href="https://github.com/trivago">github</a></li>
 <li><a href="http://weave.works">Weaveworks</a></li>
 <li><a href="https://www.zalando.com">Zalando SE</a> - <a href="https://jobs.zalando.com/tech/blog/">blog</a></li>
 <li><a href="http://onefootball.com">Onefootball</a></li>
@@ -3585,6 +3575,7 @@
 <li><a href="https://amberstudent.com">AmberStudent</a></li>
 <li><a href="http://www.betacraft.co/">Betacraft</a></li>
 <li><a href="http://www.bookmyshow.com/">BookMyShow</a></li>
+<li><a href="http://cred.club/">CRED</a></li>
 <li><a href="http://c42.in/">C42 Engineering</a></li>
 <li><a href="http://cralina.com/">Cralina</a></li>
 <li><a href="http://codeignition.co/">CodeIgnition</a> - <a href="https://twitter.com/AjeyGore/status/667515185486102529">twitter</a></li>
@@ -3597,6 +3588,7 @@
 <li><a href="http://exotel.in">Exotel</a> - <a href="http://www.gophercon.in/#sponsor">website</a>  </li>
 <li><a href="https://angel.co/blackbuck-computing/">Fastah (Blackbuck Computing)</a></li>
 <li><a href="http://fstack.co/">FStack (Golang Consulting)</a></li>
+<li><a href="http://fynd.com/">Fynd</a></li>
 <li><a href="http://geektrust.in/">GeekTrust</a></li>
 <li><a href="https://getmega.com/">GetMega</a></li>
 <li><a href="http://gloop.io/">Gloop</a></li>
@@ -3605,6 +3597,7 @@
 <li><a href="https://www.guavus.com">Guavus</a></li>
 <li><a href="https://www.halodoc.com">Halodoc</a></li>
 <li><a href="https://hasura.io">Hasura</a></li>
+<li><a href="https://www.hotstar.com/">Hotstar</a></li>
 <li><a href="https://www.instamojo.com/">Instamojo</a></li>
 <li><a href="http://ithaka.travel">Ithaka</a></li>
 <li><a href="http://www.jabong.com">Jabong</a></li>
@@ -3617,6 +3610,7 @@
 <li><a href="http://www.mindship.io">Mindship</a></li>
 <li><a href="https://www.nazara.com/">Nazara Games</a></li>
 <li><a href="https://www.noticeboard.tech/">Noticeboard</a></li>
+<li><a href="http://teckinside.com/">teckinside</a></li>
 <li><a href="https://www.onet.io">Onet</a></li>
 <li><a href="https://www.openebs.io">OpenEBS</a> - Containerized,opensource storage for containers</li>
 <li><a href="https://pincode.app">Pincode.app - Local Social Network</a></li>
@@ -3640,6 +3634,7 @@
 <li><a href="http://synerzip.com/">Synerzip</a></li>
 <li><a href="https://tarkalabs.com/">Tarkalabs</a></li>
 <li><a href="http://www.techequity.in/">Techequity Technologies</a></li>
+<li><a href="https://www.thoughtbox.io/">ThoughtBox Online Services Pvt Ltd</a> - A FinTech Solution Provider</li>
 <li><a href="https://thoughtworks.com/">ThoughtWorks</a></li>
 <li><a href="http://unbxd.com">Unbxd</a></li>
 <li><a href="https://usercv.com">UserCV.com Freelancer Marketplace</a></li>
@@ -3653,6 +3648,7 @@
 <li><a href="http://auditsi.com">Auditsi Executive Recruitment Services</a></li>
 <li><a href="https://amartha.com/id_ID/">Amartha</a></li>
 <li><a href="http://www.bhinneka.com/">Bhinneka</a></li>
+<li><a href="https://blockchainzoo.com/">BlockchainZoo</a></li>
 <li><a href="https://brank.as">Brankas</a></li>
 <li><a href="http://www.bro.do/">Brodo</a></li>
 <li><a href="http://bukalapak.com">Bukalapak</a></li>
@@ -3708,6 +3704,7 @@
 </ul>
 <h2 id="iran">Iran</h2>
 <ul>
+<li><a href="https://idpay.ir/">Idpay</a> - bank gateways and a stable billing service in order to connect payments.</li>
 <li><a href="https://quizofkings.com">QuizOfKings</a> - Online trivia game among the most popular mobile game in iran</li>
 <li><a href="https://www.managroup.co/">ManaGroup</a> - <a href="https://github.com/managroup">github</a> Iranian Payment And Traveling Solution 💸✅🚀</li>
 <li><a href="https://emji.app/">Emji</a> - Emji is a new refined social networking platform aimed at simplicity and connectivity</li>
@@ -3720,6 +3717,7 @@
 <li><a href="https://bahamta.com/">Bahamta</a> - Fintech company.</li>
 <li><a href="https://5thd-co.com/">5<sup>th</sup> dimension</a> - Advertising Agency.</li>
 <li><a href="https://telmaperfume.com/">Telmaperfume</a> - Promotional Gifts.</li>
+<li><a href="https://happymotherday.net/">Giftsbox</a> - Promotional Mothers Day Gifts.</li>
 <li><a href="https://snapp.ir/">Snapp</a> - Snapp is a web and mobile ride-hailing platform in Iran</li>
 <li><a href="https://parsaspace.com">Parsaspace</a> - Parsaspace is an iranian storage as a service</li>
 <li><a href="https://cafebazaar.ir/?l=en/">Cafe Bazaar</a> -  Iranian Android marketplace</li>
@@ -3923,6 +3921,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.topgate.co.jp/">TOPGATE</a></li>
 <li><a href="https://corp.toreta.in/">Toreta, Inc.</a></li>
 <li><a href="https://www.veltra.com/">VELTRA Corporation</a></li>
+<li><a href="https://corp.voicy.jp/">Voicy, Inc.</a></li>
 <li><a href="https://voyagegroup.com/">VOYAGE GROUP</a></li>
 <li><a href="https://vrize.io/">VRize, Inc.</a></li>
 <li><a href="https://wantedlyinc.com/ja">Wantedly, Inc.</a><ul>
@@ -3971,9 +3970,9 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://entropy.tech">Entropy</a> - Ecommerce Marketing Optimization Platform.</li>
 <li><a href="https://engineering.credijusto.com/">Credijusto</a> - Financial Services</li>
 </ul>
-<h2 id="middle-east">Middle East</h2>
+<h2 id="middle-east">Middle-East</h2>
 <ul>
-<li><a href="http://asprosinstant.money/">aspros Wallet</a> (<a href="https://www.youtube.com/watch?v=BmsQYZpz1Ws">Video</a>)</li>
+<li><a href="https://www.thoughtbox.io/">ThoughtBox Technologies</a> - A FinTech Solution Provider</li>
 </ul>
 <h2 id="moldova">Moldova</h2>
 <ul>
@@ -3990,6 +3989,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.bol.com">bol.com</a></li>
 <li><a href="https://www.booking.com">booking.com</a></li>
 <li><a href="https://www.bubbleshooter.net/">Bubble Shooter</a></li>
+<li><a href="https://cloudbear.nl/">Cloudbear</a> - <a href="https://github.com/cbws">github</a></li>
 <li><a href="https://www.dataswimmer.com/">Dataswimmer</a></li>
 <li><a href="https://datumprikker.nl/">Datumprikker.nl</a></li>
 <li><a href="https://housinganywhere.com/">Housing Anywhere</a></li>
@@ -4006,6 +4006,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="http://www.pocketmedia.mobi/">Pocket Media</a> - <a href="http://www.pocketmedia.mobi/">company website</a>, <a href="github.com/pocketbrain/">github</a></li>
 <li><a href="http://poki.com/">Poki</a> - <a href="http://poki.com/company/">company website</a>, <a href="https://github.com/pokibv">github</a></li>
 <li><a href="http://pointerbrandprotection.com">Pointer Brand Protection</a></li>
+<li><a href="https://www.sensysgatso.com/">Sensys Gatso Group</a></li>
 <li><a href="https://sentia.com/nl/">Sentia</a></li>
 <li><a href="http://thethingsnetwork.org/">The Things Network</a> - <a href="https://github.com/TheThingsNetwork/">github</a></li>
 <li><a href="https://www.travix.com/">Travix International</a>- <a href="https://github.com/Travix-International">github</a></li>
@@ -4034,6 +4035,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://futurehome.no">Futurehome</a></li>
 <li><a href="https://www.akersolutions.com/">Aker Solutions</a>, specifically its <a href="https://www.ix3.com/">ix3</a> department</li>
 <li><a href="https://www.jottacloud.com/">Jottacloud</a></li>
+<li><a href="https://www.gojust.com/">Just Technologies</a></li>
 <li><a href="https://www.noisolation.com/">No Isolation</a></li>
 <li><a href="https://www.nav.no/">Norwegian Labour and Welfare Administration (NAV)</a></li>
 <li><a href="https://northern.tech/">Northern.tech</a></li>
@@ -4048,6 +4050,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.searis.no/">Searis</a></li>
 <li><a href="https://www.unacast.com/">Unacast</a></li>
 <li><a href="https://www.telenor.no/privat/">Telenor</a></li>
+<li><a href="https://teston.io/en/">Teston</a></li>
 <li><a href="https://tidal.com/">TIDAL</a></li>
 <li><a href="https://www.vipps.no">Vipps</a></li>
 </ul>
@@ -4058,6 +4061,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <h2 id="pakistan">Pakistan</h2>
 <ul>
 <li><a href="https://datumbrain.com">Datum Brain</a> - <a href="https://github.com/datumbrain">github</a> - AI, data science, big data analytics and IoT company</li>
+<li><a href="https://talkshot.com">TalkShot </a> - Social Networking based on Live events</li>
 </ul>
 <h2 id="philippines">Philippines</h2>
 <ul>
@@ -4193,6 +4197,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="http://www.agflow.com/">AgFlow SA</a></li>
 <li><a href="https://www.centralway.com/uk/">Centralway Numbrs AG</a></li>
 <li><a href="https://www.holidaycheck.ch/">HolidayCheck</a></li>
+<li><a href="https://globus.ch">Magazine zum Globus AG</a> - <a href="https://github.com/globusdigital">github</a></li>
 <li><a href="http://www.perron2.ch">Perron2 GmbH</a></li>
 <li><a href="https://protonmail.com">Proton Technologies AG</a></li>
 <li><a href="https://www.ricardo.ch/">Ricardo</a></li>
@@ -4231,6 +4236,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="http://onedaycat.com">Onedaycat</a></li>
 <li><a href="https://www.paybox.work">Paybox</a></li>
 <li><a href="https://www.facebook.com/paiduay.tech/">Paiduaykanmai</a></li>
+<li><a href="https://fillgoods.co/">Fillgoods</a></li>
 <li><a href="http://www.queq.me/">Que Q</a></li>
 <li><a href="https://www.sellsuki.co.th/">Sellsuki</a></li>
 <li><a href="https://six.network">SIX network</a> - Financial Services</li>
@@ -4241,7 +4247,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.thoughtworks.com/careers/thailand">ThoughtWorks Thailand</a></li>
 <li><a href="http://www.true-e-logistics.com/">True E-Logistics</a></li>
 <li><a href="http://truemoveh.truecorp.co.th/">TRUE</a> - Top 3 telecommunication company in Thailand.</li>
-<li><a href="https://wisesight.com">WISESIGHT</a> - Social media data analysis, Previous name is <a href="https://thothzocial.com/">ThothZocial</a></li>
+<li><a href="https://wisesight.com">WISESIGHT</a> - Social media data analysis, Previously <a href="https://thothzocial.com/">ThothZocial</a></li>
 <li><a href="http://www.xclnc.com">Xcellence Corporation</a></li>
 <li><a href="https://www.zanroo.com/">Zanroo</a></li>
 <li><a href="https://github.com/zarewoft">Zarewoft</a></li>
@@ -4284,6 +4290,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://thisisbud.com/">Bud</a></li>
 <li><a href="https://countingup.com">Countingup</a> - <a href="https://github.com/countingup">github</a></li>
 <li><a href="https://www.deliveroo.co.uk">Deliveroo</a> - <a href="https://github.com/deliveroo/">github</a></li>
+<li><a href="https://deviseops.com/">DeviseOps</a></li>
 <li><a href="https://form3.tech">Form3</a> - <a href="https://github.com/form3tech">github</a></li>
 <li><a href="http://fortifi.uk">Fortifi</a> - <a href="https://github.com/fortifi">github</a></li>
 <li><a href="https://awesomeshityoucanbuy.com/">Awesome Shit You Can Buy</a></li>
@@ -4310,6 +4317,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.skyscanner.net">Skyscanner</a></li>
 <li><a href="https://www.songkick.com">Songkick</a></li>
 <li><a href="http://storageos.com">StorageOS</a></li>
+<li><a href="https://synthace.com">Synthace</a> - <a href="https://github.com/antha-lang">github</a></li>
 <li><a href="https://tyk.io">Tyk</a> - <a href="https://github.com/TykTechnologies/tyk">github</a></li>
 <li><a href="https://careers.utilitywarehouse.co.uk/departments/technology">Utility Warehouse</a></li>
 <li><a href="http://weave.works">Weaveworks</a></li>
@@ -4366,6 +4374,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="http://www.ardanstudios.com">Ardan Studios/Labs</a> - <a href="https://twitter.com/ardanlab">twitter</a></li>
 <li><a href="http://www.arubanetworks.com/">Aruba Networks</a> - <a href="https://groups.google.com/d/msg/golang-nuts/M2koiSyoF6E/8rUujT5RCwEJ">golang-nuts</a></li>
 <li><a href="https://www.ascendantcompliancemanager.com/">Ascendant Compliance Manager</a> - Batch process millions of security trades per day.</li>
+<li><a href="https://www.assembled.com/">Assembled</a> - <a href="https://github.com/assembledhq">github</a></li>
 <li><a href="https://www.att.com/">AT&amp;T</a> - <a href="https://github.com/att?utf8=%E2%9C%93&amp;q=&amp;type=&amp;language=go">Github</a> and <a href="https://github.com/att/gopkgs">gopkgs repository</a></li>
 <li><a href="http://www.atatus.com/">Atatus</a> - <a href="http://www.atatus.com/blog/golang-auto-build-versioning/">blog</a></li>
 <li><a href="http://avocet.io/">Avocet</a> - <a href="http://blog.avocet.io/from-0-to-6-2-billion-requests/">blog</a></li>
@@ -4435,6 +4444,7 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.dell.com">Dell</a></li>
 <li><a href="https://www.diggernaut.com">Diggernaut</a> - Data mining and extraction service</li>
 <li><a href="http://www.digitalocean.com/">DigitalOcean</a> - <a href="http://www.digitalocean.com/company/blog/get-your-development-team-started-with-go/">blog</a></li>
+<li><a href="https://discovery.com">Discovery</a> - Video streaming.</li>
 <li><a href="https://disney.com">Disney</a> - <a href="https://www.youtube.com/watch?v=OMhXJD54ZDM">Gophercon 2017 lightning talk</a></li>
 <li><a href="http://disqus.com/">Disqus</a> - <a href="http://blog.disqus.com/post/51155103801/trying-out-this-go-thing">blog</a>, <a href="http://highscalability.com/blog/2014/5/7/update-on-disqus-its-still-about-realtime-but-go-demolishes.html">blog</a></li>
 <li><a href="https://dnsimple.com/">DNSimple</a> - <a href="http://blog.dnsimple.com/a-golang-redirection-service/">blog</a></li>
@@ -4754,11 +4764,9 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <li><a href="https://www.chotot.com">ChoTot</a></li>
 <li><a href="https://viralworks.com">ViralWorks</a></li>
 <li><a href="https://www.wetrust.io">WeTrust</a></li>
+<li><a href="https://vinid.net">VinID</a></li>
 </ul>
 <p>See also <a href="SuccessStories">Success Stories</a></p>
-                
-                  
-                
                 
               
               
@@ -4775,34 +4783,34 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../GoUserGroups/" title="GoUserGroups" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../GoUserGroups/" title="GoUserGroups" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 GoUserGroups
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../GoVsGenerics/" title="GoVsGenerics" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 GoVsGenerics
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
           </a>
         
@@ -4813,11 +4821,10 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -4826,11 +4833,20 @@ Certificate Expiry Monitor Controller monitors the expiration of TLS certificate
       
     </div>
     
-      <script src="../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../assets/javascripts/vendor.c51dfa35.min.js"></script>
+      <script src="../assets/javascripts/bundle.eaaa3931.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.58d22e8e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/startup.js"></script>
       
     
   </body>

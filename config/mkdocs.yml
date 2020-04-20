@@ -17,7 +17,8 @@ docs_dir: "../"
 site_dir: "../../docs"
 
 extra_javascript:
-  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML'
+  # - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/startup.js"
 
 markdown_extensions:
   - toc
@@ -45,7 +46,8 @@ plugins:
 extra:
   revision: d2dc234032b7
 
-## $ find ./ -type f -name '*.md' | awk -F/ '{print $2}' | awk -F'.md' '{print "  - "$1": "$0}' | sort --ignore-case | grep -v -e '  - _' -e 'Home:' -e 'WhyGo:' -e 'Windows:' -e 'Ubuntu:' -e 'Source:'
+## $ find . -type f -name '*.md' -and -not \( -name 'Home.md' -or -name 'WhyGo.md' -or -name 'Windows.md' -or -name 'Ubuntu.md' -or -name 'Source.md' -or -name '_Footer.md' -or -name '_Sidebar.md' \) | awk -F/ '{print $2}' | awk -F'.md' '{print "  - "$1": "$0}' | sort --ignore-case
+
 nav:
   - Home: Home.md
   - WhyGo:
@@ -139,6 +141,7 @@ nav:
   - HttpFetch: HttpFetch.md
   - HttpStaticFiles: HttpStaticFiles.md
   - IDEsAndTextEditorPlugins: IDEsAndTextEditorPlugins.md
+  - InstallFromSource: InstallFromSource.md
   - InstallTroubleshooting: InstallTroubleshooting.md
   - InterfaceSlice: InterfaceSlice.md
   - InvalidFlag: InvalidFlag.md
@@ -150,6 +153,7 @@ nav:
   - LearnServerProgramming: LearnServerProgramming.md
   - LearnTesting: LearnTesting.md
   - Linux: Linux.md
+  - LinuxKernelSignalVectorBug: LinuxKernelSignalVectorBug.md
   - LockOSThread: LockOSThread.md
   - MethodSets: MethodSets.md
   - MinimumRequirements: MinimumRequirements.md
@@ -207,7 +211,6 @@ nav:
   - Training: Training.md
   - vgo: vgo.md
   - WebAccessibilityResourcesAndTips: WebAccessibilityResourcesAndTips.md
-  - WebAssembly: WebAssembly.md
   - Well-known-struct-tags: Well-known-struct-tags.md
   - windows-scoop-install-go-cli: windows-scoop-install-go-cli.md
   - WindowsBuild: WindowsBuild.md
