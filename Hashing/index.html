@@ -2329,6 +2329,19 @@
 <p>At any time during data input, you can get the current sum by calling the Sum method. Use of the <code>Sum()</code> method will not effect future calls to sum. The most common way to use it is <code>sum := h.Sum(nil)</code>. What the <code>Sum()</code> method does is append the sum to the []byte parameter and return the new []byte. This can allow you to avoid allocating a new []byte each time you want the Sum. If you are summing often, you may do <code>md5sum := make([]byte, 16)</code> once and then do <code>h.Sum(md5sum[:0])</code> each time you want the new hash.</p>
 <p>If you want to reuse an already created hash, you can use <code>Reset()</code> to ensure it forgets all previously inputted data.</p>
                 
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: August 3, 2016
+    
+  </small>
+</div>
+                  
+                
               
               
                 

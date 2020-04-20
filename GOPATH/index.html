@@ -2470,6 +2470,19 @@ the go tool will get the source from the project hosted at <a href="https://gith
 <h3 id="why-wont-gopathsrccmdmycmdgo-build">Why won't <code>$GOPATH/src/cmd/mycmd/*.go</code> build?</h3>
 <p>When the go command is looking for packages, it always looks in <code>$GOROOT</code> first.  This includes directories, so if it finds (as in the case above) a <code>cmd/</code> directory in <code>$GOROOT</code> it won't proceed to look in any of the GOPATH directories.  This prevents you from defining your own <code>math/matrix</code> package as well as your own <code>cmd/mycmd</code> commands.</p>
                 
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: January 16, 2019
+    
+  </small>
+</div>
+                  
+                
               
               
                 

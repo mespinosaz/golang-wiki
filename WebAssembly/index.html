@@ -2273,18 +2273,22 @@ then take a look at the <a href="https://github.com/golang/go/wiki/WebAssembly#f
 troubleshooting, see the <a href="https://github.com/golang/go/wiki/InstallTroubleshooting">Install Troubleshooting</a>
 page.</p>
 <p>To compile a basic Go package for the web:</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import "fmt"
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
 
-func main() {
-    fmt.Println("Hello, WebAssembly!")
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Hello, WebAssembly!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
 <p>Set <code>GOOS=js</code> and <code>GOARCH=wasm</code> environment variables to compile
 for WebAssembly:</p>
-<pre><code>$ GOOS=js GOARCH=wasm go build -o main.wasm
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go build -o main.wasm
+</code></pre></div>
+
+
 <p>That will build the package and produce an executable WebAssembly
 module file named main.wasm. The .wasm file extension will make it
 easier to serve it over HTTP with the correct Content-Type header
@@ -2293,31 +2297,37 @@ later on.</p>
 <p>To execute main.wasm in a browser, we’ll also need a JavaScript
 support file, and a HTML page to connect everything together.</p>
 <p>Copy the JavaScript support file:</p>
-<pre><code>$ cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" .
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ cp <span class="s2">&quot;</span><span class="k">$(</span>go env GOROOT<span class="k">)</span><span class="s2">/misc/wasm/wasm_exec.js&quot;</span> .
+</code></pre></div>
+
+
 <p>Create an <code>index.html</code> file:</p>
-<pre><code>&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"/&gt;
-        &lt;script src="wasm_exec.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;wasm_exec.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+        <span class="nt">&lt;script&gt;</span>
             const go = new Go();
-            WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) =&gt; {
+            WebAssembly.instantiateStreaming(fetch(&quot;main.wasm&quot;), go.importObject).then((result) =&gt; {
                 go.run(result.instance);
             });
-        &lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+
+
 <p>If your browser doesn’t yet support <code>WebAssembly.instantiateStreaming</code>,
 you can use a <a href="https://github.com/golang/go/blob/b2fcfc1a50fbd46556f7075f7f1fbf600b5c9e5d/misc/wasm/wasm_exec.html#L17-L22">polyfill</a>.</p>
 <p>Then serve the three files (<code>index.html</code>, <code>wasm_exec.js</code>, and
 <code>main.wasm</code>) from a web server. For example, with
 <a href="https://github.com/shurcooL/goexec#goexec"><code>goexec</code></a>:</p>
-<pre><code># install goexec: go get -u github.com/shurcooL/goexec
-$ goexec 'http.ListenAndServe(`:8080`, http.FileServer(http.Dir(`.`)))'
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err"># install goexec: go get -u github.com/shurcooL/goexec</span>
+<span class="err">$ goexec &#39;http.ListenAndServe(`:8080`, http.FileServer(http.Dir(`.`)))&#39;</span>
+</code></pre></div>
+
+
 <p>Or use your own <a href="https://play.golang.org/p/pZ1f5pICVbV">basic HTTP server command</a>.</p>
 <p>Note: for the <code>goexec</code> command to work on Unix-like systems, you must <a href="https://golang.org/doc/install#tarball">add the path environment variable</a> for Go to your shell’s <code>profile</code>. Go’s getting started guide explains this:</p>
 <blockquote>
@@ -2336,32 +2346,40 @@ rather than a browser, which can be useful for testing and automation.</p>
 location of <code>go_js_wasm_exec</code> when you execute <code>go run</code> or <code>go test</code>.</p>
 <p>By default, <code>go_js_wasm_exec</code> is in the <code>misc/wasm</code> directory of your
 Go installation.</p>
-<pre><code>$ GOOS=js GOARCH=wasm go run -exec="$(go env GOROOT)/misc/wasm/go_js_wasm_exec" .
+<div class="codehilite"><pre><span></span><code>$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go run -exec<span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>go env GOROOT<span class="k">)</span><span class="s2">/misc/wasm/go_js_wasm_exec&quot;</span> .
 Hello, WebAssembly!
-$ GOOS=js GOARCH=wasm go test -exec="$(go env GOROOT)/misc/wasm/go_js_wasm_exec"
+$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go <span class="nb">test</span> -exec<span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>go env GOROOT<span class="k">)</span><span class="s2">/misc/wasm/go_js_wasm_exec&quot;</span>
 PASS
-ok      example.org/my/pkg  0.800s
-</code></pre>
+ok      example.org/my/pkg  <span class="m">0</span>.800s
+</code></pre></div>
+
+
 <p>Adding <code>go_js_wasm_exec</code> to your <code>PATH</code> will allow <code>go run</code> and <code>go test</code> to work for <code>js/wasm</code> without having to manually provide the <code>-exec</code> flag each time:</p>
-<pre><code>$ export PATH="$PATH:$(go env GOROOT)/misc/wasm"
-$ GOOS=js GOARCH=wasm go run .
+<div class="codehilite"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">:</span><span class="k">$(</span>go env GOROOT<span class="k">)</span><span class="s2">/misc/wasm&quot;</span>
+$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go run .
 Hello, WebAssembly!
-$ GOOS=js GOARCH=wasm go test
+$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go <span class="nb">test</span>
 PASS
-ok      example.org/my/pkg  0.800s
-</code></pre>
+ok      example.org/my/pkg  <span class="m">0</span>.800s
+</code></pre></div>
+
+
 <h2 id="running-tests-in-the-browser">Running tests in the browser</h2>
 <p>You can also use <a href="https://github.com/agnivade/wasmbrowsertest">wasmbrowsertest</a> to run tests inside your browser. It automates the job of spinning up a webserver and uses headless Chrome to run the tests inside it and relays the logs to your console.</p>
 <p>Same as before, just <code>go get github.com/agnivade/wasmbrowsertest</code> to get a binary. Rename that to <code>go_js_wasm_exec</code> and place it to your <code>PATH</code></p>
-<pre><code>$ mv $GOPATH/bin/wasmbrowsertest $GOPATH/bin/go_js_wasm_exec
-$ export PATH="$PATH:$GOPATH/bin"
-$ GOOS=js GOARCH=wasm go test
+<div class="codehilite"><pre><span></span><code>$ mv <span class="nv">$GOPATH</span>/bin/wasmbrowsertest <span class="nv">$GOPATH</span>/bin/go_js_wasm_exec
+$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PATH</span><span class="s2">:</span><span class="nv">$GOPATH</span><span class="s2">/bin&quot;</span>
+$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go <span class="nb">test</span>
 PASS
-ok      example.org/my/pkg  0.800s
-</code></pre>
+ok      example.org/my/pkg  <span class="m">0</span>.800s
+</code></pre></div>
+
+
 <p>Alternatively, use the <code>exec</code> test flag.</p>
-<pre><code>$ GOOS=js GOARCH=wasm go test -exec="$GOPATH/bin/wasmbrowsertest"
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ <span class="nv">GOOS</span><span class="o">=</span>js <span class="nv">GOARCH</span><span class="o">=</span>wasm go <span class="nb">test</span> -exec<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$GOPATH</span><span class="s2">/bin/wasmbrowsertest&quot;</span>
+</code></pre></div>
+
+
 <h1 id="go-webassembly-talks">Go WebAssembly talks</h1>
 <ul>
 <li>
@@ -2427,20 +2445,22 @@ ok      example.org/my/pkg  0.800s
 </li>
 </ul>
 <p>So as an example, if we want to set the mode as "cors" while making a request, it will be something like:</p>
-<pre><code>req, err := http.NewRequest("GET", "http://localhost:8080", nil)
-req.Header.Add("js.fetch:mode", "cors")
-if err != nil {
-  fmt.Println(err)
-  return
-}
-resp, err := http.DefaultClient.Do(req)
-if err != nil {
-  fmt.Println(err)
-  return
-}
-defer resp.Body.Close()
-// handle the response
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">req, err := http.NewRequest(&quot;GET&quot;, &quot;http://localhost:8080&quot;, nil)</span>
+<span class="err">req.Header.Add(&quot;js.fetch:mode&quot;, &quot;cors&quot;)</span>
+<span class="err">if err != nil {</span>
+<span class="err">  fmt.Println(err)</span>
+<span class="err">  return</span>
+<span class="err">}</span>
+<span class="err">resp, err := http.DefaultClient.Do(req)</span>
+<span class="err">if err != nil {</span>
+<span class="err">  fmt.Println(err)</span>
+<span class="err">  return</span>
+<span class="err">}</span>
+<span class="err">defer resp.Body.Close()</span>
+<span class="err">// handle the response</span>
+</code></pre></div>
+
+
 <p>Please feel free to subscribe to <a href="https://github.com/golang/go/issues/26769">#26769</a> for more context and possibly newer information.</p>
 <h1 id="editor-configuration">Editor configuration</h1>
 <ul>
@@ -2465,7 +2485,7 @@ proposals under way:</p>
     (<a href="https://github.com/yurydelendik/webassembly-dwarf/">source code for the doc</a>)</p>
 </li>
 </ul>
-<p>Please get involved and help drive this if you’re interested in the Debugger side of things. <img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f604.svg" title=":smile:" /></p>
+<p>Please get involved and help drive this if you’re interested in the Debugger side of things. <img alt="😄" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f604.svg" title=":smile:" /></p>
 <h2 id="analysing-the-structure-of-a-webassembly-file">Analysing the structure of a WebAssembly file</h2>
 <p><a href="https://wasdk.github.io/wasmcodeexplorer/">WebAssembly Code Explorer</a> is useful for visualising the structure of a WebAssembly file.</p>
 <ul>
@@ -2479,8 +2499,10 @@ proposals under way:</p>
 <h1 id="known-bugs">Known bug(s)</h1>
 <p>Go releases prior to 1.11.2 <a href="https://github.com/golang/go/issues/27961">have a bug</a> which can generate incorrect wasm code in some (rare) circumstances.</p>
 <p>If your Go code compiles to wasm without problem, but produces an error like this when run in the browser:</p>
-<pre><code>CompileError: wasm validation error: at offset 1269295: type mismatch: expression has type i64 but expected f64
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">CompileError</span><span class="o">:</span> <span class="n">wasm</span> <span class="n">validation</span> <span class="n">error</span><span class="o">:</span> <span class="n">at</span> <span class="n">offset</span> <span class="mi">1269295</span><span class="o">:</span> <span class="n">type</span> <span class="n">mismatch</span><span class="o">:</span> <span class="n">expression</span> <span class="n">has</span> <span class="n">type</span> <span class="n">i64</span> <span class="n">but</span> <span class="n">expected</span> <span class="n">f64</span>
+</code></pre></div>
+
+
 <p>Then you’re probably hitting this error.</p>
 <p>The solution is to upgrade to Go 1.11.2 or later.</p>
 <h1 id="further-examples">Further examples</h1>
@@ -2666,12 +2688,25 @@ proposals under way:</p>
 <p>Use something like <a href="https://github.com/lpar/gzipped">https://github.com/lpar/gzipped</a> to automatically serve compressed files with correct headers, when available.</p>
 <p><strong>2.</strong> Use <a href="https://github.com/tinygo-org/tinygo">TinyGo</a> to generate the Wasm file instead.</p>
 <p>TinyGo supports a subset of the Go language targeted for embedded devices, and has a WebAssembly output target.</p>
-<p>While it does have limitations (not yet a full Go implementation), it is still fairly capable and the generated Wasm files are…​ tiny. ~10kB isn’t unusual. The "Hello world" example is 575 bytes. If you <code>gz -6</code> that, it drops down to 408 bytes. <img alt="😉" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f609.svg" title=":wink:" /></p>
+<p>While it does have limitations (not yet a full Go implementation), it is still fairly capable and the generated Wasm files are…​ tiny. ~10kB isn’t unusual. The "Hello world" example is 575 bytes. If you <code>gz -6</code> that, it drops down to 408 bytes. <img alt="😉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f609.svg" title=":wink:" /></p>
 <p>This project is also very actively developed, so its capabilities are expanding out quickly. See <a href="https://tinygo.org/webassembly/webassembly/">https://tinygo.org/webassembly/webassembly/</a> for more information on using WebAssembly with TinyGo.</p>
 <h1 id="other-webassembly-resources">Other WebAssembly resources</h1>
 <ul>
 <li><a href="https://github.com/mbasso/awesome-wasm">Awesome-Wasm</a> - An extensive list of further Wasm resources. Not Go specific.</li>
 </ul>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: June 9, 2019
+    
+  </small>
+</div>
+                  
                 
               
               

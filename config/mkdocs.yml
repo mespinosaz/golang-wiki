@@ -22,6 +22,7 @@ extra_javascript:
 
 markdown_extensions:
   - toc
+  - codehilite
   - admonition
   - pymdownx.arithmatex
   - pymdownx.betterem:
@@ -30,7 +31,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
@@ -38,10 +40,13 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.tabbed
   - pymdownx.tilde
 
 plugins:
   - search
+  - git-revision-date-localized:
+      type: date
 
 extra:
   revision: d2dc234032b7

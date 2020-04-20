@@ -2492,6 +2492,19 @@ func (e *MyError) Error() string { return ... }
 <p>We've done that for <a href="https://tip.golang.org/pkg/os/#PathError.Unwrap"><code>os.PathError</code></a> and other, similar types in the standard library. </p>
 <p>It's clear that writing an <code>Unwrap</code> method is the right choice if the nested error is exported, or otherwise visible to code outside your package, such as via a method like <code>Unwrap</code>.  But if the nested error is not exposed to outside code, you probably should keep it that way. Making the error visible by returning it from <code>Unwrap</code> will enable your clients to depend on the type of the nested error, which can expose implementation details and constrain the evolution of your package. See the discussion of <code>%w</code> above for more.</p>
                 
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: September 4, 2019
+    
+  </small>
+</div>
+                  
+                
               
               
                 

@@ -2468,12 +2468,16 @@ what percent of CPU time. There are 3 ways you can get access to it:</p>
 <p>The simplest one is -cpuprofile flag of 'go test'
     (<a href="http://golang.org/cmd/go/#hdr-Description_of_testing_flags">http://golang.org/cmd/go/#hdr-Description_of_testing_flags</a>) command. For
     example, the following command:</p>
-<pre><code>$ go test -run=none -bench=ClientServerParallel4 -cpuprofile=cprof net/http
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ go <span class="nb">test</span> -run<span class="o">=</span>none -bench<span class="o">=</span>ClientServerParallel4 -cpuprofile<span class="o">=</span>cprof net/http
+</code></pre></div>
+
+
 <p>will profile the given benchmark and write CPU profile into 'cprof' file.
 Then:</p>
-<pre><code>$ go tool pprof --text http.test cprof
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ go tool pprof --text http.test cprof
+</code></pre></div>
+
+
 <p>will print a list of the hottest functions.</p>
 <p>There are several output types available, the most useful ones are:
 <code>--text</code>, <code>--web</code> and <code>--list</code>. Run <code>go tool pprof</code> to get the complete
@@ -2483,22 +2487,26 @@ list. The obvious drawback of this option is that it works only for tests.</p>
 <p><a href="http://golang.org/pkg/net/http/pprof">net/http/pprof</a>: This is the ideal
     solution for network servers. You merely need to import <code>net/http/pprof</code>,
     and collect profiles with:</p>
-<pre><code>$ go tool pprof --text mybin  http://myserver:6060:/debug/pprof/profile
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ go tool pprof --text mybin  http://myserver:6060:/debug/pprof/profile
+</code></pre></div>
+
+
 </li>
 <li>
 <p>Manual profile collection. You need to import
     <a href="http://golang.org/pkg/runtime/pprof/">runtime/pprof</a> and add the following
     code to main function:</p>
-<pre><code>if *flagCpuprofile != "" {
-    f, err := os.Create(*flagCpuprofile)
-    if err != nil {
-        log.Fatal(err)
-    }
-    pprof.StartCPUProfile(f)
-    defer pprof.StopCPUProfile()
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">if *flagCpuprofile != &quot;&quot; {</span>
+<span class="err">    f, err := os.Create(*flagCpuprofile)</span>
+<span class="err">    if err != nil {</span>
+<span class="err">        log.Fatal(err)</span>
+<span class="err">    }</span>
+<span class="err">    pprof.StartCPUProfile(f)</span>
+<span class="err">    defer pprof.StopCPUProfile()</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
 <p>The profile will be written to the specified file, visualize it the same way
 as in the first option.</p>
 </li>
@@ -2508,22 +2516,24 @@ as in the first option.</p>
 <p>You can investigate a single function with <code>--list=funcname</code> option. For
 example, the following profile shows that the time was spent in the <code>append</code>
 function:</p>
-<pre><code> .      .   93: func (bp *buffer) WriteRune(r rune) error {
- .      .   94:     if r &lt; utf8.RuneSelf {
- 5      5   95:         *bp = append(*bp, byte(r))
- .      .   96:         return nil
- .      .   97:     }
- .      .   98:
- .      .   99:     b := *bp
- .      .  100:     n := len(b)
- .      .  101:     for n+utf8.UTFMax &gt; cap(b) {
- .      .  102:         b = append(b, 0)
- .      .  103:     }
- .      .  104:     w := utf8.EncodeRune(b[n:n+utf8.UTFMax], r)
- .      .  105:     *bp = b[:n+w]
- .      .  106:     return nil
- .      .  107: }
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err"> .      .   93: func (bp *buffer) WriteRune(r rune) error {</span>
+<span class="err"> .      .   94:     if r &lt; utf8.RuneSelf {</span>
+<span class="err"> 5      5   95:         *bp = append(*bp, byte(r))</span>
+<span class="err"> .      .   96:         return nil</span>
+<span class="err"> .      .   97:     }</span>
+<span class="err"> .      .   98:</span>
+<span class="err"> .      .   99:     b := *bp</span>
+<span class="err"> .      .  100:     n := len(b)</span>
+<span class="err"> .      .  101:     for n+utf8.UTFMax &gt; cap(b) {</span>
+<span class="err"> .      .  102:         b = append(b, 0)</span>
+<span class="err"> .      .  103:     }</span>
+<span class="err"> .      .  104:     w := utf8.EncodeRune(b[n:n+utf8.UTFMax], r)</span>
+<span class="err"> .      .  105:     *bp = b[:n+w]</span>
+<span class="err"> .      .  106:     return nil</span>
+<span class="err"> .      .  107: }</span>
+</code></pre></div>
+
+
 <p>There are also 3 special entries that the profiler uses when it can't unwind
 stack: GC, System and ExternalCode. GC means time spent during garbage
 collection, see Memory Profiler and Garbage Collector Trace sections below for
@@ -2599,29 +2609,31 @@ file level, respectively.</p>
 the browser (provided that you imported <code>net/http/pprof</code>). If you open
 <a href="http://myserver:6060/debug/pprof/heap?debug=1">http://myserver:6060/debug/pprof/heap?debug=1</a> you must see the heap profile
 along the lines of:</p>
-<pre><code>heap profile: 4: 266528 [123: 11284472] @ heap/1048576
-1: 262144 [4: 376832] @ 0x28d9f 0x2a201 0x2a28a 0x2624d 0x26188 0x94ca3 0x94a0b 0x17add6 0x17ae9f 0x1069d3 0xfe911 0xf0a3e 0xf0d22 0x21a70
-#   0x2a201 cnew+0xc1   runtime/malloc.goc:718
-#   0x2a28a runtime.cnewarray+0x3a          runtime/malloc.goc:731
-#   0x2624d makeslice1+0x4d             runtime/slice.c:57
-#   0x26188 runtime.makeslice+0x98          runtime/slice.c:38
-#   0x94ca3 bytes.makeSlice+0x63            bytes/buffer.go:191
-#   0x94a0b bytes.(*Buffer).ReadFrom+0xcb       bytes/buffer.go:163
-#   0x17add6    io/ioutil.readAll+0x156         io/ioutil/ioutil.go:32
-#   0x17ae9f    io/ioutil.ReadAll+0x3f          io/ioutil/ioutil.go:41
-#   0x1069d3    godoc/vfs.ReadFile+0x133            godoc/vfs/vfs.go:44
-#   0xfe911 godoc.func·023+0x471            godoc/meta.go:80
-#   0xf0a3e godoc.(*Corpus).updateMetadata+0x9e     godoc/meta.go:101
-#   0xf0d22 godoc.(*Corpus).refreshMetadataLoop+0x42    godoc/meta.go:141
+<div class="codehilite"><pre><span></span><code><span class="n">heap</span><span class="w"> </span><span class="nl">profile</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="err">:</span><span class="w"> </span><span class="mi">266528</span><span class="w"> </span><span class="o">[</span><span class="n">123: 11284472</span><span class="o">]</span><span class="w"> </span><span class="err">@</span><span class="w"> </span><span class="n">heap</span><span class="o">/</span><span class="mi">1048576</span><span class="w"></span>
+<span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="mi">262144</span><span class="w"> </span><span class="o">[</span><span class="n">4: 376832</span><span class="o">]</span><span class="w"> </span><span class="err">@</span><span class="w"> </span><span class="mh">0x28d9f</span><span class="w"> </span><span class="mh">0x2a201</span><span class="w"> </span><span class="mh">0x2a28a</span><span class="w"> </span><span class="mh">0x2624d</span><span class="w"> </span><span class="mh">0x26188</span><span class="w"> </span><span class="mh">0x94ca3</span><span class="w"> </span><span class="mh">0x94a0b</span><span class="w"> </span><span class="mh">0x17add6</span><span class="w"> </span><span class="mh">0x17ae9f</span><span class="w"> </span><span class="mh">0x1069d3</span><span class="w"> </span><span class="mh">0xfe911</span><span class="w"> </span><span class="mh">0xf0a3e</span><span class="w"> </span><span class="mh">0xf0d22</span><span class="w"> </span><span class="mh">0x21a70</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x2a201</span><span class="w"> </span><span class="n">cnew</span><span class="o">+</span><span class="mh">0xc1</span><span class="w">   </span><span class="n">runtime</span><span class="o">/</span><span class="n">malloc</span><span class="p">.</span><span class="nl">goc</span><span class="p">:</span><span class="mi">718</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x2a28a</span><span class="w"> </span><span class="n">runtime</span><span class="p">.</span><span class="n">cnewarray</span><span class="o">+</span><span class="mh">0x3a</span><span class="w">          </span><span class="n">runtime</span><span class="o">/</span><span class="n">malloc</span><span class="p">.</span><span class="nl">goc</span><span class="p">:</span><span class="mi">731</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x2624d</span><span class="w"> </span><span class="n">makeslice1</span><span class="o">+</span><span class="mh">0x4d</span><span class="w">             </span><span class="n">runtime</span><span class="o">/</span><span class="n">slice</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">57</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x26188</span><span class="w"> </span><span class="n">runtime</span><span class="p">.</span><span class="n">makeslice</span><span class="o">+</span><span class="mh">0x98</span><span class="w">          </span><span class="n">runtime</span><span class="o">/</span><span class="n">slice</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">38</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x94ca3</span><span class="w"> </span><span class="n">bytes</span><span class="p">.</span><span class="n">makeSlice</span><span class="o">+</span><span class="mh">0x63</span><span class="w">            </span><span class="n">bytes</span><span class="o">/</span><span class="n">buffer</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">191</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x94a0b</span><span class="w"> </span><span class="n">bytes</span><span class="p">.(</span><span class="o">*</span><span class="n">Buffer</span><span class="p">).</span><span class="n">ReadFrom</span><span class="o">+</span><span class="mh">0xcb</span><span class="w">       </span><span class="n">bytes</span><span class="o">/</span><span class="n">buffer</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">163</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x17add6</span><span class="w">    </span><span class="n">io</span><span class="o">/</span><span class="n">ioutil</span><span class="p">.</span><span class="n">readAll</span><span class="o">+</span><span class="mh">0x156</span><span class="w">         </span><span class="n">io</span><span class="o">/</span><span class="n">ioutil</span><span class="o">/</span><span class="n">ioutil</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">32</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x17ae9f</span><span class="w">    </span><span class="n">io</span><span class="o">/</span><span class="n">ioutil</span><span class="p">.</span><span class="n">ReadAll</span><span class="o">+</span><span class="mh">0x3f</span><span class="w">          </span><span class="n">io</span><span class="o">/</span><span class="n">ioutil</span><span class="o">/</span><span class="n">ioutil</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">41</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x1069d3</span><span class="w">    </span><span class="n">godoc</span><span class="o">/</span><span class="n">vfs</span><span class="p">.</span><span class="n">ReadFile</span><span class="o">+</span><span class="mh">0x133</span><span class="w">            </span><span class="n">godoc</span><span class="o">/</span><span class="n">vfs</span><span class="o">/</span><span class="n">vfs</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">44</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xfe911</span><span class="w"> </span><span class="n">godoc</span><span class="p">.</span><span class="n">func</span><span class="err">·</span><span class="mi">023</span><span class="o">+</span><span class="mh">0x471</span><span class="w">            </span><span class="n">godoc</span><span class="o">/</span><span class="n">meta</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">80</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xf0a3e</span><span class="w"> </span><span class="n">godoc</span><span class="p">.(</span><span class="o">*</span><span class="n">Corpus</span><span class="p">).</span><span class="n">updateMetadata</span><span class="o">+</span><span class="mh">0x9e</span><span class="w">     </span><span class="n">godoc</span><span class="o">/</span><span class="n">meta</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">101</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xf0d22</span><span class="w"> </span><span class="n">godoc</span><span class="p">.(</span><span class="o">*</span><span class="n">Corpus</span><span class="p">).</span><span class="n">refreshMetadataLoop</span><span class="o">+</span><span class="mh">0x42</span><span class="w">    </span><span class="n">godoc</span><span class="o">/</span><span class="n">meta</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">141</span><span class="w"></span>
 
-2: 4096 [2: 4096] @ 0x28d9f 0x29059 0x1d252 0x1d450 0x106993 0xf1225 0xe1489 0xfbcad 0x21a70
-#   0x1d252 newdefer+0x112              runtime/panic.c:49
-#   0x1d450 runtime.deferproc+0x10          runtime/panic.c:132
-#   0x106993    godoc/vfs.ReadFile+0xf3         godoc/vfs/vfs.go:43
-#   0xf1225 godoc.(*Corpus).parseFile+0x75      godoc/parser.go:20
-#   0xe1489 godoc.(*treeBuilder).newDirTree+0x8e9   godoc/dirtrees.go:108
-#   0xfbcad godoc.func·002+0x15d            godoc/dirtrees.go:100
-</code></pre>
+<span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="o">[</span><span class="n">2: 4096</span><span class="o">]</span><span class="w"> </span><span class="err">@</span><span class="w"> </span><span class="mh">0x28d9f</span><span class="w"> </span><span class="mh">0x29059</span><span class="w"> </span><span class="mh">0x1d252</span><span class="w"> </span><span class="mh">0x1d450</span><span class="w"> </span><span class="mh">0x106993</span><span class="w"> </span><span class="mh">0xf1225</span><span class="w"> </span><span class="mh">0xe1489</span><span class="w"> </span><span class="mh">0xfbcad</span><span class="w"> </span><span class="mh">0x21a70</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x1d252</span><span class="w"> </span><span class="n">newdefer</span><span class="o">+</span><span class="mh">0x112</span><span class="w">              </span><span class="n">runtime</span><span class="o">/</span><span class="n">panic</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">49</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x1d450</span><span class="w"> </span><span class="n">runtime</span><span class="p">.</span><span class="n">deferproc</span><span class="o">+</span><span class="mh">0x10</span><span class="w">          </span><span class="n">runtime</span><span class="o">/</span><span class="n">panic</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">132</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0x106993</span><span class="w">    </span><span class="n">godoc</span><span class="o">/</span><span class="n">vfs</span><span class="p">.</span><span class="n">ReadFile</span><span class="o">+</span><span class="mh">0xf3</span><span class="w">         </span><span class="n">godoc</span><span class="o">/</span><span class="n">vfs</span><span class="o">/</span><span class="n">vfs</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">43</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xf1225</span><span class="w"> </span><span class="n">godoc</span><span class="p">.(</span><span class="o">*</span><span class="n">Corpus</span><span class="p">).</span><span class="n">parseFile</span><span class="o">+</span><span class="mh">0x75</span><span class="w">      </span><span class="n">godoc</span><span class="o">/</span><span class="n">parser</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">20</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xe1489</span><span class="w"> </span><span class="n">godoc</span><span class="p">.(</span><span class="o">*</span><span class="n">treeBuilder</span><span class="p">).</span><span class="n">newDirTree</span><span class="o">+</span><span class="mh">0x8e9</span><span class="w">   </span><span class="n">godoc</span><span class="o">/</span><span class="n">dirtrees</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">108</span><span class="w"></span>
+<span class="err">#</span><span class="w">   </span><span class="mh">0xfbcad</span><span class="w"> </span><span class="n">godoc</span><span class="p">.</span><span class="n">func</span><span class="err">·</span><span class="mi">002</span><span class="o">+</span><span class="mh">0x15d</span><span class="w">            </span><span class="n">godoc</span><span class="o">/</span><span class="n">dirtrees</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">100</span><span class="w"></span>
+</code></pre></div>
+
+
 <p>The numbers in the beginning of each entry <code>("1: 262144 [4: 376832]")</code> represent
 number of currently live objects, amount of memory occupied by live objects,
 total number of allocations and amount of memory occupied by all allocations,
@@ -2641,21 +2653,25 @@ suggestions.</p>
     heap allocations. Compiler generally can't prove that several variables have
     the same life time, so it allocates each such variable separately. So you
     can use the above advise for local variables as well. For example, replace:</p>
-<pre><code>for k, v := range m {
-    k, v := k, v   // copy for capturing by the goroutine
-    go func() {
-        // use k and v
-    }()
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">for k, v := range m {</span>
+<span class="err">    k, v := k, v   // copy for capturing by the goroutine</span>
+<span class="err">    go func() {</span>
+<span class="err">        // use k and v</span>
+<span class="err">    }()</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
 <p>with:</p>
-<pre><code>for k, v := range m {
-    x := struct{ k, v string }{k, v}   // copy for capturing by the goroutine
-    go func() {
-        // use x.k and x.v
-    }()
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">for k, v := range m {</span>
+<span class="err">    x := struct{ k, v string }{k, v}   // copy for capturing by the goroutine</span>
+<span class="err">    go func() {</span>
+<span class="err">        // use x.k and x.v</span>
+<span class="err">    }()</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
 <p>This replaces two memory allocations with a single allocation. However, this
 optimization usually negatively affects code readability, so use it
 reasonably.</p>
@@ -2664,18 +2680,20 @@ reasonably.</p>
 <p>A special case of allocation combining is slice array preallocation. If you
     know a typical size of the slice, you can preallocate a backing array for it
     as follows:</p>
-<pre><code>type X struct {
-    buf      []byte
-    bufArray [16]byte // Buf usually does not grow beyond 16 bytes.
-}
+<div class="codehilite"><pre><span></span><code><span class="k">type</span> <span class="n">X</span> <span class="n">struct</span> <span class="err">{</span>
+    <span class="n">buf</span>      <span class="p">[]</span><span class="n">byte</span>
+    <span class="n">bufArray</span> <span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="n">byte</span> <span class="o">//</span> <span class="n">Buf</span> <span class="n">usually</span> <span class="n">does</span> <span class="k">not</span> <span class="n">grow</span> <span class="n">beyond</span> <span class="mi">16</span> <span class="n">bytes</span><span class="p">.</span>
+<span class="err">}</span>
 
-func MakeX() *X {
-    x := &amp;X{}
-    // Preinitialize buf with the backing array.
-    x.buf = x.bufArray[:0]
-    return x
-}
-</code></pre>
+<span class="n">func</span> <span class="n">MakeX</span><span class="p">()</span> <span class="o">*</span><span class="n">X</span> <span class="err">{</span>
+    <span class="n">x</span> <span class="p">:</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">X</span><span class="err">{}</span>
+    <span class="o">//</span> <span class="n">Preinitialize</span> <span class="n">buf</span> <span class="k">with</span> <span class="n">the</span> <span class="n">backing</span> <span class="nb">array</span><span class="p">.</span>
+    <span class="n">x</span><span class="p">.</span><span class="n">buf</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">bufArray</span><span class="p">[:</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
 </li>
 <li>
 <p>If possible use smaller data types. For example, use <code>int8</code> instead of
@@ -2773,69 +2791,75 @@ visualization.</p>
     copy-on-write technique. If the protected data structure is modified
     infrequently and it's feasible to make copies of it, then it can be updated
     as follows:</p>
-<pre><code>type Config struct {
-    Routes   map[string]net.Addr
-    Backends []net.Addr
-}
+<div class="codehilite"><pre><span></span><code><span class="n">type</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Routes</span><span class="w">   </span><span class="k">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="n">net</span><span class="p">.</span><span class="n">Addr</span><span class="w"></span>
+<span class="w">    </span><span class="n">Backends</span><span class="w"> </span><span class="err">[]</span><span class="n">net</span><span class="p">.</span><span class="n">Addr</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-var config atomic.Value  // actual type is *Config
+<span class="nf">var</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">atomic</span><span class="p">.</span><span class="k">Value</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="n">actual</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="o">*</span><span class="n">Config</span><span class="w"></span>
 
-// Worker goroutines use this function to obtain the current config.
-  // UpdateConfig must be called at least once before this func.
-func CurrentConfig() *Config {
-    return config.Load().(*Config)
-}
+<span class="o">//</span><span class="w"> </span><span class="n">Worker</span><span class="w"> </span><span class="n">goroutines</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">obtain</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="n">UpdateConfig</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">called</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">least</span><span class="w"> </span><span class="n">once</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">func</span><span class="p">.</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">CurrentConfig</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="n">Config</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="k">Load</span><span class="p">().(</span><span class="o">*</span><span class="n">Config</span><span class="p">)</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-// Background goroutine periodically creates a new Config object
-// as sets it as current using this function.
-func UpdateConfig(cfg *Config) {
-  config.Store(cfg)
-}
-</code></pre>
+<span class="o">//</span><span class="w"> </span><span class="n">Background</span><span class="w"> </span><span class="n">goroutine</span><span class="w"> </span><span class="n">periodically</span><span class="w"> </span><span class="n">creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">object</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">sets</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">UpdateConfig</span><span class="p">(</span><span class="n">cfg</span><span class="w"> </span><span class="o">*</span><span class="n">Config</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">config</span><span class="p">.</span><span class="n">Store</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
 <p>This pattern prevents the writer from blocking readers during update.</p>
 </li>
 <li>
 <p>Partitioning is another general technique for reducing contention/blocking
     on shared mutable data structures. Below is an example of how to partition a
     hashmap:</p>
-<pre><code>type Partition struct {
-    sync.RWMutex
-    m map[string]string
-}
+<div class="codehilite"><pre><span></span><code><span class="n">type</span><span class="w"> </span><span class="k">Partition</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sync</span><span class="p">.</span><span class="n">RWMutex</span><span class="w"></span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="k">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="n">string</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-const partCount = 64
-var m [partCount]Partition
+<span class="n">const</span><span class="w"> </span><span class="n">partCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">[</span><span class="n">partCount</span><span class="o">]</span><span class="k">Partition</span><span class="w"></span>
 
-func Find(k string) string {
-    idx := hash(k) % partCount
-    part := &amp;m[idx]
-    part.RLock()
-    v := part.m[k]
-    part.RUnlock()
-    return v
-}
-</code></pre>
+<span class="n">func</span><span class="w"> </span><span class="n">Find</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="n">string</span><span class="p">)</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">idx</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">hash</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">partCount</span><span class="w"></span>
+<span class="w">    </span><span class="n">part</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">part</span><span class="p">.</span><span class="n">RLock</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">part</span><span class="p">.</span><span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">part</span><span class="p">.</span><span class="n">RUnlock</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">v</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
 </li>
 <li>
 <p>Local caching and batching of updates can help to reduce contention on
     un-partitionable data structures. Below you can see how to batch sends to a
     channel:</p>
-<pre><code>const CacheSize = 16
+<div class="codehilite"><pre><span></span><code><span class="n">const</span><span class="w"> </span><span class="n">CacheSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
 
-type Cache struct {
-    buf [CacheSize]int
-    pos int
-}
+<span class="n">type</span><span class="w"> </span><span class="n">Cache</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">[</span><span class="n">CacheSize</span><span class="o">]</span><span class="nc">int</span><span class="w"></span>
+<span class="w">    </span><span class="n">pos</span><span class="w"> </span><span class="nc">int</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-func Send(c chan [CacheSize]int, cache *Cache, value int) {
-    cache.buf[cache.pos] = value
-    cache.pos++
-    if cache.pos == CacheSize {
-        c &lt;- cache.buf
-        cache.pos = 0
-    }
-}
-</code></pre>
+<span class="n">func</span><span class="w"> </span><span class="n">Send</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="n">chan</span><span class="w"> </span><span class="o">[</span><span class="n">CacheSize</span><span class="o">]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="o">*</span><span class="n">Cache</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">cache</span><span class="p">.</span><span class="n">buf</span><span class="o">[</span><span class="n">cache.pos</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+<span class="w">    </span><span class="n">cache</span><span class="p">.</span><span class="n">pos</span><span class="o">++</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="n">pos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CacheSize</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="n">buf</span><span class="w"></span>
+<span class="w">        </span><span class="n">cache</span><span class="p">.</span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
 <p>This technique is not limited to channels. It can be used to batch updates
 to a map, batch allocations, etc.</p>
 </li>
@@ -2868,13 +2892,17 @@ later).</p>
 tracers. They allow to trace garbage collections, memory allocator and goroutine
 scheduler state. To enable the garbage collector (GC) trace, run the program
 with <code>GODEBUG=gctrace=1</code> environment variable:</p>
-<pre><code>$ GODEBUG=gctrace=1 ./myserver
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ <span class="nv">GODEBUG</span><span class="o">=</span><span class="nv">gctrace</span><span class="o">=</span><span class="m">1</span> ./myserver
+</code></pre></div>
+
+
 <p>Then the program will print output similar to the following during execution:</p>
-<pre><code>gc9(2): 12+1+744+8 us, 2 -&gt; 10 MB, 108615 (593983-485368) objects, 4825/3620/0 sweeps, 0(0) handoff, 6(91) steal, 16/1/0 yields
-gc10(2): 12+6769+767+3 us, 1 -&gt; 1 MB, 4222 (593983-589761) objects, 4825/0/1898 sweeps, 0(0) handoff, 6(93) steal, 16/10/2 yields
-gc11(2): 799+3+2050+3 us, 1 -&gt; 69 MB, 831819 (1484009-652190) objects, 4825/691/0 sweeps, 0(0) handoff, 5(105) steal, 16/1/0 yields
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">gc9(2): 12+1+744+8 us, 2 -&gt; 10 MB, 108615 (593983-485368) objects, 4825/3620/0 sweeps, 0(0) handoff, 6(91) steal, 16/1/0 yields</span>
+<span class="err">gc10(2): 12+6769+767+3 us, 1 -&gt; 1 MB, 4222 (593983-589761) objects, 4825/0/1898 sweeps, 0(0) handoff, 6(93) steal, 16/10/2 yields</span>
+<span class="err">gc11(2): 799+3+2050+3 us, 1 -&gt; 69 MB, 831819 (1484009-652190) objects, 4825/691/0 sweeps, 0(0) handoff, 5(105) steal, 16/1/0 yields</span>
+</code></pre></div>
+
+
 <p>Let's consider the meaning of these numbers. One line per GC is printed. The
 first number ("gc9") is the number of GC (this is the 9-th GC since program
 start). The number in parens ("(2)") is the number of worker threads
@@ -2896,22 +2924,28 @@ operations during waiting for another thread.</p>
 <p>The GC is <a href="http://www.brpreiss.com/books/opus5/html/page424.html">mark-and-sweep
 type</a>. Total GC can be
 expressed as:</p>
-<pre><code>Tgc = Tseq + Tmark + Tsweep
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Tgc = Tseq + Tmark + Tsweep</span>
+</code></pre></div>
+
+
 <p>where Tseq is time to stop user goroutines and some preparation activities
 (usually small); Tmark is heap marking time, marking happens when all user
 goroutines are stopped, and thus can significantly affect latency of processing;
 Tsweep is heap sweeping time, sweeping generally happens concurrently with
 normal program execution, and so is not so critical for latency.</p>
 <p>Marking time can be approximately expressed as:</p>
-<pre><code>Tmark = C1*Nlive + C2*MEMlive_ptr + C3*Nlive_ptr
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Tmark = C1*Nlive + C2*MEMlive_ptr + C3*Nlive_ptr</span>
+</code></pre></div>
+
+
 <p>where Nlive is the number of live objects in the heap during GC, <code>MEMlive_ptr</code>
 is the amount of memory occupied by live objects with pointers, <code>Nlive_ptr</code> is
 the number of pointers in live objects.</p>
 <p>Sweeping time can be approximately expressed as:</p>
-<pre><code>Tsweep = C4*MEMtotal + C5*MEMgarbage
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Tsweep = C4*MEMtotal + C5*MEMgarbage</span>
+</code></pre></div>
+
+
 <p>where <code>MEMtotal</code> is the total amount of heap memory, <code>MEMgarbage</code> is the amount
 of garbage in the heap.</p>
 <p>Next GC happens after the program has allocated an extra amount of memory
@@ -2933,26 +2967,28 @@ threads is currently bounded by 8.</p>
 <p>Memory allocator traces simply dumps all memory allocation and free operations
 onto console. It's enabled with GODEBUG=allocfreetrace=1 environment variable.
 The output looks along the lines of:</p>
-<pre><code>tracealloc(0xc208062500, 0x100, array of parse.Node)
-goroutine 16 [running]:
-runtime.mallocgc(0x100, 0x3eb7c1, 0x0)
-    runtime/malloc.goc:190 +0x145 fp=0xc2080b39f8
-runtime.growslice(0x31f840, 0xc208060700, 0x8, 0x8, 0x1, 0x0, 0x0, 0x0)
-    runtime/slice.goc:76 +0xbb fp=0xc2080b3a90
-text/template/parse.(*Tree).parse(0xc2080820e0, 0xc208023620, 0x0, 0x0)
-    text/template/parse/parse.go:289 +0x549 fp=0xc2080b3c50
-...
+<div class="codehilite"><pre><span></span><code><span class="n">tracealloc</span><span class="p">(</span><span class="mh">0xc208062500</span><span class="p">,</span><span class="w"> </span><span class="mh">0x100</span><span class="p">,</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nf">parse</span><span class="p">.</span><span class="n">Node</span><span class="p">)</span><span class="w"></span>
+<span class="n">goroutine</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">[</span><span class="n">running</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+<span class="n">runtime</span><span class="p">.</span><span class="n">mallocgc</span><span class="p">(</span><span class="mh">0x100</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3eb7c1</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">runtime</span><span class="o">/</span><span class="n">malloc</span><span class="p">.</span><span class="nl">goc</span><span class="p">:</span><span class="mi">190</span><span class="w"> </span><span class="o">+</span><span class="mh">0x145</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc2080b39f8</span><span class="w"></span>
+<span class="n">runtime</span><span class="p">.</span><span class="n">growslice</span><span class="p">(</span><span class="mh">0x31f840</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc208060700</span><span class="p">,</span><span class="w"> </span><span class="mh">0x8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x1</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">runtime</span><span class="o">/</span><span class="n">slice</span><span class="p">.</span><span class="nl">goc</span><span class="p">:</span><span class="mi">76</span><span class="w"> </span><span class="o">+</span><span class="mh">0xbb</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc2080b3a90</span><span class="w"></span>
+<span class="nc">text</span><span class="o">/</span><span class="n">template</span><span class="o">/</span><span class="nf">parse</span><span class="p">.(</span><span class="o">*</span><span class="n">Tree</span><span class="p">).</span><span class="nf">parse</span><span class="p">(</span><span class="mh">0xc2080820e0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc208023620</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nc">text</span><span class="o">/</span><span class="n">template</span><span class="o">/</span><span class="nf">parse</span><span class="o">/</span><span class="nf">parse</span><span class="p">.</span><span class="k">go</span><span class="err">:</span><span class="mi">289</span><span class="w"> </span><span class="o">+</span><span class="mh">0x549</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc2080b3c50</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 
-tracefree(0xc208002d80, 0x120)
-goroutine 16 [running]:
-runtime.MSpan_Sweep(0x73b080)
-        runtime/mgc0.c:1880 +0x514 fp=0xc20804b8f0
-runtime.MCentral_CacheSpan(0x69c858)
-        runtime/mcentral.c:48 +0x2b5 fp=0xc20804b920
-runtime.MCache_Refill(0x737000, 0xc200000012)
-        runtime/mcache.c:78 +0x119 fp=0xc20804b950
-...
-</code></pre>
+<span class="n">tracefree</span><span class="p">(</span><span class="mh">0xc208002d80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x120</span><span class="p">)</span><span class="w"></span>
+<span class="n">goroutine</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">[</span><span class="n">running</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+<span class="n">runtime</span><span class="p">.</span><span class="n">MSpan_Sweep</span><span class="p">(</span><span class="mh">0x73b080</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">runtime</span><span class="o">/</span><span class="n">mgc0</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">1880</span><span class="w"> </span><span class="o">+</span><span class="mh">0x514</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc20804b8f0</span><span class="w"></span>
+<span class="n">runtime</span><span class="p">.</span><span class="n">MCentral_CacheSpan</span><span class="p">(</span><span class="mh">0x69c858</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">runtime</span><span class="o">/</span><span class="n">mcentral</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">48</span><span class="w"> </span><span class="o">+</span><span class="mh">0x2b5</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc20804b920</span><span class="w"></span>
+<span class="n">runtime</span><span class="p">.</span><span class="n">MCache_Refill</span><span class="p">(</span><span class="mh">0x737000</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc200000012</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">runtime</span><span class="o">/</span><span class="n">mcache</span><span class="p">.</span><span class="nl">c</span><span class="p">:</span><span class="mi">78</span><span class="w"> </span><span class="o">+</span><span class="mh">0x119</span><span class="w"> </span><span class="n">fp</span><span class="o">=</span><span class="mh">0xc20804b950</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+</code></pre></div>
+
+
 <p>The trace contains address of the memory block, size, type, goroutine id and the
 stack trace. It's probably more useful for debugging, but can give very
 fine-grained info for allocation optimizations as well.</p>
@@ -2962,13 +2998,17 @@ scheduler and allow to debug load balancing and scalability issues. To enable
 the scheduler trace trace, run the program with GODEBUG=schedtrace=1000
 environment variable (the value means period of output, in ms, in this case it's
 once per second):</p>
-<pre><code>$ GODEBUG=schedtrace=1000 ./myserver
-</code></pre>
+<div class="codehilite"><pre><span></span><code>$ <span class="nv">GODEBUG</span><span class="o">=</span><span class="nv">schedtrace</span><span class="o">=</span><span class="m">1000</span> ./myserver
+</code></pre></div>
+
+
 <p>Then the program will print output similar to the following during execution:</p>
-<pre><code>SCHED 1004ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=4 runqueue=8 [0 1 0 3]
-SCHED 2005ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=5 runqueue=6 [1 5 4 0]
-SCHED 3008ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=4 runqueue=10 [2 2 2 1]
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">SCHED 1004ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=4 runqueue=8 [0 1 0 3]</span>
+<span class="err">SCHED 2005ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=5 runqueue=6 [1 5 4 0]</span>
+<span class="err">SCHED 3008ms: gomaxprocs=4 idleprocs=0 threads=11 idlethreads=4 runqueue=10 [2 2 2 1]</span>
+</code></pre></div>
+
+
 <p>The first number ("1004ms") is time since program start. Gomaxprocs is the
 current value of GOMAXPROCS. Idleprocs is the number of idling processors (the
 rest are executing Go code). Threads is the total number of worker threads
@@ -2990,12 +3030,16 @@ GOMAXPROCS and/or does not consume 100% of CPU time. The ideal situation is when
 all processors are busy executing Go code, number of threads is reasonable,
 there is plenty of work in all queues and the work is reasonably evenly
 distributed:</p>
-<pre><code>gomaxprocs=8 idleprocs=0 threads=40 idlethreads=5 runqueue=10 [20 20 20 20 20 20 20 20]
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">gomaxprocs=8 idleprocs=0 threads=40 idlethreads=5 runqueue=10 [20 20 20 20 20 20 20 20]</span>
+</code></pre></div>
+
+
 <p>A bad situation is when something of the above does not hold. For example the
 following sample demonstrates shortage of work to keep all processors busy:</p>
-<pre><code>gomaxprocs=8 idleprocs=6 threads=40 idlethreads=30 runqueue=0 [0 2 0 0 0 1 0 0]
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">gomaxprocs=8 idleprocs=6 threads=40 idlethreads=30 runqueue=0 [0 2 0 0 0 1 0 0]</span>
+</code></pre></div>
+
+
 <p>Note: use OS-provided means to measure actual CPU utilization as the ultimate
 characteristic. On Unix family of operating system it is top command; on Windows
 it is Task Manager.</p>
@@ -3035,21 +3079,27 @@ leaks and getting insights into program memory consumption.</p>
 <p>First, you need to write the dump using
 <a href="http://tip.golang.org/pkg/runtime/debug/#WriteHeapDump">runtime/debug.WriteHeapDump</a>
 function:</p>
-<pre><code>    f, err := os.Create("heapdump")
-    if err != nil { ... }
-    debug.WriteHeapDump(f.Fd())
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">    f, err := os.Create(&quot;heapdump&quot;)</span>
+<span class="err">    if err != nil { ... }</span>
+<span class="err">    debug.WriteHeapDump(f.Fd())</span>
+</code></pre></div>
+
+
 <p>Then you can either render it to a dot file with graphical representation of the
 heap or convert it to hprof format. To render it to a dot file:</p>
-<pre><code>$ go get github.com/randall77/hprof/dumptodot
+<div class="codehilite"><pre><span></span><code>$ go get github.com/randall77/hprof/dumptodot
 $ dumptodot heapdump mybinary &gt; heap.dot
-</code></pre>
+</code></pre></div>
+
+
 <p>and open <code>heap.dot</code> with Graphviz.</p>
 <p>To convert it to <code>hprof</code> format:</p>
-<pre><code>$ go get github.com/randall77/hprof/dumptohprof
+<div class="codehilite"><pre><span></span><code>$ go get github.com/randall77/hprof/dumptohprof
 $ dumptohprof heapdump heap.hprof
 $ jhat heap.hprof
-</code></pre>
+</code></pre></div>
+
+
 <p>and navigate your browser to <a href="http://myserver:7000">http://myserver:7000</a>.</p>
 <h2 id="concluding-remarks">Concluding Remarks</h2>
 <p>Optimization is an open problem, there are simple recipes that you can use to
@@ -3058,6 +3108,19 @@ the program. But we hope that the tools will be a valuable addition to your
 toolbox, that you can use to at least analyze and understand what happens.
 <a href="http://blog.golang.org/profiling-go-programs">Profiling Go Programs</a> is a good
 tutorial on usage of CPU and memory profilers to optimize a simple program.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: September 21, 2018
+    
+  </small>
+</div>
+                  
                 
               
               
